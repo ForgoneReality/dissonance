@@ -1,24 +1,30 @@
-# README
+# Dissonance
+ _A duplicate of Discord made using Javascript, React/Redux, and Ruby on Rails_
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[//]: # (Logo here if have time lol)
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+lol I barely have anything don't play it yet...
 
-* System dependencies
+## Future Features
+- Servers and Private Messages
+- Live chatting via Websockets
+- Good design that represents discord
+- Channels in every server
 
-* Configuration
+## Bonus Features
+- Bots
+- Roles and Role Permissions
+- etc.
 
-* Database creation
 
-* Database initialization
+## Technologies, Libraries, APIs
+To-do
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+## To-Do
+Everything
 
-* Deployment instructions
-
-* ...
+### Special Thanks
+- Discord for... their entire website
