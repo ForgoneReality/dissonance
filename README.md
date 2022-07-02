@@ -5,7 +5,7 @@
 
 ## Features
 
-lol I barely have anything don't play it yet...
+None lol
 
 ## Future Features
 - Servers and Private Messages
