@@ -13,3 +13,36 @@
  *= require_tree .
  *= require_self
  */
+
+ @font-face {
+    font-family: "UniSansBold";
+    src: url('UniSansBold.ttf');
+
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "UniSans";
+    src: url('UniSans.ttf');
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+h1{
+    font-family: "UniSansBold", "Verdana";
+    font-weight: bold;
+    color: blue;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.center-nav a{
+    text-decoration: none;
+    font-family: "Trebuchet MS";
+    color: blue;
+}

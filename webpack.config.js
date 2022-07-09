@@ -15,7 +15,18 @@ module.exports = {
             options: {
                 presets: ['@babel/env', '@babel/react'] // ['@babel/env', '@babel/react'] // change to this when we add react
             }
-            }
+            },
+            {
+                test: /\.(png|jpg|svg|jpeg|gif)$/i,
+                use: [
+                {
+                    loader: 'url-loader',
+                    options: {
+                    limit: 8192
+                    }
+                }]
+            }  
+
         ]
     },
     devtool: 'source-map',
