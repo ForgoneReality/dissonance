@@ -6,6 +6,10 @@ class Conversation extends React.Component {
     
     this.renderErrors = this.renderErrors.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+
+    this.state = {
+      usermsg: ""
+    }
   }
 
   submitOnEnter(event){
@@ -15,18 +19,25 @@ class Conversation extends React.Component {
         event.preventDefault(); // Prevents the addition of a new line in the text field (not needed in a lot of cases)
         event.target.value = "";
     }
+        
   }
 
   handleSubmit(e)
   {
     e.preventDefault();
     console.log("success");
+    console.log(this.state.usermsg);
+    this.state.usermsg = "";
+  }
+
+  update(property) {
+    return e => this.setState({ [property]: e.currentTarget.value });
   }
 
   componentDidMount()
   {
     document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
-    document.getElementById("msg-form").addEventListener("")
+    document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
     this.props.getConvoMessages(this.props.id);
     this.props.getConversationList(this.props.currentUser.id);
     this.props.removeErrors();
@@ -68,8 +79,8 @@ class Conversation extends React.Component {
         <ul>
           {msgList}
         </ul>
-        <form id="msg-form" onSubmit={(e) => this.handleSubmit(e)}>
-          <textarea id="usermsg"></textarea>
+        <form id="msg-form">
+          <textarea id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")}></textarea>
           <button className="invisible" type="Submit">Submit</button>
         </form>
         {this.renderErrors()}
