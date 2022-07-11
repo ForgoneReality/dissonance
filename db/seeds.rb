@@ -33,18 +33,7 @@
     Message.create!({content: "First!", author_id:1, location_id: 1, location_type: "Channel"})
     Message.create!({content: "Second!", author_id:2, location_id: 1, location_type: "Channel"})
     Message.create!({content: "Sup it's bob.", author_id:4, location_id: 2, location_type: "Conversation"})
-
-    # create_table "users", force: :cascade do |t|
-    #     t.string "email", null: false
-    #     t.string "password_digest", null: false
-    #     t.string "username", null: false
-    #     t.string "fourdigit_id", null: false
-    #     t.string "status", default: "online", null: false
-    #     t.string "bio"
-    #     t.string "session_token", null: false
-    #     t.datetime "created_at", null: false
-    #     t.datetime "updated_at", null: false
-    #     t.index ["email"], name: "index_users_on_email", unique: true
-    #     t.index ["session_token"], name: "index_users_on_session_token", unique: true
-    #     t.index ["username", "fourdigit_id"], name: "index_users_on_username_and_fourdigit_id", unique: true
-    #   end
+    Message.create!({content: "Hey bob! How you doing mate", author_id:1, location_id: 2, location_type: "Conversation"})
+    Message.create!({content: "Not your business", author_id:4, location_id: 2, location_type: "Conversation"})
+    Message.create!({content: "Just testing ^^", author_id:3, location_id: 1, location_type: "Conversation"})
+    

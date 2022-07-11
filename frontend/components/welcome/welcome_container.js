@@ -11,15 +11,22 @@ const mapStateToProps = ({ session, entities: { users } }) => {
   return {
     session_id: session.id,
     open:  <Link to="/home">
-                <button type="button">
+                <button className="welcome-button" type="button">
                     Open
                 </button>
             </Link>,
     login: <Link to="/login">
-    <button type="button">
-        Login
-    </button>
-</Link>
+      <button className="welcome-button" type="button">
+          Login
+      </button>,
+      
+      </Link>,
+    signup: <Link to="/signup"> 
+      <button id="welcome-signup" type="button">
+          Sign Up
+      </button>
+      </Link>,
+    demo: <button id="welcome-demo"> Demo (Soon) </button>
   };
 };
 

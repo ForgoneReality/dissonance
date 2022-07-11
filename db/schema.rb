@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2022_07_08_195026) do
     t.string "location_type", null: false
     t.bigint "location_id", null: false
     t.boolean "pinned", default: false
+    t.boolean "edited", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_messages_on_author_id"

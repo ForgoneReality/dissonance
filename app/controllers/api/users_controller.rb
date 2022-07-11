@@ -20,7 +20,16 @@ class Api::UsersController < ApplicationController
             render json: @user.errors.full_messages, status: 422
             # render json: ["Something went wrong"], status: 401
         end
+    end
 
+    def conversations
+        @user = User.find(params[:id])
+
+        if @user
+            render :conversations   , locals: { user: @user }
+        else
+            render json: ["User does not exist"], status: 404
+        end
     end
 
     private

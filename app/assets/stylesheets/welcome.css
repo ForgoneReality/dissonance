@@ -1,0 +1,140 @@
+
+#welcome{
+    background-color: rgb(61, 61, 214);
+}
+
+.welcome-nav{
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: center;
+    z-index: 1;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+
+.welcome-nav h2{
+    font-family: "UniSansBold", "Verdana";
+    font-weight: bold;
+    color: white;
+}
+
+.welcome-content h1{
+    display: flex;
+    justify-content: center;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 7%;
+
+    width: 60%;
+    font-family: "Ministry", "Verdana";
+
+    font-weight: normal;
+    color: white;
+    font-size: 52px;
+}
+
+.welcome-content p{
+    display: flex;
+    justify-content: center;
+    margin-left: 23%;
+    margin-right: 23%;
+
+    width: 54%;
+    font-family: "Helvetica";
+    line-height: 1.8em;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+
+
+
+#icon{
+    height: 1em;
+}
+
+.center-nav a{
+    text-decoration: none;
+    font-family: "Trebuchet MS";
+    color: white;
+}
+
+.left-nav{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0px;
+}
+
+.left-nav h2{
+    margin-left: 10px;
+}
+
+#clouds{
+    z-index: 0;
+    left: 50%;
+    top: 0;
+    transform: translateX(-22%);
+}
+
+#left-main{
+    position: absolute;
+    background-color: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    left: 5%;
+    top: 75%;
+}
+
+#right-main{
+    position: absolute;
+    background-color: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    left: 95%;
+    top: 75%;
+}
+
+.welcome-button{
+    padding-top: 11px;
+    padding-bottom: 11px;
+    padding-left: 17px;
+    padding-right: 17px;
+    border-radius: 25px;
+    border-color:white;
+    background-color: white;
+    border-width: 0px;
+}
+
+
+#welcome-content-buttons{
+    display: flex;
+    justify-content: center;
+    margin: 3%;
+    column-gap: 5%;
+}
+
+#welcome-signup, #welcome-demo
+{
+    font-family: "Whitney";
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 60px;
+    padding-right: 60px;
+    border-radius: 35px;
+    border-color:none;
+    border-width: 0px;
+    font-size: 22px;
+}
+
+#welcome-signup{
+    background-color: white;
+    color: black;
+}
+
+#welcome-demo{
+    background-color: black;
+    color: white;
+}

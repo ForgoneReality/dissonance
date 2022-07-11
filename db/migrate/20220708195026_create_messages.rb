@@ -5,6 +5,7 @@ class CreateMessages < ActiveRecord::Migration[5.2]
       t.integer :author_id, null: false
       t.references :location, null: false, polymorphic: true
       t.boolean :pinned, default: false
+      t.boolean :edited, default: false
       t.timestamps
     end
 

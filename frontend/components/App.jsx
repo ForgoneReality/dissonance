@@ -12,6 +12,8 @@ import {
 
 import SignupFormContainer from './session_form/signup_form_container';
 import LoginFormContainer from './session_form/login_form_container';
+import ConversationListContainer from "./conversations/conversation_list_container";
+import ConversationContainer from "./conversations/conversation_container";
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 
@@ -27,7 +29,9 @@ const App = () => (
       <Switch>
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
-        <AuthRoute exact path="/" component={WelcomeContainer}/>
+        <ProtectedRoute exact path="/home" component={ConversationListContainer} />
+        <ProtectedRoute path="/conversations/:convoId" component={ConversationContainer} />
+        <Route exact path="/" component={WelcomeContainer}/>
         {/* Some Default Path? path="/" */}
       </Switch>
     </div>

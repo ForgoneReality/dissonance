@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  get 'api/Message'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "static_pages#root"
 
   namespace :api, defaults: {format: :json} do
-    resources :users, only: [:create, :show, :index, :update]
+    resources :users, only: [:create, :show, :index, :update] do
+      get :conversations, on: :member
+    end
     resource :session, only: [:create, :destroy]
-    resources :conversations, only: [:show, :index, :create]
+    resources :conversations, only: [:show, :create]
     resources :servers, only: [:show, :index, :create, :update, :destroy]
     resources :joined_servers, only: [:create, :destroy]
     resources :channels, only: [:show, :index, :create, :update, :destroy]

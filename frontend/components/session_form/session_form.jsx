@@ -1,4 +1,5 @@
 import React from 'react';
+import login_img from "./login-img.png"
 
 const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
@@ -18,6 +19,8 @@ class SessionForm extends React.Component {
   componentDidMount()
   {
     this.props.removeErrors();
+    document.body.style = 'background: #5865f4;'
+    // if(this.props.formType === "login")
   }
 
   generate_fourdigit()
@@ -66,51 +69,55 @@ class SessionForm extends React.Component {
     let AdditionalSignupInfo = this.props.formType === "login" ? <p></p> :
     (
       <div>
-        <label>Username:
-          <input type="text"
+        <label for="login-input-username">USERNAME</label>
+        <input type="text"
             value={this.state.username}
             onChange={this.update('username')}
             className="login-input"
+            id="login-input-username"
           />
-        </label>
-        <label>Four-Digit Identifier:
-          <input type="text"
+        <label for="login-input-4id">FOUR-DIGIT ID</label>
+        <input type="text"
             value={this.state.fourdigit_id}
             onChange={this.update('fourdigit_id')}
             className="login-input"
+            id="login-input-4id"
           />
-        </label>
       </div>
     )
+
+    let TitleMessage = this.props.formType === "login" ? "Welcome Back!" : "Create an Account";
+    let optionalSubtitle = this.props.formType === "login" ? <h3>We're so excited to see you again!</h3> : null
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to Dissonance!
-          <br/>
-          Please {this.props.formType} or {this.props.navLink}
+          <h1>{TitleMessage}</h1>
+          {optionalSubtitle}
+          {/* Please {this.props.formType} or {this.props.navLink} */}
           {this.renderErrors()}
           <div className="login-form">
-            <br/>
-            <label>Email:
+            <div class="to-the-left">
+              <label for="email-login-input">EMAIL</label>
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
-                className="login-input"
+                className="login-input" id="email-login-input"
               />
-            </label>
-            <br/>
-            <label>Password:
+              <label for="password-login-input">PASSWORD </label>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
-                className="login-input"
+                className="login-input" id="password-login-input"
               />
-            </label>
-            {AdditionalSignupInfo}
-            <br/>
+              {AdditionalSignupInfo}
+              <p>Don't want to register? Try the demo!</p>
+
+              <br/>
+            </div>
             <input className="session-submit" type="submit" value={this.props.formType} />
           </div>
         </form>
+        <img src={login_img}/>
       </div>
     );
   }

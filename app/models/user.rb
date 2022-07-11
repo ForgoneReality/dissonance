@@ -54,6 +54,8 @@ class User < ApplicationRecord
 
     has_many :servers_owned, class_name: "Server", primary_key: :id, foreign_key: :owner_id
 
+    has_many :messages, foreign_key: :author_id, class_name: "Message"
+
     def conversations
         Conversation.joins("INNER JOIN users ON users.id = conversations.user1_id OR users.id = conversations.user2_id").where("users.id = #{self.id}").uniq
     end

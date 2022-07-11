@@ -28,9 +28,9 @@ export const removeMessage = (message) => ({
     message,
 })
 
-export const fetchMessages = ()=> d => (
-    APIUtil.fetchMessages().then( (result) => d(receiveMessages(result)))
-  )
+// export const fetchMessages = ()=> d => (
+//     APIUtil.fetchMessages().then( (result) => d(receiveMessages(result)))
+//   )
   
 export const createMessage = message => {
 return dispatch => {

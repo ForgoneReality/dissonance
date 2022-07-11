@@ -30,19 +30,57 @@
     font-style: normal;
 }
 
-h1{
-    font-family: "UniSansBold", "Verdana";
+@font-face {
+    font-family: "Ministry";
+    src: url('Ministry.ttf');
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Whitney";
+    src: url('whitneymedium.otf');
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: "Whitney";
+    src: url('whitneybold.otf');
+
     font-weight: bold;
-    color: blue;
+    font-style: normal;
 }
 
-nav{
-    display: flex;
-    justify-content: space-between;
+@font-face {
+    font-family: "WhitneySemi";
+    src: url('whitneysemibold.otf');
+
+    font-weight: normal;
+    font-style: normal;
 }
 
-.center-nav a{
-    text-decoration: none;
-    font-family: "Trebuchet MS";
-    color: blue;
+@font-face{
+    font-family: "Neue";
+    src: url('HelveticaNeue.ttf');
+
+    font-weight: normal;
+    font-style: normal;
 }
+
+
+body
+{
+    background-color: rgb(61, 61, 214);
+    overflow: hidden;
+}
+
+.invisible{
+    display: none;
+}
+
+
+/* Above might need to change */
