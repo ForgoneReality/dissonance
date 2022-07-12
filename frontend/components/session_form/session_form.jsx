@@ -1,5 +1,5 @@
 import React from 'react';
-import login_img from "./login-img.png"
+import login_img from "../../../app/assets/images/login-img.png"
 
 const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 

@@ -1,13 +1,14 @@
 
 import * as APIUtil from "../util/messages_api_util.jsx"
+// import { receiveErrors } from "./error_actions.js";
+
 
 export const RECEIVE_MESSAGES = 'RECEIVE_TODOS';
 export const RECEIVE_MESSAGE = 'RECEIVE_TODO';
 export const REMOVE_MESSAGE = 'REMOVE_TODO';
+export const RECEIVE_MESSAGE_ERRORS = "RECEIVE_MESSAGE_ERRORS";
 
-// export const MESSAGE_ERROR = 'MESSAGE_ERROR';
 
-// import { receiveErrors } from "./error_actions.js";
 
 
 export const receiveMessages = (messages) => {
@@ -17,7 +18,7 @@ export const receiveMessages = (messages) => {
     };
   };
 
-export const receiveMessage = (message) =>({
+export const receiveMessage = ({message}) =>({
     type:RECEIVE_MESSAGE,
     message,
   }  
@@ -28,6 +29,11 @@ export const removeMessage = (message) => ({
     message,
 })
 
+export const receiveMessageErrors = errors => ({
+  type: RECEIVE_MESSAGE_ERRORS,
+  errors
+});
+
 // export const fetchMessages = ()=> d => (
 //     APIUtil.fetchMessages().then( (result) => d(receiveMessages(result)))
 //   )
@@ -36,8 +42,11 @@ export const createMessage = message => {
 return dispatch => {
     return APIUtil.createMessage(message)
     .then(
-        res => dispatch(receiveMessage(res)) //,
-        // err => dispatch(receiveErrors(err.responseJSON))
+        res => dispatch(receiveMessage(res))
+        // err => {
+        //   console.log("ERRORS:", err);
+        //   dispatch(receiveMessageErrors(err.responseJSON))
+        // }
     )
 }
 };
@@ -49,5 +58,5 @@ APIUtil.updateMessage(msg).then( (result) => d(receiveMessage(result)))
 
 export const deleteMessage = (msg)=> d => (
 // APIUtil.deleteTodo(todo).then( (result) => d(removeMessage(result)), (err) => d(receiveErrors(err.responseJSON)))
-APIUtil.deleteMessage(msg).then( (result) => d(removeMessage(result)), (err) => d(receiveErrors(err.responseJSON)))
+APIUtil.deleteMessage(msg).then( (result) => d(removeMessage(result)), (err) => d(receiveMessageErrors(err.responseJSON)))
 ) 

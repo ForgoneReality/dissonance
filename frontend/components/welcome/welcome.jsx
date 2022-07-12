@@ -1,8 +1,8 @@
 import React from 'react';
-import clouds from "./main-page-clouds.svg"
-import icon from "./icon.png"
-import leftWelcomePic from "./main-page-left.svg"
-import rightWelcomePic from "./main-page-right.svg"
+import clouds from "../../../app/assets/images/main-page-clouds.svg"
+import icon from "../../../app/assets/images/icon.png"
+import leftWelcomePic from "../../../app/assets/images/main-page-left.svg"
+import rightWelcomePic from "../../../app/assets/images/main-page-right.svg"
 
 
 class Welcome extends React.Component

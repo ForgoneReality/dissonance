@@ -20,21 +20,46 @@ import { AuthRoute, ProtectedRoute } from "../util/route_util";
 
 //render some stuff always when signed-in... like the users info at the bottom left
 const App = () => (
-    <div>
+    <main>
       {/* <header>
         <h1>Dissonance</h1>
       </header> */}
 
-      
       <Switch>
+        <Route exact path="/" component={WelcomeContainer}/>
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
-        <ProtectedRoute exact path="/home" component={ConversationListContainer} />
-        <ProtectedRoute path="/conversations/:convoId" component={ConversationContainer} />
-        <Route exact path="/" component={WelcomeContainer}/>
-        {/* Some Default Path? path="/" */}
+       
+        {/* list of servers as well as user bar */}
+          <Route path="/conversations" component={ConversationListContainer}>
+            <Route path="/conversations/:convoId" component={ConversationContainer} />
+          </Route>
+
       </Switch>
-    </div>
+{/* 
+      <Router>
+    <Route path="/" component={App... has user settings and servers l}>
+      <Route path="dms" components={{main: Groups, sidebar: conversationsList}} />
+      <Route path="servers" components={{main: Users, sidebar: UsersSidebar}}>
+        <Route path="users/:userId" component={Profile} />
+      </Route>
+    </Route>
+  </Router>
+
+        <Router>
+          <Route path="/" component={App... has user settings and servers l}>
+            <Route path="dms" component={conversationsListContainer}}>
+              switch
+              <Route path="/home or @me" component={friendsList} />
+              <Route path="/:id (??)" component={conversationContainer} />
+            </Route>
+            <Route path="servers" components={{main: Users, sidebar: UsersSidebar}}>
+              /etc
+            </Route>
+          </Route>
+        </Router>
+       */}
+    </main>
   );
 
 

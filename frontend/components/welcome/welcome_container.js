@@ -10,7 +10,7 @@ import Welcome from './welcome';
 const mapStateToProps = ({ session, entities: { users } }) => {
   return {
     session_id: session.id,
-    open:  <Link to="/home">
+    open:  <Link to="/conversations">
                 <button className="welcome-button" type="button">
                     Open
                 </button>
