@@ -1,6 +1,6 @@
 class Api::ConversationsController < ApplicationController
 
-    # before_action :require_logged_in, except: [:index]
+    before_action :require_logged_in, except: [:index]
     ##RE-ENABLE ABOVE AFTER
       
     # def index

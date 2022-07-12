@@ -27,6 +27,10 @@ class Conversation extends React.Component {
     e.preventDefault();
     console.log("success");
     console.log(this.state.usermsg);
+    console.log(this.props.currentUser.id);
+    console.log(this.props.convo.id);
+    console.log("?")
+    this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id});
     this.state.usermsg = "";
   }
 
