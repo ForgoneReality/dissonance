@@ -1,12 +1,20 @@
 class Api::MessagesController < ApplicationController
     # before_action :require_logged_in
 
+   
     def create
         @message = Message.new(message_params)
     
         if @message.save
-        # Your code here
+          # if(@message.location_type == "Conversation")
+          ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/show', message: @message)
+          # end
+          
+         
           render :show, locals: { message: @message }
+
+          # render json: @message, include: :location
+          # render json: @message.location
         else
             render json: @message.errors.full_messages, status: 422
         end
@@ -15,6 +23,9 @@ class Api::MessagesController < ApplicationController
     def destroy
         @message = Message.find(params[:id])
         @message.destroy
+        ConversationsChannel.broadcast_to @message.location,
+        type: 'DELETE_MESSAGE',
+        id: @message.id
         # Your code here
         render json: @message, status: :ok
     end

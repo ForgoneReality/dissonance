@@ -12,7 +12,7 @@ const messagesReducer = (state = {}, action) => {
         return newState;
     case REMOVE_MESSAGE:
         newState = Object.assign({}, state);
-        delete newState[action.message.id]
+        delete newState[action.msgId]
         return newState;
     default:
       return state;

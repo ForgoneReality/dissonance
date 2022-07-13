@@ -10,9 +10,12 @@
     User.create!({email: "anthonie@gmail.com", password: "111111", username: "ant", fourdigit_id: "0313"})
     User.create!({email: "lucy@gmail.com", password: "lucy12", username: "lucy", fourdigit_id: "4059"})
     User.create!({email: "billy@gmail.com", password: "aaaaaa", username: "Billy Bob", fourdigit_id: "4095"})
+    User.create!({email: "bro@gmail.com", password: "111111", username: "bro", fourdigit_id: "4023"})
 
     Conversation.create!({user1_id: 1, user2_id: 3})
     Conversation.create!({user1_id: 1, user2_id: 4})
+    Conversation.create!({user1_id: 1, user2_id: 5})
+
 
     Server.create!({server_link: "appacademy", owner_id: 1, name: "App Academy"})
     Server.create!({server_link: "leagueoflegends", owner_id: 4, name: "League of Legends"})
@@ -35,5 +38,7 @@
     Message.create!({content: "Sup it's bob.", author_id:4, location_id: 2, location_type: "Conversation"})
     Message.create!({content: "Hey bob! How you doing mate", author_id:1, location_id: 2, location_type: "Conversation"})
     Message.create!({content: "Not your business", author_id:4, location_id: 2, location_type: "Conversation"})
-    Message.create!({content: "Just testing ^^", author_id:3, location_id: 1, location_type: "Conversation"})
+    Message.create!({content: "Just testing!", author_id:3, location_id: 1, location_type: "Conversation"})
+    Message.create!({content: "Please work lol", author_id:5, location_id: 3, location_type: "Conversation"})
+    
     

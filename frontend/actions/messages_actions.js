@@ -24,9 +24,16 @@ export const receiveMessage = ({message}) =>({
   }  
 );
 
-export const removeMessage = (message) => ({
+export const otherReceiveMessage  = (message) =>{
+  console.log(message);
+  return {
+  type:RECEIVE_MESSAGE,
+  message,
+}} //bad code,should refactor
+
+export const removeMessage = (msgId) => ({
     type:REMOVE_MESSAGE,
-    message
+    msgId
 })
 
 export const receiveMessageErrors = errors => ({
@@ -42,7 +49,10 @@ export const createMessage = message => {
 return dispatch => {
     return APIUtil.createMessage(message)
     .then(
-        res => dispatch(receiveMessage(res))
+        res => 
+        { console.log("we out here:", res);
+          return dispatch(receiveMessage(res))
+        }
         // err => {
         //   console.log("ERRORS:", err);
         //   dispatch(receiveMessageErrors(err.responseJSON))
@@ -59,5 +69,5 @@ export const updateMessage = (msg)=> d => {
 
 export const deleteMessage = (msg)=> d => (
 // APIUtil.deleteTodo(todo).then( (result) => d(removeMessage(result)), (err) => d(receiveErrors(err.responseJSON)))
-APIUtil.deleteMessage(msg).then( (result) => d(removeMessage(result)), (err) => d(receiveMessageErrors(err.responseJSON)))
+APIUtil.deleteMessage(msg).then( (result) => d(removeMessage(result.id)), (err) => d(receiveMessageErrors(err.responseJSON)))
 ) 

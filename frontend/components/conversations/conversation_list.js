@@ -60,7 +60,7 @@ class ConversationList extends React.Component {
         <div className="conversations-list">
           <h2>Welcome back {this.props.currentUser.username}!</h2>
           
-          <label for="c-list">List of Conversations</label>
+          <label htmlFor="c-list">List of Conversations</label>
           <ul id="c-list">
               {msgList}
           </ul>

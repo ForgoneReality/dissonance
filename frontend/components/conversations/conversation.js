@@ -1,5 +1,7 @@
 import React from 'react';
 
+import consumer from '../../consumer';
+
 class Conversation extends React.Component {
   constructor(props) {
     super(props);
@@ -22,6 +24,28 @@ class Conversation extends React.Component {
         event.target.value = "";
     }
         
+  }
+
+  enterRoom() {
+    // ...
+    this.subscription = consumer.subscriptions.create(
+      { channel: 'ConversationsChannel', id: this.props.convo.id},
+      {received: ({type, message, id}) => {
+        switch (type) {
+          case 'RECEIVE_MESSAGE':
+            this.props.receiveMessage(message);
+            break;
+          case 'DELETE_MESSAGE':
+            this.props.removeMessage(id);
+            break;
+          default:
+            console.log('Unhandled broadcast: ', type);
+            break;
+        }
+      }
+    }
+    
+    );
   }
 
   handleSubmit(e)
@@ -49,7 +73,22 @@ class Conversation extends React.Component {
     document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
     this.props.getConvoMessages(this.props.id);
     this.props.getConversationList(this.props.currentUser.id);
+    this.enterRoom();
     this.props.removeErrors();
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevConvoId = prevProps.convo.id;
+    if (prevConvoId !== this.props.convo.id) {
+      this.subscription?.unsubscribe();
+      this.enterRoom();
+    }
+  }
+
+  componentWillUnmount()
+  {
+    //removeEventListeners? s
+    this.subscription?.unsubscribe();
   }
 
 

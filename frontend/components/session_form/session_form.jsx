@@ -69,14 +69,14 @@ class SessionForm extends React.Component {
     let AdditionalSignupInfo = this.props.formType === "login" ? <p></p> :
     (
       <div>
-        <label for="login-input-username">USERNAME</label>
+        <label htmlFor="login-input-username">USERNAME</label>
         <input type="text"
             value={this.state.username}
             onChange={this.update('username')}
             className="login-input"
             id="login-input-username"
           />
-        <label for="login-input-4id">FOUR-DIGIT ID</label>
+        <label htmlFor="login-input-4id">FOUR-DIGIT ID</label>
         <input type="text"
             value={this.state.fourdigit_id}
             onChange={this.update('fourdigit_id')}
@@ -96,14 +96,14 @@ class SessionForm extends React.Component {
           {/* Please {this.props.formType} or {this.props.navLink} */}
           {this.renderErrors()}
           <div className="login-form">
-            <div class="to-the-left">
-              <label for="email-login-input">EMAIL</label>
+            <div className="to-the-left">
+              <label htmlFor="email-login-input">EMAIL</label>
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
                 className="login-input" id="email-login-input"
               />
-              <label for="password-login-input">PASSWORD </label>
+              <label htmlFor="password-login-input">PASSWORD </label>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
