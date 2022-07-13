@@ -7,7 +7,6 @@ const messagesReducer = (state = {}, action) => {
     case RECEIVE_MESSAGES:
       return action.messages;
     case RECEIVE_MESSAGE:
-        debugger;
         newState = Object.assign({}, state);
         newState[action.message.id] = action.message;
         return newState;

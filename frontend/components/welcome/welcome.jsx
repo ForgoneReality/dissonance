@@ -12,6 +12,11 @@ class Welcome extends React.Component
     super(props)
   }
 
+  componentDidMount()
+  {
+    document.body.style = 'overflow: hidden;'
+  }
+
   render()
   {
     const { session_id } = this.props;

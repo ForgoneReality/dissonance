@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Conversation from './conversation';
 import { removeErrors } from '../../actions/errors_actions.js';
 import { getConversationList, getConvoMessages } from '../../actions/conversations_actions';
-import { createMessage } from '../../actions/messages_actions';
+import { createMessage, deleteMessage, updateMessage } from '../../actions/messages_actions';
 
 const mapStateToProps = (state, ownProps) => {
   
@@ -25,7 +25,9 @@ const mapDispatchToProps = (dispatch) => {
         removeErrors: () => dispatch(removeErrors()),
         getConversationList: (userid) => dispatch(getConversationList(userid)),
         getConvoMessages: (id) => dispatch(getConvoMessages(id)),
-        sendMessage: (message) => dispatch(createMessage(message))
+        sendMessage: (message) => dispatch(createMessage(message)),
+        deleteMessage: (msgId) => dispatch(deleteMessage(msgId)),
+        editMessage: (msg, id) => dispatch(updateMessage(msg, id))
     };
 }
 

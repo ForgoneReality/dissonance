@@ -75,11 +75,15 @@
 body
 {
     background-color: rgb(61, 61, 214);
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .invisible{
     display: none;
+}
+
+ul, li{
+    list-style: none;
 }
 
 

@@ -12,15 +12,16 @@ import {
 
 import SignupFormContainer from './session_form/signup_form_container';
 import LoginFormContainer from './session_form/login_form_container';
-import ConversationListContainer from "./conversations/conversation_list_container";
-import ConversationContainer from "./conversations/conversation_container";
+// import ConversationListContainer from "./conversations/conversation_list_container";
+// import ConversationContainer from "./conversations/conversation_container";
+import AppBasicsContainer from "./bars/appbasics_container";
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 
 
 //render some stuff always when signed-in... like the users info at the bottom left
 const App = () => (
-    <main>
+    <div>
       {/* <header>
         <h1>Dissonance</h1>
       </header> */}
@@ -29,12 +30,7 @@ const App = () => (
         <Route exact path="/" component={WelcomeContainer}/>
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
-       
-        {/* list of servers as well as user bar */}
-          <Route path="/conversations" component={ConversationListContainer}>
-            <Route path="/conversations/:convoId" component={ConversationContainer} />
-          </Route>
-
+        <ProtectedRoute path="/" component={AppBasicsContainer}/> 
       </Switch>
 {/* 
       <Router>
@@ -59,7 +55,7 @@ const App = () => (
           </Route>
         </Router>
        */}
-    </main>
+    </div>
   );
 
 

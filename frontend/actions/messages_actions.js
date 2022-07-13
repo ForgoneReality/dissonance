@@ -26,7 +26,7 @@ export const receiveMessage = ({message}) =>({
 
 export const removeMessage = (message) => ({
     type:REMOVE_MESSAGE,
-    message,
+    message
 })
 
 export const receiveMessageErrors = errors => ({
@@ -51,10 +51,11 @@ return dispatch => {
 }
 };
 
-export const updateMessage = (msg)=> d => (
+export const updateMessage = (msg)=> d => {
 // APIUtil.updateMessage(msg).then( (result) => d(receiveTodos(result)), (err) => d(receiveErrors(err.responseJSON)))
-APIUtil.updateMessage(msg).then( (result) => d(receiveMessage(result)))
-)
+
+  return APIUtil.updateMessage(msg).then( (result) => d(receiveMessage(result)))
+}
 
 export const deleteMessage = (msg)=> d => (
 // APIUtil.deleteTodo(todo).then( (result) => d(removeMessage(result)), (err) => d(receiveErrors(err.responseJSON)))

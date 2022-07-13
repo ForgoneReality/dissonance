@@ -6,15 +6,17 @@ class Conversation extends React.Component {
     
     this.renderErrors = this.renderErrors.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-
+    this.handleEditSubmit = this.handleEditSubmit.bind(this)
+    this.firstTime = -1;
     this.state = {
-      usermsg: ""
+      usermsg: "",
+      editmsg: "",
+      editing: -1
     }
   }
 
   submitOnEnter(event){
     if(event.which === 13){
-        //console.log("?", event.target.form);
         event.target.form.dispatchEvent(new Event("submit", {cancelable: true}));
         event.preventDefault(); // Prevents the addition of a new line in the text field (not needed in a lot of cases)
         event.target.value = "";
@@ -25,13 +27,16 @@ class Conversation extends React.Component {
   handleSubmit(e)
   {
     e.preventDefault();
-    console.log("success");
-    console.log(this.state.usermsg);
-    console.log(this.props.currentUser.id);
-    console.log(this.props.convo.id);
-    console.log("?")
     this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id});
-    this.state.usermsg = "";
+    this.setState({usermsg: ""});
+  }
+
+  handleEditSubmit(e)
+  {
+    e.preventDefault();
+    this.props.editMessage( {id: this.state.editing, content: this.state.editmsg});
+    this.setState({editmsg: "", editing: -1});
+    this.firstTime = -1;
   }
 
   update(property) {
@@ -69,14 +74,72 @@ class Conversation extends React.Component {
 
   render() {
     let msgList = <li>Empty...</li>;
-    const msgs = (this.props.messages);
-    if (msgs.length > 0)
+    if (this.props.messages.length > 0)
     {
-     msgList = Object.values(msgs).map( (msg) =>{
-      return <li>{msg.author_name} says {msg.content}</li>
+
+     msgList = Object.values(this.props.messages).map( (msg) =>{
+      let deleteButton = null;
+      let editButton = null;
+      let msgContent = <p>{msg.author_name} says {msg.content}</p>;
+
+      if(msg.author_id === this.props.currentUser.id)
+      {
+        
+        if(this.state.editing === msg.id)
+        {
+
+          if(this.firstTime === 2)
+          {
+            this.setState({editmsg: msg.content}); //needless
+            this.firstTime = 1;
+          }
+          msgContent = (
+            <form id="edit-msg-form">
+              <textarea id="edit-msg-textform" value={this.state.editmsg} onChange={this.update("editmsg")}></textarea>
+              <button className="invisible" type="Submit">Edit</button>
+            </form>)
+
+       
+          if(this.firstTime === 1)
+          {
+            let edittxt = document.getElementById("edit-msg-textform");
+            if(edittxt)
+            {
+              let temp = edittxt.value;
+              edittxt.value = "";
+              edittxt.value = temp;
+              edittxt.focus();
+
+              edittxt.addEventListener("keypress", this.submitOnEnter);
+              document.getElementById("edit-msg-form").addEventListener("submit", this.handleEditSubmit);
+              this.firstTime = 0;
+            }
+          }
+        }
+        else
+        {
+          deleteButton = (<button id="delete-msg-button" onClick={() => {this.props.deleteMessage(msg.id)}}>Delete</button>)
+
+          editButton = <button id="edit-msg-button" onClick={() => {
+            this.firstTime = 2;
+            this.setState({editing: msg.id});
+          }
+          }>Edit</button>
+        }
+
+
+
+      }
+      return (<li key={msg.id}>
+
+        {msgContent}
+         {editButton}
+         {deleteButton}
+      
+      </li>)
       })
     }
-    
+
     return (
       <div className="convo">
         <p>Temp to see</p>

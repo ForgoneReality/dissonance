@@ -19,7 +19,7 @@ class SessionForm extends React.Component {
   componentDidMount()
   {
     this.props.removeErrors();
-    document.body.style = 'background: #5865f4;'
+    document.body.style = 'background: #5865f4; overflow: hidden;'
     // if(this.props.formType === "login")
   }
 

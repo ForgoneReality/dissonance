@@ -1,7 +1,9 @@
 import React from 'react';
 import {
-    Link
+    Link, Route
   } from 'react-router-dom';
+
+import ConversationsContainer from "./conversation_container"
 
 class ConversationList extends React.Component {
   constructor(props) {
@@ -15,7 +17,6 @@ class ConversationList extends React.Component {
   {
     this.props.removeErrors();
     this.props.getConversationList(this.props.currentUser.id);//MIGHT BE IN CONSTRUCTOR OR OTHER PLACE LIKE MOUNTED
-    document.body.style = 'background: white;'
   }
 
 
@@ -54,15 +55,21 @@ class ConversationList extends React.Component {
         msgList= <li>It's empty here...</li>
     }
     return (
-      <div className="conversations-list">
-        <h2>Welcome back {this.props.currentUser.username}!</h2>
+      <section className="convos">
         
-        <label for="c-list">List of Conversations</label>
-        <ul id="c-list">
-            {msgList}
-        </ul>
-        {this.renderErrors()}
-      </div>
+        <div className="conversations-list">
+          <h2>Welcome back {this.props.currentUser.username}!</h2>
+          
+          <label for="c-list">List of Conversations</label>
+          <ul id="c-list">
+              {msgList}
+          </ul>
+          {this.renderErrors()}
+        </div>
+
+        <Route path="/conversations/:convoId" component={ConversationsContainer} />
+
+      </section>
     );
   }
 }
