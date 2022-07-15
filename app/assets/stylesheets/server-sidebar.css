@@ -1,0 +1,44 @@
+#server-sidebar {
+    position: relative;
+    height: 100vh;
+    width: 66px;
+   
+    overflow-y: scroll;
+    background-color: red;
+    top: 0;
+    bottom: 0;
+}
+#server-sidebar ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    padding-left: 0;
+}
+
+#server-sidebar > ul > li {
+   width: 66px;
+   height: 58px;
+   border-bottom: #202225 1px solid;
+   border-left: #202225 2px solid;
+   border-right: #202225 2px solid;
+   background-color: #202225;
+}
+
+#server-sidebar div{
+    margin-left: 8px;
+    margin-top: 6px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: #36393f;
+    border-radius: 30px;
+ }
+ 
+
+.server-link {
+    color: #dcddde;
+    text-decoration: inherit;
+    font-size: 20px;
+}

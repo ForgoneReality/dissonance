@@ -5,8 +5,8 @@ import { fetchServer} from "../../actions/servers_actions"
 import Server from "./servers"
 
 const mapStateToProps = (state, ownProps) => {
-    console.log("server state: ", state);
-    console.log("ownprops", ownProps)
+    // console.log("server state: ", state);
+    // console.log("ownprops", ownProps)
     
   return {
     // errors: state.errors.channels,

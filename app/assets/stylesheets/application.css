@@ -75,7 +75,8 @@
 body
 {
     background-color: rgb(61, 61, 214);
-    /* overflow: hidden; */
+    margin: 0px;
+    overflow: hidden;
 }
 
 .invisible{
@@ -86,5 +87,14 @@ ul, li{
     list-style: none;
 }
 
+.server-icons img{
+    width: 60px; /* you can use % */
+    height: auto;
+}
+
+main{
+    display: flex;
+    column-gap: 0px;
+}
 
 /* Above might need to change */

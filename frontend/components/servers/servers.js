@@ -17,7 +17,7 @@ class Server extends React.Component {
   }
 
   componentDidMount()
-  {
+  { 
     fetchChannel(this.props.channelId).then( (res) => {
       console.log("result", res);
       this.props.fetchServer(res.channel.server_id);
@@ -51,13 +51,15 @@ class Server extends React.Component {
     })
 
     let channelsList = this.props.channelsList.map( (channel) => {
-      return <li key={channel.id}>{channel.name}</li>
+      return <li key={channel.id}><Link to={`/channels/${channel.id}`}>{channel.name}</Link></li>;
     })
 
     let serverName;
     let channelContent;
-    if(Object.keys(this.props.channels).length > 0)
+    if(Object.keys(this.props.channels).length > 0 && Object.keys(this.props.channels).includes(this.props.channelId.toString()))
     {
+      console.log("all props: ", this.props);
+
       channelContent = <ChannelContainer channelId={this.props.channelId}/>;
       serverName = this.props.servers[this.props.channels[this.props.channelId].server_id].name;
     }

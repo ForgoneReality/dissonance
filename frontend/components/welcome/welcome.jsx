@@ -33,7 +33,7 @@ class Welcome extends React.Component
         <div id="welcome">
             <nav className="welcome-nav"> 
                 <div className="left-nav">
-                    <img id="icon" src={icon}/>
+                    <img id="icon" src={window.homeicon}/>
                     <h2>Dissonance</h2>
                 </div>
                 <div className="center-nav">
@@ -55,9 +55,9 @@ class Welcome extends React.Component
             </section>
 
 
-            <img id="clouds" src={clouds}/>
-            <img id="left-main" src={leftWelcomePic}/>
-            <img id="right-main" src={rightWelcomePic}/>
+            <img id="clouds" src={window.mainpageclouds}/>
+            <img id="left-main" src={window.mainpageright}/>
+            <img id="right-main" src={window.mainpageright}/>
             
 
         </div>

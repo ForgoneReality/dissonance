@@ -1,0 +1,57 @@
+
+.convos{
+    display: flex;
+    flex-direction: row;
+}
+
+.conversations-list {
+    position: relative;
+    height: 92.5vh;
+    width: 230px;
+
+    overflow-y: scroll;
+    background-color: green;
+    top: 0;
+    bottom: 0;
+}
+
+.conversations-list label{
+    padding-left: 15px;
+    font-family: "Neue";
+    font-size: 12px;
+    font-weight: normal;
+    color: #b9bbbe;
+
+}
+
+.conversations-list ul {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding-left: 7px;
+}
+
+#c-list div{
+    width: 210px;
+    height: 42px;
+    border-bottom: #202225 1px solid;
+    border-left: #202225 2px solid;
+    border-right: #202225 2px solid;
+ }
+
+ .convo-link{
+    color: #a3a6aa;
+    text-decoration: inherit;
+    font-size: 17px;
+    line-height: 42px;
+ }
+
+ 
+ footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    /* margin-top: auto; */
+    height: 7.5vh;
+ }

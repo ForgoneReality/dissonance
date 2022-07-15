@@ -117,7 +117,7 @@ class SessionForm extends React.Component {
             <input className="session-submit" type="submit" value={this.props.formType} />
           </div>
         </form>
-        <img src={login_img}/>
+        <img src={window.loginimg}/>
       </div>
     );
   }

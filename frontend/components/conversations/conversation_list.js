@@ -46,7 +46,11 @@ class ConversationList extends React.Component {
     {
         let sortedList = this.props.convoList.sort( (a,b) => a.last_updated > b.last_updated ? -1 : 1)
         msgList = sortedList.map( (convo) => {
-        return <li><Link to={`/conversations/${convo.id}`}>{convo.otherUser.username}</Link></li>;
+        return <li key={convo.id}>
+          <Link className="convo-link" to={`/conversations/${convo.id}`}>
+            <div>{convo.otherUser.username}</div>
+          </Link>
+        </li>;
         })        
     }
     else
@@ -57,9 +61,8 @@ class ConversationList extends React.Component {
       <section className="convos">
         
         <div className="conversations-list">
-          <h2>Welcome back {this.props.currentUser.username}!</h2>
-          
-          <label htmlFor="c-list">List of Conversations</label>
+          {/* <p>Welcome back {this.props.currentUser.username}!</p> */}
+          <label htmlFor="c-list">DIRECT MESSAGES</label>
           <ul id="c-list">
               {msgList}
           </ul>
