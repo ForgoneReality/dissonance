@@ -1,11 +1,13 @@
 
 import * as APIUtil from "../util/messages_api_util.jsx"
+import * as ConversationUtil from "../util/conversations_api_util.jsx"
 // import { receiveErrors } from "./error_actions.js";
+import { receiveConvo } from "./conversations_actions.js";
 
 
-export const RECEIVE_MESSAGES = 'RECEIVE_TODOS';
-export const RECEIVE_MESSAGE = 'RECEIVE_TODO';
-export const REMOVE_MESSAGE = 'REMOVE_TODO';
+export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
+export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
+export const REMOVE_MESSAGE = 'REMOVE_MESSAGE';
 export const RECEIVE_MESSAGE_ERRORS = "RECEIVE_MESSAGE_ERRORS";
 
 
@@ -25,7 +27,6 @@ export const receiveMessage = ({message}) =>({
 );
 
 export const otherReceiveMessage  = (message) =>{
-  console.log(message);
   return {
   type:RECEIVE_MESSAGE,
   message,
@@ -44,26 +45,30 @@ export const receiveMessageErrors = errors => ({
 // export const fetchMessages = ()=> d => (
 //     APIUtil.fetchMessages().then( (result) => d(receiveMessages(result)))
 //   )
-  
+
+
+
 export const createMessage = message => {
 return dispatch => {
-    return APIUtil.createMessage(message)
-    .then(
-        res => 
-        { console.log("we out here:", res);
-          return dispatch(receiveMessage(res))
-        }
-        // err => {
-        //   console.log("ERRORS:", err);
-        //   dispatch(receiveMessageErrors(err.responseJSON))
-        // }
+    if(message.location_type === "Conversation")
+    {
+      ConversationUtil.updateConversation(message.location_id, {last_updated: new Date() / 1000}).then( (res) => 
+      {
+        dispatch(receiveConvo(res))
+      })
+    }
+    //need other half eventually
+
+    return APIUtil.createMessage(message).then((res) => 
+      { 
+        return dispatch(receiveMessage(res))
+      }
     )
 }
 };
 
 export const updateMessage = (msg)=> d => {
 // APIUtil.updateMessage(msg).then( (result) => d(receiveTodos(result)), (err) => d(receiveErrors(err.responseJSON)))
-
   return APIUtil.updateMessage(msg).then( (result) => d(receiveMessage(result)))
 }
 

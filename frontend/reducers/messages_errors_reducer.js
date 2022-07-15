@@ -7,7 +7,6 @@
 //   export default (state = [], action) => {
 //     Object.freeze(state);
 //     // let newState = Object.assign({}, state)
-//     console.log(action);
 //     switch (action.type) {
 //       case RECEIVE_MESSAGE_ERRORS:
 //         return action.errors;

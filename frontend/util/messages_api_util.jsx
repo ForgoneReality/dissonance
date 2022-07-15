@@ -15,10 +15,10 @@ export const deleteMessage = (msgId) => (
     })
 )
 
-export const updateMessage = (msg) => (
+export const updateMessage = (message) => (
     $.ajax({
-        url: `/api/messages/${msg.id}`,
+        url: `/api/messages/${message.id}`,
         method: "PATCH",
-        data: {msg}
+        data: {message}
     })
 )

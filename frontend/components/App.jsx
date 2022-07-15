@@ -1,6 +1,7 @@
 
 import React from "react";
 import WelcomeContainer from "./welcome/welcome_container"
+import { channelRedirect } from "../util/servers_api_util";
 
 import {
     Route,
@@ -17,7 +18,7 @@ import LoginFormContainer from './session_form/login_form_container';
 import AppBasicsContainer from "./bars/appbasics_container";
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
-
+import ServerInit from "./servers/server_init.js"
 
 //render some stuff always when signed-in... like the users info at the bottom left
 const App = () => (
@@ -25,36 +26,15 @@ const App = () => (
       {/* <header>
         <h1>Dissonance</h1>
       </header> */}
-
       <Switch>
         <Route exact path="/" component={WelcomeContainer}/>
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
+        <Route path="/servers/:serverId" component={ServerInit} />
+    
         <ProtectedRoute path="/" component={AppBasicsContainer}/> 
       </Switch>
-{/* 
-      <Router>
-    <Route path="/" component={App... has user settings and servers l}>
-      <Route path="dms" components={{main: Groups, sidebar: conversationsList}} />
-      <Route path="servers" components={{main: Users, sidebar: UsersSidebar}}>
-        <Route path="users/:userId" component={Profile} />
-      </Route>
-    </Route>
-  </Router>
 
-        <Router>
-          <Route path="/" component={App... has user settings and servers l}>
-            <Route path="dms" component={conversationsListContainer}}>
-              switch
-              <Route path="/home or @me" component={friendsList} />
-              <Route path="/:id (??)" component={conversationContainer} />
-            </Route>
-            <Route path="servers" components={{main: Users, sidebar: UsersSidebar}}>
-              /etc
-            </Route>
-          </Route>
-        </Router>
-       */}
     </div>
   );
 

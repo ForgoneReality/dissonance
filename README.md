@@ -7,6 +7,7 @@ Known Bugs/To-do:
 LATER:
 
 * Animations (CSS)
+* Friend Requests (Pending/etc.)
 
 Minor Bugs: 
 * Welcome Page not flexible with different screen size resolutions

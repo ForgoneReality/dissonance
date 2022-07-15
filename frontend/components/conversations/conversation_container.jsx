@@ -8,7 +8,6 @@ import { createMessage, deleteMessage, updateMessage, otherReceiveMessage, remov
 
 const mapStateToProps = (state, ownProps) => {
   
-    //console.log(state);
     return {
       id: parseInt(ownProps.match.params.convoId),
       errors: state.errors.session,
@@ -27,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
         getConvoMessages: (id) => dispatch(getConvoMessages(id)),
         sendMessage: (message) => dispatch(createMessage(message)),
         deleteMessage: (msgId) => dispatch(deleteMessage(msgId)),
-        editMessage: (msg, id) => dispatch(updateMessage(msg, id)),
+        editMessage: (msg) => dispatch(updateMessage(msg)),
         receiveMessage: (msg) => dispatch(otherReceiveMessage(msg)),
         removeMessage: (msgId) => dispatch(removeMessage(msgId))
     };

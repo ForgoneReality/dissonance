@@ -22,6 +22,7 @@
 @user.conversations.each do |conversation|
   json.set! conversation.id do
     json.id conversation.id
+    json.last_updated conversation.last_updated
     if conversation.user2_id == @user.id
       json.otherUser do
         json.extract! conversation.user1, :id, :username, :status

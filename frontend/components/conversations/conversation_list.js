@@ -19,7 +19,6 @@ class ConversationList extends React.Component {
     this.props.getConversationList(this.props.currentUser.id);//MIGHT BE IN CONSTRUCTOR OR OTHER PLACE LIKE MOUNTED
   }
 
-
   renderErrors() {
 
     if(this.props.errors.length > 0)
@@ -42,11 +41,11 @@ class ConversationList extends React.Component {
 
   render() {
     let msgList;
-    //console.log(this.props);
 
     if (this.props.convoList.length > 0)
     {
-        msgList = this.props.convoList.map( (convo) => {
+        let sortedList = this.props.convoList.sort( (a,b) => a.last_updated > b.last_updated ? -1 : 1)
+        msgList = sortedList.map( (convo) => {
         return <li><Link to={`/conversations/${convo.id}`}>{convo.otherUser.username}</Link></li>;
         })        
     }

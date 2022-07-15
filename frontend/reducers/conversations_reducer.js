@@ -7,7 +7,7 @@ const conversationsReducer = (state = {}, action) => {
     case RECEIVE_CONVERSATIONS:
         return action.conversations;
     case RECEIVE_CONVERSATION:
-        return action.conversation
+        return Object.assign({}, state);
     case CREATE_CONVERSATION:
         newState = Object.assign({}, state);
         newState[action.conversation.id] = action.conversation;

@@ -21,7 +21,6 @@ class Welcome extends React.Component
   {
     const { session_id } = this.props;
     let butt;
-    ////console.log("props", this.props)
     if(session_id)
     {
         butt=this.props.open;

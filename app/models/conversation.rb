@@ -2,7 +2,7 @@ class Conversation < ApplicationRecord
 
     validates :user1_id, :user2_id, presence: true
     validates :user1_id, uniqueness: { scope: :user2_id} 
-    validates :user2_id, uniqueness: { scope: :user1_id} 
+    # validates :user2_id, uniqueness: { scope: :user1_id} 
 
     validate :check_duplicate 
 

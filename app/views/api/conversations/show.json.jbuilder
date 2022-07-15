@@ -24,7 +24,3 @@ end
     end
   end
 end
-
-#ABOVE MIGHT BE COMPLETELY WRONG... LEAVE MESSAGES IN MESSAGES PLACE!!!!!!!
-
-# Your code here

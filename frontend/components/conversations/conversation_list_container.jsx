@@ -7,8 +7,7 @@ import { getConversationList } from '../../actions/conversations_actions.js';
 
 const mapStateToProps = (state) => {
     const cL = Object.values(state.entities.conversations);
-    // //console.log("?!?!?!?!?", cL.length);
-    //console.log("??", state);
+  
   return {
     errors: state.errors.session,
     currentUser: state.session.currentUser,

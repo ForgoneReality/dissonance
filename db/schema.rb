@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_08_195026) do
+ActiveRecord::Schema.define(version: 2022_07_13_041107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,20 @@ ActiveRecord::Schema.define(version: 2022_07_08_195026) do
   create_table "conversations", force: :cascade do |t|
     t.integer "user1_id", null: false
     t.integer "user2_id", null: false
+    t.integer "last_updated", default: 1657747569
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user1_id", "user2_id"], name: "index_conversations_on_user1_id_and_user2_id", unique: true
-    t.index ["user2_id", "user1_id"], name: "index_conversations_on_user2_id_and_user1_id", unique: true
+    t.index ["user2_id"], name: "index_conversations_on_user2_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -50,8 +60,10 @@ ActiveRecord::Schema.define(version: 2022_07_08_195026) do
   create_table "server_joins", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "server_id", null: false
+    t.string "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["server_id"], name: "index_server_joins_on_server_id"
     t.index ["user_id", "server_id"], name: "index_server_joins_on_user_id_and_server_id", unique: true
   end
 
@@ -70,7 +82,7 @@ ActiveRecord::Schema.define(version: 2022_07_08_195026) do
     t.string "password_digest", null: false
     t.string "username", null: false
     t.string "fourdigit_id", null: false
-    t.string "status", default: "online", null: false
+    t.string "status", default: "offline", null: false
     t.string "bio"
     t.string "session_token", null: false
     t.datetime "created_at", null: false

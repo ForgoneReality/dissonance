@@ -25,8 +25,7 @@ module.exports = {
                     limit: 8192
                     }
                 }]
-            }  
-
+            }
         ]
     },
     devtool: 'source-map',

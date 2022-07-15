@@ -1,14 +1,14 @@
 class Api::MessagesController < ApplicationController
-    # before_action :require_logged_in
+    before_action :require_logged_in
 
    
     def create
         @message = Message.new(message_params)
     
         if @message.save
-          # if(@message.location_type == "Conversation")
-          ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/show', message: @message)
-          # end
+          if(@message.location_type == "Conversation")
+            ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/show', message: @message)
+          end
           
          
           render :show, locals: { message: @message }
@@ -23,19 +23,26 @@ class Api::MessagesController < ApplicationController
     def destroy
         @message = Message.find(params[:id])
         @message.destroy
-        ConversationsChannel.broadcast_to @message.location,
-        type: 'DELETE_MESSAGE',
-        id: @message.id
+        
+        if(@message.location_type == "Conversation")
+          ConversationsChannel.broadcast_to @message.location,
+          type: 'DELETE_MESSAGE',
+          id: @message.id
+        end
         # Your code here
         render json: @message, status: :ok
     end
 
 
-    #NOTE: THEY CAN CHANGE MORE THAN I WANT
     def update
       @message = Message.find(params[:id])
-      
+
+     
       if @message.update(message_edit_params)
+        if(@message.location_type == "Conversation")
+          ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/show', message: @message)
+        end
+        
         render :show, locals: { message: @message }
       else
         render json: @message.errors.full_messages, status: 422

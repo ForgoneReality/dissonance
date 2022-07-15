@@ -26,7 +26,38 @@ class Api::UsersController < ApplicationController
         @user = User.find(params[:id])
 
         if @user
-            render :conversations   , locals: { user: @user }
+            render :conversations, locals: { user: @user }
+        else
+            render json: ["User does not exist"], status: 404
+        end
+    end
+
+    def friends
+        @user = User.find(params[:id])
+
+        if @user
+            render :friends, locals: { user: @user }
+        else
+            render json: ["User does not exist"], status: 404
+        end
+    end
+
+    def servers
+        @user = User.find(params[:id])
+
+        if @user
+            render :servers, locals: { user: @user }
+        else
+            render json: ["User does not exist"], status: 404
+        end
+    end
+
+    def search
+        @user = User.find_by(username: params[:username], fourdigit_id: params[:fourdigit_id])
+
+        if @user
+            # render partial: :user, locals: {user: @user}
+            render json: @user.as_json(only: [:id, :username, :fourdigit_id, :status, :bio]), status: 200
         else
             render json: ["User does not exist"], status: 404
         end

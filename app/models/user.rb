@@ -43,7 +43,11 @@ class User < ApplicationRecord
         self.session_token ||= SecureRandom.urlsafe_base64
     end
 
-    # has_many :users, :friends
+    has_many :friendships, 
+        class_name: "Friendship", 
+        foreign_key: :user_id
+
+    has_many :friends, through: :friendships, source: :friend
 
     has_many :servers_joined, 
         class_name: "ServerJoin",

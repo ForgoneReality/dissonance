@@ -26,3 +26,11 @@ export const getConversationList = (userId) => (
         method: "get"
     })
 )
+
+export const updateConversation = (convoId, convo) => (
+    $.ajax({
+        url: `api/conversations/${convoId}`,
+        method: "patch",
+        data: {conversation: convo}
+    })
+)

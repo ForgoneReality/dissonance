@@ -26,6 +26,10 @@ class Conversation extends React.Component {
         
   }
 
+  update(property) {
+    return e => this.setState({ [property]: e.currentTarget.value });
+  }
+
   enterRoom() {
     // ...
     this.subscription = consumer.subscriptions.create(
@@ -44,7 +48,6 @@ class Conversation extends React.Component {
         }
       }
     }
-    
     );
   }
 
@@ -59,14 +62,12 @@ class Conversation extends React.Component {
   {
     e.preventDefault();
     this.props.editMessage( {id: this.state.editing, content: this.state.editmsg});
+    // this.props.editMessage(this.state.editmsg, this.state.editing);
     this.setState({editmsg: "", editing: -1});
     this.firstTime = -1;
   }
 
-  update(property) {
-    return e => this.setState({ [property]: e.currentTarget.value });
-  }
-
+ w
   componentDidMount()
   {
     document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
@@ -78,8 +79,10 @@ class Conversation extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    
     const prevConvoId = prevProps.convo.id;
     if (prevConvoId !== this.props.convo.id) {
+      this.props.getConvoMessages(this.props.id);
       this.subscription?.unsubscribe();
       this.enterRoom();
     }
@@ -181,7 +184,7 @@ class Conversation extends React.Component {
 
     return (
       <div className="convo">
-        <p>Temp to see</p>
+        <p>{this.props.convo.otherUser.username}: {this.props.convo.otherUser.status}</p>
         <ul>
           {msgList}
         </ul>
