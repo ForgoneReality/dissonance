@@ -28,8 +28,7 @@ class AppBasics extends React.Component {
 
   render()
   {
-
-    let {username, status, fourdigit_id} = this.props.currentUser;
+    let {username, status, fourdigit_id, pfp_url} = this.props.currentUser;
     let serverList = this.props.serversList.map( (server) => {
       return <li><Link className="server-link" to={`/servers/${server.id}`}><div>{server.name[0].toUpperCase()}</div></Link></li>
     })
@@ -50,18 +49,23 @@ class AppBasics extends React.Component {
               </ul>
             </nav>
             <div>
-              <Route path="/channels/:channelId" component={ServerContainer} /> 
-              <Route path="/conversations" component={ConversationsListContainer} />
               <footer className="userFooter">
+                <img id="footerpfp" className="sidepfp" src={pfp_url} alt="currentUserPFP"></img>
                 <div>
                   <h2>{username}</h2>
                   <p>#{fourdigit_id}</p>
                 </div>
                 <h3>{status}</h3>
+                <button>
+                  <img id="settings-icon" src={window.settingsicon} alt="settings-icon"></img>
+                </button>
               </footer>
+
             </div>
+            <Route path="/channels/:channelId" component={ServerContainer} /> 
+            <Route path="/conversations" component={ConversationsListContainer} />
             <Route exact path="/conversations" component={FriendListContainer} />
-           
+
         </main>
     )
   }

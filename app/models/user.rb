@@ -9,6 +9,7 @@ class User < ApplicationRecord
     validates :password_digest, :username, presence: true
     validates :password, length: { minimum: 6 }, allow_nil: true
     validates :username, uniqueness: { scope: :fourdigit_id }
+    before_save :has_profile_picture
 
     validates :status, presence: true, inclusion: { in: %w(online idle busy offline)}
     validates :fourdigit_id, presence: true, format: { with: /\A[+-]?\d+\z/}, length: {is: 4}
@@ -43,6 +44,37 @@ class User < ApplicationRecord
         self.session_token ||= SecureRandom.urlsafe_base64
     end
 
+    def has_profile_picture
+        if !self.profile_picture.attached?
+            num = rand(1..10).to_s
+            filelocation = "app/assets/images/#{num}.png"
+            filename = "#{num}.png"
+            self.profile_picture.attach(io: File.open(filelocation), filename: filename)
+
+            if !self.profile_picture.attached?
+                errors.add(:profile_picture, "failed to attach default profile picture") 
+            end
+        end 
+    end
+
+    # def has_profile_picture
+    #     if !self.profile_picture.attached?
+    #         num = rand(1...8).to_s
+    #         filelocation = "app/assets/images/#{num}.png"
+    #         filename = "#{num}.png"
+    #     end
+    #     image = MiniMagick::Image.open(filelocation)
+    #     image.resize "128x128!"
+    #     image.write "resized-#{filename}"
+
+    #     self.profile_picture.attach(io: File.open(filelocation), filename: filename)
+    #     if !self.profile_picture.attached?
+    #         errors.add(:profile_picture, "failed to attach default profile picture") 
+    #     end
+
+    # end
+
+
     has_many :friendships, 
         class_name: "Friendship", 
         foreign_key: :user_id
@@ -64,6 +96,6 @@ class User < ApplicationRecord
         Conversation.joins("INNER JOIN users ON users.id = conversations.user1_id OR users.id = conversations.user2_id").where("users.id = #{self.id}").uniq
     end
 
-    
+    has_one_attached :profile_picture
     
 end

@@ -19,7 +19,6 @@ class Server extends React.Component {
   componentDidMount()
   { 
     fetchChannel(this.props.channelId).then( (res) => {
-      console.log("result", res);
       this.props.fetchServer(res.channel.server_id);
     });
     this.props.removeErrors();
@@ -58,7 +57,6 @@ class Server extends React.Component {
     let channelContent;
     if(Object.keys(this.props.channels).length > 0 && Object.keys(this.props.channels).includes(this.props.channelId.toString()))
     {
-      console.log("all props: ", this.props);
 
       channelContent = <ChannelContainer channelId={this.props.channelId}/>;
       serverName = this.props.servers[this.props.channels[this.props.channelId].server_id].name;

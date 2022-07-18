@@ -7,7 +7,8 @@ import { getConversationList, getConvoMessages } from '../../actions/conversatio
 import { createMessage, deleteMessage, updateMessage, otherReceiveMessage, removeMessage } from '../../actions/messages_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  
+    console.log(state);
+    console.log("OWNPROPS: ", ownProps)
     return {
       id: parseInt(ownProps.match.params.convoId),
       errors: state.errors.session,

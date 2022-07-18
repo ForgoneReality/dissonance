@@ -4,18 +4,44 @@
     flex-direction: row;
 }
 
-.conversations-list {
+.friend-thing-9000{
+    display: flex;
+    padding-left: 17px;
+    gap: 14px;
+    padding-bottom: 11.5px;
+    padding-top: 11.5px;
+    align-items: center;
+}
+
+.friend-thing-9000 img{
+    width: 25px;
+    height: auto;
+}
+
+.convo{
+    min-width: calc(100vw - 297px);
+}
+
+.friend-thing-9000 p{
+
+    font-family: "Neue";
+    font-size: 15.5px;
+    font-weight: normal;
+    color: #b9bbbe;
+}
+
+#conversations-list {
     position: relative;
     height: 92.5vh;
     width: 230px;
 
     overflow-y: scroll;
-    background-color: green;
+    background-color: #2f3136;
     top: 0;
     bottom: 0;
 }
 
-.conversations-list label{
+#conversations-list label{
     padding-left: 15px;
     font-family: "Neue";
     font-size: 12px;
@@ -24,20 +50,27 @@
 
 }
 
-.conversations-list ul {
+#conversations-list ul {
     display: flex;
     flex-direction: column;
     align-content: center;
-    padding-left: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    gap: 1px;
 }
 
-#c-list div{
-    width: 210px;
-    height: 42px;
-    border-bottom: #202225 1px solid;
-    border-left: #202225 2px solid;
-    border-right: #202225 2px solid;
- }
+#conversations-list li {
+    padding-top: 1.5px;
+    padding-bottom: 1.5px;
+    border-radius: 4px;
+    border-width: 0px;
+}
+
+#conversations-list li:hover {
+    background-color:#272727;
+}
+
+/* BRO THIS COLOR: #5865f2 */
 
  .convo-link{
     color: #a3a6aa;
@@ -47,11 +80,52 @@
  }
 
  
- footer{
+
+
+ .convolisting{
     display: flex;
     flex-direction: row;
+    width: 210px;
+    height: 42px;
+ }
+
+.convolisting p{
+    font-family: 'Whitney';
+}
+
+ .makemeabs{
+    display: absolute
+ }
+
+ .converlisting:hover{
+    background-color: red;
+ }
+
+ .sidepfp{
+    width: 32px;
+    height: 32px;
+    border-radius:60%;
+ }
+
+ .useronlinestatusicon{
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: 0px;
+    top: 0px;
+    z-index: 2;
+ }
+
+
+ .useronlinestatusicon svg{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+ }
+ .bruh001{
+    display: flex;
     align-items: center;
-    gap: 10px;
-    /* margin-top: auto; */
-    height: 7.5vh;
+    width: 45px;
+    padding-left: 5px;
+    
  }

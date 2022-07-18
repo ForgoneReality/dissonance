@@ -16,6 +16,7 @@ class Server < ApplicationRecord
 
     has_many :channels, class_name: "Channel", foreign_key: :server_id
 
+    has_one_attached :icon
     #has_many roles
 
 end

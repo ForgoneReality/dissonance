@@ -2,6 +2,10 @@ import React from 'react';
 
 import consumer from '../../consumer';
 
+
+// Without context
+
+
 class Conversation extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +19,10 @@ class Conversation extends React.Component {
       editmsg: "",
       editing: -1
     }
+
+    // const cleverbot = require("cleverbot-free");
+    // cleverbot("Hello.").then(response => console.log("RESPONSE", response));
+
   }
 
   submitOnEnter(event){
@@ -72,8 +80,10 @@ class Conversation extends React.Component {
   {
     document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
     document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
-    this.props.getConvoMessages(this.props.id);
+    // this.props.getConversationList(this.props.currentUser.id).then(() => this.enterRoom());
     this.props.getConversationList(this.props.currentUser.id);
+    this.props.getConvoMessages(this.props.id);
+    
     this.enterRoom();
     this.props.removeErrors();
   }
@@ -116,13 +126,61 @@ class Conversation extends React.Component {
 
   render() {
     let msgList = <li>Empty...</li>;
+   
     if (this.props.messages.length > 0)
     {
-
+     let lastSenderID = -1;
      msgList = Object.values(this.props.messages).map( (msg) =>{
       let deleteButton = null;
       let editButton = null;
-      let msgContent = <p>{msg.author_name} says {msg.content}</p>;
+      let datemsg = null;
+      let myimg = null;
+      let mypfp = <div className="no-pfp-filler"> </div>;
+      let msgHeader = null;
+      let filler = null;
+    
+      
+      if(msg.author_id !== lastSenderID)
+      {
+        
+
+        let date = (Date.parse(msg.created_at));
+        let dmy = new Date(date);
+
+        let today = new Date();
+        if (dmy.toDateString() === today.toDateString())
+        {
+          datemsg = "Today at " + dmy.toLocaleTimeString("en-us", {hour: "numeric", minute: "numeric"});
+        }
+        else
+        {
+          datemsg = dmy.toDateString();
+        }
+
+        msgHeader = (<h2>
+          <span className="message-username">{msg.author_name}</span>
+          <span className="message-date">{datemsg}</span>
+        </h2>)
+
+        mypfp = <img className="dm-pfp" src={msg.pfp_url} alt={msg.pfp_url}/>
+        filler = <div id="msgfiller"> </div>
+        lastSenderID = msg.author_id;
+      }
+
+      
+      if (msg.image_url)
+      {
+        myimg = <img className="msg-img" src={msg.image_url}></img>
+      }
+
+      let msgContent = <div className="message">
+        {mypfp}
+        <div>
+          {msgHeader}
+          <p className="msg-content">{msg.content}</p>
+          {myimg}
+        </div>
+      </div>
 
       if(msg.author_id === this.props.currentUser.id)
       {
@@ -173,7 +231,7 @@ class Conversation extends React.Component {
 
       }
       return (<li key={msg.id}>
-
+        {filler}
         {msgContent}
          {editButton}
          {deleteButton}
@@ -182,17 +240,35 @@ class Conversation extends React.Component {
       })
     }
 
+    let otheruserInfo = null;
+    if (this.props.convo)
+    {
+      otheruserInfo = <div id="otheruserinfo">
+        <img src={window.aticon} alt="at-icon"></img>
+        <p>{this.props.convo.otherUser.username}: {this.props.convo.otherUser.status}</p>
+      </div>
+    }
     return (
       <div className="convo">
-        <p>{this.props.convo.otherUser.username}: {this.props.convo.otherUser.status}</p>
-        <ul>
-          {msgList}
-        </ul>
-        <form id="msg-form">
-          <textarea id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")}></textarea>
-          <button className="invisible" type="Submit">Submit</button>
-        </form>
-        {this.renderErrors()}
+        <header>
+          {otheruserInfo}
+        </header>
+        
+          <ul id="dm-list">
+            {msgList}
+          </ul>
+         
+          <div id="msg-form-wrapper">
+            <img src={window.uploadimg}></img>
+            <div id="msg-form-bubble">
+              <form id="msg-form">
+                <input type="text" id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")}></input>
+                <button className="invisible" type="Submit">Submit</button>
+              </form>
+            </div> 
+          </div>
+          
+          {this.renderErrors()}
       </div>
     );
   }

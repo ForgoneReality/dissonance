@@ -23,7 +23,6 @@ class serverInit extends React.Component {
 
     render()
     {
-        console.log("props", this.props);
         
         if (this.state.redirectToReferrer) {
             return (

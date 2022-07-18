@@ -114,7 +114,6 @@ class Channel extends React.Component {
 
   render() {
     let currChannelName = "";
-    console.log( "props", this.props);
     if(this.props.channelId)
     {
         currChannelName = this.props.channels[this.props.channelId].name;

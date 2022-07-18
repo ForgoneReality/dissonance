@@ -56,7 +56,7 @@ class Welcome extends React.Component
 
 
             <img id="clouds" src={window.mainpageclouds}/>
-            <img id="left-main" src={window.mainpageright}/>
+            <img id="left-main" src={window.mainpageleft}/>
             <img id="right-main" src={window.mainpageright}/>
             
 

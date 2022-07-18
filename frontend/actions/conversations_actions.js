@@ -48,7 +48,7 @@ export const createConversation = convo => {
 
 export const getConvoMessages = id => dispatch => (
   APIUtil.fetchConversation(id).then( (res) => {
-    // dispatch(receiveConvo(res.conversation));
+    console.log("AJAX RESULTS", res);
     dispatch(receiveMessages(res.messages));
     dispatch(receiveUsers(res.users));
   })

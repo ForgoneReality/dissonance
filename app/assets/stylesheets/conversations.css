@@ -1,0 +1,113 @@
+#dm-list{
+    position: relative;
+    /* width: calc(.75 * (100%-300px)); */
+    width: 100%;
+    height: calc(100vh - 118px);
+    overflow-y: scroll;
+    background-color: #36393f;
+    top: 0;
+    bottom: 0;
+    margin-top: 0px;
+}
+
+.convo{
+    background-color:#36393f;
+}
+
+.convo header{
+    height: 48px;
+}
+
+.dm-pfp{
+    width: 40px;
+    height: 40px;
+    border-radius:50%;   
+    margin-top: 6px;
+}
+
+.message{
+    display: flex;
+    gap: 15px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.message span {
+    font-family: 'Whitney';
+}
+
+.message h2, p{
+    margin-top: 0px;
+
+    margin-bottom: 0px;
+}
+
+.message-username {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.375rem;
+    color: white;
+    padding-right: 8px;
+    margin-top: 17px;
+}
+
+.message-date {
+    font-size: 0.75rem;
+    line-height: 1.375rem;
+    font-weight: 350;
+    color: #a3a6aa;
+}
+
+.no-pfp-filler {
+    width: 40px;
+}
+
+#msgfiller {
+    height: 17px;
+}
+
+.msg-content {
+    font-family: 'WhitneyBook';
+    font-size: 1rem;
+    line-height: 1.375rem;
+    color: #dcddde;
+}
+
+.msg-img {
+    padding-top: 5px;
+}
+
+#otheruserinfo {
+    display: flex;
+    gap: 5px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+#otheruserinfo p{
+    color: white;
+    font-family: "ABC Ginto";
+    font-size: 16px;
+    line-height: 24px;
+}
+
+#msg-form-wrapper{
+    display: flex;
+    width: calc(100vw - 297px);
+    padding-bottom: 24px;
+    align-items: flex-start;
+}
+
+#msg-form-bubble{
+    background-color: blue;
+    width: calc(100vw - 513px);
+    height: 44px;
+}
+
+#msg-form input{
+    margin-top: 11px;
+    background-color: blue;
+    border: none;
+    height: 22px;
+    width: 95%;
+}

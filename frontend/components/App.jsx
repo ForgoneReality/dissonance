@@ -19,15 +19,17 @@ import AppBasicsContainer from "./bars/appbasics_container";
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import ServerInit from "./servers/server_init.js"
+import SettingsFormContainer from "./settings/settings_container";
 
 //render some stuff always when signed-in... like the users info at the bottom left
 const App = () => (
-    <div>
+    <div className="bigdiv">
       {/* <header>
         <h1>Dissonance</h1>
       </header> */}
       <Switch>
         <Route exact path="/" component={WelcomeContainer}/>
+        {/* <Route exact path="/settings" component={SettingsFormContainer}/> */}
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
         <Route path="/servers/:serverId" component={ServerInit} />

@@ -56,8 +56,24 @@
 }
 
 @font-face {
+    font-family: "WhitneyLight";
+    src: url('whitneylight.otf');
+
+    font-weight: "normal";
+    font-style: normal;
+}
+
+@font-face {
     font-family: "WhitneySemi";
     src: url('whitneysemibold.otf');
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "WhitneyBook";
+    src: url('whitneybook.otf');
 
     font-weight: normal;
     font-style: normal;
@@ -66,6 +82,14 @@
 @font-face{
     font-family: "Neue";
     src: url('HelveticaNeue.ttf');
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "ABC Ginto";
+    src: url('ABCGinto.otf');
 
     font-weight: normal;
     font-style: normal;
@@ -95,6 +119,76 @@ ul, li{
 main{
     display: flex;
     column-gap: 0px;
+    width: 100%;
 }
 
-/* Above might need to change */
+.bigdiv{
+    width: 100%;
+}
+
+footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 214px;
+    /* margin-top: auto; */
+    height: 7.5vh;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-color: #292b2f;
+    position: absolute;
+    bottom: 0px;
+ }
+
+ .userFooter h2{
+    font-family: "Whitney", "Helvetica Neue";
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: white;
+    font-size: 14px;
+ }
+
+ .userFooter p{
+    font-family: "Whitney", "Helvetica Neue";
+    color: #B9BBBE;
+    font-size: 12px;
+ }
+
+
+#settings-icon{
+   
+    height: 20px;
+    width: 20px;
+}
+
+footer button{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    height: 32px;
+    width: 32px;
+    margin-left: auto;
+    margin-right: 0px;
+}
+
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 10;
+  }
+  
+  .modal-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
