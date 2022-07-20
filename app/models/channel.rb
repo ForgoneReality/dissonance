@@ -5,7 +5,7 @@ class Channel < ApplicationRecord
 
     has_many :messages, 
         class_name: "Message",
-        as: :location
+        as: :location, dependent: :destroy
 
     belongs_to :server,
         class_name: "Server",

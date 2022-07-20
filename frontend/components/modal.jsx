@@ -45,6 +45,9 @@ class Modal extends React.Component{
       case 'editemail':
         component =<EditEmailModal/>;
         break;
+      case 'createserver':
+        component=<CreateServerModal/>;
+        break;
       default:
         return null;
     }

@@ -5,6 +5,6 @@ class Role < ApplicationRecord
 
     belongs_to :server, class_name: "Server", foreign_key: :server_id
 
-    belongs_to :serverJoin, class_name: "ServerJoin", foreign_key: :role_id
-    has_many :userRoleJoin, class_name: "UserRoleJoin", foreign_key: :user_id
+    has_many :server_role_joins, class_name: "ServerRoleJoin", foreign_key: :role_id
+    has_many :server_joins, through: :server_role_joins, source: :server_join
 end

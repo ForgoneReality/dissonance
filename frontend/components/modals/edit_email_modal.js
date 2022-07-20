@@ -47,7 +47,6 @@ class EditEmailModal extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("SUBMITTING: ", this.state);
     const user = Object.assign({}, this.state);
     this.props.processForm(this.props.currentUser.id, user).then((res) => this.props.hideModal(), (errs) => console.log("Failure"));
   }

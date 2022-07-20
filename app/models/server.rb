@@ -8,13 +8,13 @@ class Server < ApplicationRecord
     has_many :users_joined, 
     class_name: "ServerJoin",
     foreign_key: :server_id,
-    primary_key: :id
+    primary_key: :id, dependent: :destroy
 
     has_many :users, through: :users_joined, source: :user
 
     belongs_to :owner, class_name: "User", foreign_key: :owner_id, primary_key: :id
 
-    has_many :channels, class_name: "Channel", foreign_key: :server_id
+    has_many :channels, class_name: "Channel", foreign_key: :server_id, dependent: :destroy
 
     has_one_attached :icon
     #has_many roles

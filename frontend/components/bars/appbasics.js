@@ -78,6 +78,11 @@ class AppBasics extends React.Component {
                   </Link>
                 </li>
                 {serverList /*below is temp*/ }
+                <li>
+                  <button id="add-server-button">
+                    <img src={window.addserver} alt="Add a Server"/>
+                  </button>
+                </li>
               </ul>
             </nav>
             <div>
