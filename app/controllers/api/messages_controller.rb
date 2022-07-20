@@ -49,7 +49,7 @@ class Api::MessagesController < ApplicationController
      
       if @message.update(message_edit_params)
         if(@message.location_type == "Conversation")
-          ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/show', message: @message)
+          ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: @message)
         end
         
         render "_helper", locals: { message: @message }

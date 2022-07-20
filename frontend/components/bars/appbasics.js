@@ -12,12 +12,12 @@ import Modal from "../modal.jsx"
 import FullModal from "../fullmodal.jsx"
 
 
-
 // import TempServerContainer from "../servers/temp_server_container.jsx"
 
 import {
   Route
 } from 'react-router-dom';
+import Footerr from './footer';
 
 class AppBasics extends React.Component {
   constructor(props) {
@@ -66,9 +66,7 @@ class AppBasics extends React.Component {
     
     console.log(this.response);
     return(
-        <div>
-        <FullModal/>
-        <Modal/>
+
         <main>
             {/* <h1>Servers</h1> */}
             <nav id="server-sidebar">
@@ -83,29 +81,14 @@ class AppBasics extends React.Component {
               </ul>
             </nav>
             <div>
-              <footer className="userFooter">
-                <div className="bruh001">
-                  <img id="footerpfp" className="sidepfp" src={pfp_url} alt="currentUserPFP"></img>
-                  <div className="useronlinestatusicon">
-                    {useronlinestatus}
-                  </div>
-                </div>
-                <div>
-                  <h2>{username}</h2>
-                  <p>#{fourdigit_id}</p>
-                </div>
-                <button onClick={this.openSettings} id="settings-button">
-                  <img id="settings-icon" src={window.settingsicon} alt="settings-icon"></img>
-                </button>
-              </footer>
-
+            <Footerr username={username} fourdigit_id={fourdigit_id} openSettings={this.openSettings} useronlinestatus={useronlinestatus} pfp_url={pfp_url}/>
             </div>
             <Route path="/channels/:channelId" component={ServerContainer} /> 
             <Route path="/conversations" component={ConversationsListContainer} />
             <Route exact path="/conversations" component={FriendListContainer} />
-
-        </main>
-        </div>
+            <FullModal/>
+            <Modal/>
+        </main> 
     )
   }
 }

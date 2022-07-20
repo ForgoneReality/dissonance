@@ -126,7 +126,7 @@ main{
     width: 100%;
 }
 
-footer{
+.userFooter{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -137,9 +137,8 @@ footer{
     padding-left: 8px;
     padding-right: 8px;
     background-color: #292b2f;
-    position: absolute;
     bottom: 0px;
-    z-index: 5;
+    position: absolute;
  }
 
  .userFooter h2{
@@ -164,7 +163,7 @@ footer{
     width: 20px;
 }
 
-footer button{
+.userFooter button{
     background-color: transparent;
     background-repeat: no-repeat;
     border: none;
