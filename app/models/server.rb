@@ -1,6 +1,9 @@
 class Server < ApplicationRecord
 
     after_save :has_a_channel
+
+    # after_create :owner_is_a_user
+
     validates :server_link, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\z/ }, length: {maximum: 32}
     validates :name, :owner_id, presence: true
 
@@ -25,4 +28,11 @@ class Server < ApplicationRecord
             Channel.create({server_id: self.id, name:"general"})
         end
     end
+
+    # def owner_is_a_user
+    #     if !self.users.include?(self.owner)
+    #         ServerJoin.create({server_id: self.id, user_id: self.owner.id})
+    #     end
+    # end
+    
 end
