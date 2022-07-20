@@ -2,7 +2,7 @@ class User < ApplicationRecord
     # attr_accessor :last_login
     attr_reader :password
 
-    # before_validation :init_last_login
+    before_validation :init_last_login
 
     after_initialize :ensure_session_token
 
@@ -17,9 +17,9 @@ class User < ApplicationRecord
     validates :status, presence: true, inclusion: { in: %w(online idle busy offline)}
     validates :fourdigit_id, presence: true, format: { with: /\A[+-]?\d+\z/}, length: {is: 4}
 
-    # def init_last_login
-    #     self.last_login = Time.current;
-    # end
+    def init_last_login
+        self.last_login = Time.current
+    end
 
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)

@@ -2,16 +2,16 @@ class Conversation < ApplicationRecord
 
     # attr_accessor :last_updated
 
-    # before_validation :init_last_updated
+    before_validation :init_last_updated
     validates :user1_id, :user2_id, presence: true
     validates :user1_id, uniqueness: { scope: :user2_id} 
     # validates :user2_id, uniqueness: { scope: :user1_id} 
 
     validate :check_duplicate 
 
-    # def init_last_updated
-    #     self.last_updated = Time.current;
-    # end
+    def init_last_updated
+        self.last_updated = Time.current
+    end
 
     def check_duplicate
         conversation = Conversation.find_by(user1_id: self.user2_id, user2_id: self.user1_id)

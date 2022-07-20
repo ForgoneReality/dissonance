@@ -48,7 +48,7 @@ export const receiveMessageErrors = errors => ({
 
 
 
-export const createMessage = message => {
+export const createMessage =  message => {
 return dispatch => {
     if(message.location_type === "Conversation")
     {
