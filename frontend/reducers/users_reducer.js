@@ -1,3 +1,4 @@
+import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 import { RECEIVE_USERS, RECEIVE_USER} from "../actions/users_actions";
 
 const usersReducer = (state = {}, action) => {
@@ -10,6 +11,8 @@ const usersReducer = (state = {}, action) => {
       newState = Object.assign({}, state);
       newState[action.user.id] = action.user;
       return newState;
+    case LOGOUT_CURRENT_USER: 
+      return {};
     default:
       return state;
   }

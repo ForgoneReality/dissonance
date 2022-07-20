@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
     channelsList: Object.values(state.entities.channels),
     channels: state.entities.channels,
     servers: state.entities.servers,
-    usersList: Object.values(state.entities.users)
+    usersList: Object.values(state.entities.users)  
     // getServerID: (channelId) => findServerID(channelId)
   };
 };

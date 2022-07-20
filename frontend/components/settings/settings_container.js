@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import { removeErrors } from '../../actions/errors_actions';
 import Settings from "./settings.jsx"
+import { displayModal, hideFullModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -11,7 +12,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // processForm: (user) => dispatch(login(user)), 
+    showLogoutModal: () => dispatch(displayModal("logout")),
+    showUsernameModal: () => dispatch(displayModal("editusername")),
+    showEmailModal: () => dispatch(displayModal("editemail")),
+    hideFullModal: () => dispatch(hideFullModal())
 
     // removeErrors: () => dispatch(removeErrors())
   };

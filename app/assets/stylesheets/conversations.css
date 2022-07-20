@@ -91,6 +91,10 @@
     line-height: 24px;
 }
 
+#msg-form label{
+    height: 24px;
+}
+
 #msg-form-wrapper{
     display: flex;
     width: calc(100vw - 297px);
@@ -99,15 +103,33 @@
 }
 
 #msg-form-bubble{
+    display: flex;
+    align-items: center;
     background-color: blue;
-    width: calc(100vw - 513px);
+    width: calc(100vw - 350px);
     height: 44px;
+    padding-left: 16px;
+    border-radius: 5px;
+    margin-left: 16px;
+}
+
+#msg-form{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
 }
 
 #msg-form input{
-    margin-top: 11px;
     background-color: blue;
     border: none;
     height: 22px;
-    width: 95%;
+}
+
+#img-uploader{
+    display: none;
+}
+
+#usermsg{
+    width: 92.5%;
 }

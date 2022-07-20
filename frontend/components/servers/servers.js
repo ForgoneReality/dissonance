@@ -46,11 +46,52 @@ class Server extends React.Component {
 
   render() {
     let usersList = this.props.usersList.map( (user) => {
-      return <li key={user.id}>{user.username} : {user.status}</li>
+      let useronlinestatus = null;
+      if(user.status === "online")
+      {
+        useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#3ba55d" /> </svg> 
+      }
+      else if (user.status === "offline")
+      {
+        useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="3.75" stroke="#96989d" strokeWidth="2.25" fill="#2f3136" /> <circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="none" /> </svg> 
+      }
+      else if (user.status === "busy")
+      {
+        useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#D83C3E" /> </svg> 
+        
+      }
+      else if (user.status === "idle")
+      {
+        useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#faa81b" /> </svg> 
+      }
+
+
+      return <li key={user.id}>
+      <div>
+        <div className="convolisting">
+            <div className="bruh001">
+
+            <img className="sidepfp" src={user.pfp_url}></img>
+            <div className="useronlinestatusicon">
+              {useronlinestatus}
+            </div>
+          </div>
+          <div>
+            <p>{user.username}</p>
+            {/* put user status in here way later */}
+          </div>
+          
+        </div>
+      </div>
+      </li>
     })
 
     let channelsList = this.props.channelsList.map( (channel) => {
-      return <li key={channel.id}><Link to={`/channels/${channel.id}`}>{channel.name}</Link></li>;
+      return <Link to={`/channels/${channel.id}`}><li key={channel.id}>
+        <img src={window.hashtag} alt="hashtag-icon"></img>
+        <p>{channel.name}</p>
+        </li>
+      </Link>
     })
 
     let serverName;
@@ -64,18 +105,25 @@ class Server extends React.Component {
 
     return (
        <section className="server">
-          <h1>Server: {serverName}</h1>
-          <div className = "UsersList">
-            <h2>Users</h2>
-            {usersList}
-          </div>
-          <div className = "ChannelsList">
-            <h2>Channels</h2>
-            {channelsList}
+          <div id="serverlisty">
+            <div id="server-name">
+              <h1 >{serverName}</h1>
+            </div>
+            <ul className = "ChannelsList">
+              {channelsList}
+            </ul>
           </div>
 
         {channelContent}
-          
+        <div className = "UsersList">
+            <div id="channel-users-list-header">
+
+            </div>
+            <ul id="channel-users-list">
+              {usersList}
+            </ul>
+        </div>
+
       </section>
     );
   }

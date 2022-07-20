@@ -3,6 +3,10 @@
     width: 100vw;
 }
 
+.login-form{
+    width: 100%;
+}
+
 .login-form-container img{
     min-height: 100%;
     min-width: 1024px;
@@ -43,6 +47,7 @@
     font-size: 28px;
     font-family: "Whitney";
     font-weight: bold;
+    margin-top: 0px;
 }
 
 .login-form-box h3{
@@ -50,6 +55,7 @@
     font-size: 16px;
     font-family: "Whitney";
     font-weight: normal;
+    margin-top: 0px;
 }
 
 .login-form-box label{
@@ -57,7 +63,6 @@
     font-size: 12px;
     font-weight: normal;
     color: #b9bbbe;
-    padding-top: 15px;
 }
 
 .to-the-left {
@@ -71,4 +76,68 @@
 .to-the-left input{
     width: 100%;
     height: 20px;
+}
+
+.session-submit{
+    width: 100%;
+    background-color: #5865F2;
+    color: white;
+    font-size: 14px;
+    font-family: "Whitney";
+    border: none;
+    border-radius: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.to-the-left input{
+    
+    background-color: #202225;
+    font-family: 'Whitney';
+    font-size: 16px;
+    height: 32px;
+    color: #dcddde;
+    border: none;
+    border-radius: 3px;
+    text-indent: 16px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+#bruh9201{
+    color: #72767D;
+    font-size: 14px;
+    font-family: "WhitneyLight", "Whitney", "Helvetica Neue";
+    text-decoration: none;
+}
+
+#bruh9300{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 8px;
+}
+
+#auth-links{
+    color: #00AFF4;
+    font-size: 14px;
+    font-family: "Whitney", "Helvetica Neue";
+    text-decoration: none;
+}
+
+#bruh9203{
+    color: #00AFF4;
+    font-size: 14px;
+    font-family: "Whitney", "Helvetica Neue";
+    text-decoration: none;
+}
+
+#bruh9203:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#auth-links:hover{
+    text-decoration: underline;
 }

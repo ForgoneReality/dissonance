@@ -5,6 +5,7 @@ import Conversation from './conversation';
 import { removeErrors } from '../../actions/errors_actions.js';
 import { getConversationList, getConvoMessages } from '../../actions/conversations_actions';
 import { createMessage, deleteMessage, updateMessage, otherReceiveMessage, removeMessage } from '../../actions/messages_actions';
+import { resetModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state, ownProps) => {
     console.log(state);
@@ -23,6 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         removeErrors: () => dispatch(removeErrors()),
+        removeModals: () => dispatch(resetModal()),
         getConversationList: (userid) => dispatch(getConversationList(userid)),
         getConvoMessages: (id) => dispatch(getConvoMessages(id)),
         sendMessage: (message) => dispatch(createMessage(message)),

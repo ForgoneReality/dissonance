@@ -4,13 +4,22 @@ class Api::MessagesController < ApplicationController
    
     def create
         @message = Message.new(message_params)
-    
+        
         if @message.save
+          if(params["message"]["image"])
+            params["message"]["image"].permit!
+            input_string = params["message"]["image"].inspect()
+            start = "<Tempfile:"
+            endd =  ">,"
+            @message.image.attach(io: File.open(input_string[/#{start}(.*?)#{endd}/m, 1]), filename: input_string[/filename="(.*?)"/m, 1])
+          else
+            render json: {message: "That shit dont exist"}, status: 405
+          end
+
           if(@message.location_type == "Conversation")
             ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/show', message: @message)
           end
-          
-         
+
           render :show, locals: { message: @message }
 
           # render json: @message, include: :location

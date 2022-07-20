@@ -11,7 +11,9 @@ Rails.application.routes.draw do
       get :servers, on: :member
 
     end
-    resource :session, only: [:create, :destroy]
+    resource :session, only: [:create, :destroy] do
+      post :demo, on: :collection
+    end
     resources :conversations, only: [:show, :create, :update]
     resources :servers, only: [:show, :index, :create, :update, :destroy] do
       get :mainchannel, on: :member

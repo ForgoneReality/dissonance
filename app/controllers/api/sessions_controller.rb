@@ -5,11 +5,26 @@ class Api::SessionsController < ApplicationController
         
         if(@user)
             login!(@user)
+            @user.last_login = Time.current
             # redirect_to api_users_url(@user)
             render json: @user
         else #No status!!
             render json: ["Invalid username/password combination"], status: 401
 
+            # render :new
+        end
+    end
+
+    def demo
+        @user = User.where("id < 6").order("last_login ASC").first
+
+        if(@user)
+            login!(@user)
+            @user.last_login = Time.current
+            # redirect_to api_users_url(@user)
+            render json: @user
+        else #No status!!
+            render json: ["Something went wrong..."], status: 401
             # render :new
         end
     end

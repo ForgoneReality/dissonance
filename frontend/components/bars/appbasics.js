@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 import {ProtectedRoute} from "../../util/route_util"
 
 import home_button from "../../../app/assets/images/home.png"
+import SettingsContainer from "../settings/settings_container.js"
+import Modal from "../modal.jsx"
+import FullModal from "../fullmodal.jsx"
 
 // import TempServerContainer from "../servers/temp_server_container.jsx"
 
@@ -17,13 +20,19 @@ import {
 class AppBasics extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.openSettings = this.openSettings.bind(this);
   }
 
   componentDidMount()
   {
-    document.body.style = 'background: white;'
     this.props.getServersList(this.props.currentUser.id);
     this.props.getChannel
+  }
+
+  openSettings()
+  {
+    this.props.openSettings()
   }
 
   render()
@@ -32,10 +41,32 @@ class AppBasics extends React.Component {
     let serverList = this.props.serversList.map( (server) => {
       return <li><Link className="server-link" to={`/servers/${server.id}`}><div>{server.name[0].toUpperCase()}</div></Link></li>
     })
-    
-    return(
-        <main>
 
+    let useronlinestatus = null;
+    if(status === "online")
+    {
+      useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#3ba55d" /> </svg> 
+    }
+    else if (status === "offline")
+    {
+      useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="3.75" stroke="#96989d" strokeWidth="2.25" fill="#2f3136" /> <circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="none" /> </svg> 
+    }
+    else if (status === "busy")
+    {
+      useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#D83C3E" /> </svg> 
+      
+    }
+    else if (status === "idle")
+    {
+      useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#faa81b" /> </svg> 
+    }
+    
+
+    return(
+        <div>
+        <FullModal/>
+        <Modal/>
+        <main>
             {/* <h1>Servers</h1> */}
             <nav id="server-sidebar">
               <ul className="server-icons">
@@ -50,13 +81,17 @@ class AppBasics extends React.Component {
             </nav>
             <div>
               <footer className="userFooter">
-                <img id="footerpfp" className="sidepfp" src={pfp_url} alt="currentUserPFP"></img>
+                <div className="bruh001">
+                  <img id="footerpfp" className="sidepfp" src={pfp_url} alt="currentUserPFP"></img>
+                  <div className="useronlinestatusicon">
+                    {useronlinestatus}
+                  </div>
+                </div>
                 <div>
                   <h2>{username}</h2>
                   <p>#{fourdigit_id}</p>
                 </div>
-                <h3>{status}</h3>
-                <button>
+                <button onClick={this.openSettings} id="settings-button">
                   <img id="settings-icon" src={window.settingsicon} alt="settings-icon"></img>
                 </button>
               </footer>
@@ -67,6 +102,7 @@ class AppBasics extends React.Component {
             <Route exact path="/conversations" component={FriendListContainer} />
 
         </main>
+        </div>
     )
   }
 }

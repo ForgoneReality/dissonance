@@ -13,11 +13,13 @@ class Conversation extends React.Component {
     this.renderErrors = this.renderErrors.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleEditSubmit = this.handleEditSubmit.bind(this)
+    this.handleInput = this.handleInput.bind(this)
     this.firstTime = -1;
     this.state = {
       usermsg: "",
       editmsg: "",
-      editing: -1
+      editing: -1, 
+      photoFile: null
     }
 
     // const cleverbot = require("cleverbot-free");
@@ -62,7 +64,27 @@ class Conversation extends React.Component {
   handleSubmit(e)
   {
     e.preventDefault();
-    this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id});
+    if(!this.state.photoFile)
+    {
+      this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id});
+    }
+    else
+    {
+      const formData = new FormData();
+      formData.append("message[content]", this.state.usermsg);
+      formData.append("message[author_id]", this.props.currentUser.id);
+      formData.append("message[location_type]", "Conversation");
+      formData.append("message[location_id]", this.props.convo.id);
+      formData.append("message[image])", this.state.photoFile);
+      console.log("OVER HERE", this.state.photoFile);
+      $.ajax({
+        url: "/api/messages",
+        method: "POST",
+        data: formData,
+        contentType: false,
+        processData: false
+      }).then( (response) => this.props.sendMessage(response))
+    }
     this.setState({usermsg: ""});
   }
 
@@ -75,7 +97,13 @@ class Conversation extends React.Component {
     this.firstTime = -1;
   }
 
- w
+  handleInput(e)
+  {
+    console.log("event: ", e.currentTarget.files[0]);
+    this.setState({photoFile: e.currentTarget.files[0]}).then(() => console.log("ok?:", e, this.state))
+  
+
+  }
   componentDidMount()
   {
     document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
@@ -86,6 +114,7 @@ class Conversation extends React.Component {
     
     this.enterRoom();
     this.props.removeErrors();
+    this.props.removeModals();
   }
 
   componentDidUpdate(prevProps) {
@@ -262,6 +291,10 @@ class Conversation extends React.Component {
             <img src={window.uploadimg}></img>
             <div id="msg-form-bubble">
               <form id="msg-form">
+                <label htmlFor="img-uploader">
+                  <img src={window.upload} alt="upload-icon"/>
+                </label> 
+                <input type="file" id="img-uploader" onChange={this.handleInput}></input>
                 <input type="text" id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")}></input>
                 <button className="invisible" type="Submit">Submit</button>
               </form>

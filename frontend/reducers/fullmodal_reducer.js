@@ -1,12 +1,12 @@
-import { DISPLAY_MODAL, HIDE_MODAL, RESET_ALL_MODALS } from "../actions/modal_actions";
+import { DISPLAY_FULL_MODAL, HIDE_FULL_MODAL, RESET_ALL_MODALS } from "../actions/modal_actions";
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
-const ModalReducer = (state = null, action) => {
+const FullModalReducer = (state = null, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case DISPLAY_MODAL:
+    case DISPLAY_FULL_MODAL:
       return action.modal;
-    case HIDE_MODAL:
+    case HIDE_FULL_MODAL:
       return null;
     case RESET_ALL_MODALS:
       return null;
@@ -17,4 +17,4 @@ const ModalReducer = (state = null, action) => {
   }
 };
 
-export default ModalReducer;
+export default FullModalReducer;

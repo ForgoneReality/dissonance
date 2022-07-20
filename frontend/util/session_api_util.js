@@ -22,3 +22,10 @@ export const login = (user) => (
         data: {user}
     })
 )
+
+export const demo = () => (
+    $.ajax({
+        url: "/api/session/demo",
+        method: "post"
+    })
+)

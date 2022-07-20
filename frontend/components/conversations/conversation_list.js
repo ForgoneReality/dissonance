@@ -14,10 +14,21 @@ class ConversationList extends React.Component {
     
   }
 
-  componentDidMount()
+  async componentDidMount()
   {
     this.props.removeErrors();
-    this.props.getConversationList(this.props.currentUser.id);//MIGHT BE IN CONSTRUCTOR OR OTHER PLACE LIKE MOUNTED
+    await this.props.getConversationList(this.props.currentUser.id);//MIGHT BE IN CONSTRUCTOR OR OTHER PLACE LIKE MOUNTED
+  }
+
+  componentDidUpdate(prevProps)
+  {
+    if(prevProps.convoList.length >0 && this.props.convoList > 0)
+    {
+      if(prevProps.convoList[0].last_updated !== this.props.convoList[0].last_updated)
+      {
+        this.props.getConversationList(this.props.currentUser.id);
+      }
+    }
   }
 
   renderErrors() {
@@ -45,13 +56,29 @@ class ConversationList extends React.Component {
 
     if (this.props.convoList.length > 0)
     {
-        let sortedList = this.props.convoList.sort( (a,b) => a.last_updated > b.last_updated ? -1 : 1)
+        let sortedList = this.props.convoList;
         msgList = sortedList.map( (convo) => {
         let useronlinestatus = null;
         if(convo.otherUser.status === "online")
         {
           useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#3ba55d" /> </svg> 
         }
+        else if (convo.otherUser.status === "offline")
+        {
+          useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="3.75" stroke="#96989d" strokeWidth="2.25" fill="#2f3136" /> <circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="none" /> </svg> 
+        }
+        else if (convo.otherUser.status === "busy")
+        {
+          useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#D83C3E" /> </svg> 
+          
+        }
+        else if (convo.otherUser.status === "idle")
+        {
+          useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#faa81b" /> </svg> 
+          
+        }
+
+
         return <li key={convo.id}>
           <Link className="convo-link" to={`/conversations/${convo.id}`}>
             <div className="convolisting">
@@ -75,7 +102,7 @@ class ConversationList extends React.Component {
     }
     else
     {
-        msgList= <li>It's empty here...</li>
+        msgList= null;
     }
     return (
       <section className="convos">

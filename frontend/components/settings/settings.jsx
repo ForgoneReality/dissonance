@@ -14,7 +14,7 @@ class Settings extends React.Component {
     render()
     {
         return(
-            <div id="settings-modal">
+            <div id="settings-modal" className="modal-full">
                 <div id="left-side-settings">
                     <div id="left-container"> 
                         <h2>User Settings</h2>
@@ -26,7 +26,7 @@ class Settings extends React.Component {
                         </div>
                         <hr/>
                         
-                        <button id="logout-butt">
+                        <button id="logout-butt" onClick={() => this.props.showLogoutModal()}>
                             Log Out
                             <img  src={window.logoutimg}></img>
                         </button>
@@ -35,7 +35,9 @@ class Settings extends React.Component {
                 <div id="right-side-settings">
                     <div id="bruh9100">
                         <h1>My Account</h1>
-                        <img id="exitimg" src={window.exitsettings}></img>
+                    <button onClick={() => this.props.hideFullModal()}>
+                            <img id="exitimg" src={window.exitsettings}></img>
+                        </button>
                     </div>
                     <div id="settings-bubble">
                         <div id="settings-header">
@@ -50,7 +52,7 @@ class Settings extends React.Component {
                                     <p><span className="white">{this.props.currentUser.username}</span><span className="B9">#{this.props.currentUser.fourdigit_id}</span></p>
                                 </div>
 
-                                <button className="edit-button">Edit</button> 
+                                <button className="edit-button" onClick={() => this.props.showUsernameModal()}>Edit</button> 
                             </div>
                             <div className="space-between">
                                 <div >
@@ -58,12 +60,12 @@ class Settings extends React.Component {
                                     <p>{this.props.currentUser.email}</p>
                                 </div>
 
-                                <button className="edit-button">Edit</button> 
+                                <button className="edit-button" onClick={() => this.props.showEmailModal()}>Edit</button> 
                             </div>
                             <div className="space-between">
                                 <div id="bruh9003">
                                     <h3>ABOUT ME</h3> 
-                                    <p id="about-me-settings">{this.props.currentUser.bio}LOOOO</p>
+                                    <p id="about-me-settings">{this.props.currentUser.bio}Something here</p>
                                     {/* <button>Save</button>  */}
                                 </div>
                                 <button className="edit-button">Edit</button> 

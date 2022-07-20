@@ -29,6 +29,17 @@ class Welcome extends React.Component
     {
         butt = this.props.login;
     }
+
+    let demo;
+    if (this.props.demo === "trash code time")
+    {
+        demo = <button id="welcome-demo" onClick={() => this.props.loginDemo()} type="button">
+            Login as Demo User
+        </button>
+    }
+    else {
+        demo = this.props.demo;
+    }
     return (
         <div id="welcome">
             <nav className="welcome-nav"> 
@@ -49,7 +60,7 @@ class Welcome extends React.Component
                 <p>...where you can belong to a school club, a gaming group, or a worldwide art community. Where just you and a handful of friends can spend time together. A place that makes it easy to talk every day and hang out more often.</p>
                 <div id="welcome-content-buttons">
                     {this.props.signup}
-                    {this.props.demo}
+                    {demo}
                 </div>
 
             </section>

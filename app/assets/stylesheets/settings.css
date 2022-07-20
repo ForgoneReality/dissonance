@@ -39,7 +39,7 @@
     padding-left: 16px;
     padding-right: 16px;
     padding-top: 25px;
-    padding-bottom: 25px;
+    padding-bottom: 40px;
 }
 
 .pfp-large{
@@ -52,7 +52,7 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    
+    padding-left: 15px;
 }
 
 #settings-header span{
@@ -120,7 +120,7 @@
 }
 
 .edit-button{
-    width: 60px;
+    min-width: 60px;
     height: 32px;
     background-color: #4F545C;
     color: white;
@@ -147,7 +147,6 @@
 }
 
 #right-side-settings h1{
-    margin-top: 5vh;
     font-size: 20px;
     color: white;
     font-family: "ABC Ginto";
@@ -270,6 +269,11 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+}
+
+#bruh9100 button{
+    border: none;
+    background: transparent;
 }
 
 #exitimg{

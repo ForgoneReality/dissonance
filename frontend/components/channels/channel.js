@@ -75,6 +75,7 @@ class Channel extends React.Component {
     this.props.getChannelMessages(this.props.channelId);
     // this.enterRoom();
     this.props.removeErrors();
+    this.props.removeModals();
   }
 
   componentDidUpdate(prevProps) {
@@ -121,11 +122,58 @@ class Channel extends React.Component {
     let msgList = <li>Empty...</li>;
     if (this.props.messages.length > 0)
     {
-
+     let lastSenderID = -1;
      msgList = Object.values(this.props.messages).map( (msg) =>{
       let deleteButton = null;
       let editButton = null;
-      let msgContent = <p>{msg.author_name} says {msg.content}</p>;
+      let datemsg = null;
+      let myimg = null;
+      let mypfp = <div className="no-pfp-filler"> </div>;
+      let msgHeader = null;
+      let filler = null;
+    
+      
+      if(msg.author_id !== lastSenderID)
+      {
+        
+
+        let date = (Date.parse(msg.created_at));
+        let dmy = new Date(date);
+
+        let today = new Date();
+        if (dmy.toDateString() === today.toDateString())
+        {
+          datemsg = "Today at " + dmy.toLocaleTimeString("en-us", {hour: "numeric", minute: "numeric"});
+        }
+        else
+        {
+          datemsg = dmy.toDateString();
+        }
+
+        msgHeader = (<h2>
+          <span className="message-username">{msg.author_name}</span>
+          <span className="message-date">{datemsg}</span>
+        </h2>)
+
+        mypfp = <img className="dm-pfp" src={msg.pfp_url} alt={msg.pfp_url}/>
+        filler = <div id="msgfiller"> </div>
+        lastSenderID = msg.author_id;
+      }
+
+      
+      if (msg.image_url)
+      {
+        myimg = <img className="msg-img" src={msg.image_url}></img>
+      }
+
+      let msgContent = <div className="message">
+        {mypfp}
+        <div>
+          {msgHeader}
+          <p className="msg-content">{msg.content}</p>
+          {myimg}
+        </div>
+      </div>
 
       if(msg.author_id === this.props.currentUser.id)
       {
@@ -176,7 +224,7 @@ class Channel extends React.Component {
 
       }
       return (<li key={msg.id}>
-
+        {filler}
         {msgContent}
          {editButton}
          {deleteButton}
@@ -188,8 +236,11 @@ class Channel extends React.Component {
     return (
       <div className="channel">
         {/* <p>{this.props.convo.otherUser.username}: {this.props.convo.otherUser.status}</p> */}
-        <h1>Messages of: {currChannelName}</h1>
-        <ul>
+        <div id="channel-header">
+          <img id="header-hashtag" src={window.hashtag}></img>
+          <h1>{currChannelName}</h1>
+        </div>
+        <ul id="server-msg-list">
           {msgList}
         </ul>
         <form id="msg-form">

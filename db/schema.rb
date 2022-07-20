@@ -104,7 +104,8 @@ ActiveRecord::Schema.define(version: 2022_07_15_172327) do
     t.string "username", null: false
     t.string "fourdigit_id", null: false
     t.string "status", default: "offline", null: false
-    t.string "bio"
+    t.string "bio", default: ""
+    t.integer "last_login"
     t.string "session_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

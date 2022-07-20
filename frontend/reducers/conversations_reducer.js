@@ -1,4 +1,5 @@
 import {RECEIVE_CONVERSATIONS, RECEIVE_CONVERSATION, CREATE_CONVERSATION} from "../actions/conversations_actions"
+import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 const conversationsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -12,6 +13,8 @@ const conversationsReducer = (state = {}, action) => {
         newState = Object.assign({}, state);
         newState[action.conversation.id] = action.conversation;
         return newState;
+    case LOGOUT_CURRENT_USER:
+        return {};
     default:
       return state;
   }

@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :fourdigit_id, null: false
       t.string :status, null: false, default: "offline"
       t.string :bio, default: ""
+      t.integer :last_login
       t.string :session_token, null: false
 
       t.timestamps

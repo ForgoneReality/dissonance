@@ -27,3 +27,12 @@ export const addFriend = (user_id, friend_id) => (
         }
     })
 )
+
+export const updateUser = (id, user) => {
+    console.log("???", id, user)
+    return $.ajax({
+        url: `api/users/${id}`,
+        method: "patch",
+        data: {user}
+    })
+}

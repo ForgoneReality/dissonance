@@ -4,10 +4,24 @@ import { connect } from 'react-redux';
 
 import { Link } from 'react-router-dom';
 
-import { logout } from '../../actions/session_actions';
+import { demo } from '../../actions/session_actions';
 import Welcome from './welcome';
 
 const mapStateToProps = ({ session, entities: { users } }) => {
+  let signupp = session.id ? <button id="welcome-signup" type="button">
+      Download
+    </button> : <Link to="/signup"> 
+      <button id="welcome-signup" type="button">
+          Sign Up
+      </button>
+  </Link>;
+
+  let demoo = session.id ? <Link to="/conversations"> 
+  <button id="welcome-demo" type="button">
+      Open Dissonance
+  </button>
+  </Link> : "trash code time"
+    
   return {
     session_id: session.id,
     open:  <Link to="/conversations">
@@ -21,17 +35,13 @@ const mapStateToProps = ({ session, entities: { users } }) => {
       </button>,
       
       </Link>,
-    signup: <Link to="/signup"> 
-      <button id="welcome-signup" type="button">
-          Sign Up
-      </button>
-      </Link>,
-    demo: <button id="welcome-demo"> Demo (Soon) </button>
+    signup: signupp,
+    demo: demoo
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-//   logout: () => dispatch(logout())
+  loginDemo: () => dispatch(demo())
 });
 
 export default connect(

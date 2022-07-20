@@ -2,17 +2,24 @@ class User < ApplicationRecord
 
     attr_reader :password
 
+    before_validation :init_last_login
+
     after_initialize :ensure_session_token
 
-    validates :email, presence: true, uniqueness: true
+    validates :email, presence: true, uniqueness: true, length: {maximum: 50}
     validates :session_token, presence: true, uniqueness: true
     validates :password_digest, :username, presence: true
-    validates :password, length: { minimum: 6 }, allow_nil: true
-    validates :username, uniqueness: { scope: :fourdigit_id }
+    validates :password, length: { minimum: 6, maximum: 64 }, allow_nil: true
+    validates :username, uniqueness: { scope: :fourdigit_id }, length: {maximum: 32}
     before_save :has_profile_picture
+    validates :bio, length: {maximum: 64}
 
     validates :status, presence: true, inclusion: { in: %w(online idle busy offline)}
     validates :fourdigit_id, presence: true, format: { with: /\A[+-]?\d+\z/}, length: {is: 4}
+
+    def init_last_login
+        self.last_login = Time.current;
+    end
 
     def self.find_by_credentials(email, password)
         user = User.find_by(email: email)

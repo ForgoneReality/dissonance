@@ -32,8 +32,8 @@
 
 #conversations-list {
     position: relative;
-    height: 92.5vh;
-    width: 230px;
+    height: calc(100vh - 52px);
+    width: 240px;
 
     overflow-y: scroll;
     background-color: #2f3136;
@@ -70,6 +70,10 @@
     background-color:#272727;
 }
 
+.convolisting:hover{
+    background-color: #272727;
+}
+
 /* BRO THIS COLOR: #5865f2 */
 
  .convo-link{
@@ -85,8 +89,13 @@
  .convolisting{
     display: flex;
     flex-direction: row;
+    align-items: center;
     width: 210px;
     height: 42px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 5px;
+    
  }
 
 .convolisting p{
@@ -95,10 +104,6 @@
 
  .makemeabs{
     display: absolute
- }
-
- .converlisting:hover{
-    background-color: red;
  }
 
  .sidepfp{
@@ -111,15 +116,15 @@
     position: absolute;
     width: 15px;
     height: 15px;
-    left: 0px;
-    top: 0px;
+    bottom: 0px;
+    right: 0px;
     z-index: 2;
  }
 
 
  .useronlinestatusicon svg{
     position: absolute;
-    left: 0px;
+    left: -9px;
     top: 0px;
  }
  .bruh001{
@@ -127,5 +132,5 @@
     align-items: center;
     width: 45px;
     padding-left: 5px;
-    
+    position: relative;
  }

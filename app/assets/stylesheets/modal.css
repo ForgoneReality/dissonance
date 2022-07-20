@@ -1,0 +1,174 @@
+#logout-modal{
+    width: 33vw;
+    height: 30vh;
+    background-color: #36393f;
+    position: relative;
+    border-radius: 5px;
+
+}
+
+#logout-modal h1{
+    font-size: 20px;
+    font-family: "ABC Ginto";
+    padding: 16px;
+    color: white;
+    margin-bottom: 0px;
+}
+
+#logout-modal h2{
+    font-size: 16px;
+    font-family: "Whitney";
+    padding-left: 16px;
+    padding-top: 0px;
+    color: #DCDDDE;
+}
+
+#logout-modal-bottom{
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 16px;
+    height: 70px;
+    background: #2F3136;
+    width: calc(33vw - 16px);
+}
+
+#logout-modal-bottom button{
+    min-height: 38px;
+    min-width: 96px;
+    font-family: "Whitney";
+    font-size: 14px;
+    color: white;
+    border: none;
+}
+
+.edit-modal-bottom button{
+    min-height: 38px;
+    min-width: 96px;
+    font-family: "Whitney";
+    font-size: 14px;
+    color: white;
+    border: none;
+}
+
+
+
+.cancel1{
+    background-color: transparent;
+}
+
+.cancel1:hover{
+    text-decoration:underline;
+}
+
+#logout1{
+    background-color: #D83C3E;
+    border-radius: 3.5px;
+}
+
+#logout1:hover{
+    background-color: #A12D2F;
+}
+
+#edit-username-modal{
+    width: 33vw;
+    min-height: 370px;
+    background-color: #36393f;
+    position: relative;
+    border-radius: 5px;
+}
+
+#edit-email-modal{
+    width: 33vw;
+    min-height: 370px;
+    background-color: #36393f;
+    position: relative;
+    border-radius: 5px;
+}
+
+
+.top1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+.top1 h1{
+    font-size: 24px;
+    font-family: "Whitney";
+    color: white;
+    margin: 0px;
+    margin-bottom: 8px;
+}
+
+.top1 h3{
+    font-size: 16px;
+    font-family: "Whitney";
+    color: #B9BBBE;
+    margin: 0px;
+}
+
+#mid1{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+#mid1 label{
+    font-family: "Neue";
+    font-size: 12px;
+    font-weight: normal;
+    color: #b9bbbe;
+    margin-left: 12px;
+}
+
+#mid1 input{
+    display: block;
+    margin-left: 12px;
+    margin-right: 12px;
+    background-color: #202225;
+    width: 90%;
+    height: 40px;
+    font-family: 'Whitney';
+    font-size: 16px;
+    color: #dcddde;
+    border: none;
+    border-radius: 3px;
+    text-indent: 16px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+
+.edit-modal-bottom{
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 16px;
+    height: 70px;
+    background: #2F3136;
+    width: calc(33vw - 16px);
+}
+
+.submit1{
+    background-color: #5865F2;
+    border-radius: 3.5px;
+}
+
+.modal-errors ul{
+    margin: 0px;
+    padding-left: 16px;
+}
+
+.modal-errors li{
+    color:#D83C3E;
+    font-size: 14px;
+    font-family: "Whitney", "Helvetica Neue";
+}

@@ -6,8 +6,7 @@ import { removeErrors } from '../../actions/errors_actions.js';
 import { getConversationList } from '../../actions/conversations_actions.js';
 
 const mapStateToProps = (state) => {
-    const cL = Object.values(state.entities.conversations);
-  
+  const cL = Object.values(state.entities.conversations).sort( (a,b) => a.last_updated > b.last_updated ? -1 : 1);
   return {
     errors: state.errors.session,
     currentUser: state.session.currentUser,

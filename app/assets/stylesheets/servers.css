@@ -1,0 +1,116 @@
+.server{
+    display: flex;
+}
+
+#serverlisty{
+    position: relative;
+
+    width: 240px;
+    border: solid 1px red;
+    height: calc(100vh - 52px);
+}
+
+.UsersList {
+    width: 240px;
+    height: 100vh;
+    top: 48px;
+    border: solid 1px red;
+    background-color: #2f3136;
+}
+
+#channel-users-list{
+    position: relative;
+    overflow-y: scroll;
+    padding-left: 8px;
+    list-style-type: none;
+    color: #96989d;
+}
+
+#channel-users-list-header{
+    height: 48px;
+    width: 100%;
+}
+
+.channel{
+    width: calc(100vw - 546px);
+    background-color: #36393f;
+}
+
+.channel h1{
+    font-size: 16px;
+    color: white;
+    font-family: "ABC Ginto", "Helvetica Neue";
+}
+
+#serverlisty{
+    background-color: #2f3136;
+
+}
+
+#server-name{
+    display: flex;
+    height: 48px;
+    align-items: center;
+}
+
+#server-name h1{
+    font-size: 15px;
+    color: white;
+    font-family: "ABC Ginto";
+    padding-left: 10px;
+}
+
+.ChannelsList{
+    list-style: none;
+    padding-left: 0px;
+    padding-top: 10px;
+}
+
+
+.ChannelsList li{
+    border: red 1px solid;
+    display: flex;
+    height: 34px;
+    padding-left: 4px;
+    padding-right: 4px;
+    align-items: center;
+    border-radius: 4px;
+    gap: 5px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.ChannelsList img{
+    width: 20px;
+    height: 20px;
+}
+
+.ChannelsList p{
+    font-size: 16px;
+    font-family: "Whitney", "Helvetica Neue";
+    color: #96989D;
+}
+
+.ChannelsList a{
+    text-decoration: none;
+}
+
+#channel-header{
+    display: flex;
+    flex-flow: row nowrap;
+    height: 48px;
+    align-items: center;
+}
+
+#header-hashtag{
+    padding-left: 16px;
+    padding-right: 8px;
+}
+
+#server-msg-list{
+    position: relative;
+    overflow-y: scroll;
+    height: calc(100vh - 116px);
+    margin-top: 0px;
+}
+

@@ -8,7 +8,13 @@ const SessionsReducer = (state = {}, action) => {
     switch(action.type)
     {
         case RECEIVE_CURRENT_USER:
-            return {id: action.currentUser.id, currentUser: action.currentUser}
+            console.log("MY ACTION", action);
+            let isdemo = false;
+            if (action.currentUser.id <= 5)
+            {
+                isdemo = true
+            }
+            return {id: action.currentUser.id, currentUser: action.currentUser, demo: isdemo}
         case LOGOUT_CURRENT_USER:
             return { id: null };
         default: 

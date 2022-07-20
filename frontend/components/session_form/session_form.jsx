@@ -1,7 +1,6 @@
 import React from 'react';
 import login_img from "../../../app/assets/images/login-img.png"
 
-const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -25,11 +24,14 @@ class SessionForm extends React.Component {
 
   generate_fourdigit()
   {
+    const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+
     let ans = ''
     for(let i = 0; i < 4; i++)
     {
-      ans.concat(numbers[Math.floor(Math.random()*numbers.length)]);
+      ans = ans.concat(numbers[Math.floor(Math.random()*numbers.length)]);
     }
+    console.log("bro?", ans);
     return ans;
   }
 
@@ -66,7 +68,7 @@ class SessionForm extends React.Component {
   }
 
   render() {
-    let AdditionalSignupInfo = this.props.formType === "login" ? <p></p> :
+    let AdditionalSignupInfo = this.props.formType === "Login" ? <p></p> :
     (
       <div>
         <label htmlFor="login-input-username">USERNAME</label>
@@ -86,8 +88,8 @@ class SessionForm extends React.Component {
       </div>
     )
 
-    let TitleMessage = this.props.formType === "login" ? "Welcome Back!" : "Create an Account";
-    let optionalSubtitle = this.props.formType === "login" ? <h3>We're so excited to see you again!</h3> : null
+    let TitleMessage = this.props.formType === "Login" ? "Welcome Back!" : "Create an Account";
+    let optionalSubtitle = this.props.formType === "Login" ? <h3>We're so excited to see you again!</h3> : null
     return (
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
@@ -110,11 +112,14 @@ class SessionForm extends React.Component {
                 className="login-input" id="password-login-input"
               />
               {AdditionalSignupInfo}
-              <p>Don't want to register? Try the demo!</p>
+              <p id="bruh9203" onClick={() => this.props.signinDemo()}>Don't want to register? Try the demo!</p>
 
               <br/>
             </div>
             <input className="session-submit" type="submit" value={this.props.formType} />
+            <div id="bruh9300">
+              {this.props.navLink}
+            </div>
           </div>
         </form>
         <img src={window.loginimg}/>

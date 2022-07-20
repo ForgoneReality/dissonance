@@ -6,22 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-    User.create!({email: "cxcharlie@gmail.com", password: "123456", username: "helios", fourdigit_id: "1234", status: "idle"})
+    # !!!!!!
+    # User.destroy_all
+
+    User.create!({email: "demo1@gmail.com", password: "demo12", username: "demo1", fourdigit_id: "0001", status: "offline"})
+    User.create!({email: "demo2@gmail.com", password: "demo12", username: "demo2", fourdigit_id: "0002", status: "offline"})
+    User.create!({email: "demo3@gmail.com", password: "demo12", username: "demo3", fourdigit_id: "0003", status: "offline"})
+    User.create!({email: "demo4@gmail.com", password: "demo12", username: "demo4", fourdigit_id: "0004", status: "offline"})
+    User.create!({email: "demo5@gmail.com", password: "demo12", username: "demo5", fourdigit_id: "0005", status: "offline"})
+
     User.create!({email: "anthonie@gmail.com", password: "111111", username: "ant", fourdigit_id: "0313", bio:"nah bro"})
     User.create!({email: "lucy@gmail.com", password: "lucy12", username: "lucy", fourdigit_id: "4059", status: "online", bio:"You should see this!"})
-    User.create!({email: "billy@gmail.com", password: "aaaaaa", username: "Billy Bob", fourdigit_id: "4095"})
     User.create!({email: "bro@gmail.com", password: "111111", username: "bro", fourdigit_id: "4023", status: "idle"})
+    User.create!({email: "cxcharlie@gmail.com", password: "123456", username: "helios", fourdigit_id: "1234", status: "idle"})
 
-
-    User.create!({email: "filler@gmail.com", password: "111111", username: "Alec", fourdigit_id: "1390"})
-    User.create!({email: "filler1@gmail.com", password: "111111", username: "Alex", fourdigit_id: "4022"})
-    User.create!({email: "filler2@gmail.com", password: "111111", username: "Cindy", fourdigit_id: "5995"})
+    User.create!({email: "filler@gmail.com", password: "111111", username: "Alec", fourdigit_id: "1390", status: "busy"})
+    User.create!({email: "filler1@gmail.com", password: "111111", username: "Alex", fourdigit_id: "4022", status: "online"})
+    User.create!({email: "filler2@gmail.com", password: "111111", username: "Cindy", fourdigit_id: "5995", status: "idle"})
     User.create!({email: "filler3@gmail.com", password: "111111", username: "Adam", fourdigit_id: "0404"})
     User.create!({email: "filler4@gmail.com", password: "111111", username: "H", fourdigit_id: "6665"})
     User.create!({email: "filler5@gmail.com", password: "111111", username: "L", fourdigit_id: "2034"})
     User.create!({email: "filler6@gmail.com", password: "111111", username: "Zuzu", fourdigit_id: "1111"})
     User.create!({email: "filler7@gmail.com", password: "111111", username: "Wendy", fourdigit_id: "5960"})
-    User.create!({email: "filler8@gmail.com", password: "111111", username: "Amere", fourdigit_id: "3094"})
+    User.create!({email: "filler8@gmail.com", password: "111111", username: "Abby", fourdigit_id: "3094"})
     User.create!({email: "filler9@gmail.com", password: "111111", username: "Evie", fourdigit_id: "4950"})
     User.create!({email: "fillerz@gmail.com", password: "111111", username: "Brian", fourdigit_id: "9592"})
     User.create!({email: "fillera@gmail.com", password: "111111", username: "Jacob", fourdigit_id: "0942"})
@@ -134,7 +141,7 @@
     m = Message.create!({content: "oh...", author_id:1, location_id: 2, location_type: "Conversation"})
     m.image.attach(io: File.open("app/assets/images/original.jpeg"), filename: 'sadpusheen.jpeg')
 
-    m = Message.create!({content: "Just testing!", author_id:3, location_id: 1, location_type: "Conversation"})
+    m2 = Message.create!({content: "Just testing!", author_id:3, location_id: 1, location_type: "Conversation"})
 
-    m.image.attach(io: File.open("app/assets/images/cat.jpeg"), filename: 'cat.jpeg')
+    m2.image.attach(io: File.open("app/assets/images/cat.jpeg"), filename: 'cat.jpeg')
     Message.create!({content: "Please work lol", author_id:5, location_id: 3, location_type: "Conversation"})
