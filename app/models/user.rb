@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-
+    attr_accessor :last_login
     attr_reader :password
 
     before_validation :init_last_login
