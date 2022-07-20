@@ -1,5 +1,7 @@
 class Conversation < ApplicationRecord
 
+    attr_accessor :last_updated
+    
     before_validation :init_last_updated
     validates :user1_id, :user2_id, presence: true
     validates :user1_id, uniqueness: { scope: :user2_id} 
