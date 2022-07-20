@@ -13,18 +13,16 @@ class Conversation extends React.Component {
     this.renderErrors = this.renderErrors.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleEditSubmit = this.handleEditSubmit.bind(this)
-    this.handleInput = this.handleInput.bind(this)
+    this.handleFile = this.handleFile.bind(this)
     this.firstTime = -1;
     this.state = {
       usermsg: "",
       editmsg: "",
       editing: -1, 
-      photoFile: null
+      photoFile: null,
+      photoUrl: null,
+      bot: false
     }
-
-    // const cleverbot = require("cleverbot-free");
-    // cleverbot("Hello.").then(response => console.log("RESPONSE", response));
-
   }
 
   submitOnEnter(event){
@@ -66,7 +64,35 @@ class Conversation extends React.Component {
     e.preventDefault();
     if(!this.state.photoFile)
     {
-      this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id});
+      if(this.state.bot)
+      {
+        let currentConvoList = this.props.messages.map(ele => ele.content);
+        currentConvoList.shift();
+        $.ajax({
+          url: 'http://localhost:3001/',
+          type: 'get',
+          data: {messageList: currentConvoList,
+            newMessage: this.state.usermsg
+          }
+        }).then((resp) => 
+          this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id}).then(() => this.props.sendMessage( {content: resp, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}),() => this.props.sendMessage( {content: resp, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}))
+        ).finally(() => this.setState({
+          usermsg: "",
+          editmsg: "",
+          editing: -1, 
+          photoFile: null,
+          photoUrl: null
+        }));
+      }
+      else{
+        this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id}).finally(() => this.setState({
+          usermsg: "",
+          editmsg: "",
+          editing: -1, 
+          photoFile: null,
+          photoUrl: null
+        }));
+      }
     }
     else
     {
@@ -83,9 +109,15 @@ class Conversation extends React.Component {
         data: formData,
         contentType: false,
         processData: false
-      }).then( (response) => this.props.sendMessage(response))
+      }).then( (response) => this.props.sendMessage(response)).finally(() => this.setState({
+        usermsg: "",
+        editmsg: "",
+        editing: -1, 
+        photoFile: null,
+        photoUrl: null
+      }));
     }
-    this.setState({usermsg: ""});
+    
   }
 
   handleEditSubmit(e)
@@ -97,15 +129,24 @@ class Conversation extends React.Component {
     this.firstTime = -1;
   }
 
-  handleInput(e)
-  {
-    console.log("event: ", e.currentTarget.files[0]);
-    this.setState({photoFile: e.currentTarget.files[0]}).then(() => console.log("ok?:", e, this.state))
-  
 
+  handleFile(e)
+  {
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({photoFile: file, photoUrl: fileReader.result});
+    }
+
+    if (file){
+      fileReader.readAsDataURL(file);
+    }
+      
   }
   componentDidMount()
   {
+    
+
     document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
     document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
     // this.props.getConversationList(this.props.currentUser.id).then(() => this.enterRoom());
@@ -115,6 +156,10 @@ class Conversation extends React.Component {
     this.enterRoom();
     this.props.removeErrors();
     this.props.removeModals();
+    if(this.props.convo.otherUser.id === 6)
+    {
+      this.state.bot = true;
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -124,6 +169,14 @@ class Conversation extends React.Component {
       this.props.getConvoMessages(this.props.id);
       this.subscription?.unsubscribe();
       this.enterRoom();
+      if(this.props.convo.otherUser.id === 6)
+      {
+        this.state.bot = true;
+      }
+      else
+      {
+        this.state.bot = false;
+      }
     }
   }
 
@@ -247,11 +300,14 @@ class Conversation extends React.Component {
         }
         else
         {
-          deleteButton = (<button id="delete-msg-button" onClick={() => {this.props.deleteMessage(msg.id)}}>Delete</button>)
+          deleteButton = (<button id="delete-msg-button" onClick={() => {if(!this.state.bot){this.props.deleteMessage(msg.id)}}}>Delete</button>)
 
           editButton = <button id="edit-msg-button" onClick={() => {
+            if(!this.state.bot)
+            {
             this.firstTime = 2;
             this.setState({editing: msg.id});
+            }
           }
           }>Edit</button>
         }
@@ -277,6 +333,7 @@ class Conversation extends React.Component {
         <p>{this.props.convo.otherUser.username}: {this.props.convo.otherUser.status}</p>
       </div>
     }
+    // const preview = this.state.photoUrl ? <img src={this.state.photoUrl} /> : null;
     return (
       <div className="convo">
         <header>
@@ -286,6 +343,7 @@ class Conversation extends React.Component {
           <ul id="dm-list">
             {msgList}
           </ul>
+          {/* {preview} */}
          
           <div id="msg-form-wrapper">
             <img src={window.uploadimg}></img>
@@ -294,7 +352,7 @@ class Conversation extends React.Component {
                 <label htmlFor="img-uploader">
                   <img src={window.upload} alt="upload-icon"/>
                 </label> 
-                <input type="file" id="img-uploader" onChange={this.handleInput}></input>
+                <input type="file" id="img-uploader" onChange={this.handleFile}></input>
                 <input type="text" id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")}></input>
                 <button className="invisible" type="Submit">Submit</button>
               </form>

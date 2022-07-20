@@ -133,3 +133,9 @@
 #usermsg{
     width: 92.5%;
 }
+
+.msg-img{
+    max-height: 500px;
+    height: 75%;
+    width: auto;
+}

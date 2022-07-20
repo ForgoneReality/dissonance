@@ -3,7 +3,7 @@ class Api::SessionsController < ApplicationController
     def create
         @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
         
-        if(@user)
+        if(@user && @user.id != 6)
             login!(@user)
             @user.last_login = Time.current
             # redirect_to api_users_url(@user)

@@ -9,11 +9,16 @@
     # !!!!!!
     # User.destroy_all
 
+    #DEMO USERS
+
     User.create!({email: "demo1@gmail.com", password: "demo12", username: "demo1", fourdigit_id: "0001", status: "offline"})
     User.create!({email: "demo2@gmail.com", password: "demo12", username: "demo2", fourdigit_id: "0002", status: "offline"})
     User.create!({email: "demo3@gmail.com", password: "demo12", username: "demo3", fourdigit_id: "0003", status: "offline"})
     User.create!({email: "demo4@gmail.com", password: "demo12", username: "demo4", fourdigit_id: "0004", status: "offline"})
     User.create!({email: "demo5@gmail.com", password: "demo12", username: "demo5", fourdigit_id: "0005", status: "offline"})
+
+    #BOTS
+    User.create!({email: "cleverbot@gmail.com", password: "botbot", username: "Aria Bot", fourdigit_id: "0000", status: "online"})
 
     User.create!({email: "anthonie@gmail.com", password: "111111", username: "ant", fourdigit_id: "0313", bio:"nah bro"})
     User.create!({email: "lucy@gmail.com", password: "lucy12", username: "lucy", fourdigit_id: "4059", status: "online", bio:"You should see this!"})
@@ -145,3 +150,5 @@
 
     m2.image.attach(io: File.open("app/assets/images/cat.jpeg"), filename: 'cat.jpeg')
     Message.create!({content: "Please work lol", author_id:5, location_id: 3, location_type: "Conversation"})
+
+    Message.create!({content: "Nice to meet you! I am cleverbot!", author_id: 6, location_id: 4, location_type: "Conversation"})

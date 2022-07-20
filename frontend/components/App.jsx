@@ -19,7 +19,8 @@ import AppBasicsContainer from "./bars/appbasics_container";
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import ServerInit from "./servers/server_init.js"
-import SettingsFormContainer from "./settings/settings_container";
+
+
 
 //render some stuff always when signed-in... like the users info at the bottom left
 const App = () => (

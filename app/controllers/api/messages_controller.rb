@@ -17,10 +17,10 @@ class Api::MessagesController < ApplicationController
           end
 
           if(@message.location_type == "Conversation")
-            ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/show', message: @message)
+            ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: @message)
           end
 
-          render :show, locals: { message: @message }
+          render "_helper", locals: { message: @message }, status: 200
 
           # render json: @message, include: :location
           # render json: @message.location
@@ -52,7 +52,7 @@ class Api::MessagesController < ApplicationController
           ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/show', message: @message)
         end
         
-        render :show, locals: { message: @message }
+        render "_helper", locals: { message: @message }
       else
         render json: @message.errors.full_messages, status: 422
       end
