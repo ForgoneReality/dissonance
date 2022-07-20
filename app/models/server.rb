@@ -1,5 +1,6 @@
 class Server < ApplicationRecord
 
+    after_save :has_a_channel
     validates :server_link, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9]+\z/ }, length: {maximum: 32}
     validates :name, :owner_id, presence: true
 
@@ -19,4 +20,9 @@ class Server < ApplicationRecord
     has_one_attached :icon
     #has_many roles
 
+    def has_a_channel
+        if (self.channels.size < 1)
+            Channel.create({server_id: self.id, name:"general"})
+        end
+    end
 end

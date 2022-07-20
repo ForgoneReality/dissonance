@@ -7,7 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
     # !!!!!!
+    # Friendship.destroy_all
+    # Conversation.destroy_all
+    # Server.destroy_all
+    # Channel.destroy_all
+    # ServerJoin.destroy_all
     # User.destroy_all
+    # Message.destroy_all
+
 
     #DEMO USERS
 
@@ -95,10 +102,8 @@
     Server.create!({server_link: "bob11", owner_id: 4, name: "Bob's Home"})
     Server.create!({server_link: "bob12", owner_id: 4, name: "Bob's Home"})
 
-    Channel.create!({server_id: 1, name:"general"})
     Channel.create!({server_id: 1, name:"help", description:"Ask for help here!"})
     Channel.create!({server_id: 1, name:"memes"})
-    Channel.create!({server_id: 2, name:"general", description:"Talk about anything, League or not"})
     Channel.create!({server_id: 2, name:"league", description:"Talk about LoL or other Riot games"})
     Channel.create!({server_id: 2, name:"find-players", description:"Find other players!"})
 
