@@ -1,3 +1,5 @@
+mount ActionCable.server => '/cable'
+
 Rails.application.routes.draw do
   get 'api/Message'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
