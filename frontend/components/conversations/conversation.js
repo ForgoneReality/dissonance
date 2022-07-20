@@ -75,23 +75,12 @@ class Conversation extends React.Component {
             newMessage: this.state.usermsg
           }
         }).then((resp) => 
-          this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id}).then(() => this.props.sendMessage( {content: resp, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}),() => this.props.sendMessage( {content: resp, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}))
-        ).finally(() => this.setState({
-          usermsg: "",
-          editmsg: "",
-          editing: -1, 
-          photoFile: null,
-          photoUrl: null
-        }));
+          this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id})
+          .then(() => this.props.sendMessage( {content: resp, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}),() => this.props.sendMessage( {content: resp, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}))
+        )
       }
       else{
-        this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id}).finally(() => this.setState({
-          usermsg: "",
-          editmsg: "",
-          editing: -1, 
-          photoFile: null,
-          photoUrl: null
-        }));
+        this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id})
       }
     }
     else
@@ -109,14 +98,9 @@ class Conversation extends React.Component {
         data: formData,
         contentType: false,
         processData: false
-      }).then( (response) => this.props.sendMessage(response)).finally(() => this.setState({
-        usermsg: "",
-        editmsg: "",
-        editing: -1, 
-        photoFile: null,
-        photoUrl: null
-      }));
+      }).then( (response) => this.props.sendMessage(response))
     }
+    this.setState({usermsg: ""});
     
   }
 
