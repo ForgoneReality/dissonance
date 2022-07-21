@@ -100,7 +100,11 @@ class Conversation extends React.Component {
         processData: false
       }).then( (response) => this.props.sendMessage(response))
     }
-    this.setState({usermsg: ""});
+    this.setState({usermsg: "", beeditmsg: "",
+    editing: -1, 
+    photoFile: null,
+    photoUrl: null,
+    bot: false});
     
   }
 

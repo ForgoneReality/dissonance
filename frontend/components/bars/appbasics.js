@@ -6,7 +6,6 @@ import ServerContainer from "../servers/servers_container.jsx"
 import { Link } from 'react-router-dom';
 import {ProtectedRoute} from "../../util/route_util"
 
-import home_button from "../../../app/assets/images/home.png"
 import SettingsContainer from "../settings/settings_container.js"
 import Modal from "../modal.jsx"
 import FullModal from "../fullmodal.jsx"
@@ -77,7 +76,7 @@ class AppBasics extends React.Component {
                 
                 <li>
                   <Link to="/conversations">
-                    <img id="" src={home_button}/>
+                    <img id="" src={window.homeicon}/>
                   </Link>
                 </li>
                 {serverList /*below is temp*/ }
