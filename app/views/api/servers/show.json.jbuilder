@@ -1,5 +1,5 @@
 json.server do
-    json.extract! @server, :id, :name
+    json.extract! @server, :id, :name, :owner_id
 end
 
 json.users do

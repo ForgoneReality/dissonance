@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import LogoutModal from './modals/logout_modal';
 import EditUsernameModal from './modals/edit_username_modal';
 import EditEmailModal from './modals/edit_email_modal';
+import CreateServerModal from './modals/create_server_modal';
 
 class Modal extends React.Component{
   constructor(props)

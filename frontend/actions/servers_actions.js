@@ -43,3 +43,8 @@ export const fetchServer = id => dispatch => {
 export const getServerID = channelId  => (
   fetchChannel(channelId)
 )
+
+// export const generateServer = server => dispatch => {
+//   console.log("server", server);
+//   return APIUtil.createServer(server).then((res) => dispatch(receiveServer(res)))
+// }

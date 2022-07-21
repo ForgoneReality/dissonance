@@ -112,8 +112,9 @@ ul, li{
 }
 
 .server-icons img{
-    width: 60px; /* you can use % */
+    width: 50px; /* you can use % */
     height: auto;
+    border-radius: 50%;
 }
 
 main{
@@ -178,6 +179,7 @@ main{
 
 .modal-full
 {
+    position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
@@ -218,4 +220,15 @@ input:focus{
 
 #settings-button:hover{
     background-color: #2f3136;
+}
+
+#add-server-button img{
+    width: 20px;
+    height: auto;
+}
+
+.server-link img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }

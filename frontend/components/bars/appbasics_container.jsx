@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import AppBasics from './appbasics.js';
 import { getServersList } from '../../actions/servers_actions.js';
-import { displayFullModal } from '../../actions/modal_actions.js';
+import { displayFullModal, displayModal } from '../../actions/modal_actions.js';
 
 //at the moment it's just the userbar at the bottom... need servers list later soon
 const mapStateToProps = (state) => {
@@ -18,7 +18,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     getServersList: (userId) => dispatch(getServersList(userId)),
-    openSettings: () => dispatch(displayFullModal("settings"))
+    openSettings: () => dispatch(displayFullModal("settings")),
+    displayCreateServerModal: () => dispatch(displayModal("createserver"))
   };
 };
 

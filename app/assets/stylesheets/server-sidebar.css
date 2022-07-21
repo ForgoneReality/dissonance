@@ -1,13 +1,16 @@
 #server-sidebar {
     position: relative;
     height: 100vh;
-    width: 66px;
+    min-width: 72px;
+    max-width: 72px;
    
     overflow-y: scroll;
     background-color: red;
     top: 0;
     bottom: 0;
 }
+
+
 #server-sidebar ul {
     display: flex;
     flex-direction: column;
@@ -17,7 +20,9 @@
 }
 
 #server-sidebar > ul > li {
-   width: 66px;
+    display: flex;
+    justify-content: center;
+   width: 72px;
    height: 58px;
    border-bottom: #202225 1px solid;
    border-left: #202225 2px solid;
@@ -26,7 +31,6 @@
 }
 
 #server-sidebar div{
-    margin-left: 8px;
     margin-top: 6px;
     width: 50px;
     height: 50px;
@@ -41,4 +45,13 @@
     color: #dcddde;
     text-decoration: inherit;
     font-size: 20px;
+}
+
+#add-server-button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: #36393f;
+    margin-top: 4px;
 }

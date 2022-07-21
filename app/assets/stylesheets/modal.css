@@ -132,7 +132,7 @@
     margin-left: 12px;
     margin-right: 12px;
     background-color: #202225;
-    width: 90%;
+    width: 94%;
     height: 40px;
     font-family: 'Whitney';
     font-size: 16px;
@@ -160,6 +160,7 @@
 .submit1{
     background-color: #5865F2;
     border-radius: 3.5px;
+    color: white;
 }
 
 .modal-errors ul{
@@ -171,4 +172,115 @@
     color:#D83C3E;
     font-size: 14px;
     font-family: "Whitney", "Helvetica Neue";
+}
+
+#create-server-modal{
+    width: 440px;
+    height: 404px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.bot2{
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.top2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 440px;
+    height: 102px;
+}
+
+.top2 h1{
+    font-family: "ABC Ginto";
+    font-size: 25px;
+    color: #060607;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 24px;
+}
+
+.top2 h2{
+    font-family: "WhitneyLight";
+    color: #4f5660;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 8px;
+    text-align: center;
+    width: 392px;
+}
+
+.bot2{
+    background-color: #F2F3F5;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0px;
+    height: 70px;
+    align-items: center;
+    width: 100%;
+}
+
+.mid2{
+    padding-left: 16px;
+}
+
+.mid2 h5{
+    font-size: 12px;
+    font-family: "ABC Ginto";
+    color: #4f5660;
+    margin-bottom: 8px;
+}
+
+.bot2 button{
+    margin-left: 4px;
+    margin-right: 4px;
+    font-family: "Whitney", "Helvetica Neue";
+    font-size: 14px;
+}
+
+#back-button-1{
+    background-color: transparent;
+    text-decoration: none;
+}
+
+
+#bruh9861{
+    background-color: #e3e5e8;
+    border-radius: 4px;
+    padding: 10px;
+    color:#2e3338;
+    width: 90%;
+}
+
+.bot2 button{
+    min-height: 38px;
+    min-width: 96px;
+    border: none;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+#img-uploader1{
+    display: none;
+}
+
+#bruh9567{
+    position: relative;
+    left: 38%;
+    margin-top: 28px;
+}
+
+#server-img-preview{
+    width: 100px;
+    height: 100px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-top: 28px;
+    margin-left: calc(50% - 58px);
+    border-radius: 50%;
 }

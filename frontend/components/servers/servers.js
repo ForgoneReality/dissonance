@@ -108,6 +108,7 @@ class Server extends React.Component {
           <div id="serverlisty">
             <div id="server-name">
               <h1 >{serverName}</h1>
+              <img src={window.dropdown}></img>
             </div>
             <ul className = "ChannelsList">
               {channelsList}

@@ -12,8 +12,6 @@ class Api::MessagesController < ApplicationController
             start = "<Tempfile:"
             endd =  ">,"
             @message.image.attach(io: File.open(input_string[/#{start}(.*?)#{endd}/m, 1]), filename: input_string[/filename="(.*?)"/m, 1])
-          else
-            render json: {message: "That shit dont exist"}, status: 405
           end
 
           if(@message.location_type == "Conversation")

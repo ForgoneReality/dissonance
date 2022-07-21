@@ -14,7 +14,6 @@
     width: 240px;
     height: 100vh;
     top: 48px;
-    border: solid 1px red;
     background-color: #2f3136;
 }
 
@@ -51,6 +50,8 @@
     display: flex;
     height: 48px;
     align-items: center;
+    border-bottom: #232527 solid 1.5px;
+    justify-content: space-between;
 }
 
 #server-name h1{
@@ -58,6 +59,13 @@
     color: white;
     font-family: "ABC Ginto";
     padding-left: 10px;
+}
+
+#server-name img{
+    padding-right: 10px;
+    width: 10px;
+    height: 10px;
+    z-index: 4;
 }
 
 .ChannelsList{
@@ -100,6 +108,7 @@
     flex-flow: row nowrap;
     height: 48px;
     align-items: center;
+    border: 1.5px solid #2b2e32;
 }
 
 #header-hashtag{

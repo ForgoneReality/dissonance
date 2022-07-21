@@ -26,3 +26,13 @@ export const channelRedirect = (id) => (
         method: "get"
     })
 )
+
+// export const createServer = (server) => (
+//     $.ajax({
+//         url: `api/servers`,
+//         method: "post",
+//         data: {
+//         server
+//         }
+//     })
+// )

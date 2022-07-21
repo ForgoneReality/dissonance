@@ -74,7 +74,7 @@ class EditEmailModal extends React.Component {
             </div>
             <div className="edit-modal-bottom">
                 <button className="cancel1" onClick={() => this.props.hideModal()}>Cancel</button>
-                <button type="submit" className="submit1" onClick={this.props.handleSubmit}>Done</button>
+                <button type="submit" className="submit1" onClick={this.handleSubmit}>Done</button>
             </div>
         </form>
 
