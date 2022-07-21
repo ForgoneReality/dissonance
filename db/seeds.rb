@@ -109,14 +109,11 @@
     ch4 = Channel.create!({server_id: s2.id, name:"find-players", description:"Find other players!"})
 
     ServerJoin.create!({user_id: u1.id, server_id: s2.id})
-    ServerJoin.create!({user_id: u1.id, server_id: s1.id})
     ServerJoin.create!({user_id: u1.id, server_id: s3.id})
     ServerJoin.create!({user_id: u2.id, server_id: s1.id})
     ServerJoin.create!({user_id: u2.id, server_id: s2.id})
     ServerJoin.create!({user_id: u2.id, server_id: s3.id})
     ServerJoin.create!({user_id: u3.id, server_id: s1.id})
-    ServerJoin.create!({user_id: u4.id, server_id: s2.id})
-    ServerJoin.create!({user_id: u4.id, server_id: s3.id})
 
     ServerJoin.create!({user_id: u1.id, server_id: s4.id})
     ServerJoin.create!({user_id: u1.id, server_id: s5.id})

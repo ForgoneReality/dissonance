@@ -49,6 +49,9 @@ class Modal extends React.Component{
       case 'createserver':
         component=<CreateServerModal/>;
         break;
+        // case 'dropdownserversettings':
+        //   component=<DropdownModal droppie="server-settings"/>;
+        //   break
       default:
         return null;
     }

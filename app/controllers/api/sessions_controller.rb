@@ -22,7 +22,7 @@ class Api::SessionsController < ApplicationController
         demo4 = User.fourth
         demo5 = User.fifth
         demo_users = [demo1, demo2, demo3, demo4, demo5]
-
+        debugger
         @user = demo_users.min_by {|ele| ele.last_login}
         # @user = User.where("id < 6").order("last_login ASC").first
 
