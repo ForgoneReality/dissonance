@@ -2,9 +2,8 @@ class User < ApplicationRecord
     # attr_accessor :last_login
     attr_reader :password
 
-    before_validation :init_last_login
 
-    after_initialize :ensure_session_token
+    after_initialize :ensure_session_token, :init_last_login
 
     validates :email, presence: true, uniqueness: true, length: {maximum: 50}
     validates :session_token, presence: true, uniqueness: true
