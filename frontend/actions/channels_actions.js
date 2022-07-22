@@ -24,7 +24,14 @@ export const receiveChannel = (channel) =>({
 
 export const getChannelMessages = id => dispatch => (
   APIUtil.fetchChannel(id).then( (res) => {
+    if(res.messages)
+    {
     return dispatch(receiveMessages(res.messages));
+    }
+    else
+    {
+      return dispatch(receiveMessages({}))
+    }
     // dispatch(receiveUsers(res.users));
   })
 )

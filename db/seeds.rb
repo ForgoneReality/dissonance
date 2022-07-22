@@ -85,8 +85,6 @@
     c18 = Conversation.create!({user1_id: u1.id, user2_id: u20.id})
     
 
-
-
     s1 = Server.create!({server_link: "appacademy", owner_id: u1.id, name: "App Academy"})
     s2 = Server.create!({server_link: "leagueoflegends", owner_id: u4.id, name: "League of Legends"})
     s3 = Server.create!({server_link: "bob", owner_id: u4.id, name: "Bob's Home"})
