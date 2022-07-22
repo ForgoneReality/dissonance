@@ -8,15 +8,15 @@ class Api::ChannelsController < ApplicationController
         # Your code here
     end
     
-    # def create
-    #     @conversation = Conversation.new(convo_params)
+    def create
+        @channel = Channel.new(channel_params)
     
-    #     if @conversation.save
-    #         render '_room', locals: { conversation: @conversation }
-    #     else
-    #         render json: @conversation.errors.full_messages, status: 422
-    #     end
-    # end
+        if @channel.save
+            render '_channel'
+        else
+            render json: @channel.errors.full_messages, status: 422
+        end
+    end
 
     # def update
     #     @conversation = Conversation.find(params[:id])
@@ -29,10 +29,10 @@ class Api::ChannelsController < ApplicationController
     #     end
     # end
 
-    # private
-    # def convo_params
-    #     params.require(:conversation).permit(:user1_id, :user2_id)
-    # end
+    private
+    def channel_params
+        params.require(:channel).permit(:name, :server_id, :description)
+    end
 
     # def update_params
     #     params.require(:conversation).permit(:last_updated)

@@ -86,6 +86,7 @@
     background-color: #36393f;
     position: relative;
     border-radius: 5px;
+    z-index: 12;
 }
 
 
@@ -283,4 +284,60 @@
     margin-top: 28px;
     margin-left: calc(50% - 58px);
     border-radius: 50%;
+}
+
+/*Modals*/
+
+#dropdown {
+    position: absolute;
+    width: 220px;
+    top: 40px;
+    left: 81px;
+    background-color: #18191c;
+    border-radius: 5px;
+    z-index: 11;
+}
+
+.dropdown-list1
+{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    gap: 4px;
+}
+
+.dropdown-list1 button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 204px;
+    height: 32px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 4px;
+    border: none;
+    font-size: 15px;
+    font-family: "Whitney";
+    background-color: #18191c;
+}
+
+.dropdown-list1 button:hover{
+    background: #4752C4;
+    color: white;
+}
+
+.otherbutt{
+    color: #B9BBBE;
+}
+
+.invbutt{
+    color: #949CF7
+}
+
+.leavebutt{
+    color: #ED4425;
 }

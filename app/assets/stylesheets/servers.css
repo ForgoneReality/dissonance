@@ -6,7 +6,6 @@
     position: relative;
 
     width: 240px;
-    border: solid 1px red;
     height: calc(100vh - 52px);
 }
 
@@ -76,7 +75,6 @@
 
 
 .ChannelsList li{
-    border: red 1px solid;
     display: flex;
     height: 34px;
     padding-left: 4px;
@@ -123,3 +121,8 @@
     margin-top: 0px;
 }
 
+
+#server-name button{
+    background: transparent;
+    border: none !important;
+}

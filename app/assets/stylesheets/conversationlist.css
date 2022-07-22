@@ -74,7 +74,7 @@
     background-color: #272727;
 }
 
-/* BRO THIS COLOR: #5865f2 */
+/* BRO THIS COLOR: #5865f2 */   
 
  .convo-link{
     color: #a3a6aa;
@@ -83,17 +83,13 @@
     line-height: 42px;
  }
 
- 
-
-
  .convolisting{
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 210px;
     height: 42px;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 8px;    
     border-radius: 5px;
     
  }

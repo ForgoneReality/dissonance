@@ -108,7 +108,10 @@ class Server extends React.Component {
           <div id="serverlisty">
             <div id="server-name">
               <h1 >{serverName}</h1>
-              <img src={window.dropdown}></img>
+              <button onClick={() => this.props.displayModal("server-settings")}>
+                <img src={window.dropdown} alt="dropdown-icon" />
+              </button>
+
             </div>
             <ul className = "ChannelsList">
               {channelsList}

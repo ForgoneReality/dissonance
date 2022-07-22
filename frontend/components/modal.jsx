@@ -8,6 +8,7 @@ import LogoutModal from './modals/logout_modal';
 import EditUsernameModal from './modals/edit_username_modal';
 import EditEmailModal from './modals/edit_email_modal';
 import CreateServerModal from './modals/create_server_modal';
+import CreateChannelModal from './modals/create_channel_modal';
 
 class Modal extends React.Component{
   constructor(props)
@@ -37,6 +38,7 @@ class Modal extends React.Component{
     }
     let component;
     switch (this.props.modals) {
+      //this code could be refactored to be significantly more modular and DRY
       case 'logout':
         component = <LogoutModal/>;
         break;
@@ -49,9 +51,9 @@ class Modal extends React.Component{
       case 'createserver':
         component=<CreateServerModal/>;
         break;
-        // case 'dropdownserversettings':
-        //   component=<DropdownModal droppie="server-settings"/>;
-        //   break
+      case 'createchannel':
+        component=<CreateChannelModal/>
+        break;
       default:
         return null;
     }

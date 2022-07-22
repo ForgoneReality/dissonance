@@ -26,10 +26,8 @@ class Api::ConversationsController < ApplicationController
 
     def update
         @conversation = Conversation.find(params[:id])
-      
         if @conversation.update(update_params)
-            # render :update, locals: { conversation: @conversation }
-            render json: @conversation
+            render '_convolong', locals: {conversation: @conversation, userid: params[:userId]}
         else
             render json: @convo.errors.full_messages, status: 422
         end

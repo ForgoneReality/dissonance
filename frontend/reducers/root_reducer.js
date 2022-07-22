@@ -6,13 +6,15 @@ import session from './session_reducer';
 import errors from './errors_reducer';
 import search from "./search_reducer.js";
 import ui from "./ui_reducer.js";
+import current from "./current_reducer.js"
 
 const rootReducer = combineReducers({
   entities,
   session,
   search,
   errors,
-  ui
+  ui,
+  current
 });
 
 export default rootReducer;

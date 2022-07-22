@@ -32,6 +32,41 @@
     padding-bottom: 2px;
 }
 
+.message:hover{
+    background-color: #32353b;
+}
+
+.msgbuttons {
+    display: none;
+    z-index: 2;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 0px;
+    right: 75px;
+    border: #202225 1px solid;
+    border-radius: 4px;
+    background-color: none;
+}
+
+.msgbuttons button{
+    width: 32px;
+    height: 32px;
+    background-color: #36393f;
+    border: none;
+}
+.msgbuttons button:hover{
+    background-color: rgba(79,84,92,0.4);
+}
+
+.msgbuttons img{
+    width: 20px;
+    height: 20px
+}
+
+.message:hover + .msgbuttons, .msgbuttons:hover {
+    display: inline-block;
+}
+
 .message span {
     font-family: 'Whitney';
 }
@@ -63,7 +98,8 @@
 }
 
 #msgfiller {
-    height: 17px;
+    height: 1px;
+    margin-top: 16px;
 }
 
 .msg-content {
@@ -105,8 +141,8 @@
 #msg-form-bubble{
     display: flex;
     align-items: center;
-    background-color: blue;
-    width: calc(100vw - 350px);
+    background-color: #40444b;
+    width: calc(100vw - 366px);
     height: 44px;
     padding-left: 16px;
     border-radius: 5px;
@@ -121,7 +157,7 @@
 }
 
 #msg-form input{
-    background-color: blue;
+    background-color: #40444b;
     border: none;
     height: 22px;
 }
@@ -139,3 +175,7 @@
     height: 75%;
     width: auto;
 }
+#single-message{
+    position:relative;
+}
+

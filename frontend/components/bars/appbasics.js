@@ -16,6 +16,7 @@ import {
   Route
 } from 'react-router-dom';
 import Footerr from './footer';
+import DropdownModal from '../modals/dropdown_modal';
 
 class AppBasics extends React.Component {
   constructor(props) {
@@ -95,6 +96,7 @@ class AppBasics extends React.Component {
             <Route exact path="/conversations" component={FriendListContainer} />
             <FullModal/>
             <Modal/>
+            <DropdownModal/>
         </main> 
     )
   }

@@ -15,9 +15,8 @@ json.users do
     json.extract! @conversation.user2, :id, :username, :fourdigit_id, :bio, :status
   end
 end
-
-@conversation.messages.each do |message|
-  json.messages do
+json.messages do
+  @conversation.messages.each do |message|
     json.set! message.id do
       json.partial! 'api/messages/message', message: message
       json.author_name message.author.username

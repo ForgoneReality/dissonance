@@ -23,6 +23,7 @@ class Conversation extends React.Component {
       photoUrl: null,
       bot: false
     }
+    this.responseMessage = null;
   }
 
   submitOnEnter(event){
@@ -62,25 +63,29 @@ class Conversation extends React.Component {
   handleSubmit(e)
   {
     e.preventDefault();
+    let my_msg = `${this.state.usermsg}`
+
     if(!this.state.photoFile)
     {
       if(this.state.bot)
       {
         let currentConvoList = this.props.messages.map(ele => ele.content);
         currentConvoList.shift();
+        console.log("ABOUT TO GO IN:", currentConvoList, my_msg)
         $.ajax({
           url: 'http://localhost:3001/',
           type: 'get',
           data: {messageList: currentConvoList,
-            newMessage: this.state.usermsg
+            newMessage: my_msg
           }
-        }).then((resp) => 
-          this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id})
-          .then(() => this.props.sendMessage( {content: resp, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}),() => this.props.sendMessage( {content: resp, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}))
-        )
+        }).then((resp) => {
+          console.log("I GOT HERE", resp)
+          this.responseMessage = resp;
+          return this.props.sendMessage( {content: my_msg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id})
+        }).then(() =>this.props.sendMessage( {content: this.responseMessage, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}),() => this.props.sendMessage( {content: this.responseMessage, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}))
       }
       else{
-        this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id})
+        this.props.sendMessage( {content: my_msg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id})
       }
     }
     else
@@ -100,11 +105,10 @@ class Conversation extends React.Component {
         processData: false
       }).then( (response) => this.props.sendMessage(response))
     }
-    this.setState({usermsg: "", beeditmsg: "",
+    this.setState({usermsg: "", editmsg: "",
     editing: -1, 
     photoFile: null,
-    photoUrl: null,
-    bot: false});
+    photoUrl: null});
     
   }
 
@@ -244,6 +248,7 @@ class Conversation extends React.Component {
       }
 
       let msgContent = <div className="message">
+      
         {mypfp}
         <div>
           {msgHeader}
@@ -266,7 +271,8 @@ class Conversation extends React.Component {
           msgContent = (
             <form id="edit-msg-form">
               <textarea id="edit-msg-textform" value={this.state.editmsg} onChange={this.update("editmsg")}></textarea>
-              <button className="invisible" type="Submit">Edit</button>
+              <button className="invisible" type="Submit">Edit
+              </button>
             </form>)
 
        
@@ -288,7 +294,9 @@ class Conversation extends React.Component {
         }
         else
         {
-          deleteButton = (<button id="delete-msg-button" onClick={() => {if(!this.state.bot){this.props.deleteMessage(msg.id)}}}>Delete</button>)
+          deleteButton = (<button id="delete-msg-button" onClick={() => {if(!this.state.bot){this.props.deleteMessage(msg.id)}}}>
+             <img src={window.deleteicon}/>
+          </button>)
 
           editButton = <button id="edit-msg-button" onClick={() => {
             if(!this.state.bot)
@@ -297,18 +305,21 @@ class Conversation extends React.Component {
             this.setState({editing: msg.id});
             }
           }
-          }>Edit</button>
+          }>
+            <img src={window.editmessage}/>
+          </button>
         }
 
 
 
       }
-      return (<li key={msg.id}>
+      return (<li key={msg.id} id="single-message">
         {filler}
         {msgContent}
-         {editButton}
-         {deleteButton}
-      
+        <div className="msgbuttons">
+          {editButton}
+          {deleteButton}
+        </div>
       </li>)
       })
     }

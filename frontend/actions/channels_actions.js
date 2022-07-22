@@ -22,27 +22,13 @@ export const receiveChannel = (channel) =>({
   }  
 );
 
-
-// export const addChannel = channel => {
-//     return dispatch => {
-//         return APIUtil.createChannel(channel)
-//         .then(
-//             res => dispatch(receiveChannel(res)) //,
-//             // err => dispatch(receiveErrors(err.responseJSON))
-//         )
-//     }
-// };
-
 export const getChannelMessages = id => dispatch => (
   APIUtil.fetchChannel(id).then( (res) => {
-      if(res.messages)
-      {
-        return dispatch(receiveMessages(res.messages));
-      }
-      else
-      {
-        return dispatch(receiveMessages({}));
-      }
+    return dispatch(receiveMessages(res.messages));
     // dispatch(receiveUsers(res.users));
   })
+)
+
+export const createChannel = channel => dispatch => (
+  APIUtil.createChannel(channel).then( (res) => dispatch(receiveChannel(res)))
 )

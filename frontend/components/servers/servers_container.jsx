@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { removeErrors } from '../../actions/errors_actions.js';
+import { displayModal } from '../../actions/modal_actions.js';
 import { fetchServer} from "../../actions/servers_actions"
 
 import Server from "./servers"
@@ -22,7 +23,8 @@ const mapDispatchToProps = (dispatch) => {
 
   return {
     removeErrors: () => dispatch(removeErrors()),
-    fetchServer: (serverId) => dispatch(fetchServer(serverId))
+    fetchServer: (serverId) => dispatch(fetchServer(serverId)),
+    displayModal: (modal) => dispatch(displayModal(modal))
   };
 };
 

@@ -8,7 +8,6 @@ const SessionsReducer = (state = {}, action) => {
     switch(action.type)
     {
         case RECEIVE_CURRENT_USER:
-            console.log("MY ACTION", action);
             let isdemo = false;
             if (action.currentUser.id <= 5)
             {
