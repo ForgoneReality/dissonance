@@ -9,6 +9,7 @@ import EditUsernameModal from './modals/edit_username_modal';
 import EditEmailModal from './modals/edit_email_modal';
 import CreateServerModal from './modals/create_server_modal';
 import CreateChannelModal from './modals/create_channel_modal';
+import EditPasswordModal from './modals/edit_password_modal';
 
 class Modal extends React.Component{
   constructor(props)
@@ -54,6 +55,9 @@ class Modal extends React.Component{
       case 'createchannel':
         component=<CreateChannelModal/>
         break;
+      case 'editpassword':
+        component=<EditPasswordModal/>
+        break;
       default:
         return null;
     }
@@ -70,12 +74,12 @@ class Modal extends React.Component{
 const mapStateToProps = state => {
   return {
     modals: state.ui.modal
-  };
+    };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    hideModal: () => dispatch(hideModal())
+    hideModal: () => dispatch(hideModal()),
   };
 };
 

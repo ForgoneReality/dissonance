@@ -89,6 +89,15 @@
     z-index: 12;
 }
 
+#edit-password-modal{
+    width: 33vw;
+    min-height: 450px;
+    background-color: #36393f;
+    position: relative;
+    border-radius: 5px;
+    z-index: 12;
+}
+
 
 .top1{
     display: flex;

@@ -43,9 +43,52 @@
 }
 
 .pfp-large{
+    position: absolute;
     width: 86px;
     height: 86px;
     border-radius:50%;   
+    z-index: 13;
+}
+
+#pfp-uploader{
+    display: none;
+}
+
+#sadge{
+    position: relative;
+    z-index: 15;
+    left: 55px;
+    top: -5px; 
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #caccce;
+}
+
+
+#painge{
+    display:none;
+    position: relative;
+    width: 86px;
+    height: 86px;
+    left: 0px;
+    top: 0px;
+    border-radius: 50%;
+    z-index: 14;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#painge:hover{
+    display: block;
+}
+
+#uploadimgicon{
+    position: relative;
+    z-index: 15;
+    left: 1px;
+    top: 0; 
+    width: 30px;
+    height: auto;
 }
 
 #settings-header{
@@ -83,6 +126,11 @@
 
 #bruh9002{
     margin-left: auto;
+}
+
+#bruh9045{
+    width: 86px;
+    height: 86px;
 }
 
 #right-side-settings h3{
@@ -191,9 +239,13 @@
     height: auto;
 }
 
-#changepass{
+#changepass, #changepassdemo{
     max-width: 200px;
     margin-top: 20px;
+}
+
+#changepassdemo:hover{
+    cursor: not-allowed;
 }
 #left-side-settings h2{
     font-size: 12px;

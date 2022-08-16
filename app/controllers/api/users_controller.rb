@@ -26,11 +26,15 @@ class Api::UsersController < ApplicationController
     def update
         @user = User.find(params[:id])
         if @user.is_password?(params["user"]["password"])
-          if @user.update(user_params)
-            render "_user", locals: { user: @user }
-          else
-            render json: @user.errors.full_messages, status: 422
-          end
+            if(!params["user"]["newpassword"].empty?)
+                @user.password = params["user"]["newpassword"]
+                @user.save! #dont work Pain
+            end
+            if @user.update(user_params)
+                render "_user", locals: { user: @user }
+            else
+                render json: @user.errors.full_messages, status: 422
+            end
         else
           render json: ["Incorrect password!"], status: 422
         end
@@ -77,9 +81,13 @@ class Api::UsersController < ApplicationController
         end
     end
 
+    # def check_password(pass) #THIS SHOULd BE IMPLEMENTED INSTEAD OF DOING THE COMPARISON IN THE FRONTEND, BUT... YEAH... MAYBE LATER
+    #     @
+    # end
+
     private
     def user_params
-        params.require(:user).permit(:email, :password, :username, :fourdigit_id)
+        params.require(:user).permit(:email, :password, :username, :fourdigit_id) #maybe not pass
     end
 
     # def generate_fourdigit

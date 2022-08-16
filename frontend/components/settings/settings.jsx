@@ -7,12 +7,32 @@ class Settings extends React.Component {
         email: this.props.currentUser.email,
         username: this.props.currentUser.username,
         fourdigit_id: this.props.currentUser.fourdigit_id,
-        password: ''
+        password: '',
+        photoFile: null,
+        photoUrl: null,
       }
+
+      this.handleFile = this.handleFile.bind(this)
+    }
+
+    handleFile(e)
+    {
+      const file = e.currentTarget.files[0];
+      const fileReader = new FileReader();
+      fileReader.onloadend = () => {
+        this.setState({photoFile: file, photoUrl: fileReader.result});
+      }
+  
+      if (file){
+        fileReader.readAsDataURL(file);
+      }
+        
     }
 
     render()
     {
+        let pass_butt = !this.props.isDemo ? <button id="changepass" className="settings-button" onClick={() => this.props.showPasswordModal()}>Change Password</button> : <button id="changepassdemo" className="settings-button">Change Password</button> 
+        let bio = this.props.currentUser.bio ? this.props.currentUser.bio : "Nothing here...";
         return(
             <div id="settings-modal" className="modal-full">
                 <div id="left-side-settings">
@@ -41,7 +61,16 @@ class Settings extends React.Component {
                     </div>
                     <div id="settings-bubble">
                         <div id="settings-header">
-                            <img src={this.props.currentUser.pfp_url} className="pfp-large"></img>
+                            <div id="bruh9045">
+                            <label htmlFor="pfp-uploader">
+                                <img src={this.props.currentUser.pfp_url} className="pfp-large" />
+                            </label> 
+                            <input type="file" id="pfp-uploader" onChange={this.handleFile}></input>
+                            <div id="sadge">
+                                <img src={window.editimg} id="uploadimgicon"></img>
+                            </div>
+                            <div id="painge"></div>
+                            </div>
                             <p><span className="white">{this.props.currentUser.username}</span><span className="B9">#{this.props.currentUser.fourdigit_id}</span></p>
                             <button id="bruh9002" className="settings-button">Edit Profile</button>
                         </div>
@@ -65,7 +94,7 @@ class Settings extends React.Component {
                             <div className="space-between">
                                 <div id="bruh9003">
                                     <h3>ABOUT ME</h3> 
-                                    <p id="about-me-settings">{this.props.currentUser.bio}Something here</p>
+                                    <p id="about-me-settings">{bio}</p>
                                     {/* <button>Save</button>  */}
                                 </div>
                                 <button className="edit-button">Edit</button> 
@@ -76,7 +105,7 @@ class Settings extends React.Component {
                     <div id="bruh9004">
                         <h1>Password and Authentication</h1>
                         <img id="passwordimg" src={window.passwordimg} alt="password-img"></img>
-                        <button id="changepass" className="settings-button">Change Password</button>
+                        {pass_butt}
                         <hr/>
                     </div>
 

@@ -6,7 +6,8 @@ import { displayModal, hideFullModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    isDemo: state.session.currentUser.id <= 5
   };
 };
 
@@ -15,6 +16,7 @@ const mapDispatchToProps = dispatch => {
     showLogoutModal: () => dispatch(displayModal("logout")),
     showUsernameModal: () => dispatch(displayModal("editusername")),
     showEmailModal: () => dispatch(displayModal("editemail")),
+    showPasswordModal: () => dispatch(displayModal("editpassword")),
     hideFullModal: () => dispatch(hideFullModal())
 
     // removeErrors: () => dispatch(removeErrors())
