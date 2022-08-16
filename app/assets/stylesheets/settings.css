@@ -67,19 +67,20 @@
 
 
 #painge{
-    display:none;
+    display: block;
     position: relative;
-    width: 86px;
-    height: 86px;
-    left: 0px;
-    top: 0px;
+    width: 88px;
+    height: 88px;
+    left: -1px;
+    top: -33px;
     border-radius: 50%;
     z-index: 14;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 #painge:hover{
-    display: block;
+    background-color: rgba(0, 0, 0, 0.7);
+
 }
 
 #uploadimgicon{

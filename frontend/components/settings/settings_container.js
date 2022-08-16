@@ -3,6 +3,7 @@ import React from 'react';
 import { removeErrors } from '../../actions/errors_actions';
 import Settings from "./settings.jsx"
 import { displayModal, hideFullModal } from '../../actions/modal_actions';
+import { changePFP } from '../../actions/users_actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -17,7 +18,8 @@ const mapDispatchToProps = dispatch => {
     showUsernameModal: () => dispatch(displayModal("editusername")),
     showEmailModal: () => dispatch(displayModal("editemail")),
     showPasswordModal: () => dispatch(displayModal("editpassword")),
-    hideFullModal: () => dispatch(hideFullModal())
+    hideFullModal: () => dispatch(hideFullModal()),
+    changePFP: (userId, pfp_url) => dispatch(changePFP(userId, pfp_url))
 
     // removeErrors: () => dispatch(removeErrors())
   };

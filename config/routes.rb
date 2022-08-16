@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :friends, on: :member
       get :search, on: :collection
       get :servers, on: :member
+      patch :changePFP, on: :member
 
     end
     resource :session, only: [:create, :destroy] do

@@ -24,6 +24,7 @@ class Api::UsersController < ApplicationController
     end
 
     def update
+        debugger
         @user = User.find(params[:id])
         if @user.is_password?(params["user"]["password"])
             if(!params["user"]["newpassword"].empty?)
@@ -79,6 +80,17 @@ class Api::UsersController < ApplicationController
         else
             render json: ["User does not exist"], status: 404
         end
+    end
+
+    def changePFP
+        # debugger
+        @user = User.find(params[:id])
+        params["pfp_url"].permit!
+        input_string = params["pfp_url"].inspect()
+        start = "<Tempfile:"
+        endd =  ">,"
+        @user.profile_picture.attach(io: File.open(input_string[/#{start}(.*?)#{endd}/m, 1]), filename: input_string[/filename="(.*?)"/m, 1])
+        render "_user", locals: { user: @user }, status: 200
     end
 
     # def check_password(pass) #THIS SHOULd BE IMPLEMENTED INSTEAD OF DOING THE COMPARISON IN THE FRONTEND, BUT... YEAH... MAYBE LATER

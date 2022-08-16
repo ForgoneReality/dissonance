@@ -8,25 +8,29 @@ class Settings extends React.Component {
         username: this.props.currentUser.username,
         fourdigit_id: this.props.currentUser.fourdigit_id,
         password: '',
-        photoFile: null,
-        photoUrl: null,
+        // photoFile: null,
+        // photoUrl: null,
+        // imageUploaded: false
       }
 
       this.handleFile = this.handleFile.bind(this)
     }
 
+    //IDEALLY THERE SHOULD BE A PREVIEW AND YOU CAN DISCARD CHANGES 
     handleFile(e)
     {
       const file = e.currentTarget.files[0];
       const fileReader = new FileReader();
       fileReader.onloadend = () => {
-        this.setState({photoFile: file, photoUrl: fileReader.result});
+        // this.setState({photoFile: file, photoUrl: fileReader.result, imageUploaded: true});
+        // this.setState({photoFile: file, photoUrl: fileReader.result});
+        console.log("CID", this.props.currentUser.id);
+        this.props.changePFP(this.props.currentUser.id, file);
       }
   
       if (file){
         fileReader.readAsDataURL(file);
       }
-        
     }
 
     render()
