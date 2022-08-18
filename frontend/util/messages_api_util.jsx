@@ -1,11 +1,12 @@
 
-export const createMessage = (message) => (
-    $.ajax({
+export const createMessage = (message) => {
+    console.log("MESSAGE!!", message);
+    return $.ajax({
         url: "/api/messages",
         method: "post",
         data: {message}
     })
-)
+}
 
 
 export const deleteMessage = (msgId) => (

@@ -119,7 +119,7 @@ class Channel extends React.Component {
     {
         currChannelName = this.props.channels[this.props.channelId].name;
     }
-    let msgList = <li>Empty...</li>;
+    let msgList = <li id="bruh9991">It's too quiet here... be the first one to send a message!</li>;
     if (this.props.messages.length > 0)
     {
      let lastSenderID = -1;
@@ -149,9 +149,10 @@ class Channel extends React.Component {
         {
           datemsg = dmy.toDateString();
         }
+        let the_name = msg.nickname ? msg.nickname : msg.author_name
 
         msgHeader = (<h2>
-          <span className="message-username">{msg.author_name}</span>
+          <span className="message-username">{the_name}</span>
           <span className="message-date">{datemsg}</span>
         </h2>)
 

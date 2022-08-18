@@ -10,6 +10,12 @@ end
 json.users do
     @server.users.each do |user|
         json.set! user.id do
+            serverjoiner = ServerJoin.find_by({server_id: @server.id, user_id: user.id})
+            if(!serverjoiner.nil?)
+              json.nickname serverjoiner.nickname
+            else
+              json.nickname ""
+            end
             json.partial! 'api/users/user', user: user
         end
     end

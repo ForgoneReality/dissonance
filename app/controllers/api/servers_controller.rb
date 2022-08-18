@@ -28,6 +28,28 @@ class Api::ServersController < ApplicationController
         end
     end
 
+    def update
+        @server = Server.find(params[:id])
+        if @server.update(server_params)
+            if(params["server"]["icon"])
+                if(@server.icon.attached?)
+                    @server.icon.purge
+                end
+                input_string = params["server"]["icon"].inspect()
+                start = "<Tempfile:"
+                endd =  ">,"
+                @server.icon.attach(io: File.open(input_string[/#{start}(.*?)#{endd}/m, 1]), filename: input_string[/filename="(.*?)"/m, 1])
+            end
+            if @server.update(server_params)
+                render "_server", locals: { server: @server }
+            else
+                render json: @server.errors.full_messages, status: 422
+            end
+        else
+            render json: ["Incorrect password!"], status: 422
+        end
+    end
+
     def mainchannel
         @server = Server.find(params[:id])
         render :firstchannel
@@ -41,8 +63,8 @@ class Api::ServersController < ApplicationController
     # end
 
     private
-    # def server_params
-    #     params.require(:server).permit(:server_link, :owner_id, :name)
-    # end
+    def server_params
+        params.require(:server).permit(:server_link, :owner_id, :name)
+    end
 
 end

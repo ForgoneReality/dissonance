@@ -4,9 +4,10 @@ export const RESET_ALL_MODALS = "RESET_ALL_MODALS";
 export const DISPLAY_FULL_MODAL = "DISPLAY_FULL_MODAL";
 export const HIDE_FULL_MODAL = "HIDE_FULL_MODAL";
 
-export const displayModal = (modal) => ({
+export const displayModal = (name, payload) => ({
     type: DISPLAY_MODAL,
-    modal
+    name,
+    payload
 })
 
 export const hideModal = () => ({

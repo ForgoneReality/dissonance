@@ -16,6 +16,13 @@
     background-color: #2f3136;
 }
 
+#bruh9991{
+    font-size: 13px;
+    color: #dcddde;
+    font-family: "ABC Ginto", "Helvetica Neue";
+    margin-top: 10px;
+}
+
 #channel-users-list{
     position: relative;
     overflow-y: scroll;

@@ -103,7 +103,9 @@ class Conversation extends React.Component {
         data: formData,
         contentType: false,
         processData: false
-      }).then( (response) => this.props.sendMessage(response))
+      }).then( (response) => this.props.sendMessage(response)) //something may be slightly off with this... see if sending an image always creates an error
+      //first guess is that it's double-sending.
+      //I wanna say to use only an action, no util instead of sendMessage
     }
     this.setState({usermsg: "", editmsg: "",
     editing: -1, 
@@ -199,7 +201,7 @@ class Conversation extends React.Component {
   }
 
   render() {
-    let msgList = <li>Empty...</li>;
+    let msgList = <li></li>;
    
     if (this.props.messages.length > 0)
     {

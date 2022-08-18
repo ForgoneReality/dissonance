@@ -53,7 +53,13 @@
     border: none;
 }
 
-
+#edit-nickname-modal{
+    width: 33vw;
+    min-height: 330px;
+    background-color: #36393f;
+    position: relative;
+    border-radius: 5px;
+}
 
 .cancel1{
     background-color: transparent;

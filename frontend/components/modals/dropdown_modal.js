@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { displayModal, hideModal } from "../../actions/modal_actions";
+import { displayModal, hideModal, displayFullModal } from "../../actions/modal_actions";
 
 class DropdownModal extends React.Component{
 constructor(props) {
@@ -33,7 +33,7 @@ constructor(props) {
     console.log("!")
     console.log(this.props.modals)
     console.log(this.props.isOwner)
-    if (this.props.modals === "server-settings" && this.props.isOwner)
+    if (this.props.modals.name === "server-settings" && this.props.isOwner)
     {
         console.log("Bruh");
         component = <div id="dropdown" onClick={(e) => e.stopPropagation()}>
@@ -43,7 +43,7 @@ constructor(props) {
             </li>
             <li>
               {/* <button className="otherbutt" onClick={() => this.modalOpen("serversettings")}>Server Settings</button> */}
-              <button className="otherbutt">Server Settings</button>
+              <button className="otherbutt" onClick={() => this.props.displayFullModal("serversettings")}>Server Settings</button>
 
             </li>
             <li>
@@ -57,9 +57,7 @@ constructor(props) {
               {/* <button className="otherbutt" onClick={() => this.modalOpen("notifications")}>Notification Settings</button> */}
             </li>
             <li>
-              <button className="otherbutt" >Edit Server Nickname</button>
-
-              {/* <button className="otherbutt" onClick={() => this.modalOpen("nickname")}>Edit Server Nickname</button> */}
+              <button className="otherbutt" onClick={() => this.modalOpen("nickname")}>Edit Server Nickname</button>
             </li>
             <li>
               <button className="leavebutt">Delete Server</button>
@@ -70,7 +68,7 @@ constructor(props) {
           </ul>
         </div>
     }
-    else if (this.props.modals === "server-settings")
+    else if (this.props.modals.name === "server-settings")
     {
       component = <div id="dropdown" onClick={(e) => e.stopPropagation()}>
           <ul className="dropdown-list1">
@@ -81,7 +79,7 @@ constructor(props) {
               <button className="otherbutt">Notification Settings</button>
             </li>
             <li>
-              <button className="otherbutt" >Edit Server Nickname</button>
+              <button className="otherbutt" onClick={() => this.modalOpen("nickname")}>Edit Server Nickname</button>
             </li>
             <li>
               <button className="leavebutt">Leave Server</button>
@@ -116,7 +114,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     hideModal: () => dispatch(hideModal()),
-    displayModal: (modal) => dispatch(displayModal(modal))
+    displayModal: (modal) => dispatch(displayModal(modal)),
+    displayFullModal: (modal) => dispatch(displayFullModal(modal))
   };
 };
 

@@ -5,7 +5,7 @@ const ModalReducer = (state = null, action) => {
   Object.freeze(state);
   switch (action.type) {
     case DISPLAY_MODAL:
-      return action.modal;
+      return Object.assign({},{name: action.name, payload: action.payload} );
     case HIDE_MODAL:
       return null;
     case RESET_ALL_MODALS:

@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
     showEmailModal: () => dispatch(displayModal("editemail")),
     showPasswordModal: () => dispatch(displayModal("editpassword")),
     hideFullModal: () => dispatch(hideFullModal()),
-    changePFP: (userId, pfp_url) => dispatch(changePFP(userId, pfp_url))
+    changePFP: (res) => dispatch(changePFP(res))
 
     // removeErrors: () => dispatch(removeErrors())
   };

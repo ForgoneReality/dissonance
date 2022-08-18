@@ -51,6 +51,11 @@ export const getServerID = channelId  => (
   fetchChannel(channelId)
 )
 
+export const updateServer = (server) => dispatch => {
+    dispatch(receiveServer(server));
+    dispatch(receiveCurrentServer(server));
+}
+
 // export const generateServer = server => dispatch => {
 //   console.log("server", server);
 //   return APIUtil.createServer(server).then((res) => dispatch(receiveServer(res)))

@@ -24,10 +24,9 @@ class Api::UsersController < ApplicationController
     end
 
     def update
-        debugger
         @user = User.find(params[:id])
         if @user.is_password?(params["user"]["password"])
-            if(!params["user"]["newpassword"].empty?)
+            if(!params["user"]["newpassword"].nil? && !params["user"]["newpassword"].empty?)
                 @user.password = params["user"]["newpassword"]
                 @user.save! #dont work Pain
             end
@@ -83,14 +82,26 @@ class Api::UsersController < ApplicationController
     end
 
     def changePFP
-        # debugger
         @user = User.find(params[:id])
-        params["pfp_url"].permit!
-        input_string = params["pfp_url"].inspect()
+        params["user"]["image"].permit!
+        if(@user.profile_picture.attached?)
+            @user.profile_picture.purge
+        end
+        input_string = params["user"]["image"].inspect()
         start = "<Tempfile:"
         endd =  ">,"
         @user.profile_picture.attach(io: File.open(input_string[/#{start}(.*?)#{endd}/m, 1]), filename: input_string[/filename="(.*?)"/m, 1])
         render "_user", locals: { user: @user }, status: 200
+    end
+
+    def nickname
+        @serverjoin = ServerJoin.find_by({user_id: params[:id], server_id: params[:server_id]})
+        @serverjoin.nickname = params[:nickname]
+        if(@serverjoin.save)
+            render json: @serverjoin, status: 200
+        else
+            render json: ["An Error Occurred with Nickname change"], status: 422
+        end
     end
 
     # def check_password(pass) #THIS SHOULd BE IMPLEMENTED INSTEAD OF DOING THE COMPARISON IN THE FRONTEND, BUT... YEAH... MAYBE LATER
@@ -99,7 +110,7 @@ class Api::UsersController < ApplicationController
 
     private
     def user_params
-        params.require(:user).permit(:email, :password, :username, :fourdigit_id) #maybe not pass
+        params.require(:user).permit(:email, :username, :fourdigit_id) #maybe not pass
     end
 
     # def generate_fourdigit

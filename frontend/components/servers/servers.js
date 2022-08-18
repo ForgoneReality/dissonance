@@ -65,7 +65,7 @@ class Server extends React.Component {
         useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#faa81b" /> </svg> 
       }
 
-
+      let displayed_name = user.nickname ? user.nickname : user.username;
       return <li key={user.id}>
       <div>
         <div className="convolisting">
@@ -77,7 +77,7 @@ class Server extends React.Component {
             </div>
           </div>
           <div>
-            <p>{user.username}</p>
+            <p>{displayed_name}</p>
             {/* put user status in here way later */}
           </div>
           

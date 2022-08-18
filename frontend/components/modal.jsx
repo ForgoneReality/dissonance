@@ -10,6 +10,7 @@ import EditEmailModal from './modals/edit_email_modal';
 import CreateServerModal from './modals/create_server_modal';
 import CreateChannelModal from './modals/create_channel_modal';
 import EditPasswordModal from './modals/edit_password_modal';
+import EditNicknameModal from "./modals/edit_nickname_modal";
 
 class Modal extends React.Component{
   constructor(props)
@@ -38,7 +39,8 @@ class Modal extends React.Component{
       return null;
     }
     let component;
-    switch (this.props.modals) {
+    console.log("modal?", this.props.modals);
+    switch (this.props.modals.name) {
       //this code could be refactored to be significantly more modular and DRY
       case 'logout':
         component = <LogoutModal/>;
@@ -57,6 +59,9 @@ class Modal extends React.Component{
         break;
       case 'editpassword':
         component=<EditPasswordModal/>
+        break;
+      case 'nickname':
+        component=<EditNicknameModal server_id={this.props.modals.payload}/>
         break;
       default:
         return null;

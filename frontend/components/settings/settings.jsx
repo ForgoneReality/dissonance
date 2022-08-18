@@ -24,8 +24,16 @@ class Settings extends React.Component {
       fileReader.onloadend = () => {
         // this.setState({photoFile: file, photoUrl: fileReader.result, imageUploaded: true});
         // this.setState({photoFile: file, photoUrl: fileReader.result});
-        console.log("CID", this.props.currentUser.id);
-        this.props.changePFP(this.props.currentUser.id, file);
+        const formData = new FormData();
+        formData.append("user[image])", file);
+        $.ajax({
+            url: `/api/users/${this.props.currentUser.id}/changePFP`,
+            method: "PATCH",
+            data: formData,
+            contentType: false,
+            processData: false
+        }).then( (response) => this.props.changePFP(response))
+
       }
   
       if (file){
@@ -70,10 +78,12 @@ class Settings extends React.Component {
                                 <img src={this.props.currentUser.pfp_url} className="pfp-large" />
                             </label> 
                             <input type="file" id="pfp-uploader" onChange={this.handleFile}></input>
+
                             <div id="sadge">
                                 <img src={window.editimg} id="uploadimgicon"></img>
                             </div>
-                            <div id="painge"></div>
+                            {/* <div id="painge"></div> */}
+                            
                             </div>
                             <p><span className="white">{this.props.currentUser.username}</span><span className="B9">#{this.props.currentUser.fourdigit_id}</span></p>
                             <button id="bruh9002" className="settings-button">Edit Profile</button>

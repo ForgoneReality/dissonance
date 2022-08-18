@@ -28,18 +28,22 @@ export const addFriend = (user_id, friend_id) => (
 )
 
     export const updateUser = (id, user) => {
-    console.log("???", id, user)
-    return $.ajax({
-        url: `api/users/${id}`,
-        method: "patch",
-        data: {user}
-    })
-}
+        console.log("???", id, user)
+        return $.ajax({
+            url: `api/users/${id}`,
+            method: "patch",
+            data: {user}
+        })
+    }
 
-export const changePFP = (id, pfp_url) => {
-    return $.ajax({
-        url: `api/users/${id}/changePFP`,
-        method: "patch",
-        data: {pfp_url}
-    })
-}
+    export const setNickName = (nickname, user_id, server_id) => {
+        console.log("SERVERID?", server_id);
+        return $.ajax({
+            url: `api/users/${user_id}/nickname`,
+            method: "patch",
+            data: {
+                nickname: nickname, 
+                server_id: server_id
+            }
+        })
+    }

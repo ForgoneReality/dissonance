@@ -2,6 +2,7 @@ import React from 'react';
 import { hideFullModal } from '../actions/modal_actions';
 import { connect } from 'react-redux';
 import SettingsContainer from './settings/settings_container';
+import ServerSettingsContainer from './settings/server_settings_container';
 // import LoginFormContainer from '../session_form/login_form_container';
 // import SignupFormContainer from '../session_form/signup_form_container';
 
@@ -32,6 +33,9 @@ class FullModal extends React.Component{
     switch (this.props.modal) {
       case 'settings':
         component = <SettingsContainer/>;
+        break;
+      case 'serversettings':
+        component = <ServerSettingsContainer/>
         break;
       default:
         return null;
