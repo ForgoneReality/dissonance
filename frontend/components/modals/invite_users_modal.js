@@ -2,16 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { removeErrors } from '../../actions/errors_actions';
 import { hideModal, resetModal } from '../../actions/modal_actions';
-import { setNickname } from '../../actions/users_actions';
 
-
-class EditNicknameModal extends React.Component {
+class InviteUsersModal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      nickname: ''
-    }
+    console.log("AYOOO", this.props.server)
+    ;
+    this.full_link =  window.location.origin + "/#/invite/" + this.props.server.server_link;
+
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
@@ -55,21 +54,25 @@ class EditNicknameModal extends React.Component {
 
   render() {
     return (
-      <div id="edit-nickname-modal">
+      <div id="invite-users-modal">
           <form onSubmit={this.handleSubmit}>
+            <div id="top1">
+              <h1>Invite Friends to {this.props.server.name}</h1>
+            </div>
             <div id="mid1">
+              {/* WE WANT TO ADD UESRS FROM CONVO LIST HERE WITH A CLICK TO INVITE BUTTON!!! this generates a conversation if none exists */}
                 <div>
-                    <label>NICKNAME</label>
-                    <input type="text" value={this.state.nickname} onChange={this.update("nickname")}></input>
+                    <label>SEND A SERVER INVITE TO A FRIEND</label>
+                    <input type="text" value={this.full_link} readonly></input>
                 </div>  
                 {/* <div className="modal-errors">
                     {this.renderErrors()}
                 </div> */}
             </div>
-            <div className="edit-modal-bottom">
+            {/* <div className="edit-modal-bottom">
                 <button className="cancel1" onClick={() => this.props.hideModal()}>Cancel</button>
                 <button type="submit" className="submit1" onClick={this.props.handleSubmit}>Done</button>
-            </div>
+            </div> */}
         </form>
 
       </div>
@@ -81,10 +84,8 @@ class EditNicknameModal extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.session.currentUser,
     errors: state.errors.user,
-    server_id: state.current.server.id,
-    setNickname: (nick, user_id, server_id) => setNickname(nick, user_id, server_id)
+    server: state.current.server
   };
 };
 
@@ -94,4 +95,4 @@ const mapDispatchToProps = dispatch => {
     hideModal: () => dispatch(hideModal())  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditNicknameModal);
+export default connect(mapStateToProps, mapDispatchToProps)(InviteUsersModal);

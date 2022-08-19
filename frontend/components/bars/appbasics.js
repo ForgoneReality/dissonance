@@ -68,7 +68,6 @@ class AppBasics extends React.Component {
       useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#faa81b" /> </svg> 
     }
     
-    console.log(this.response);
     return(
         <main>
             {/* <h1>Servers</h1> */}

@@ -31,7 +31,6 @@ class SessionForm extends React.Component {
     {
       ans = ans.concat(numbers[Math.floor(Math.random()*numbers.length)]);
     }
-    console.log("bro?", ans);
     return ans;
   }
 

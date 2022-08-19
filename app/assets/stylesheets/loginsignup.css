@@ -50,6 +50,13 @@
     margin-top: 0px;
 }
 
+.login-form-box h2{
+    color: #B9BBBE;
+    font-family: "Whitney", "Helvetica Neue";
+    font-size: 16px;
+    line-height: 20px;
+}
+
 .login-form-box h3{
     color:#B9BBBE;
     font-size: 16px;
@@ -140,4 +147,19 @@
 
 #auth-links:hover{
     text-decoration: underline;
+}
+
+
+#num-members {
+    display: flex;
+    align-items: center;
+}
+
+#num-members h2{
+    margin: 0px;
+    margin-left: 5px;
+}
+
+#bruh3904{
+    margin-left: 10px;
 }

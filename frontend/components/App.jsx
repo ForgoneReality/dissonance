@@ -16,6 +16,7 @@ import LoginFormContainer from './session_form/login_form_container';
 // import ConversationListContainer from "./conversations/conversation_list_container";
 // import ConversationContainer from "./conversations/conversation_container";
 import AppBasicsContainer from "./bars/appbasics_container";
+import InviteContainer from "./invites/invite_container";
 
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import ServerInit from "./servers/server_init.js"
@@ -33,6 +34,7 @@ const App = () => (
         {/* <Route exact path="/settings" component={SettingsFormContainer}/> */}
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer} />
+        <Route path="/invite/:invite_link" component={InviteContainer} /> 
         <Route path="/servers/:serverId" component={ServerInit} />
     
         <ProtectedRoute path="/" component={AppBasicsContainer}/> 

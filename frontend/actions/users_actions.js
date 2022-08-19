@@ -56,7 +56,7 @@ export const createFriendship = (user_id, friend_id) => {
   APIUtil.addFriend(friend_id, user_id)
 }
 
-export const changePFP = (res) => {
+export const changePFP = (res) => dispatch => {
     // dispatch(receiveUser(res)); //NEEDS WORK FOR BEST RESULT
     dispatch(receiveCurrentUser(res));
 }

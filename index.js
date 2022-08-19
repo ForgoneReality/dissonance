@@ -13,18 +13,13 @@ app.use(express.urlencoded());
 app.use(express.json());
 
 app.get('/', cors(), (req, res) => {
-    console.log("body:");
-    console.log(req.query);
-    console.log(typeof req.query.messageList);
-    console.log(req.query.newMessage);
-    console.log(req.query.messageList);
+   
     if(req.query.messageList && req.query.messageList.length > 0)
     {
         cleverbot(req.query.newMessage, req.query.messageList).then(response => res.send(response));
     }
     else{
     cleverbot(req.query.newMessage).then((response => {
-        console.log("RESPONSE:", response);
         res.send(response);
     }), (err) => console.log("ERROR:", err));
 

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :conversations, only: [:show, :create, :update]
     resources :servers, only: [:show, :index, :create, :update, :destroy] do
       get :mainchannel, on: :member
+      get :getlink, on: :member
     end
     resources :joined_servers, only: [:create, :destroy]
     resources :channels, only: [:show, :index, :create, :update, :destroy]

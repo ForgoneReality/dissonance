@@ -30,16 +30,13 @@ constructor(props) {
       
     }
     let component;
-    console.log("!")
-    console.log(this.props.modals)
-    console.log(this.props.isOwner)
+
     if (this.props.modals.name === "server-settings" && this.props.isOwner)
     {
-        console.log("Bruh");
         component = <div id="dropdown" onClick={(e) => e.stopPropagation()}>
           <ul className="dropdown-list1">
             <li>
-              <button className="invbutt">Invite Users</button>
+              <button className="invbutt" onClick={() => this.modalOpen("invite-users")}>Invite Users</button>
             </li>
             <li>
               {/* <button className="otherbutt" onClick={() => this.modalOpen("serversettings")}>Server Settings</button> */}
@@ -73,7 +70,7 @@ constructor(props) {
       component = <div id="dropdown" onClick={(e) => e.stopPropagation()}>
           <ul className="dropdown-list1">
             <li>
-              <button className="invbutt">Invite Users</button>
+              <button className="invbutt" onClick={() => this.modalOpen("invite-users")}>Invite Users</button>
             </li>
             <li>
               <button className="otherbutt">Notification Settings</button>

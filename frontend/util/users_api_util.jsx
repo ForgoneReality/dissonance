@@ -28,7 +28,6 @@ export const addFriend = (user_id, friend_id) => (
 )
 
     export const updateUser = (id, user) => {
-        console.log("???", id, user)
         return $.ajax({
             url: `api/users/${id}`,
             method: "patch",
@@ -37,7 +36,6 @@ export const addFriend = (user_id, friend_id) => (
     }
 
     export const setNickName = (nickname, user_id, server_id) => {
-        console.log("SERVERID?", server_id);
         return $.ajax({
             url: `api/users/${user_id}/nickname`,
             method: "patch",

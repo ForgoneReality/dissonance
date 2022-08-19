@@ -52,10 +52,8 @@ export const createMessage =  message => {
 return dispatch => {
     if(message.location_type === "Conversation")
     {
-      console.log("ok?", new Date() / 1000);
       ConversationUtil.updateConversation(message.location_id, {last_updated: new Date() / 1000}, message.author_id).then( (res) => 
       {
-        console.log("RESULT!", res);
         dispatch(receiveConvo(res))
       })
     }

@@ -3,6 +3,7 @@ class Server < ApplicationRecord
     after_save :has_a_channel
 
     after_create :owner_is_a_user
+    before_save :has_server_link
 
     validates :server_link, uniqueness: {allow_blank: true},  length: {maximum: 32}
     validates :name, :owner_id, presence: true
@@ -35,4 +36,13 @@ class Server < ApplicationRecord
         end
     end
     
+    def has_server_link
+        if(!self.server_link)
+            possible_link = SecureRandom.urlsafe_base64(9)
+            while(Server.find_by(server_link: possible_link) != nil)
+                possible_link = SecureRandom.urlsafe_base64(9)
+            end
+            self.server_link = possible_link
+        end
+    end
 end

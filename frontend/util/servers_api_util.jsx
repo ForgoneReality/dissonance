@@ -27,6 +27,13 @@ export const channelRedirect = (id) => (
     })
 )
 
+export const getServerFromLink = (server_link) => (
+    $.ajax({
+        url: `api/servers/${server_link}/getlink`,
+        method: "get"
+    })
+)
+
 // export const createServer = (server) => (
 //     $.ajax({
 //         url: `api/servers`,

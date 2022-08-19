@@ -71,7 +71,6 @@ class Conversation extends React.Component {
       {
         let currentConvoList = this.props.messages.map(ele => ele.content);
         currentConvoList.shift();
-        console.log("ABOUT TO GO IN:", currentConvoList, my_msg)
         $.ajax({
           url: 'http://localhost:3001/',
           type: 'get',
@@ -79,7 +78,6 @@ class Conversation extends React.Component {
             newMessage: my_msg
           }
         }).then((resp) => {
-          console.log("I GOT HERE", resp)
           this.responseMessage = resp;
           return this.props.sendMessage( {content: my_msg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id})
         }).then(() =>this.props.sendMessage( {content: this.responseMessage, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}),() => this.props.sendMessage( {content: this.responseMessage, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}))
@@ -96,7 +94,6 @@ class Conversation extends React.Component {
       formData.append("message[location_type]", "Conversation");
       formData.append("message[location_id]", this.props.convo.id);
       formData.append("message[image])", this.state.photoFile);
-      console.log("OVER HERE", this.state.photoFile);
       $.ajax({
         url: "/api/messages",
         method: "POST",

@@ -42,7 +42,6 @@ class ServerSettings extends React.Component {
         formData.append("server[name]", this.state.name);
         // formData.append("server[id]", this.props.currentServer.id);
         formData.append("server[icon]", this.state.photoFile);
-        // console.log("OVER HERE", this.state.photoFile);
         $.ajax({
             url: `/api/servers/${this.props.currentServer.id}`,
             method: "PATCH",
@@ -91,6 +90,9 @@ class ServerSettings extends React.Component {
                         </div>
                         <div className="bruh-unselected">
                             Emoji
+                        </div>
+                        <div className="bruh-unselected">
+                            Custom Invite Link
                         </div>
                         <hr/>
                     </div>

@@ -56,6 +56,11 @@ export const updateServer = (server) => dispatch => {
     dispatch(receiveCurrentServer(server));
 }
 
+export const getServerFromLink = server_link => dispatch =>(
+  APIUtil.getServerFromLink(server_link).then((res) => {
+    dispatch(receiveCurrentServer(res));
+  })
+)
 // export const generateServer = server => dispatch => {
 //   console.log("server", server);
 //   return APIUtil.createServer(server).then((res) => dispatch(receiveServer(res)))

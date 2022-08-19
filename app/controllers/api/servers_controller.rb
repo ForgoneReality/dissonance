@@ -14,8 +14,9 @@ class Api::ServersController < ApplicationController
 
     def create
         @server = Server.new(owner_id: params["server"]["owner_id"].to_i, name: params["server"]["name"], server_link: params["server"]["server_link"])
+        # debugger
         if @server.save
-            if(params["server"]["icon"])
+            if(params["server"]["icon"] && params["server"]["icon"] != "")
                 params["server"]["icon"].permit!
                 input_string = params["server"]["icon"].inspect()
                 start = "<Tempfile:"
@@ -53,6 +54,13 @@ class Api::ServersController < ApplicationController
     def mainchannel
         @server = Server.find(params[:id])
         render :firstchannel
+    end
+
+    def getlink
+        @server = Server.find_by(server_link: params[:id])
+        @num_members = @server.users.length
+        @online_members = @server.users.where(status: "online").count
+        render "_serverlink", locals: {server: @server}
     end
 
   

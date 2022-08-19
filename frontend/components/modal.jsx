@@ -11,6 +11,7 @@ import CreateServerModal from './modals/create_server_modal';
 import CreateChannelModal from './modals/create_channel_modal';
 import EditPasswordModal from './modals/edit_password_modal';
 import EditNicknameModal from "./modals/edit_nickname_modal";
+import InviteUsersModal from "./modals/invite_users_modal";
 
 class Modal extends React.Component{
   constructor(props)
@@ -35,11 +36,10 @@ class Modal extends React.Component{
   render()
   {
 
-    if (!this.props.modals) {
+    if (this.props.modals === null || Object.values(this.props.modals).length === 0) {
       return null;
     }
     let component;
-    console.log("modal?", this.props.modals);
     switch (this.props.modals.name) {
       //this code could be refactored to be significantly more modular and DRY
       case 'logout':
@@ -62,6 +62,9 @@ class Modal extends React.Component{
         break;
       case 'nickname':
         component=<EditNicknameModal server_id={this.props.modals.payload}/>
+        break;
+      case 'invite-users':
+        component=<InviteUsersModal/>
         break;
       default:
         return null;

@@ -106,12 +106,15 @@
     ch3 = Channel.create!({server_id: s2.id, name:"league", description:"Talk about LoL or other Riot games"})
     ch4 = Channel.create!({server_id: s2.id, name:"find-players", description:"Find other players!"})
 
-    ServerJoin.create!({user_id: u1.id, server_id: s2.id})
-    ServerJoin.create!({user_id: u1.id, server_id: s3.id})
-    ServerJoin.create!({user_id: u2.id, server_id: s1.id})
+    ServerJoin.create!({user_id: u1.id, server_id: s2.id, nickname: "bob"})
+    ServerJoin.create!({user_id: u1.id, server_id: s3.id, nickname: "bobby"})
+    ServerJoin.create!({user_id: u2.id, server_id: s1.id, nickname: "SpongeBob"})
     ServerJoin.create!({user_id: u2.id, server_id: s2.id})
     ServerJoin.create!({user_id: u2.id, server_id: s3.id})
     ServerJoin.create!({user_id: u3.id, server_id: s1.id})
+    ServerJoin.create!({user_id: u8.id, server_id: s1.id})
+    ServerJoin.create!({user_id: u12.id, server_id: s1.id})
+
 
     ServerJoin.create!({user_id: u1.id, server_id: s4.id})
     ServerJoin.create!({user_id: u1.id, server_id: s5.id})

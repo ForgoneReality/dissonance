@@ -56,8 +56,7 @@ class EditPasswordModal extends React.Component {
     }
     else
     {
-      console.log("oldpass: ", this.state.password);
-      console.log("hash ", this.props.hash)
+
       bcrypt.compare(this.state.password, this.props.hash, (err, result) => { 
           if(err) //?
           {
@@ -66,7 +65,6 @@ class EditPasswordModal extends React.Component {
           }
           else if (result)
           {
-              console.log("pass?")
               this.props.processForm(this.props.currentUser.id, user).then((res) => this.props.hideModal(), (errs) => console.log("Failure"));
           }
           else
