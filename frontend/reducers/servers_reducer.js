@@ -13,6 +13,10 @@ const serversReducer = (state = {}, action) => {
         return newState;
     case LOGOUT_CURRENT_USER:
         return {};
+    case DELETE_SERVER: 
+        newState = Object.assign({}, state);
+        delete newState[action.id];
+        return newState;
     default:
       return state;
   }

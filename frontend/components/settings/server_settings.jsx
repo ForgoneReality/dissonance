@@ -139,7 +139,7 @@ class ServerSettings extends React.Component {
                     </div>
 
                     <h3>SERVER REMOVAL</h3>
-                    <button className="delete-button">Delete Server</button>
+                    <button className="delete-button" onClick={this.props.displayModal("deleteserver")}>Delete Server</button>
 
                     {save_settings_mini_modal}
 

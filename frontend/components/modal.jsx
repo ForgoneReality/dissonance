@@ -13,6 +13,7 @@ import EditPasswordModal from './modals/edit_password_modal';
 import EditNicknameModal from "./modals/edit_nickname_modal";
 import InviteUsersModal from "./modals/invite_users_modal";
 import EditBioModal from "./modals/edit_bio_modal"
+import DeleteServerModal from "./modals/delete_server_modal"
 
 class Modal extends React.Component{
   constructor(props)
@@ -69,6 +70,9 @@ class Modal extends React.Component{
         break;
       case 'editbio':
         component=<EditBioModal/>
+        break;
+      case 'deleteserver':
+        component=<DeleteServerModal/>
         break;
       default:
         return null;

@@ -67,8 +67,11 @@ class Api::ServersController < ApplicationController
     # def update
     # end
 
-    # def destroy
-    # end
+    def destroy
+        @server = Server.find(params[:id])
+        @server.destroy
+        render json: @server
+    end
 
     private
     def server_params

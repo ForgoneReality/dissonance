@@ -34,6 +34,13 @@ export const getServerFromLink = (server_link) => (
     })
 )
 
+export const removeServer = (id) => (
+    $.ajax({
+        url: `api/servers/${id}`,
+        method: "delete"
+    })
+)
+
 // export const createServer = (server) => (
 //     $.ajax({
 //         url: `api/servers`,

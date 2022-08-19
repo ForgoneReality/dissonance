@@ -12,7 +12,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
     hideFullModal: () => dispatch(hideFullModal()),
-    updateServer: (server) => dispatch(updateServer(server))}
+    updateServer: (server) => dispatch(updateServer(server)),
+    displayModal: (modal) => dispatch(displayModal(modal))
+}
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(ServerSettings);

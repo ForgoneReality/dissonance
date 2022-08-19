@@ -61,6 +61,12 @@ export const getServerFromLink = server_link => dispatch =>(
     dispatch(receiveCurrentServer(res));
   })
 )
+
+export const removeServer = id => dispatch => {
+  return APIUtil.removeServer(id).then((res) => {
+    dispatch(deleteServer(id));
+  })
+}
 // export const generateServer = server => dispatch => {
 //   console.log("server", server);
 //   return APIUtil.createServer(server).then((res) => dispatch(receiveServer(res)))
