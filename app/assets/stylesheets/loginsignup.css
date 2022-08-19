@@ -7,9 +7,9 @@
     width: 100%;
 }
 
-.login-form-container img{
-    min-height: 100%;
-    min-width: 1024px;
+.login-form-container-img{
+    height: 100%;
+    width: 1024px;
 
     /* Set up proportionate scaling */
     width: 100%;
@@ -162,4 +162,10 @@
 
 #bruh3904{
     margin-left: 10px;
+}
+
+#server-pic2{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
 }

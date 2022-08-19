@@ -64,3 +64,11 @@ export const changePFP = (res) => dispatch => {
 export const setNickname = (nickname, user_id, server_id) => {
   APIUtil.setNickName(nickname, user_id, server_id);
 }
+
+export const updateBio = (id, bio) => dispatch => { 
+  return APIUtil.updateBio(id, bio).then( ((res) => 
+  {
+    dispatch(receiveUser(res));
+    dispatch(receiveCurrentUser(res));
+  }), (errs) => dispatch(receiveError(errs.responseJSON)))
+}

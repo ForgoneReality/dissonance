@@ -44,7 +44,7 @@ class Settings extends React.Component {
     render()
     {
         let pass_butt = !this.props.isDemo ? <button id="changepass" className="settings-button" onClick={() => this.props.showPasswordModal()}>Change Password</button> : <button id="changepassdemo" className="settings-button">Change Password</button> 
-        let bio = this.props.currentUser.bio ? this.props.currentUser.bio : "Nothing here...";
+        let bio = this.props.currentUser.bio ? <p>{this.props.currentUser.bio}</p>: <p id="about-me-settings">Nothing here...</p>;
         return(
             <div id="settings-modal" className="modal-full">
                 <div id="left-side-settings">
@@ -108,10 +108,10 @@ class Settings extends React.Component {
                             <div className="space-between">
                                 <div id="bruh9003">
                                     <h3>ABOUT ME</h3> 
-                                    <p id="about-me-settings">{bio}</p>
+                                    {bio}
                                     {/* <button>Save</button>  */}
                                 </div>
-                                <button className="edit-button">Edit</button> 
+                                <button className="edit-button" onClick={() => this.props.showBioModal()}>Edit</button> 
                             </div>
                         </div>
                     </div>

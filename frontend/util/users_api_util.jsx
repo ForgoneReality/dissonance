@@ -45,3 +45,11 @@ export const addFriend = (user_id, friend_id) => (
             }
         })
     }
+
+    export const updateBio = (id, bio) => {
+        return $.ajax({
+            url: `api/users/${id}/updateBio`,
+            method: "patch",
+            data: bio
+        })
+    }

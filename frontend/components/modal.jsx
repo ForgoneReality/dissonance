@@ -12,6 +12,7 @@ import CreateChannelModal from './modals/create_channel_modal';
 import EditPasswordModal from './modals/edit_password_modal';
 import EditNicknameModal from "./modals/edit_nickname_modal";
 import InviteUsersModal from "./modals/invite_users_modal";
+import EditBioModal from "./modals/edit_bio_modal"
 
 class Modal extends React.Component{
   constructor(props)
@@ -65,6 +66,9 @@ class Modal extends React.Component{
         break;
       case 'invite-users':
         component=<InviteUsersModal/>
+        break;
+      case 'editbio':
+        component=<EditBioModal/>
         break;
       default:
         return null;

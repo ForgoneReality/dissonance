@@ -63,8 +63,8 @@
 }
 
 #invite-users-modal{
-    width: 33vw;
-    min-height: 450px;
+    width: 40vw;
+    min-height: 160px;
     background-color: #36393f;
     position: relative;
     border-radius: 5px;
@@ -365,4 +365,31 @@
 
 .leavebutt{
     color: #ED4425;
+}
+
+#bruh3098{
+    font-family: "ABC Ginto", "Helvetica Neue";
+    font-weight: 600;
+    min-width: 500px;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+#copy-link{
+    transform: translate(-0%, -50%);
+    top: 28px;
+    position: absolute;
+    right: 26px;
+    background-color: #5865F2;
+    color: white;
+    font-size: 14px;
+    font-family: "Whitney";
+    border: none;
+    border-radius: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
 }

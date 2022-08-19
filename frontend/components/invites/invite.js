@@ -67,6 +67,7 @@ class Invite extends React.Component {
   }
 
   render() {
+    let server_img = this.props.server.image_url ? <img id="server-pic2" src={this.props.server.image_url}/> : <div></div>
     let mems = this.props.server.num_members > 1 ? "Members" : "Member";
     let num_members = this.props.server.online_members > 0 ?  <div id="num-members">
     <svg height="12" width="12"><circle cx="6" cy="6" r="5" stroke="#B9BBBE" strokeWidth="2.25" fill="#B9BBBE" /> </svg> 
@@ -82,13 +83,14 @@ class Invite extends React.Component {
         <div className="login-form-container">
          {/* <form onSubmit={this.handleSubmit} className="login-form-box"> */}
          <form className="login-form-box">
+          {server_img}
           <h2>You've been invited to join</h2>
           <h1>{this.props.server.name}</h1>
           {/* Please {this.props.formType} or {this.props.navLink} */}
           {this.renderErrors()}
           {num_members}
         </form>
-        <img src={window.loginimg}/>
+        <img className="login-form-container-img" src={window.loginimg}/>
         </div>
     );
 

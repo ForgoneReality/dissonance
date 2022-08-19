@@ -121,7 +121,7 @@ class SessionForm extends React.Component {
             </div>
           </div>
         </form>
-        <img src={window.loginimg}/>
+        <img className="login-form-container-img" src={window.loginimg}/>
       </div>
     );
   }

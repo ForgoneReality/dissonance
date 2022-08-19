@@ -49,10 +49,11 @@ class ServerSettings extends React.Component {
             contentType: false,
             processData: false
         }).then((res) => {
-            this.props.updateServer(res);
             this.original = this.state;
             this.original.changed = false;
             this.setState({changed: false});
+            console.log("CHANGED: ", this.state);
+            this.props.updateServer(res);
         });
 
     }

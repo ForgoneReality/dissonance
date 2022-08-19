@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get :servers, on: :member
       patch :changePFP, on: :member
       patch :nickname, on: :member
+      patch :updateBio, on: :member
     end
     resource :session, only: [:create, :destroy] do
       post :demo, on: :collection

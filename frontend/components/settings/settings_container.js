@@ -18,6 +18,7 @@ const mapDispatchToProps = dispatch => {
     showUsernameModal: () => dispatch(displayModal("editusername")),
     showEmailModal: () => dispatch(displayModal("editemail")),
     showPasswordModal: () => dispatch(displayModal("editpassword")),
+    showBioModal: () => dispatch(displayModal("editbio")),
     hideFullModal: () => dispatch(hideFullModal()),
     changePFP: (res) => dispatch(changePFP(res))
 

@@ -57,13 +57,17 @@ class InviteUsersModal extends React.Component {
       <div id="invite-users-modal">
           <form onSubmit={this.handleSubmit}>
             <div id="top1">
-              <h1>Invite Friends to {this.props.server.name}</h1>
+              <h1 id="bruh3098">Invite Friends to {this.props.server.name}</h1>
             </div>
             <div id="mid1">
               {/* WE WANT TO ADD UESRS FROM CONVO LIST HERE WITH A CLICK TO INVITE BUTTON!!! this generates a conversation if none exists */}
                 <div>
                     <label>SEND A SERVER INVITE TO A FRIEND</label>
-                    <input type="text" value={this.full_link} readonly></input>
+                    <div style={{position: "absolute", width: "100%"}}>
+                      <input type="text" value={this.full_link} readonly></input>
+                      <button id="copy-link" onClick={() => {navigator.clipboard.writeText(this.full_link)}}>Copy Link</button>
+                    </div>
+
                 </div>  
                 {/* <div className="modal-errors">
                     {this.renderErrors()}
