@@ -8,7 +8,7 @@ export const RECEIVE_SERVERS = "RECEIVE_SERVERS";
 export const RECEIVE_SERVER = "RECEIVE_SERVER";
 export const DELETE_SERVER = "DELETE_SERVER";
 export const RECEIVE_CURRENT_SERVER = "RECEIVE_CURRENT_SERVER";
-
+export const RECEIVE_SERVER_ERROR = "RECEIVE_SERVER_ERROR";
 
 export const receiveServers = (servers) => {
     return {
@@ -33,6 +33,12 @@ export const receiveCurrentServer = (server) =>({
   type:RECEIVE_CURRENT_SERVER,
   server
 });
+
+export const receiveServerError = (error) => ({
+  type: RECEIVE_SERVER_ERROR,
+  error
+})
+
 
 export const getServersList = userId => dispatch => (
     APIUtil.getServersList(userId).then( (res) => dispatch(receiveServers(res)))

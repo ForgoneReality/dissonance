@@ -67,8 +67,6 @@ class DeleteServerModal extends React.Component {
                 <button type="submit" className="submit1" onClick={this.props.handleSubmit}>Done</button>
             </div>
         </form>
-
-
       </div>
     );
   }
@@ -86,7 +84,7 @@ const mapDispatchToProps = dispatch => {
   return {
     removeErrors: () => dispatch(removeErrors()),
     hideModal: () => dispatch(hideModal()),
-    processForm: (id, bio) => dispatch(deleteServer(id))
+    processForm: (id) => dispatch(deleteServer(id))
   };
 };
 
