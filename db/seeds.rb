@@ -72,7 +72,7 @@
     c5 = Conversation.create!({user1_id: u1.id, user2_id: u7.id})
     c6 = Conversation.create!({user1_id: u1.id, user2_id: u8.id})
     c7 = Conversation.create!({user1_id: u1.id, user2_id: u9.id})
-    c8 = Conversation.create!({user1_id: u1.id, user2_id: u10.id})
+    c8 = Conversation.create!({user1_id: u10.id, user2_id: u1.id})
     c9 = Conversation.create!({user1_id: u1.id, user2_id: u11.id})
     c10 =Conversation.create!({user1_id: u1.id, user2_id: u12.id})
     c11 = Conversation.create!({user1_id: u1.id, user2_id: u13.id})
@@ -114,6 +114,13 @@
     ServerJoin.create!({user_id: u3.id, server_id: s1.id})
     ServerJoin.create!({user_id: u8.id, server_id: s1.id})
     ServerJoin.create!({user_id: u12.id, server_id: s1.id})
+    ServerJoin.create!({user_id: u22.id, server_id: s1.id})
+    ServerJoin.create!({user_id: u24.id, server_id: s2.id})
+    ServerJoin.create!({user_id: u10.id, server_id: s2.id})
+
+
+
+
 
 
     ServerJoin.create!({user_id: u1.id, server_id: s4.id})

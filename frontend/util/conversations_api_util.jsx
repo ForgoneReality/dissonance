@@ -1,8 +1,8 @@
-export const createConversation = (convo) => (
+export const createConversation = (user1_id, user2_id) => (
     $.ajax({
         url: "/api/conversations",
         method: "post",
-        data: {convo}
+        data: {conversation:{user1_id: user1_id, user2_id: user2_id}}
     })
 )
 
@@ -32,5 +32,13 @@ export const updateConversation = (id, convo, userId) => (
         url: `api/conversations/${id}`,
         method: "patch",
         data: {conversation: convo, userId: userId}
+    })
+)
+
+export const searchConversation = (user1_id, user2_id) => (
+    $.ajax({
+        url: `api/conversations/search`,
+        method: "get",
+        data: {conversation:{user1_id: user1_id, user2_id: user2_id}}
     })
 )

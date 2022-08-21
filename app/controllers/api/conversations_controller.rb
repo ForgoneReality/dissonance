@@ -15,12 +15,27 @@ class Api::ConversationsController < ApplicationController
     end
     
     def create
+        # debugger
         @conversation = Conversation.new(convo_params)
     
         if @conversation.save
             render '_convos', locals: { conversation: @conversation }
         else
             render json: @conversation.errors.full_messages, status: 422
+        end
+    end
+
+    
+    def search
+        @conversation = Conversation.find_by({user1_id: params[:conversation][:user1_id], user2_id: params[:conversation][:user2_id]});
+        if @conversation.nil?
+            @conversation = Conversation.find_by({user2_id: params[:conversation][:user1_id], user1_id: params[:conversation][:user2_id]})
+        end
+    
+        if @conversation
+            render '_convos', locals: {conversation: @conversation}
+        else
+            render json: ["None"]
         end
     end
 

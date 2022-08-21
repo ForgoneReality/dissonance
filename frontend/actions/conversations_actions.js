@@ -28,17 +28,16 @@ export const receiveConvo = (conversation) =>({
 export const createConvo = (conversation) =>({
   type:CREATE_CONVERSATION,
   conversation
-}  
-);
+});
 
 // export const updateConversation = (convo) => ({
 //   type: UPDATE_CONVERSATION,
 //   convo
 // })
 
-export const createConversation = convo => {
+export const createConversation = (user1_id, user2_id) => {
     return dispatch => {
-        return APIUtil.createConversation(convo)
+        return APIUtil.createConversation(user1_id, user2_id)
         .then(
             res => dispatch(receiveConvo(res)) //,
             // err => dispatch(receiveErrors(err.responseJSON))
