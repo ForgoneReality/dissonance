@@ -41,6 +41,16 @@ export const removeServer = (id) => (
     })
 )
 
+export const leaveServer = (user_id, server_id) => {
+    return $.ajax({
+        url: `api/servers/${server_id}/leave`,
+        method: "patch",
+        data: {
+            user_id: user_id
+        }
+    })
+}
+
 // export const createServer = (server) => (
 //     $.ajax({
 //         url: `api/servers`,

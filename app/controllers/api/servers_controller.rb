@@ -14,7 +14,6 @@ class Api::ServersController < ApplicationController
 
     def create
         @server = Server.new(owner_id: params["server"]["owner_id"].to_i, name: params["server"]["name"], server_link: params["server"]["server_link"])
-        # debugger
         if @server.save
             if(params["server"]["icon"] && params["server"]["icon"] != "")
                 params["server"]["icon"].permit!
@@ -61,6 +60,15 @@ class Api::ServersController < ApplicationController
         @num_members = @server.users.length
         @online_members = @server.users.where(status: "online").count
         render "_serverlink", locals: {server: @server}
+    end
+
+    def leave
+        @serverjoin = ServerJoin.find_by({server_id: params[:id], user_id: params[:user_id]})
+        if(@serverjoin.destroy)
+            render json: @serverjoin, status: 200
+        else
+            render json: ["An Error Occurred with Leaving the Server"], status: 422
+        end
     end
 
   

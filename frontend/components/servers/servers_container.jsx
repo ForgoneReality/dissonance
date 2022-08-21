@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     removeErrors: () => dispatch(removeErrors()),
     fetchServer: (serverId) => dispatch(fetchServer(serverId)),
-    displayModal: (modal) => dispatch(displayModal(modal))
+    displayModal: (modal, payload) => dispatch(displayModal(modal, payload))
   };
 };
 

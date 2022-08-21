@@ -57,7 +57,7 @@ class EditBioModal extends React.Component {
 
   render() {
     return (
-      <div id="edit-username-modal">
+      <div id="edit-bio-modal">
           <div className="top1">
             <h1>Change your About Me</h1>
           </div>

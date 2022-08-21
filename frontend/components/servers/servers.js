@@ -46,6 +46,7 @@ class Server extends React.Component {
 
   render() {
     let usersList = this.props.usersList.map( (user) => {
+      console.log("USERRRR", user);
       let useronlinestatus = null;
       if(user.status === "online")
       {
@@ -66,7 +67,7 @@ class Server extends React.Component {
       }
 
       let displayed_name = user.nickname ? user.nickname : user.username;
-      return <li key={user.id}>
+      return <li key={user.id} onClick={() => this.props.displayModal("user-modal", user)}>
       <div>
         <div className="convolisting">
             <div className="bruh001">

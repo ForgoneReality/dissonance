@@ -136,6 +136,8 @@
     font-family: "Whitney";
     color: #B9BBBE;
     margin: 0px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 #mid1{
@@ -392,4 +394,92 @@
     padding-bottom: 8px;
     padding-left: 16px;
     padding-right: 16px;
+}
+
+#delete-server-modal{
+    width: 40vw;
+    min-height: 300px;
+    background-color: #36393f;
+    position: relative;
+    border-radius: 5px;
+}
+
+#edit-bio-modal{
+    width: 33vw;
+    min-height: 250px;
+    background-color: #36393f;
+    position: relative;
+    border-radius: 5px;
+}
+
+#bruh0499{
+    width: calc(40vw - 16px);
+}
+
+#user-modal{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: #18191c;
+    min-width: 300px;
+    min-height: 360px;
+    position: relative;
+    border-radius: 5px;
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+#user-modal hr{
+    width: 300px;
+    border: none;
+    border-top: 1px solid gray;
+    opacity: 0.5;
+}
+
+#user-modal h1{
+    font-size: 20px;
+    color: white;
+    font-family: "ABC Ginto", "Helvetica Neue";
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#user-modal h3{
+    font-size: 14px;
+    color: #B9BBBE;
+    font-family: Whitney, "Helvetica Neue";
+    font-weight: 150;
+}
+
+#user-modal label{
+    font-size: 12px;
+    color: #B9BBBE;
+    font-family: Whitney, "Helvetica Neue";
+    font-weight: 800;
+}
+
+#msg-form-bubble2{
+    display: flex;
+    align-items: center;
+    background-color: #40444b;
+    width: 300px;
+    height: 44px;
+    border-radius: 5px;
+}
+
+#msg-form2{
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    width: 100%;
+}
+
+#msg-form2 input{
+    background-color: #40444b;
+    border: none;
+    height: 22px;
+    color: white;
+    font-size: 14px;
+    font-family: Whitney, "Helvetica Neue";
 }

@@ -14,6 +14,8 @@ import EditNicknameModal from "./modals/edit_nickname_modal";
 import InviteUsersModal from "./modals/invite_users_modal";
 import EditBioModal from "./modals/edit_bio_modal"
 import DeleteServerModal from "./modals/delete_server_modal"
+import LeaveServerModal from "./modals/leave_server_modal";
+import UserModal from "./modals/user_modal"
 
 class Modal extends React.Component{
   constructor(props)
@@ -42,6 +44,8 @@ class Modal extends React.Component{
       return null;
     }
     let component;
+    let focused = true;
+
     switch (this.props.modals.name) {
       //this code could be refactored to be significantly more modular and DRY
       case 'logout':
@@ -63,7 +67,7 @@ class Modal extends React.Component{
         component=<EditPasswordModal/>
         break;
       case 'nickname':
-        component=<EditNicknameModal server_id={this.props.modals.payload}/>
+        component=<EditNicknameModal server_id={this.props.modals.payload}/> //might do nothing??
         break;
       case 'invite-users':
         component=<InviteUsersModal/>
@@ -74,22 +78,35 @@ class Modal extends React.Component{
       case 'deleteserver':
         component=<DeleteServerModal/>
         break;
+      case 'leave-server': 
+        component=<LeaveServerModal/>
+        break;
+      case 'user-modal':
+        focused = false;
+        component=<UserModal user={this.props.modals.payload}/>
+        break;
       default:
         return null;
     }
-    return (
-      <div className="modal-background" onClick={this.props.hideModal}>
-        <div className="modal-child" onClick={e => e.stopPropagation()}>
-          { component }
-        </div>
-      </div>
-    );
+    
+
+    let ans = focused ? <div className="modal-background" onClick={this.props.hideModal}> 
+    <div className="modal-child" onClick={e => e.stopPropagation()}>
+      { component }
+    </div>
+  </div> : 
+  <div className="modal-background-transparent" onClick={this.props.hideModal}> 
+  <div className="modal-child" onClick={e => e.stopPropagation()}>
+    { component }
+  </div>
+</div>
+    return (ans);
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    modals: state.ui.modal
+    modals: state.ui.modal,
     };
 };
 

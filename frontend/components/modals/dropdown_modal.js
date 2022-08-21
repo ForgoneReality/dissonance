@@ -33,7 +33,9 @@ constructor(props) {
 
     if (this.props.modals.name === "server-settings" && this.props.isOwner)
     {
-        component = <div id="dropdown" onClick={(e) => e.stopPropagation()}>
+        component = 
+         <div className="modal-background-transparent" onClick={this.props.hideModal}>
+          <div id="dropdown" onClick={(e) => e.stopPropagation()}>
           <ul className="dropdown-list1">
             <li>
               <button className="invbutt" onClick={() => this.modalOpen("invite-users")}>Invite Users</button>
@@ -57,17 +59,20 @@ constructor(props) {
               <button className="otherbutt" onClick={() => this.modalOpen("nickname")}>Edit Server Nickname</button>
             </li>
             <li>
-              <button className="leavebutt">Delete Server</button>
+              <button className="leavebutt" onClick={() => this.modalOpen("deleteserver")}>Delete Server</button>
 
               {/* <button className="leavebutt">Delete Server</button> */}
               {/*dont forget below stuff too*/}
             </li>
           </ul>
         </div>
+        </div>
     }
     else if (this.props.modals.name === "server-settings")
     {
-      component = <div id="dropdown" onClick={(e) => e.stopPropagation()}>
+      component = 
+    <div className="modal-background-transparent" onClick={this.props.hideModal}>
+      <div id="dropdown" onClick={(e) => e.stopPropagation()}>
           <ul className="dropdown-list1">
             <li>
               <button className="invbutt" onClick={() => this.modalOpen("invite-users")}>Invite Users</button>
@@ -79,17 +84,19 @@ constructor(props) {
               <button className="otherbutt" onClick={() => this.modalOpen("nickname")}>Edit Server Nickname</button>
             </li>
             <li>
-              <button className="leavebutt">Leave Server</button>
+              <button className="leavebutt" onClick={()=> this.modalOpen("leave-server")}>Leave Server</button>
             </li>
           </ul>
         </div>
+      </div>
+    }
+    else{
+      component = <div></div>
     }
 
     return(
-    <div className="modal-background-transparent" onClick={this.props.hideModal}>
-      {component}
-    </div>)
-  }
+      component
+    )}
 }
 
 
