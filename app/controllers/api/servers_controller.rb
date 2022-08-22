@@ -71,6 +71,23 @@ class Api::ServersController < ApplicationController
         end
     end
 
+    def join
+        @serverjoin = ServerJoin.find_by({server_id: params[:id], user_id: params[:user_id]})
+        if(@serverjoin)
+            @server = Server.find(@serverjoin.server_id)
+            render "_serverjoin", status: 200
+        else
+            @serverjoin = ServerJoin.new({server_id: params[:id], user_id: params[:user_id]})
+            if(@serverjoin.save)
+                @server = Server.find(@serverjoin.server_id)
+                render "_serverjoin", status: 200
+            else
+                render json: ["An Error Occurred with Joining the Server"], status: 422
+            end
+        end
+        
+    end
+
   
     # def update
     # end

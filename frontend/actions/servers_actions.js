@@ -79,6 +79,7 @@ export const leaveServer = (user_id, server_id) => dispatch => {
     dispatch(deleteServer(server_id));//technically can also do currentServer dispatch, but it should be non-consequential  
   })
 }
+
 // export const generateServer = server => dispatch => {
 //   console.log("server", server);
 //   return APIUtil.createServer(server).then((res) => dispatch(receiveServer(res)))

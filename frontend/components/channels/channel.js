@@ -115,9 +115,14 @@ class Channel extends React.Component {
 
   render() {
     let currChannelName = "";
+    let currChannelDescription = "";
     if(this.props.channelId)
     {
         currChannelName = this.props.channels[this.props.channelId].name;
+        if(this.props.channels[this.props.channelId].description)
+        {
+          currChannelDescription = this.props.channels[this.props.channelId].description;
+        }
     }
     let msgList = <li id="bruh9991">It's too quiet here... be the first one to send a message!</li>;
     if (this.props.messages.length > 0)
@@ -240,6 +245,8 @@ class Channel extends React.Component {
         <div id="channel-header">
           <img id="header-hashtag" src={window.hashtag}></img>
           <h1>{currChannelName}</h1>
+          <div className="divider-q3P9HC"></div>
+          <h2>{currChannelDescription}</h2>
         </div>
         <ul id="server-msg-list">
           {msgList}

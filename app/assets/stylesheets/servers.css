@@ -133,3 +133,45 @@
     background: transparent;
     border: none !important;
 }
+
+#bruh04581{
+    width: 32px;
+    height: 20px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.divider-q3P9HC{
+    width: 1px;
+    height: 24px;
+    margin: 0 16px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    background: gray;
+}
+
+#channel-header > h2{
+    font-size: 14px;
+    font-family: Whitney, "Helvetica Neue";
+    color: #B9BBBE;
+    font-weight: 200;
+}
+
+#bruh0030{
+    background-color: #5865F2;
+    color: white;
+    font-size: 17px;
+    width: 100%;
+    font-family: "Whitney";
+    border: none;
+    border-radius: 4px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 44px;
+    margin-top: 32px;
+}

@@ -3,6 +3,7 @@ import { hideFullModal } from '../actions/modal_actions';
 import { connect } from 'react-redux';
 import SettingsContainer from './settings/settings_container';
 import ServerSettingsContainer from './settings/server_settings_container';
+import ChannelSettingsContainer from "./settings/channel_settings_container";
 // import LoginFormContainer from '../session_form/login_form_container';
 // import SignupFormContainer from '../session_form/signup_form_container';
 
@@ -36,6 +37,9 @@ class FullModal extends React.Component{
         break;
       case 'serversettings':
         component = <ServerSettingsContainer/>
+        break;
+      case 'channelsettings':
+        component = <ChannelSettingsContainer/>
         break;
       default:
         return null;

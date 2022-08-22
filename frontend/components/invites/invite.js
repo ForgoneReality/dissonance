@@ -1,4 +1,6 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { joinServer } from '../../util/servers_api_util';
 
 class Invite extends React.Component {
   constructor(props) {
@@ -9,14 +11,13 @@ class Invite extends React.Component {
       fourdigit_id: this.generate_fourdigit(),
       password: ''
     };
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
   }
 
   componentDidMount()
   {
     this.props.removeErrors();
-    console.log("my link??", this.props.invite_link);
     this.props.getServerFromLink(this.props.invite_link);
     document.body.style = 'background: #5865f4; overflow: hidden;'//prob don't need it
     // if(this.props.formType === "login")
@@ -40,11 +41,12 @@ class Invite extends React.Component {
     });
   }
 
-//   handleSubmit(e) {
-//     e.preventDefault();
-//     const user = Object.assign({}, this.state);
-//     this.props.processForm(user);
-//   }
+  handleSubmit(e) {
+    e.preventDefault();
+    joinServer(this.props.currentUser.id, this.props.server.id).then((res) => {
+      this.props.history.push(`/channels/${res.id}`);
+    })
+  }
 
 
   renderErrors() {
@@ -89,70 +91,13 @@ class Invite extends React.Component {
           {/* Please {this.props.formType} or {this.props.navLink} */}
           {this.renderErrors()}
           {num_members}
+          <button id="bruh0030" onClick={this.handleSubmit}>Accept Invite</button>
         </form>
         <img className="login-form-container-img" src={window.loginimg}/>
         </div>
     );
-
-
-    // let AdditionalSignupInfo = this.props.formType === "Login" ? <p></p> :
-    // (
-    //   <div>
-    //     <label htmlFor="login-input-username">USERNAME</label>
-    //     <input type="text"
-    //         value={this.state.username}
-    //         onChange={this.update('username')}
-    //         className="login-input"
-    //         id="login-input-username"
-    //       />
-    //     <label htmlFor="login-input-4id">FOUR-DIGIT ID</label>
-    //     <input type="text"
-    //         value={this.state.fourdigit_id}
-    //         onChange={this.update('fourdigit_id')}
-    //         className="login-input"
-    //         id="login-input-4id"
-    //       />
-    //   </div>
-    // )
-
-    // let TitleMessage = this.props.formType === "Login" ? "Welcome Back!" : "Create an Account";
-    // let optionalSubtitle = this.props.formType === "Login" ? <h3>We're so excited to see you again!</h3> : null
-    // return (
-    //   <div className="login-form-container">
-    //     <form onSubmit={this.handleSubmit} className="login-form-box">
-    //       <h1>{TitleMessage}</h1>
-    //       {optionalSubtitle}
-    //       {/* Please {this.props.formType} or {this.props.navLink} */}
-    //       {this.renderErrors()}
-    //       <div className="login-form">
-    //         <div className="to-the-left">
-    //           <label htmlFor="email-login-input">EMAIL</label>
-    //           <input type="text"
-    //             value={this.state.email}
-    //             onChange={this.update('email')}
-    //             className="login-input" id="email-login-input"
-    //           />
-    //           <label htmlFor="password-login-input">PASSWORD </label>
-    //           <input type="password"
-    //             value={this.state.password}
-    //             onChange={this.update('password')}
-    //             className="login-input" id="password-login-input"
-    //           />
-    //           {AdditionalSignupInfo}
-    //           <p id="bruh9203" onClick={() => this.props.signinDemo()}>Don't want to register? Try the demo!</p>
-
-    //           <br/>
-    //         </div>
-    //         <input className="session-submit" type="submit" value={this.props.formType} />
-    //         <div id="bruh9300">
-    //           {this.props.navLink}
-    //         </div>
-    //       </div>
-    //     </form>
-    //     <img src={window.loginimg}/>
-    //   </div>
-    // );
   }
 }
 
-export default Invite;
+export default withRouter(Invite);
+

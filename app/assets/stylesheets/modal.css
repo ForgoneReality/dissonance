@@ -379,6 +379,11 @@
     padding-bottom: 10px;
 }
 
+#bruh3094{
+    display: flex;
+    justify-content: space-between;
+}
+
 #copy-link{
     transform: translate(-0%, -50%);
     top: 28px;
@@ -482,4 +487,13 @@
     color: white;
     font-size: 14px;
     font-family: Whitney, "Helvetica Neue";
+}
+
+#dropdown button{
+    display: flex;
+    justify-content: space-between; 
+}
+
+#dropdown path:hover{
+    fill: white;
 }

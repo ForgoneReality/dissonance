@@ -11,16 +11,16 @@ const mapStateToProps = (state, ownProps) => {
   return {
     invite_link: ownProps.match.params.invite_link,
     errors: state.errors.session,
-    server: state.current.server
+    server: state.current.server,
+    currentUser: state.session.currentUser
     // formType: 'Login',
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    // processForm: (user) => dispatch(login(user)), 
     removeErrors: () => dispatch(removeErrors()),
-    getServerFromLink: (link) => dispatch(getServerFromLink(link))
+    getServerFromLink: (link) => dispatch(getServerFromLink(link)),
 
   };
 };

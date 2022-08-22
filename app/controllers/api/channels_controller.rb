@@ -18,16 +18,16 @@ class Api::ChannelsController < ApplicationController
         end
     end
 
-    # def update
-    #     @conversation = Conversation.find(params[:id])
+    def update
+        @channel = Channel.find(params[:id])
       
-    #     if @conversation.update(update_params)
-    #         # render :update, locals: { conversation: @conversation }
-    #         render json: @conversation
-    #     else
-    #         render json: @convo.errors.full_messages, status: 422
-    #     end
-    # end
+        if @channel.update(channel_params)
+            # render :update, locals: { conversation: @conversation }
+            render json: @channel
+        else
+            render json: @channel.errors.full_messages, status: 422
+        end
+    end
 
     private
     def channel_params

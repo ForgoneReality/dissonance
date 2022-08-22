@@ -51,6 +51,18 @@ export const leaveServer = (user_id, server_id) => {
     })
 }
 
+export const joinServer = (user_id, server_id) => {
+    return $.ajax({
+        url: `api/servers/${server_id}/join`,
+        method: "patch",
+        data: {
+            user_id: user_id
+        }
+    })
+}
+
+
+
 // export const createServer = (server) => (
 //     $.ajax({
 //         url: `api/servers`,

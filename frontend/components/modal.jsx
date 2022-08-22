@@ -16,6 +16,7 @@ import EditBioModal from "./modals/edit_bio_modal"
 import DeleteServerModal from "./modals/delete_server_modal"
 import LeaveServerModal from "./modals/leave_server_modal";
 import UserModal from "./modals/user_modal"
+import DeleteChannelModal from "./modals/delete_channel_modal";
 
 class Modal extends React.Component{
   constructor(props)
@@ -84,6 +85,9 @@ class Modal extends React.Component{
       case 'user-modal':
         focused = false;
         component=<UserModal user={this.props.modals.payload}/>
+        break;
+      case 'deletechannel':
+        component=<DeleteChannelModal/>
         break;
       default:
         return null;

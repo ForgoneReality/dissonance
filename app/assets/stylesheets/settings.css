@@ -482,3 +482,30 @@
     width: 42px;
     height: 49.5px
 }
+
+#broi{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bruh3209{
+    display: flex;
+    justify-content: center;
+    width: calc(50vw + 32px);
+}
+
+.input-text2{
+    display: block;
+    background-color: #202225;
+    width: calc(50vw + 28px);
+    height: 40px;
+    font-family: 'Whitney';
+    font-size: 16px;
+    color: #dcddde;
+    border: none;
+    border-radius: 3px;
+    text-indent: 16px;
+    margin-top: 16px;
+    margin-bottom: 32px;
+}

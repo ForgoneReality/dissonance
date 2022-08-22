@@ -27,29 +27,29 @@ export const addFriend = (user_id, friend_id) => (
     })
 )
 
-    export const updateUser = (id, user) => {
-        return $.ajax({
-            url: `api/users/${id}`,
-            method: "patch",
-            data: {user}
-        })
-    }
+export const updateUser = (id, user) => {
+    return $.ajax({
+        url: `api/users/${id}`,
+        method: "patch",
+        data: {user}
+    })
+}
 
-    export const setNickName = (nickname, user_id, server_id) => {
-        return $.ajax({
-            url: `api/users/${user_id}/nickname`,
-            method: "patch",
-            data: {
-                nickname: nickname, 
-                server_id: server_id
-            }
-        })
-    }
+export const setNickName = (nickname, user_id, server_id) => {
+    return $.ajax({
+        url: `api/users/${user_id}/nickname`,
+        method: "patch",
+        data: {
+            nickname: nickname, 
+            server_id: server_id
+        }
+    })
+}
 
-    export const updateBio = (id, bio) => {
-        return $.ajax({
-            url: `api/users/${id}/updateBio`,
-            method: "patch",
-            data: bio
-        })
-    }
+export const updateBio = (id, bio) => {
+    return $.ajax({
+        url: `api/users/${id}/updateBio`,
+        method: "patch",
+        data: bio
+    })
+}

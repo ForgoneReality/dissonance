@@ -76,7 +76,7 @@ class ServerSettings extends React.Component {
             </div>
         </div> : <div></div>
 
-        let pfp = this.state.photoFile ? <img src={this.props.currentServer.image_url} id="server_img_large"/> : <a className="server-link2"><div>{this.props.currentServer.name[0]}</div></a>
+        let pfp = this.state.photoFile ? <img src={this.props.currentServer.image_url} id="server_img_large"/> : <a className="server-link2"><div id="broi">{this.props.currentServer.name[0].toUpperCase()}</div></a>
 
         return(
             <div id="settings-modal" className="modal-full">
