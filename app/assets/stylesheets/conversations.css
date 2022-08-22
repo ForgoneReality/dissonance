@@ -168,6 +168,9 @@
 
 #usermsg{
     width: 92.5%;
+    font-size: 16px;
+    color: #dcddde;
+    font-family: Whitney, "Helvetica Neue";
 }
 
 .msg-img{

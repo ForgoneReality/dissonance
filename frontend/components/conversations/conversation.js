@@ -350,8 +350,8 @@ class Conversation extends React.Component {
                 <label htmlFor="img-uploader">
                   <img src={window.upload} alt="upload-icon"/>
                 </label> 
-                <input type="file" id="img-uploader" onChange={this.handleFile}></input>
-                <input type="text" id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")}></input>
+                <input type="file" id="img-uploader"  onChange={this.handleFile}></input>
+                <input type="text" id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")} placeholder={`Message @${this.props.convo.otherUser.username}`}></input>
                 <button className="invisible" type="Submit">Submit</button>
               </form>
             </div> 
