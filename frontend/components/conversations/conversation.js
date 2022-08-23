@@ -63,6 +63,7 @@ class Conversation extends React.Component {
   handleSubmit(e)
   {
     e.preventDefault();
+    console.log("CURRENT STATE:", this.state);
     let my_msg = `${this.state.usermsg}`
 
     if(!this.state.photoFile)

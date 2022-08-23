@@ -27,7 +27,9 @@ Rails.application.routes.draw do
       patch :join, on: :member
     end
     resources :joined_servers, only: [:create, :destroy] #should be refactored to be used
-    resources :channels, only: [:show, :index, :create, :update, :destroy]
+    resources :channels, only: [:show, :index, :create, :update, :destroy] do
+      get :display30, on: :member
+    end
     resources :messages, only: [:create, :update, :destroy]
     resources :friendships, only: [:create, :destroy]
   end

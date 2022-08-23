@@ -105,6 +105,8 @@
     ch2 = Channel.create!({server_id: s1.id, name:"memes"})
     ch3 = Channel.create!({server_id: s2.id, name:"league", description:"Talk about LoL or other Riot games"})
     ch4 = Channel.create!({server_id: s2.id, name:"find-players", description:"Find other players!"})
+    ch5 = Channel.create!({server_id: s1.id, name:"count-to-1000", description: "Main purpose is to test the functionality of infinite scroller"})
+
 
     ServerJoin.create!({user_id: u1.id, server_id: s2.id, nickname: "bob"})
     ServerJoin.create!({user_id: u1.id, server_id: s3.id, nickname: "bobby"})
@@ -163,3 +165,11 @@
     Message.create!({content: "Please work lol", author_id:u5.id, location_id: c3.id, location_type: "Conversation"})
 
     Message.create!({content: "Nice to meet you! I am Aria Bot!", author_id: u6.id, location_id: c4.id, location_type: "Conversation"})
+
+    for i in 0...300
+        if(i.even?)
+            Message.create!({content: i, author_id: u2.id, location_id: ch5.id, location_type: "Channel"})
+        else
+            Message.create!({content: i, author_id: u3.id, location_id: ch5.id, location_type: "Channel"})
+        end
+    end

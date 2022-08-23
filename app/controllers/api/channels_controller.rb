@@ -18,6 +18,10 @@ class Api::ChannelsController < ApplicationController
         end
     end
 
+    def display30
+        
+    end
+
     def update
         @channel = Channel.find(params[:id])
       

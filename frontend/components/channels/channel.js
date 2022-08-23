@@ -1,4 +1,8 @@
 import React from 'react';
+import ScrollComponent from '../utility/scroll_component';
+
+import consumer from '../../consumer';
+
 
 class Channel extends React.Component {
   constructor(props) {
@@ -291,9 +295,7 @@ class Channel extends React.Component {
           <div className="divider-q3P9HC"></div>
           <h2>{currChannelDescription}</h2>
         </div>
-        <ul id="server-msg-list">
-          {msgList}
-        </ul>
+        <ScrollComponent msgList={msgList} type="Channel" id={this.props.channelId}/>
         <div id="msg-form-wrapper">
             <img src={window.uploadimg}></img>
             <div id="msg-form-bubble">
