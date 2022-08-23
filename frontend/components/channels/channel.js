@@ -11,7 +11,9 @@ class Channel extends React.Component {
     this.state = {
       usermsg: "",
       editmsg: "",
-      editing: -1
+      editing: -1,
+      photoFile: null,
+      photoUrl: null
     }
   }
 
@@ -28,34 +30,60 @@ class Channel extends React.Component {
     return e => this.setState({ [property]: e.currentTarget.value });
   }
 
-//   enterRoom() {
-//     // ...
-//     this.subscription = consumer.subscriptions.create(
-//       { channel: 'ConversationsChannel', id: this.props.convo.id},
-//       {received: ({type, message, id}) => {
-//         switch (type) {
-//           case 'RECEIVE_MESSAGE':
-//             this.props.receiveMessage(message);
-//             break;
-//           case 'DELETE_MESSAGE':
-//             this.props.removeMessage(id);
-//             break;
-//           default:
-//             console.log('Unhandled broadcast: ', type);
-//             break;
-//         }
-//       }
-//     }
+  enterRoom() {
+    // ...
+    this.subscription = consumer.subscriptions.create(
+      { channel: 'ChannelsChannel', id: this.props.channelId},
+      {received: ({type, message, id}) => {
+        switch (type) {
+          case 'RECEIVE_MESSAGE':
+            this.props.receiveMessage(message);
+            break;
+          case 'DELETE_MESSAGE':
+            this.props.removeMessage(id);
+            break;
+          default:
+            console.log('Unhandled broadcast: ', type);
+            break;
+        }
+      }
+    }
     
-//     );
-//   }
+    );
+  }
 
   handleSubmit(e)
   {
     e.preventDefault();
-    this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Channel", location_id: this.props.channelId});
-    this.setState({usermsg: ""});
-    this.props.removeErrors();
+    let ch = this.props.channels[this.props.channelId];
+
+    if(!this.state.photoFile)
+    {
+        this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Channel", location_id: ch.id})
+    }
+    else
+    {
+      const formData = new FormData();
+      formData.append("message[content]", this.state.usermsg);
+      formData.append("message[author_id]", this.props.currentUser.id);
+      formData.append("message[location_type]", "Channel");
+      formData.append("message[location_id]", ch.id);
+      formData.append("message[image])", this.state.photoFile);
+      $.ajax({
+        url: "/api/messages",
+        method: "POST",
+        data: formData,
+        contentType: false,
+        processData: false
+      }).then( (response) => this.props.sendMessage(response)) //something may be slightly off with this... see if sending an image always creates an error
+      //first guess is that it's double-sending.
+      //I wanna say to use only an action, no util instead of sendMessage
+    }
+    this.setState({usermsg: "", editmsg: "",
+    editing: -1, 
+    photoFile: null,
+    photoUrl: null});
+  
   }
 
   handleEditSubmit(e)
@@ -65,7 +93,20 @@ class Channel extends React.Component {
     // this.props.editMessage(this.state.editmsg, this.state.editing);
     this.setState({editmsg: "", editing: -1});
     this.firstTime = -1;
-       this.props.removeErrors();
+    this.props.removeErrors();
+  }
+
+  handleFile(e)
+  {
+    const file = e.currentTarget.files[0];
+    const fileReader = new FileReader();
+    fileReader.onloadend = () => {
+      this.setState({photoFile: file, photoUrl: fileReader.result});
+    }
+
+    if (file){
+      fileReader.readAsDataURL(file);
+    }   
   }
 
   componentDidMount()
@@ -83,15 +124,15 @@ class Channel extends React.Component {
     if (prevConvoId !== this.props.channelId) {
       this.props.getChannelMessages(this.props.channelId);
       this.subscription?.unsubscribe();
-      // this.enterRoom();
+      this.enterRoom();
     }
   }
 
-//   componentWillUnmount()
-//   {
-//     //removeEventListeners?
-//     this.subscription?.unsubscribe();
-//   }
+  componentWillUnmount()
+  {
+    //removeEventListeners?
+    this.subscription?.unsubscribe();
+  }
 
 
   renderErrors() {
@@ -217,24 +258,26 @@ class Channel extends React.Component {
         }
         else
         {
-          deleteButton = (<button id="delete-msg-button" onClick={() => {this.props.deleteMessage(msg.id)}}>Delete</button>)
+          deleteButton = (<button id="delete-msg-button" onClick={() => {if(!this.state.bot){this.props.deleteMessage(msg.id)}}}>
+             <img src={window.deleteicon}/>
+          </button>)
 
           editButton = <button id="edit-msg-button" onClick={() => {
             this.firstTime = 2;
             this.setState({editing: msg.id});
           }
-          }>Edit</button>
+          }>
+            <img src={window.editmessage}/>
+          </button>
         }
-
-
-
       }
-      return (<li key={msg.id}>
+      return (<li key={msg.id} id="single-message">
         {filler}
         {msgContent}
-         {editButton}
-         {deleteButton}
-      
+        <div className="msgbuttons">
+          {editButton}
+          {deleteButton}
+        </div>
       </li>)
       })
     }
@@ -251,10 +294,20 @@ class Channel extends React.Component {
         <ul id="server-msg-list">
           {msgList}
         </ul>
-        <form id="msg-form">
-          <textarea id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")}></textarea>
-          <button className="invisible" type="Submit">Submit</button>
-        </form>
+        <div id="msg-form-wrapper">
+            <img src={window.uploadimg}></img>
+            <div id="msg-form-bubble">
+              <form id="msg-form">
+                <label htmlFor="img-uploader">
+                  <img src={window.upload} alt="upload-icon"/>
+                </label> 
+                <input type="file" id="img-uploader"  onChange={this.handleFile}></input>
+                <input type="text" id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")} placeholder={`Message @${currChannelName}`}></input>
+                <button className="invisible" type="Submit">Submit</button>
+              </form>
+            </div> 
+          </div>
+          
         {this.renderErrors()}
       </div>
     );

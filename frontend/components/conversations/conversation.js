@@ -136,8 +136,6 @@ class Conversation extends React.Component {
   }
   componentDidMount()
   {
-    
-
     document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
     document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
     // this.props.getConversationList(this.props.currentUser.id).then(() => this.enterRoom());

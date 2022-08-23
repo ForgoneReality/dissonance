@@ -16,12 +16,11 @@ class Api::MessagesController < ApplicationController
 
           if(@message.location_type == "Conversation")
             ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: @message)
+          elsif(@message.location_type == "Channel")
+            ChannelsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: @message)
           end
 
           render "_helper", locals: { message: @message }, status: 200
-
-          # render json: @message, include: :location
-          # render json: @message.location
         else
             render json: @message.errors.full_messages, status: 422
         end
@@ -33,6 +32,10 @@ class Api::MessagesController < ApplicationController
         
         if(@message.location_type == "Conversation")
           ConversationsChannel.broadcast_to @message.location,
+          type: 'DELETE_MESSAGE',
+          id: @message.id
+        elsif(@message.location_type == "Conversation")
+          ChannelsChannel.broadcast_to @message.location,
           type: 'DELETE_MESSAGE',
           id: @message.id
         end
@@ -48,6 +51,8 @@ class Api::MessagesController < ApplicationController
       if @message.update(message_edit_params)
         if(@message.location_type == "Conversation")
           ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: @message)
+        elsif(@message.location_type == "Channel")
+          ChannelsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: @message)
         end
         
         render "_helper", locals: { message: @message }
