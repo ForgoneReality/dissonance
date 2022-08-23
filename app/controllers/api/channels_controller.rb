@@ -18,8 +18,10 @@ class Api::ChannelsController < ApplicationController
         end
     end
 
-    def display30
-        
+    def fetchBatch
+        @channel = Channel.find(params[:id])
+
+        # @channel.messages[0]
     end
 
     def update

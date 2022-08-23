@@ -1,5 +1,5 @@
 import React from 'react';
-import ScrollComponent from '../utility/scroll_component';
+// import ScrollComponent from '../utility/scroll_component';
 
 import consumer from '../../consumer';
 
@@ -87,7 +87,6 @@ class Channel extends React.Component {
     editing: -1, 
     photoFile: null,
     photoUrl: null});
-  
   }
 
   handleEditSubmit(e)
@@ -118,7 +117,7 @@ class Channel extends React.Component {
     document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
     document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
     this.props.getChannelMessages(this.props.channelId);
-    // this.enterRoom();
+    this.enterRoom();
     this.props.removeErrors();
     this.props.removeModals();
   }
@@ -288,14 +287,15 @@ class Channel extends React.Component {
 
     return (
       <div className="channel">
-        {/* <p>{this.props.convo.otherUser.username}: {this.props.convo.otherUser.status}</p> */}
         <div id="channel-header">
           <img id="header-hashtag" src={window.hashtag}></img>
           <h1>{currChannelName}</h1>
           <div className="divider-q3P9HC"></div>
           <h2>{currChannelDescription}</h2>
         </div>
-        <ScrollComponent msgList={msgList} type="Channel" id={this.props.channelId}/>
+        <ul id="server-msg-list">
+             {msgList}
+        </ul>
         <div id="msg-form-wrapper">
             <img src={window.uploadimg}></img>
             <div id="msg-form-bubble">
