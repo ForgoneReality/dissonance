@@ -183,3 +183,102 @@
     position:relative;
 }
 
+.friendsList{
+    display: flex;
+    width:100%;
+    background-color: #36393f;
+    flex-direction: column;
+}
+
+#friends-list-header{
+    height: 48px;
+    display: flex;  
+    gap: 24px;
+    align-items: center;
+}
+
+#friends-list-header h1{
+    font-size: 20px;
+    color: white;
+    font-family: "ABC Ginto", "Helvetica Neue";
+    font-weight: 700;
+}
+
+#bruh4909{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bruh4909 > svg{
+    margin-left: 16px;
+    margin-right: 8px;
+}
+
+.divider2{
+    width: 1px;
+    height: 24px;
+    margin: 12px 0px;
+    flex: 0 0 auto;
+    background: gray;
+}
+
+.butt-selected{
+    color: white;
+    font-size: 20px;
+    font-family: Whitney, "Helvetica Neue";
+    background-color: #464a50;
+    border: none;
+    border-radius: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.butt{
+    color: #dcddde;
+    font-size: 20px;
+    font-family: Whitney, "Helvetica Neue";
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.friendsList h3{
+    font-size: 14px;
+    font-family: "ABC Ginto";
+    color: #B9BBBE;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+#bruh0033{
+    display: flex;
+    height: 60px;
+}
+
+#bruh0033 h2{
+    font-size: 18px;
+    font-family: Whitney, "Helvetica Neue";
+    color: white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: normal;
+}
+
+#bruh0244{
+    display: "flex";
+    flex-direction: "column";
+    justify-content: "center";
+}
+
+#bruh0244 > p{
+    font-size: 15px;
+    font-family: Whitney, "Helvetica Neue";
+    color: #B9BBBE;
+}

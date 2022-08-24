@@ -274,7 +274,7 @@ class Channel extends React.Component {
       }
       return (
       
-      <div key={msg.id} id="single-message">
+      <div key={msg.id} >
         {filler}
         {msgContent}
         <div className="msgbuttons">
@@ -286,7 +286,7 @@ class Channel extends React.Component {
     }
 
     return (
-      <div key={key} style={style}>
+      <div key={key} style={style} id="single-message">
       {msgList[index]}
     </div>
 

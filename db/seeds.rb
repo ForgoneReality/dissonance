@@ -25,6 +25,7 @@
     u4 = User.create!({email: "demo4@gmail.com", password: "demo12", username: "demo4", fourdigit_id: "0004", status: "offline"})
     u5 = User.create!({email: "demo5@gmail.com", password: "demo12", username: "demo5", fourdigit_id: "0005", status: "offline"})
 
+    demo_users = [u1, u2, u3, u4, u5]
     #BOTS
     u6 = User.create!({email: "cleverbot@gmail.com", password: "botbot", username: "Aria Bot", fourdigit_id: "0000", status: "online"})
 
@@ -62,6 +63,20 @@
     Friendship.create!({user_id: u5.id, friend_id: u1.id})
     Friendship.create!({user_id: u2.id, friend_id: u1.id})
     Friendship.create!({user_id: u4.id, friend_id: u5.id})
+
+    demo_users.each do |demo|
+        Friendship.create!({user_id: demo.id, friend_id: u6.id})
+        Friendship.create!({user_id: demo.id, friend_id: u7.id})
+        Friendship.create!({user_id: demo.id, friend_id: u8.id})
+        Friendship.create!({user_id: demo.id, friend_id: u9.id})
+        Friendship.create!({user_id: demo.id, friend_id: u10.id})
+        Friendship.create!({user_id: demo.id, friend_id: u11.id})
+        Friendship.create!({user_id: demo.id, friend_id: u12.id})
+        Friendship.create!({user_id: demo.id, friend_id: u13.id})
+        Friendship.create!({user_id: demo.id, friend_id: u14.id})
+    end
+
+
 
     c1 = Conversation.create!({user1_id: u1.id, user2_id: u3.id})
     c2 = Conversation.create!({user1_id: u1.id, user2_id: u4.id})
