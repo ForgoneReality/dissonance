@@ -1,5 +1,6 @@
 import React from 'react';
 // import ScrollComponent from '../utility/scroll_component';
+import { FixedSizeList as List } from 'react-window';
 
 import consumer from '../../consumer';
 
@@ -274,14 +275,14 @@ class Channel extends React.Component {
           </button>
         }
       }
-      return (<li key={msg.id} id="single-message">
+      return (<div key={msg.id} id="single-message">
         {filler}
         {msgContent}
         <div className="msgbuttons">
           {editButton}
           {deleteButton}
         </div>
-      </li>)
+      </div>)
       })
     }
 
@@ -293,9 +294,9 @@ class Channel extends React.Component {
           <div className="divider-q3P9HC"></div>
           <h2>{currChannelDescription}</h2>
         </div>
-        <ul id="server-msg-list">
+        <div id="server-msg-list">
              {msgList}
-        </ul>
+        </div>
         <div id="msg-form-wrapper">
             <img src={window.uploadimg}></img>
             <div id="msg-form-bubble">
