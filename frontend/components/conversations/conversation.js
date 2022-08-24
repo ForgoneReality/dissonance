@@ -1,7 +1,6 @@
 import React from 'react';
 
 import consumer from '../../consumer';
-import { FixedSizeList as List } from 'react-window';
 
 // Without context
 

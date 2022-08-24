@@ -1,9 +1,8 @@
 import React from 'react';
 // import ScrollComponent from '../utility/scroll_component';
-import { FixedSizeList as List } from 'react-window';
 
 import consumer from '../../consumer';
-
+import {List} from 'react-virtualized';
 
 class Channel extends React.Component {
   constructor(props) {
@@ -20,6 +19,8 @@ class Channel extends React.Component {
       photoFile: null,
       photoUrl: null
     }
+
+    this.rowRenderer = this.rowRenderer.bind(this);
   }
 
   submitOnEnter(event){
@@ -158,18 +159,14 @@ class Channel extends React.Component {
     }
   }
 
-  render() {
-    let currChannelName = "";
-    let currChannelDescription = "";
-    if(this.props.channelId)
-    {
-        currChannelName = this.props.channels[this.props.channelId].name;
-        if(this.props.channels[this.props.channelId].description)
-        {
-          currChannelDescription = this.props.channels[this.props.channelId].description;
-        }
-    }
-    let msgList = <li id="bruh9991">It's too quiet here... be the first one to send a message!</li>;
+  rowRenderer({
+    key, // Unique key within array of rows
+    index, // Index of row within collection
+    isScrolling, // The List is currently being scrolled
+    isVisible, // This row is visible within the List (eg it is not an overscanned row)
+    style, // Style object to be applied to row (to position it)
+  }) {
+    let msgList = <div id="bruh9991">It's too quiet here... be the first one to send a message!</div>;
     if (this.props.messages.length > 0)
     {
      let lastSenderID = -1;
@@ -275,7 +272,9 @@ class Channel extends React.Component {
           </button>
         }
       }
-      return (<div key={msg.id} id="single-message">
+      return (
+      
+      <div key={msg.id} id="single-message">
         {filler}
         {msgContent}
         <div className="msgbuttons">
@@ -287,6 +286,28 @@ class Channel extends React.Component {
     }
 
     return (
+      <div key={key} style={style}>
+      {msgList[index]}
+    </div>
+
+    );
+  }
+
+  render() {
+    let currChannelName = "";
+    let currChannelDescription = "";
+    if(this.props.channelId)
+    {
+        currChannelName = this.props.channels[this.props.channelId].name;
+        if(this.props.channels[this.props.channelId].description)
+        {
+          currChannelDescription = this.props.channels[this.props.channelId].description;
+        }
+    }
+  
+
+
+    return (
       <div className="channel">
         <div id="channel-header">
           <img id="header-hashtag" src={window.hashtag}></img>
@@ -294,9 +315,15 @@ class Channel extends React.Component {
           <div className="divider-q3P9HC"></div>
           <h2>{currChannelDescription}</h2>
         </div>
-        <div id="server-msg-list">
-             {msgList}
-        </div>
+          <List
+            id="server-msg-list"
+            width={1254}
+            height={780.24}
+            rowCount={this.props.messages.length}
+            rowHeight={55.85}
+            rowRenderer={this.rowRenderer}
+            overscanRowCount={2}
+          />
         <div id="msg-form-wrapper">
             <img src={window.uploadimg}></img>
             <div id="msg-form-bubble">
