@@ -68,14 +68,15 @@ class FriendList extends React.Component {
     let sortedList = Object.values(this.props.friends).sort((a,b) => a.username > b.username ? 1 : -1);
     let onlineList = sortedList.filter((user) => user.status !== "offline")
 
-    let button1 = this.state.selectedTab === 0 ? <button className="butt-selected">Online</button> : <button className="butt">Online</button>
-    let button2 = this.state.selectedTab === 1 ? <button className="butt-selected">All</button> : <button className="butt">All</button>
+    let button1 = this.state.selectedTab === 0 ? <button className="butt-selected">Online</button> : <button className="butt" onClick={() => this.setState({selectedTab: 0})}>Online</button>
+    let button2 = this.state.selectedTab === 1 ? <button className="butt-selected">All</button> : <button className="butt" onClick={() => this.setState({selectedTab: 1})}>All</button>
     let button3 = this.state.selectedTab === 2 ? <button className="butt-selected">Pending</button> : <button className="butt">Pending</button>
-    // let button4 = this.state.selectedTab === 3 ? <button className="butt-selected2">Add Friend</button> : <button className="butt2"></button>
+    let button4 = this.state.selectedTab === 3 ? <button className="butt-selected2">Add Friend</button> : <button className="butt2" onClick={() => this.setState({selectedTab: 3})}>Add Friend</button>
     
     
     let listContents;
     let fList;
+    let listHeader;
     switch(this.state.selectedTab)
     {
       case 0:
@@ -102,49 +103,93 @@ class FriendList extends React.Component {
 
           return(
               <li key={fren.id} id="bruh0033">
-                   <div className="bruh001">
+                <div id="bruh30">
+                  <div className="bruh001" style={{paddingLeft: "0px"}}>
                     <img className="sidepfp" src={fren.pfp_url}></img>
-                    <div className="useronlinestatusicon">
+                    <div className="useronlinestatusicon2">
                       {useronlinestatus}
                     </div>
                   </div>
-                  <div id="bruh0244">
-                  <h2>{fren.username}</h2>
-                  <p>{fren.bio && fren.status !== "offline" ? fren.bio : fren.status}</p>
+                  <div className="bruh0244">
+                    <h2>{fren.username}</h2>
+                    <p>{fren.bio && fren.status !== "offline" ? fren.bio : fren.status}</p>
                   </div>
+                </div>
               </li>
           )
         })
-        listContents = <div style={{marginLeft: "32px"}}>
-          <h3>ONLINE - {onlineList.length}</h3>
+        listContents = <div id="bruh0505">
           {fList}
         </div>
+        listHeader = <h3>ONLINE - {onlineList.length}</h3>
+
         break;
       case 1:
+        console.log("???!", sortedList);
         fList = sortedList.map( (fren) => {
+          let useronlinestatus = null;
+          if(fren.status === "online")
+          {
+            useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#3ba55d" /> </svg> 
+          }
+          else if (fren.status === "offline")
+          {
+            useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="3.75" stroke="#96989d" strokeWidth="2.25" fill="#2f3136" /> <circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="none" /> </svg> 
+          }
+          else if (fren.status === "busy")
+          {
+            useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#D83C3E" /> </svg> 
+            
+          }
+          else if (fren.status === "idle")
+          {
+            useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#faa81b" /> </svg> 
+            
+          }
+
           return(
-              <li key={fren.id}>
-                  <h2>{fren.username}</h2>
-                  {fren.bio && fren.status !== "offline" ? fren.bio : fren.status}
-              </li>
+            <li key={fren.id} id="bruh0033">
+            <div id="bruh30">
+              <div className="bruh001" style={{paddingLeft: "0px"}}>
+                <img className="sidepfp" src={fren.pfp_url}></img>
+                <div className="useronlinestatusicon2">
+                  {useronlinestatus}
+                </div>
+              </div>
+              <div className="bruh0244">
+                <h2>{fren.username}</h2>
+                <p>{fren.bio && fren.status !== "offline" ? fren.bio : fren.status}</p>
+              </div>
+            </div>
+          </li>
           )
         })
+        listContents = <div id="bruh0505">
+          {fList}
+        </div>
+        listHeader = <h3>ALL - {sortedList.length}</h3>
+
         break;
+      case 2:
+        //needs future implementation
+        break;
+      case 3:
+        listContents = <div className='addFriend'>
+          <h1>ADD FRIEND</h1>
+          <p id="zzzz">You can add a friend by entering their discord tag. For example: Bobby#1049</p>
+          <p>{this.props.errors[0]}</p>
+          <form id="addfriendform" onSubmit={this.addFriend}>
+            <input id="addfriendinput" type="text" onChange={this.update("addfriendtxt")}/>
+            <button type="Submit" value={this.state.addfriendtxt}>Add Friend</button>
+          </form>
+      </div>
       default:
 
         break;
     }
    
 
-    let addFriend = <div className='addFriend'>
-        <h2>ADD FRIEND</h2>
-        <p>You can add a friend by entering their discord tag. For example: Bobby#1049</p>
-        <p>{this.props.errors[0]}</p>
-        <form id="addfriendform" onSubmit={this.addFriend}>
-          <input id="addfriendinput" type="text" onChange={this.update("addfriendtxt")}/>
-          <button type="Submit" value={this.state.addfriendtxt}>Add Friend</button>
-        </form>
-    </div>
+    
     // const panes = [
     //   {title: 'online', content: fList},
     //   {title: 'temp', content: 'Second pane here'},
@@ -163,7 +208,9 @@ class FriendList extends React.Component {
           {button1}
           {button2}
           {button3}
+          {button4}
         </div>
+        {listHeader}
         {listContents}
       </section>
     );

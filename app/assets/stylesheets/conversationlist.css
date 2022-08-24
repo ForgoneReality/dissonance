@@ -123,6 +123,13 @@
     left: -9px;
     top: 0px;
  }
+
+ .useronlinestatusicon2 svg{
+    position: relative;
+    left: -9px;
+    top: 11px;
+ }
+
  .bruh001{
     display: flex;
     align-items: center;

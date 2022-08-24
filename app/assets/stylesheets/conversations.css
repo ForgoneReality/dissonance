@@ -197,7 +197,7 @@
     align-items: center;
 }
 
-#friends-list-header h1{
+.friendsList h1{
     font-size: 20px;
     color: white;
     font-family: "ABC Ginto", "Helvetica Neue";
@@ -236,6 +236,19 @@
     padding-bottom: 4px;
 }
 
+.butt:hover{
+    color: white;
+    font-size: 20px;
+    font-family: Whitney, "Helvetica Neue";
+    background-color: #464a50;
+    border: none;
+    border-radius: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
 .butt{
     color: #dcddde;
     font-size: 20px;
@@ -249,17 +262,55 @@
     padding-bottom: 4px;
 }
 
+
+.butt2{
+    background-color: #2D7D46;
+    color: white;
+    font-size: 20px;
+    font-family: Whitney, "Helvetica Neue";
+    border: none;
+    border-radius: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+ }
+
+ .butt-selected2{
+    color: #2D7D46;
+    font-size: 20px;
+    font-family: Whitney, "Helvetica Neue";
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+
 .friendsList h3{
     font-size: 14px;
     font-family: "ABC Ginto";
     color: #B9BBBE;
     margin-top: 24px;
     margin-bottom: 24px;
+    margin-left: 48px;
 }
 
 #bruh0033{
     display: flex;
     height: 60px;
+    border-top: solid 1px #3e4248;
+    padding-left: 16px;
+    border-radius: 5px;
+}
+
+#bruh0033:hover{
+    background-color: #464a50;
+    border: none;
+    padding-top: 1px;
 }
 
 #bruh0033 h2{
@@ -271,14 +322,35 @@
     font-weight: normal;
 }
 
-#bruh0244{
+.bruh0244{
     display: "flex";
     flex-direction: "column";
-    justify-content: "center";
+    margin-top:11px;
 }
 
-#bruh0244 > p{
+.bruh0244 > p{
     font-size: 15px;
     font-family: Whitney, "Helvetica Neue";
     color: #B9BBBE;
+}
+
+#bruh30{
+    display: flex;
+    gap: 4px;
+}
+
+.addFriend{
+    margin-left: 48px;
+    margin-top: 16px;
+}
+
+#zzzz{
+    font-family: Whitney, "Helvetica Neue";
+    font-size: 14px;
+    color: #B9BBBE;   
+}
+
+#addfriendform{
+    margin-top: 32px;
+    margin-bottom:32px;
 }

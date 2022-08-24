@@ -175,3 +175,11 @@
     height: 44px;
     margin-top: 32px;
 }
+
+#bruh0505{
+    margin-left: 32px;
+    margin-right: 32px;
+    position: relative;
+    overflow-y: scroll;
+    height: calc(100vh - 66.75px);
+}
