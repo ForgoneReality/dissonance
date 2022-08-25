@@ -12,6 +12,8 @@
 
 .convo{
     background-color:#36393f;
+    min-width: calc(100vw - 297px);
+    width: calc(100vw - 312px);
 }
 
 .convo header{
@@ -95,12 +97,12 @@
 }
 
 .no-pfp-filler {
-    width: 40px;
+    min-width: 40px;
 }
 
 #msgfiller {
     height: 1px;
-    margin-top: 16px;
+    padding-top: 16px;
 }
 
 .msg-content {

@@ -166,11 +166,130 @@ class Channel extends React.Component {
     isVisible, // This row is visible within the List (eg it is not an overscanned row)
     style, // Style object to be applied to row (to position it)
   }) {
-    let msgList = <div id="bruh9991">It's too quiet here... be the first one to send a message!</div>;
+    let formatted_msg = <div></div>;
+      console.log("hello");
+    // if (this.props.messages.length > 0)
+    // {
+    //  let lastSenderID = -1;
+    //  msgList = Object.values(this.props.messages).map( (msg) =>{
+    //   let deleteButton = null;
+    //   let editButton = null;
+    //   let datemsg = null;
+    //   let myimg = null;
+    //   let mypfp = <div className="no-pfp-filler"> </div>;
+    //   let msgHeader = null;
+    //   let filler = null;
+    
+      
+    //   if(msg.author_id !== lastSenderID)
+    //   {
+        
+
+    //     let date = (Date.parse(msg.created_at));
+    //     let dmy = new Date(date);
+
+    //     let today = new Date();
+    //     if (dmy.toDateString() === today.toDateString())
+    //     {
+    //       datemsg = "Today at " + dmy.toLocaleTimeString("en-us", {hour: "numeric", minute: "numeric"});
+    //     }
+    //     else
+    //     {
+    //       datemsg = dmy.toDateString();
+    //     }
+    //     let the_name = msg.nickname ? msg.nickname : msg.author_name
+
+    //     msgHeader = (<h2>
+    //       <span className="message-username">{the_name}</span>
+    //       <span className="message-date">{datemsg}</span>
+    //     </h2>)
+
+    //     mypfp = <img className="dm-pfp" src={msg.pfp_url} alt={msg.pfp_url}/>
+    //     filler = <div id="msgfiller"> </div>
+    //     lastSenderID = msg.author_id;
+    //   }
+
+      
+    //   if (msg.image_url)
+    //   {
+    //     myimg = <img className="msg-img" src={msg.image_url}></img>
+    //   }
+
+    //   let msgContent = <div className="message">
+    //     {mypfp}
+    //     <div>
+    //       {msgHeader}
+    //       <p className="msg-content">{msg.content}</p>
+    //       {myimg}
+    //     </div>
+    //   </div>
+
+    //   if(msg.author_id === this.props.currentUser.id)
+    //   {
+        
+    //     if(this.state.editing === msg.id)
+    //     {
+
+    //       if(this.firstTime === 2)
+    //       {
+    //         this.setState({editmsg: msg.content}); //needless
+    //         this.firstTime = 1;
+    //       }
+    //       msgContent = (
+    //         <form id="edit-msg-form">
+    //           <textarea id="edit-msg-textform" value={this.state.editmsg} onChange={this.update("editmsg")}></textarea>
+    //           <button className="invisible" type="Submit">Edit</button>
+    //         </form>)
+
+       
+    //       if(this.firstTime === 1)
+    //       {
+    //         let edittxt = document.getElementById("edit-msg-textform");
+    //         if(edittxt)
+    //         {
+    //           let temp = edittxt.value;
+    //           edittxt.value = "";
+    //           edittxt.value = temp;
+    //           edittxt.focus();
+
+    //           edittxt.addEventListener("keypress", this.submitOnEnter);
+    //           document.getElementById("edit-msg-form").addEventListener("submit", this.handleEditSubmit);
+    //           this.firstTime = 0;
+    //         }
+    //       }
+    //     }
+    //     else
+    //     {
+    //       deleteButton = (<button id="delete-msg-button" onClick={() => {if(!this.state.bot){this.props.deleteMessage(msg.id)}}}>
+    //          <img src={window.deleteicon}/>
+    //       </button>)
+
+    //       editButton = <button id="edit-msg-button" onClick={() => {
+    //         this.firstTime = 2;
+    //         this.setState({editing: msg.id});
+    //       }
+    //       }>
+    //         <img src={window.editmessage}/>
+    //       </button>
+    //     }
+    //   }
+    //   return (
+      
+    //   <div key={msg.id} >
+    //     {filler}
+    //     {msgContent}
+    //     <div className="msgbuttons">
+    //       {editButton}
+    //       {deleteButton}
+    //     </div>
+    //   </div>)
+    //   })
+    // }
+
     if (this.props.messages.length > 0)
     {
      let lastSenderID = -1;
-     msgList = Object.values(this.props.messages).map( (msg) =>{
+     let msg = this.props.messages[index]
       let deleteButton = null;
       let editButton = null;
       let datemsg = null;
@@ -272,9 +391,7 @@ class Channel extends React.Component {
           </button>
         }
       }
-      return (
-      
-      <div key={msg.id} >
+      formatted_msg = (<div key={msg.id} >
         {filler}
         {msgContent}
         <div className="msgbuttons">
@@ -282,12 +399,11 @@ class Channel extends React.Component {
           {deleteButton}
         </div>
       </div>)
-      })
     }
 
     return (
       <div key={key} style={style} id="single-message">
-      {msgList[index]}
+      {formatted_msg}
     </div>
 
     );
@@ -320,7 +436,7 @@ class Channel extends React.Component {
             width={1254}
             height={780.24}
             rowCount={this.props.messages.length}
-            rowHeight={55.85}
+            rowHeight={71.84}
             rowRenderer={this.rowRenderer}
             overscanRowCount={2}
           />
