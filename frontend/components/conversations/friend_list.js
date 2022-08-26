@@ -179,8 +179,8 @@ class FriendList extends React.Component {
           <p id="zzzz">You can add a friend by entering their discord tag. For example: Bobby#1049</p>
           <p>{this.props.errors[0]}</p>
           <form id="addfriendform" onSubmit={this.addFriend}>
-            <input id="addfriendinput" type="text" onChange={this.update("addfriendtxt")}/>
-            <button type="Submit" value={this.state.addfriendtxt}>Add Friend</button>
+            <input id="addfriendinput" type="text" placeholder="Enter a Username#0000" onChange={this.update("addfriendtxt")}/>
+            <button id="emoney" type="Submit" value={this.state.addfriendtxt}>Add Friend</button>
           </form>
       </div>
       default:

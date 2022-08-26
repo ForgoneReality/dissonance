@@ -44,12 +44,22 @@ class Welcome extends React.Component
         <div id="welcome">
             <nav className="welcome-nav"> 
                 <div className="left-nav">
-                    <img id="icon" src={window.homeicon}/>
+                    <img style={{height: "30px"}} id="icon" src={window.homeicon}/>
                     <h2>Dissonance</h2>
                 </div>
                 <div className="center-nav">
                 
-                    <a href="https://github.com/ForgoneReality/dissonance">Github</a> &nbsp; <a href="https://linkedin.com/">Linkedin</a>
+                    <a href="https://github.com/ForgoneReality/dissonance">
+                        <img src={window.github} alt="github link"/>
+                    </a>
+                    
+                    <a href="https://shorturl.at/begV9">
+                        <img src={window.angelist} alt="github link"/>
+                    </a>
+
+                    <a href="https://shorturl.at/cDJW5">
+                        <img src={window.linkedin} alt="github link"/>
+                    </a>
                 </div>
                 <div className="right-nav">
                     {butt}

@@ -420,6 +420,8 @@ class Channel extends React.Component {
           currChannelDescription = this.props.channels[this.props.channelId].description;
         }
     }
+
+    let divider = this.props.channels[this.props.channelId].description ? <div className="divider-q3P9HC"></div> : ""
   
 
 
@@ -428,7 +430,7 @@ class Channel extends React.Component {
         <div id="channel-header">
           <img id="header-hashtag" src={window.hashtag}></img>
           <h1>{currChannelName}</h1>
-          <div className="divider-q3P9HC"></div>
+          {divider}
           <h2>{currChannelDescription}</h2>
         </div>
           <List

@@ -13,7 +13,7 @@
     left: 0px;
     height: 100vh;
     margin-top: 0px;
-    width: 33.34vw;
+    width: 30vw;
     background-color: #2f3136;
 
 }
@@ -21,16 +21,14 @@
 #right-side-settings{
     position: absolute;
     top: 0px;
-    left: 33.34vw;
+    left: 30vw;
     height: 100vh;
-    width: 66.66vw; 
+    width: 70vw; 
     margin-top: 0px;
     padding-left: 40px;
     padding-right: 40px;
     overflow-y: auto;
 }
-
-
 
 #settings-bubble{
     width: 50vw;
@@ -508,4 +506,12 @@
     text-indent: 16px;
     margin-top: 16px;
     margin-bottom: 32px;
+}
+
+#bruh1203{
+    width: 200px;
+    border-right: solid 1px #42464d;
+    height: calc(100vh - 32px);
+    padding-left: 31px;
+    padding-top: 32px;
 }

@@ -80,8 +80,9 @@ ActiveRecord::Schema.define(version: 2022_07_20_205749) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
-    t.string "color", default: "#96989d", null: false
+    t.string "color", default: "#96989D", null: false
     t.integer "server_id", null: false
+    t.text "permissions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["server_id"], name: "index_roles_on_server_id"
@@ -107,7 +108,7 @@ ActiveRecord::Schema.define(version: 2022_07_20_205749) do
   end
 
   create_table "servers", force: :cascade do |t|
-    t.string "server_link"
+    t.string "server_link", null: false
     t.integer "owner_id", null: false
     t.string "name", null: false
     t.datetime "created_at", null: false

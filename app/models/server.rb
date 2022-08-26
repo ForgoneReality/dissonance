@@ -22,7 +22,7 @@ class Server < ApplicationRecord
     has_many :channels, class_name: "Channel", foreign_key: :server_id, dependent: :destroy
 
     has_one_attached :icon
-    #has_many roles
+    has_many :roles, class_name: "Role", foreign_key: :server_id, dependent: :destroy, primary_key: :id
 
     def has_a_channel
         if (self.channels.size < 1)
