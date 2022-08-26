@@ -49,8 +49,6 @@
     text-align: center;
 }
 
-
-
 #icon{
     height: 1em;
 }
@@ -60,7 +58,7 @@
     position: absolute;
     transform: translate(-50%, 0);
     left: 50%;
-    gap: 7px;
+    gap: 16px;
 }
 
 .center-nav a{

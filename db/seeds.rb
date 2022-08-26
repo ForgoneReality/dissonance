@@ -200,7 +200,7 @@
     m2.image.attach(io: File.open("app/assets/images/cat.jpeg"), filename: 'cat.jpeg')
     Message.create!({content: "Please work lol", author_id:u5.id, location_id: c3.id, location_type: "Conversation"})
 
-    Message.create!({content: "Nice to meet you! I am Aria Bot!", author_id: u6.id, location_id: c4.id, location_type: "Conversation"})
+    Message.create!({content: "Nice to meet you! I am Aria Bot! Say anything to start a conversation, or type 'RESET' to start a new one", author_id: u6.id, location_id: c4.id, location_type: "Conversation"})
 
     for i in 0...300
         if(i.even?)

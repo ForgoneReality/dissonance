@@ -20,7 +20,8 @@ class Conversation extends React.Component {
       editing: -1, 
       photoFile: null,
       photoUrl: null,
-      bot: false
+      bot: false,
+      botFirstMsg: 0
     }
     this.responseMessage = null;
   }
@@ -63,24 +64,35 @@ class Conversation extends React.Component {
   {
     e.preventDefault();
     console.log("CURRENT STATE:", this.state);
-    let my_msg = `${this.state.usermsg}`
+    let my_msg = `${this.state.usermsg}`;
 
     if(!this.state.photoFile)
     {
       if(this.state.bot)
       {
-        let currentConvoList = this.props.messages.map(ele => ele.content);
-        currentConvoList.shift();
-        $.ajax({
-          url: 'http://localhost:3001/',
-          type: 'get',
-          data: {messageList: currentConvoList,
-            newMessage: my_msg
-          }
-        }).then((resp) => {
-          this.responseMessage = resp;
-          return this.props.sendMessage( {content: my_msg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id})
-        }).then(() =>this.props.sendMessage( {content: this.responseMessage, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}),() => this.props.sendMessage( {content: this.responseMessage, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}))
+        if(this.state.usermsg === "RESET" || this.state.usermsg ==="reset")
+        {
+          let x = this.state.botFirstMsg;
+
+          this.props.sendMessage( {content: my_msg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id}).then(() =>this.props.sendMessage( {content: "CONVERSATION HAS BEEN RESET! Type anything to start a new conversation with me!", author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}),() => this.props.sendMessage( {content: "CONVERSATION HAS BEEN RESET! Type anything to start a new conversation with me!", author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id})).then((res) => {
+            this.setState({botFirstMsg: x + 3});
+          })
+        }
+        else
+          {
+          let currentConvoList = this.props.messages.slice(this.state.botFirstMsg).map(ele => ele.content);
+          currentConvoList.shift();
+          $.ajax({
+            url: 'http://localhost:3001/',
+            type: 'get',
+            data: {messageList: currentConvoList,
+              newMessage: my_msg
+            }
+          }).then((resp) => {
+            this.responseMessage = resp;
+            return this.props.sendMessage( {content: my_msg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id})
+          }).then(() =>this.props.sendMessage( {content: this.responseMessage, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}),() => this.props.sendMessage( {content: this.responseMessage, author_id: this.props.convo.otherUser.id, location_type:"Conversation", location_id: this.props.convo.id}))
+        }
       }
       else{
         this.props.sendMessage( {content: my_msg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id})

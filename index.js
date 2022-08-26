@@ -16,20 +16,14 @@ app.get('/', cors(), (req, res) => {
    
     if(req.query.messageList && req.query.messageList.length > 0)
     {
+        console.log("OHHH?", req.query.MessageList, req.query.newMessage);
         cleverbot(req.query.newMessage, req.query.messageList).then(response => res.send(response));
     }
     else{
     cleverbot(req.query.newMessage).then((response => {
         res.send(response);
     }), (err) => console.log("ERROR:", err));
-
     }
-
-    // cleverbot("I'm just scared of something", ["Hi.", "How are you?", "Bad.", "What is wrong???"]).then((response => {
-    //     console.log("RESPONSE:", response);
-    //     res.send(response);
-    // }), (err) => console.log("ERROR:", err));
-
 
 
 })
