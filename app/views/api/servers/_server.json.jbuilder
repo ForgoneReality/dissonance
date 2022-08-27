@@ -4,3 +4,4 @@ if server.icon.attached?
 else
   json.image_url ""
 end
+json.firstChannel server.channels[0]

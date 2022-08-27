@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { hideModal, resetModal } from '../../actions/modal_actions';
 import {receiveServer} from '../../actions/servers_actions';
+import {withRouter} from "react-router-dom";
 
 class CreateServerModal extends React.Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class CreateServerModal extends React.Component {
         }).then( (response) => {
           this.props.hideModal();
           this.props.receiveServer(response);
+          this.props.history.push(`/channels/${response.firstChannel.id}`)
         })
         break;
       case "joinserver":
@@ -133,4 +135,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateServerModal);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreateServerModal));

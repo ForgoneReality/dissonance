@@ -5,6 +5,7 @@ import { fetchFriendsList } from '../../actions/users_actions.js';
 import FriendList from "./friend_list.js"
 import { addUserError, findUser } from '../../actions/users_actions.js';
 import { receiveUser, createFriendship} from '../../actions/users_actions.js';
+import { withRouter } from 'react-router-dom'; 
 
 const mapStateToProps = (state) => {
   return {
@@ -28,4 +29,5 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FriendList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FriendList));
+

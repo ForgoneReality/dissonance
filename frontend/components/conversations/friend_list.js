@@ -1,5 +1,6 @@
 import React from 'react';
 import { findUser } from '../../actions/users_actions.js';
+import { searchConversation } from '../../util/conversations_api_util.jsx';
 
 const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 
@@ -62,7 +63,17 @@ class FriendList extends React.Component {
 
   handleClick(friend_id)
   {
-    // this.props.findOrCreateConvo(this.props.currentUser.id, friend_id);
+    searchConversation(this.props.currentUser.id, friend_id).then(res => {
+      if(Array.isArray(res))
+      {
+        this.props.createConvo()
+      }
+      else
+      {
+        this.props.history.push(`/conversations/${res.id}`);
+      }
+      
+    })
   }
 
   update(property) {

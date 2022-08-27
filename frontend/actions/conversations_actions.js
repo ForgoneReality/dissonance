@@ -61,12 +61,3 @@ export const getConvoMessages = id => dispatch => (
 export const getConversationList = userId => dispatch => (
   APIUtil.getConversationList(userId).then( (res) => dispatch(receiveConvos(res)))
 )
-
-// export const findOrCreateConvo = (user_id, friend_id) => dispatch => (
-//   APIUtil.findConversation(user_id, friend_id).then((res) => {
-//     console.log(res)
-//     //if conversation already exists
-//       //
-
-//   })
-// )

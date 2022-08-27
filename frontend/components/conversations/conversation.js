@@ -140,7 +140,7 @@ class Conversation extends React.Component {
     let el = document.getElementById('mememe');
     if(el)
     {
-      setTimeout(() => this.myRef.current.scrollIntoView(), 100);
+      setTimeout(() => this.myRef.current.scrollIntoView(), 250);
       // this.scrolled = true;
     }
     else
