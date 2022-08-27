@@ -8,5 +8,6 @@ class Role < ApplicationRecord
     serialize :permissions, Array
 
     has_many :server_role_joins, class_name: "ServerRoleJoin", foreign_key: :role_id
-    has_many :users, through: :server_role_joins, through: :server_join, source: :user
+    has_many :server_joins, through: :server_role_joins, source: :server_join
+    has_many :users, through: :server_joins, source: :user
 end

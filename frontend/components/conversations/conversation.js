@@ -13,7 +13,9 @@ class Conversation extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleEditSubmit = this.handleEditSubmit.bind(this)
     this.handleFile = this.handleFile.bind(this)
+    this.scrollToBottom = this.scrollToBottom.bind(this)
     this.firstTime = -1;
+    this.scrolled = false;
     this.state = {
       usermsg: "",
       editmsg: "",
@@ -23,6 +25,7 @@ class Conversation extends React.Component {
       bot: false,
       botFirstMsg: 0
     }
+    this.myRef = React.createRef()
     this.responseMessage = null;
   }
 
@@ -132,6 +135,30 @@ class Conversation extends React.Component {
     this.firstTime = -1;
   }
 
+  scrollToBottom = () => {
+
+    let el = document.getElementById('mememe');
+    if(el)
+    {
+      setTimeout(() => this.myRef.current.scrollIntoView(), 100);
+      // this.scrolled = true;
+    }
+    else
+    {
+      setTimeout(() => this.scrollToBottom, 200);
+    }
+
+
+
+    // for(let i = 100; i <= 5000; i = i + 100)
+    // {
+    //   setTimeout(() => 
+    //   {
+    //     if(!this.scrolled)
+    //     this.myRef.current.scrollIntoView()
+    //   }, i)
+    // }
+  }  
 
   handleFile(e)
   {
@@ -159,8 +186,11 @@ class Conversation extends React.Component {
     this.props.removeModals();
     if(this.props.convo.otherUser.id === 6)
     {
-      this.state.bot = true;
+      this.setState({bot: true});
     }
+    // alert(this.myRef);
+    // this.scrolled = false;
+    this.scrollToBottom();
   }
 
   componentDidUpdate(prevProps) {
@@ -172,12 +202,15 @@ class Conversation extends React.Component {
       this.enterRoom();
       if(this.props.convo.otherUser.id === 6)
       {
-        this.state.bot = true;
+        this.setState({bot: true});
+
       }
       else
       {
-        this.state.bot = false;
+        this.setState({bot: false});
+
       }
+      this.scrollToBottom();
     }
   }
 
@@ -208,7 +241,7 @@ class Conversation extends React.Component {
   }
 
   render() {
-    let msgList = <li></li>;
+    let msgList = "";
    
     if (this.props.messages.length > 0)
     {
@@ -333,6 +366,18 @@ class Conversation extends React.Component {
       })
     }
 
+    let msgListFiller = "";
+    if(msgList !== "")
+    {
+      msgListFiller = 
+      <div>
+        <div id="msgfiller"> </div>
+        <div style={{ float:"left", clear: "both" }} id="mememe"
+          ref={this.myRef}>
+        </div>
+      </div>
+    }
+
     let otheruserInfo = null;
     if (this.props.convo)
     {
@@ -350,7 +395,9 @@ class Conversation extends React.Component {
         
           <ul id="dm-list">
             {msgList}
+            {msgListFiller}
           </ul>
+          
           {/* {preview} */}
          
           <div id="msg-form-wrapper">
@@ -368,6 +415,7 @@ class Conversation extends React.Component {
           </div>
           
           {this.renderErrors()}
+          {this.scrollToBottom()}
       </div>
     );
   }

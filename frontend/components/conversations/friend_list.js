@@ -60,6 +60,11 @@ class FriendList extends React.Component {
     this.props.fetchFriendsList(this.props.currentUser.id)
   }
 
+  handleClick(friend_id)
+  {
+    // this.props.findOrCreateConvo(this.props.currentUser.id, friend_id);
+  }
+
   update(property) {
     return e => this.setState({ [property]: e.currentTarget.value });
   }
@@ -102,7 +107,7 @@ class FriendList extends React.Component {
           }
 
           return(
-              <li key={fren.id} id="bruh0033">
+              <li key={fren.id} id="bruh0033" onClick={(e) => this.handleClick(fren.id)}>
                 <div id="bruh30">
                   <div className="bruh001" style={{paddingLeft: "0px"}}>
                     <img className="sidepfp" src={fren.pfp_url}></img>

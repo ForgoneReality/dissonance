@@ -167,7 +167,6 @@ class Channel extends React.Component {
     style, // Style object to be applied to row (to position it)
   }) {
     let formatted_msg = <div></div>;
-      console.log("hello");
     // if (this.props.messages.length > 0)
     // {
     //  let lastSenderID = -1;
@@ -288,8 +287,7 @@ class Channel extends React.Component {
 
     if (this.props.messages.length > 0)
     {
-     let lastSenderID = -1;
-     let msg = this.props.messages[index]
+      let msg = this.props.messages[index]
       let deleteButton = null;
       let editButton = null;
       let datemsg = null;
@@ -298,8 +296,8 @@ class Channel extends React.Component {
       let msgHeader = null;
       let filler = null;
     
-      
-      if(msg.author_id !== lastSenderID)
+      console.log("?");
+      if(index === 0 || msg.author_id !== this.props.messages[index-1].author_id)
       {
         
 
@@ -324,7 +322,6 @@ class Channel extends React.Component {
 
         mypfp = <img className="dm-pfp" src={msg.pfp_url} alt={msg.pfp_url}/>
         filler = <div id="msgfiller"> </div>
-        lastSenderID = msg.author_id;
       }
 
       
@@ -435,14 +432,14 @@ class Channel extends React.Component {
         </div>
           <List
             id="server-msg-list"
-            width={1254}
-            height={780.24}
+            width={document.documentElement.clientWidth - 544}
+            height={document.documentElement.clientHeight - 119 }
             rowCount={this.props.messages.length}
             rowHeight={71.84}
             rowRenderer={this.rowRenderer}
             overscanRowCount={2}
           />
-        <div id="msg-form-wrapper">
+        <div id="msg-form-wrapper" style={{width: "calc(100vw - 562px)"}}>
             <img src={window.uploadimg}></img>
             <div id="msg-form-bubble">
               <form id="msg-form">
