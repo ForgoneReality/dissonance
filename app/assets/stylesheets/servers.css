@@ -183,3 +183,30 @@
     overflow-y: scroll;
     height: calc(100vh - 66.75px);
 }
+
+#server-sidebar::-webkit-scrollbar{
+    display: none;
+}
+
+#server-sidebar{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#channel-users-list{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#channel-users-list::-webkit-scrollbar{
+    display: none;
+}
+
+#server-msg-list{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#server-msg-list::-webkit-scrollbar{
+    display: none;
+}

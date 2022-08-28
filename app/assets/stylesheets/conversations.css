@@ -395,3 +395,21 @@
     left: -150px;
     top: -4px;
 }
+
+#conversations-list{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#conversations-list::-webkit-scrollbar{
+    display: none;
+}
+
+#bruh0505{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+#bruh0505::-webkit-scrollbar{
+    display: none;
+}
