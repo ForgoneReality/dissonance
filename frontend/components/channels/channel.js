@@ -186,8 +186,14 @@ class Channel extends React.Component {
       let mypfp = <div className="no-pfp-filler"> </div>;
       let msgHeader = null;
       let filler = null;
+      let lastfiller = null;
     
       console.log("?");
+      if(index === this.props.messages.length - 1)
+      {
+        lastfiller = <div id="msgfiller"> </div>
+        
+      }
       if(index === 0 || msg.author_id !== this.props.messages[index-1].author_id)
       {
         let date = (Date.parse(msg.created_at));
@@ -280,6 +286,7 @@ class Channel extends React.Component {
       formatted_msg = (<div >
         {filler}
         {msgContent}
+        {lastfiller}
         <div className="msgbuttons">
           {editButton}
           {deleteButton}
@@ -336,6 +343,7 @@ class Channel extends React.Component {
                 rowHeight={this._cache.rowHeight}
                 rowRenderer={this.rowRenderer}
                 overscanRowCount={3}//change this later
+                scrollToIndex={this.props.messages.length-1}
               />)}
             </AutoSizer>
           </div>
