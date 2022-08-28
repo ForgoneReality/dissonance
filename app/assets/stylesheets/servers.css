@@ -39,6 +39,7 @@
 .channel{
     width: calc(100vw - 546px);
     background-color: #36393f;
+    height: 100vh;
 }
 
 .channel h1{

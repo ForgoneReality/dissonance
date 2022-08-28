@@ -2,7 +2,13 @@ import React from 'react';
 // import ScrollComponent from '../utility/scroll_component';
 
 import consumer from '../../consumer';
-import {List} from 'react-virtualized';
+import {CellMeasurer, CellMeasurerCache, List} from 'react-virtualized';
+import { AutoSizer } from 'react-virtualized';
+
+const cache = new CellMeasurerCache({
+  fixedWidth: true,
+  defaultHeight: 71
+})
 
 class Channel extends React.Component {
   constructor(props) {
@@ -399,9 +405,11 @@ class Channel extends React.Component {
     }
 
     return (
-      <div key={key} style={style} id="single-message">
-      {formatted_msg}
-    </div>
+      <CellMeasurer key={key} cache={cache} parent={parent} columnIndex={0} rowIndex={index}>
+        <div style={style} id="single-message">
+          {formatted_msg}
+        </div>
+      </CellMeasurer>
 
     );
   }
@@ -430,15 +438,21 @@ class Channel extends React.Component {
           {divider}
           <h2>{currChannelDescription}</h2>
         </div>
-          <List
-            id="server-msg-list"
-            width={document.documentElement.clientWidth - 544}
-            height={document.documentElement.clientHeight - 119 }
-            rowCount={this.props.messages.length}
-            rowHeight={71.84}
-            rowRenderer={this.rowRenderer}
-            overscanRowCount={2}
-          />
+          <div style={{height: "calc(100vh - 119px)"}}>
+            <AutoSizer>
+            {({height, width}) => (
+              <List
+                id="server-msg-list"
+                width={width}
+                height={height}
+                deferredMeasurementCache={cache}
+                rowCount={this.props.messages.length}
+                rowHeight={cache.rowHeight}
+                rowRenderer={this.rowRenderer}
+                overscanRowCount={2}
+              />)}
+            </AutoSizer>
+          </div>
         <div id="msg-form-wrapper" style={{width: "calc(100vw - 562px)"}}>
             <img src={window.uploadimg}></img>
             <div id="msg-form-bubble">
