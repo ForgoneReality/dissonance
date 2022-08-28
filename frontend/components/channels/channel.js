@@ -5,11 +5,6 @@ import consumer from '../../consumer';
 import {CellMeasurer, CellMeasurerCache, List} from 'react-virtualized';
 import { AutoSizer } from 'react-virtualized';
 
-const cache = new CellMeasurerCache({
-  fixedWidth: true,
-  defaultHeight: 71
-})
-
 class Channel extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +20,11 @@ class Channel extends React.Component {
       photoFile: null,
       photoUrl: null
     }
+
+    this._cache = new CellMeasurerCache({
+      fixedWidth: true,
+      defaultHeight: 71
+    })
 
     this.rowRenderer = this.rowRenderer.bind(this);
   }
@@ -133,6 +133,7 @@ class Channel extends React.Component {
   componentDidUpdate(prevProps) {
     const prevConvoId = prevProps.channelId;
     if (prevConvoId !== this.props.channelId) {
+      this._cache.clearAll();
       this.props.getChannelMessages(this.props.channelId);
       this.subscription?.unsubscribe();
       this.enterRoom();
@@ -171,125 +172,9 @@ class Channel extends React.Component {
     isScrolling, // The List is currently being scrolled
     isVisible, // This row is visible within the List (eg it is not an overscanned row)
     style, // Style object to be applied to row (to position it)
+    parent
   }) {
     let formatted_msg = <div></div>;
-    // if (this.props.messages.length > 0)
-    // {
-    //  let lastSenderID = -1;
-    //  msgList = Object.values(this.props.messages).map( (msg) =>{
-    //   let deleteButton = null;
-    //   let editButton = null;
-    //   let datemsg = null;
-    //   let myimg = null;
-    //   let mypfp = <div className="no-pfp-filler"> </div>;
-    //   let msgHeader = null;
-    //   let filler = null;
-    
-      
-    //   if(msg.author_id !== lastSenderID)
-    //   {
-        
-
-    //     let date = (Date.parse(msg.created_at));
-    //     let dmy = new Date(date);
-
-    //     let today = new Date();
-    //     if (dmy.toDateString() === today.toDateString())
-    //     {
-    //       datemsg = "Today at " + dmy.toLocaleTimeString("en-us", {hour: "numeric", minute: "numeric"});
-    //     }
-    //     else
-    //     {
-    //       datemsg = dmy.toDateString();
-    //     }
-    //     let the_name = msg.nickname ? msg.nickname : msg.author_name
-
-    //     msgHeader = (<h2>
-    //       <span className="message-username">{the_name}</span>
-    //       <span className="message-date">{datemsg}</span>
-    //     </h2>)
-
-    //     mypfp = <img className="dm-pfp" src={msg.pfp_url} alt={msg.pfp_url}/>
-    //     filler = <div id="msgfiller"> </div>
-    //     lastSenderID = msg.author_id;
-    //   }
-
-      
-    //   if (msg.image_url)
-    //   {
-    //     myimg = <img className="msg-img" src={msg.image_url}></img>
-    //   }
-
-    //   let msgContent = <div className="message">
-    //     {mypfp}
-    //     <div>
-    //       {msgHeader}
-    //       <p className="msg-content">{msg.content}</p>
-    //       {myimg}
-    //     </div>
-    //   </div>
-
-    //   if(msg.author_id === this.props.currentUser.id)
-    //   {
-        
-    //     if(this.state.editing === msg.id)
-    //     {
-
-    //       if(this.firstTime === 2)
-    //       {
-    //         this.setState({editmsg: msg.content}); //needless
-    //         this.firstTime = 1;
-    //       }
-    //       msgContent = (
-    //         <form id="edit-msg-form">
-    //           <textarea id="edit-msg-textform" value={this.state.editmsg} onChange={this.update("editmsg")}></textarea>
-    //           <button className="invisible" type="Submit">Edit</button>
-    //         </form>)
-
-       
-    //       if(this.firstTime === 1)
-    //       {
-    //         let edittxt = document.getElementById("edit-msg-textform");
-    //         if(edittxt)
-    //         {
-    //           let temp = edittxt.value;
-    //           edittxt.value = "";
-    //           edittxt.value = temp;
-    //           edittxt.focus();
-
-    //           edittxt.addEventListener("keypress", this.submitOnEnter);
-    //           document.getElementById("edit-msg-form").addEventListener("submit", this.handleEditSubmit);
-    //           this.firstTime = 0;
-    //         }
-    //       }
-    //     }
-    //     else
-    //     {
-    //       deleteButton = (<button id="delete-msg-button" onClick={() => {if(!this.state.bot){this.props.deleteMessage(msg.id)}}}>
-    //          <img src={window.deleteicon}/>
-    //       </button>)
-
-    //       editButton = <button id="edit-msg-button" onClick={() => {
-    //         this.firstTime = 2;
-    //         this.setState({editing: msg.id});
-    //       }
-    //       }>
-    //         <img src={window.editmessage}/>
-    //       </button>
-    //     }
-    //   }
-    //   return (
-      
-    //   <div key={msg.id} >
-    //     {filler}
-    //     {msgContent}
-    //     <div className="msgbuttons">
-    //       {editButton}
-    //       {deleteButton}
-    //     </div>
-    //   </div>)
-    //   })
-    // }
 
     if (this.props.messages.length > 0)
     {
@@ -305,8 +190,6 @@ class Channel extends React.Component {
       console.log("?");
       if(index === 0 || msg.author_id !== this.props.messages[index-1].author_id)
       {
-        
-
         let date = (Date.parse(msg.created_at));
         let dmy = new Date(date);
 
@@ -394,7 +277,7 @@ class Channel extends React.Component {
           </button>
         }
       }
-      formatted_msg = (<div key={msg.id} >
+      formatted_msg = (<div >
         {filler}
         {msgContent}
         <div className="msgbuttons">
@@ -405,10 +288,13 @@ class Channel extends React.Component {
     }
 
     return (
-      <CellMeasurer key={key} cache={cache} parent={parent} columnIndex={0} rowIndex={index}>
-        <div style={style} id="single-message">
+      <CellMeasurer key={key} cache={this._cache} parent={parent} columnIndex={0} rowIndex={index}>
+        {({measure, registerChild}) => 
+        (<div style={style} ref={registerChild} id="single-message" >
           {formatted_msg}
-        </div>
+         
+        </div>)
+        }
       </CellMeasurer>
 
     );
@@ -445,11 +331,11 @@ class Channel extends React.Component {
                 id="server-msg-list"
                 width={width}
                 height={height}
-                deferredMeasurementCache={cache}
+                deferredMeasurementCache={this._cache}
                 rowCount={this.props.messages.length}
-                rowHeight={cache.rowHeight}
+                rowHeight={this._cache.rowHeight}
                 rowRenderer={this.rowRenderer}
-                overscanRowCount={2}
+                overscanRowCount={3}//change this later
               />)}
             </AutoSizer>
           </div>
