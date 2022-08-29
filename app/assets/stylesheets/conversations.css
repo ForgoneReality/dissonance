@@ -114,6 +114,9 @@
     font-size: 1rem;
     line-height: 1.375rem;
     color: #dcddde;
+    word-break: break-all;
+    white-space: normal;
+    width: 720px;
 }
 
 .msg-img {
@@ -312,6 +315,9 @@
     border-top: solid 1px #3e4248;
     padding-left: 16px;
     border-radius: 5px;
+    justify-content: space-between; 
+    padding-right: 16px;
+    align-items: center;
 }
 
 #bruh0033:hover{
@@ -332,7 +338,6 @@
 .bruh0244{
     display: "flex";
     flex-direction: "column";
-    margin-top:11px;
 }
 
 .bruh0244 > p{

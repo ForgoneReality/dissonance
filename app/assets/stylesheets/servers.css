@@ -34,6 +34,10 @@
 #channel-users-list-header{
     height: 48px;
     width: 100%;
+    background-color: #36393f;
+    border-bottom: #2b2e32 solid 1.5px;
+    display: flex;
+    align-items: center;
 }
 
 .channel{
@@ -90,8 +94,8 @@
     align-items: center;
     border-radius: 4px;
     gap: 5px;
-    margin-left: 4px;
-    margin-right: 4px;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
 .ChannelsList img{
@@ -112,9 +116,12 @@
 #channel-header{
     display: flex;
     flex-flow: row nowrap;
-    height: 48px;
+    height: 46.5px;
     align-items: center;
     border: 1.5px solid #2b2e32;
+    border-right: 0px;
+    border-left: 0px;
+    justify-content: space-between;
 }
 
 #header-hashtag{
@@ -210,4 +217,26 @@
 
 #server-msg-list::-webkit-scrollbar{
     display: none;
+}
+
+#search-bar{
+    width: 224px;
+    background-color: #202225;
+    display: flex;
+    align-items: center;
+    height: 24px;
+    border-radius: 5px;
+}
+
+#search-bar > input{
+    height: 20px;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+    padding-left: 4px;
+    background: none;
+    width: 194px;
+    color: #dcddde;
+    font-size: 14px;
+    font-family: Whitney, "Helvetica Neue";
 }

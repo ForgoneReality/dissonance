@@ -384,6 +384,25 @@
     justify-content: space-between;
 }
 
+#bruh3094:hover p{
+    color: white;
+}
+
+#bruh3094:hover{
+    background-color: #43474d;
+
+}
+
+#bruh3095{
+    display: flex;
+    justify-content: space-between;
+    background-color: #43474D;
+}
+
+#bruh3095 p{
+    color: white;
+}
+
 #copy-link{
     transform: translate(-0%, -50%);
     top: 28px;
