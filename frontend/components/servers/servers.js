@@ -45,6 +45,7 @@ class Server extends React.Component {
   }
 
   render() {
+    console.log("nopeee", this.props.usersList);
     let usersList = this.props.usersList.map( (user) => {
       let useronlinestatus = null;
       if(user.status === "online")

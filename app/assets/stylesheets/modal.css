@@ -474,6 +474,8 @@
     color: #B9BBBE;
     font-family: Whitney, "Helvetica Neue";
     font-weight: 150;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 #user-modal label{

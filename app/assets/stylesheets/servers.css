@@ -161,7 +161,7 @@
     background: gray;
 }
 
-#channel-header > h2{
+#channel-header h2{
     font-size: 14px;
     font-family: Whitney, "Helvetica Neue";
     color: #B9BBBE;

@@ -191,7 +191,6 @@ class Channel extends React.Component {
       let filler = null;
       let lastfiller = null;
     
-      console.log("?");
       if(index === this.props.messages.length - 1)
       {
         lastfiller = <div id="msgfiller"> </div>
@@ -214,11 +213,23 @@ class Channel extends React.Component {
         let the_name = msg.nickname ? msg.nickname : msg.author_name
 
         msgHeader = (<h2>
-          <span className="message-username">{the_name}</span>
+          <span className="message-username" onClick={() => {
+          let user = this.props.usersList.find((u) => 
+            u.id === msg.author_id
+          );
+          console.log("gih", user);
+          this.props.displayModal("user-modal", user);
+        }}>{the_name}</span>
           <span className="message-date">{datemsg}</span>
         </h2>)
 
-        mypfp = <img className="dm-pfp" src={msg.pfp_url} alt={msg.pfp_url}/>
+        mypfp = <img className="dm-pfp" onClick={() => {
+          let user = this.props.usersList.find((u) => 
+            u.id === msg.author_id
+          );
+          console.log("gih", user);
+          this.props.displayModal("user-modal", user);
+        }} src={msg.pfp_url} alt={msg.pfp_url}/>
         filler = <div id="msgfiller"> </div>
       }
 
@@ -329,7 +340,7 @@ class Channel extends React.Component {
     return (
       <div className="channel">
         <div id="channel-header">
-          <div style={{display: "flex"}}>
+          <div style={{display: "flex", alignItems: "center"}}>
             <img id="header-hashtag" src={window.hashtag}></img>
             <h1>{currChannelName}</h1>
             {divider}
