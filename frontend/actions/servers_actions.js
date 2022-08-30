@@ -9,6 +9,8 @@ export const RECEIVE_SERVER = "RECEIVE_SERVER";
 export const DELETE_SERVER = "DELETE_SERVER";
 export const RECEIVE_CURRENT_SERVER = "RECEIVE_CURRENT_SERVER";
 export const RECEIVE_SERVER_ERROR = "RECEIVE_SERVER_ERROR";
+export const RECEIVE_CURRENT_SEARCH = "RECEIVE_CURRENT_SEARCH";
+export const CLEAR_CURRENT_SEARCH = "CLEAR_CURRENT_SEARCH";
 
 export const receiveServers = (servers) => {
     return {
@@ -38,6 +40,11 @@ export const receiveServerError = (error) => ({
   type: RECEIVE_SERVER_ERROR,
   error
 })
+
+export const receiveCurrentSearch = (search) =>({
+  type:RECEIVE_CURRENT_SEARCH,
+  search
+});
 
 
 export const getServersList = userId => dispatch => (
@@ -77,6 +84,12 @@ export const removeServer = id => dispatch => {
 export const leaveServer = (user_id, server_id) => dispatch => {
   return APIUtil.leaveServer(user_id, server_id).then((res) => {
     dispatch(deleteServer(server_id));//technically can also do currentServer dispatch, but it should be non-consequential  
+  })
+}
+
+export const searchServer = (server_id, query) => dispatch => {
+  return APIUtil.searchServer(server_id, query).then((res) => {
+    dispatch(receiveCurrentSearch(res));
   })
 }
 

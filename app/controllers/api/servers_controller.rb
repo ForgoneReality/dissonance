@@ -90,7 +90,8 @@ class Api::ServersController < ApplicationController
     def search
         @server = Server.find(params[:id])
         #probably do filtering here
-        @messages = @server.messages
+        boi = params["content"]
+        @messages = @server.messages.where("lower(content) LIKE ?", "%#{boi}%").order("created_at DESC")
         render json: @messages
     end
 

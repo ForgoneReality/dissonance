@@ -249,3 +249,10 @@
     margin-top: 16px;
     margin-left: 16px;
 }
+
+#bruh4055{
+    height: calc(100vh - 105.5px);
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}

@@ -61,7 +61,15 @@ export const joinServer = (user_id, server_id) => {
     })
 }
 
-
+export const searchServer = (server_id, query) => {
+    return $.ajax({
+        url: `api/servers/${server_id}/search`,
+        method: "get",
+        data: {
+            content: query["content"].toLowerCase()
+        }
+    })
+}
 
 // export const createServer = (server) => (
 //     $.ajax({
