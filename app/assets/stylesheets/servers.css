@@ -256,3 +256,24 @@
     flex-direction: column;
     overflow-y: scroll;
 }
+
+#bruh4133{
+    color: white;
+    font-size: 16px;
+    font-family: Whitney, "Helvetica Neue";
+    padding-bottom: 8px;
+    padding-left: 16px;
+}
+
+.message2{
+    margin-left: 16px;
+    display: flex;
+    gap: 15px;
+    padding-top: 4px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    background: #36393f;
+    padding-right: 16px;
+    margin-right: 16px;
+    border-radius: 7px;
+}

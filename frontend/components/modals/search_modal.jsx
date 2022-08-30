@@ -38,8 +38,6 @@ constructor(props) {
     {
       stuff = this.props.search.map((msg) => {
         let datemsg;
-        console.log(user, "UFPIVPO");
-        console.log(this.props.users)
         let user = this.props.users.find((user) => user.id === msg.author_id);
         let date = (Date.parse(msg.created_at));
         let dmy = new Date(date);
@@ -53,10 +51,13 @@ constructor(props) {
         {
           datemsg = dmy.toDateString();
         }
+        let ch = this.props.channels.find((channel) => channel.id === msg.location_id);
+        let channelHeader = <div id="bruh4133">{`# ${ch.name}`}</div>
         return(
           <div>
             <div id="msgfiller"></div>
-            <div className="message">
+            {channelHeader}
+            <div className="message2">
               <img class="dm-pfp" src={user.pfp_url}/>
               <div>
                 <h2>
@@ -94,7 +95,8 @@ const mapStateToProps = (state) => {
     modal: state.ui.modal,
     search: state.current.search, //bad code... non-inituitive state but search is currently occupied by something else and I'd rather not refactor atm
     server_id: state.current.server.id,
-    users: Object.values(state.entities.users)
+    users: Object.values(state.entities.users),
+    channels: Object.values(state.entities.channels)
   };
 };
 

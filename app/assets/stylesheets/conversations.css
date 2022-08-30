@@ -78,7 +78,17 @@
     font-family: 'Whitney';
 }
 
+.message2 span{
+    font-family: "Whitney"
+}
+
 .message h2, p{
+    margin-top: 0px;
+
+    margin-bottom: 0px;
+}
+
+.message2 h2, p{
     margin-top: 0px;
 
     margin-bottom: 0px;

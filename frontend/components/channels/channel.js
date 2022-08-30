@@ -198,6 +198,7 @@ class Channel extends React.Component {
       let msg = this.props.messages[index]
       let deleteButton = null;
       let editButton = null;
+      let pinButton = null;
       let datemsg = null;
       let myimg = null;
       let mypfp = <div className="no-pfp-filler"> </div>;
@@ -260,6 +261,11 @@ class Channel extends React.Component {
         </div>
       </div>
 
+      // if(this.props.currentUser.id === this.props.currentServer.owner_id) //CHANGE TO ROLE PERMISSIONS WHEN I GET 
+      // {
+            //pin messages
+      // }
+
       if(msg.author_id === this.props.currentUser.id)
       {
         
@@ -307,6 +313,7 @@ class Channel extends React.Component {
           }>
             <img src={window.editmessage}/>
           </button>
+          
         }
       }
       formatted_msg = (<div >
