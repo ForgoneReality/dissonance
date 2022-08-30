@@ -18,7 +18,7 @@ constructor(props) {
 
   // }
 
-  modalOpen(modalname)
+  modalOpen(modalname) //no idea why i have this
   {
     this.props.displayModal(modalname);
   }

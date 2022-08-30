@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { removeErrors } from '../../actions/errors_actions.js';
 import { getChannelMessages } from '../../actions/channels_actions.js';
 import { createMessage, deleteMessage, updateMessage, otherReceiveMessage, removeMessage } from '../../actions/messages_actions';
-import{resetModal, displayModal} from "../../actions/modal_actions.js"
+import{resetModal, displayModal, hideModal} from "../../actions/modal_actions.js"
 
 
 import Channel from "./channel.js"
@@ -14,7 +14,8 @@ const mapStateToProps = (state) => {
     currentUser: state.session.currentUser,
     channels: state.entities.channels,
     messages: Object.values(state.entities.messages),
-    usersList: Object.values(state.entities.users)
+    usersList: Object.values(state.entities.users),
+    modal: state.ui.modal
   };
 };
 
@@ -28,7 +29,8 @@ const mapDispatchToProps = dispatch => {
     editMessage: (msg) => dispatch(updateMessage(msg)),
     receiveMessage: (msg) => dispatch(otherReceiveMessage(msg)),
     removeMessage: (msgId) => dispatch(removeMessage(msgId)),
-    displayModal: (modal, payload) => dispatch(displayModal(modal, payload))
+    displayModal: (modal, payload) => dispatch(displayModal(modal, payload)),
+    hideModal: () => dispatch(hideModal())
   };
 };
 

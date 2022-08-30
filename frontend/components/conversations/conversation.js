@@ -289,12 +289,13 @@ class Conversation extends React.Component {
         myimg = <img className="msg-img" src={msg.image_url}></img>
       }
 
+      let actual_msg = msg.edited ? <p className="msg-content">{msg.content} <span style={{color: "#A3A6AA", fontSize: "10px"}}>(edited)</span></p> : <p className="msg-content">{msg.content}</p>
       let msgContent = <div className="message">
       
         {mypfp}
         <div>
           {msgHeader}
-          <p className="msg-content">{msg.content}</p>
+          {actual_msg}
           {myimg}
         </div>
       </div>

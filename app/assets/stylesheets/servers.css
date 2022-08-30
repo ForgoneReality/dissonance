@@ -228,7 +228,7 @@
     border-radius: 5px;
 }
 
-#search-bar > input{
+#search-bar input{
     height: 20px;
     padding: 0px;
     margin: 0px;
@@ -239,4 +239,13 @@
     color: #dcddde;
     font-size: 14px;
     font-family: Whitney, "Helvetica Neue";
+}
+
+#pain4{
+    font-size: 13px;
+    font-family: Whitney, "Helvetica Neue";
+    color: #BDBBBE;
+    font-style: italic;
+    margin-top: 16px;
+    margin-left: 16px;
 }

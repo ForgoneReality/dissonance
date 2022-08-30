@@ -49,6 +49,9 @@ class Api::MessagesController < ApplicationController
 
      
       if @message.update(message_edit_params)
+
+        @message.edited = true
+        @message.save!
         if(@message.location_type == "Conversation")
           ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: @message)
         elsif(@message.location_type == "Channel")

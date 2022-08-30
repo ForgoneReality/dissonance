@@ -20,6 +20,7 @@ class Server < ApplicationRecord
     belongs_to :owner, class_name: "User", foreign_key: :owner_id, primary_key: :id
 
     has_many :channels, class_name: "Channel", foreign_key: :server_id, dependent: :destroy
+    has_many :messages, through: :channels, source: :messages
 
     has_one_attached :icon
     has_many :roles, class_name: "Role", foreign_key: :server_id, dependent: :destroy, primary_key: :id

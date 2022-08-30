@@ -84,8 +84,14 @@ class Api::ServersController < ApplicationController
             else
                 render json: ["An Error Occurred with Joining the Server"], status: 422
             end
-        end
-        
+        end 
+    end
+
+    def search
+        @server = Server.find(params[:id])
+        #probably do filtering here
+        @messages = @server.messages
+        render json: @messages
     end
 
   

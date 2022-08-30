@@ -17,6 +17,7 @@ import {
 } from 'react-router-dom';
 import Footerr from './footer';
 import DropdownModal from '../modals/dropdown_modal';
+import SearchModal from '../modals/search_modal';
 
 class AppBasics extends React.Component {
   constructor(props) {
@@ -67,6 +68,12 @@ class AppBasics extends React.Component {
     {
       useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#faa81b" /> </svg> 
     }
+
+    let searchMaybe = "";
+    if(this.props.modal && this.props.modal.name === "search-message")
+    {
+      searchMaybe = <SearchModal></SearchModal>
+    }
     
     return(
         <main>
@@ -96,6 +103,7 @@ class AppBasics extends React.Component {
             <FullModal/>
             <Modal/>
             <DropdownModal/>
+            {searchMaybe}
         </main> 
     )
   }

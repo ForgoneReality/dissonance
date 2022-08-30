@@ -518,3 +518,25 @@
 #dropdown path:hover{
     fill: white;
 }
+
+#search-results{
+    position: fixed;
+    right: 0px;
+    height: calc(100vh - 48px);
+    bottom: 0px;
+    background-color: #2f3136;
+    width: 418px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+}
+
+#bruh4941{
+    height: 56px;
+    background-color: #202225;
+    font-size: 16px;
+    color: white;
+    font-family: 'Whitney', "Helevetica Neue";
+    line-height: 56px;
+    padding-left: 16px;
+}
