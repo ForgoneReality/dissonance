@@ -93,6 +93,12 @@ export const searchServer = (server_id, query) => dispatch => {
   })
 }
 
+export const updateServerLink = (server_id, invite_link) => dispatch => {
+  return APIUtil.updateServerLink(server_id, invite_link).then((res) => {
+    dispatch(receiveCurrentServer(res));
+  })
+}
+
 // export const generateServer = server => dispatch => {
 //   console.log("server", server);
 //   return APIUtil.createServer(server).then((res) => dispatch(receiveServer(res)))

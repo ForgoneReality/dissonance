@@ -53,6 +53,7 @@ class Server extends React.Component {
   }
 
   render() {
+    let templabel = <div id="bruh4111">{`MEMBERS — ${this.props.usersList.length}`}</div>;
     let usersList = this.props.usersList.map( (user) => {
       let useronlinestatus = null;
       if(user.status === "online")
@@ -153,9 +154,12 @@ class Server extends React.Component {
                 {search_img}
               </div>
             </div>
-            <ul id="channel-users-list">
-              {usersList}
-            </ul>
+            <div>
+              {templabel}
+              <ul id="channel-users-list">
+                {usersList}
+              </ul>
+            </div>
         </div>
 
       </section>

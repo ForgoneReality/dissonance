@@ -81,7 +81,7 @@ class FriendList extends React.Component {
   }
 
   render() {
-    let sortedList = Object.values(this.props.friends).sort((a,b) => a.username > b.username ? 1 : -1);
+    let sortedList = Object.values(this.props.friends).sort((a,b) => a.username.toLowerCase() > b.username.toLowerCase() ? 1 : -1);
     let onlineList = sortedList.filter((user) => user.status !== "offline")
 
     let button1 = this.state.selectedTab === 0 ? <button className="butt-selected">Online</button> : <button className="butt" onClick={() => this.setState({selectedTab: 0})}>Online</button>
@@ -167,7 +167,7 @@ class FriendList extends React.Component {
           }
 
           return(
-            <li key={fren.id} id="bruh0033">
+            <li key={fren.id} id="bruh0033" onClick={(e) => this.handleClick(fren.id)}>
             <div id="bruh30">
               <div className="bruh001" style={{paddingLeft: "0px"}}>
                 <img className="sidepfp" src={fren.pfp_url}></img>
@@ -179,6 +179,9 @@ class FriendList extends React.Component {
                 <h2>{fren.username}</h2>
                 <p>{fren.bio && fren.status !== "offline" ? fren.bio : fren.status}</p>
               </div>
+            </div>
+            <div style={{background: "#2F3136", borderRadius: "24px", width: "36px", height: "36px", display: "flex", alignItems: "center", justifyContent: "center"}}>
+              <svg class="icon-1WVg4I" aria-hidden="true" role="img" width="20" height="20" viewBox="0 0 24 24" fill="none"><path fill="#B9BBBE" d="M4.79805 3C3.80445 3 2.99805 3.8055 2.99805 4.8V15.6C2.99805 16.5936 3.80445 17.4 4.79805 17.4H7.49805V21L11.098 17.4H19.198C20.1925 17.4 20.998 16.5936 20.998 15.6V4.8C20.998 3.8055 20.1925 3 19.198 3H4.79805Z"></path></svg>
             </div>
           </li>
           )

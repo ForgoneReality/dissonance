@@ -31,7 +31,7 @@ class Api::ServersController < ApplicationController
     def update
         @server = Server.find(params[:id])
         if @server.update(server_params)
-            if(params["server"]["icon"])
+            if(params["server"]["icon"] && params["server"]["icon"] != "null") #strange conversion of null from javascript turns into a string somehow in ruby
                 if(@server.icon.attached?)
                     @server.icon.purge
                 end

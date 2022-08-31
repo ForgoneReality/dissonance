@@ -71,6 +71,18 @@ export const searchServer = (server_id, query) => {
     })
 }
 
+export const updateServerLink = (server_id, invite_link) => {
+    return $.ajax({
+        url: `api/servers/${server_id}`,
+        method: "patch",
+        data: {
+            server: {
+            server_link: invite_link
+            }
+        }
+    })
+}
+
 // export const createServer = (server) => (
 //     $.ajax({
 //         url: `api/servers`,

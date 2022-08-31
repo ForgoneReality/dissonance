@@ -59,6 +59,8 @@ class CreateServerModal extends React.Component {
           this.props.hideModal();
           this.props.receiveServer(response);
           this.props.history.push(`/channels/${response.firstChannel.id}`)
+          this.props.history.go();
+
         })
         break;
       case "joinserver":

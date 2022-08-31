@@ -8,17 +8,23 @@ class ServerSettings extends React.Component {
             photoUrl: this.props.currentServer.image_url,
             photoFile: null,
             changed: false, 
-            tabSelected: 0
+            tabSelected: 0,
+            invitelink: this.props.currentServer.server_link,
+            invite_mode: 0
         }
         this.state = {
             name: this.props.currentServer.name,
             photoUrl: this.props.currentServer.image_url,
             photoFile: null,
             changed: false,
-            tabSelected: 0
+            tabSelected: 0,
+            invitelink: this.props.currentServer.server_link,
+            invite_mode: 0
         }
         this.handleFile = this.handleFile.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSubmit2 = this.handleSubmit2.bind(this)
+
 
     }
 
@@ -57,7 +63,19 @@ class ServerSettings extends React.Component {
             console.log("CHANGED: ", this.state);
             this.props.updateServer(res);
         });
+    }
 
+    handleSubmit2(e)
+    {
+        e.preventDefault();
+        this.props.updateInviteLink(this.props.currentServer.id, this.state.invitelink).then((res) => {
+            if(Array.isArray(res))
+            {
+            this.setState({invite_mode: 2});
+            }
+            else
+                this.setState({invite_mode: 1});
+        }, () => this.setState({invite_mode: 2}));
     }
 
     update(field) {
@@ -83,7 +101,7 @@ class ServerSettings extends React.Component {
         let button1 = this.state.tabSelected === 0 ? <div className="bruh-selected">Overview</div> : <div className="bruh-unselected" onClick={() => this.setState({tabSelected: 0})}>Overview</div>;
         let button2 = this.state.tabSelected === 1 ? <div className="bruh-selected">Roles</div> : <div className="bruh-unselected" onClick={() => this.setState({tabSelected: 1})}>Roles</div>;
         let button3 = this.state.tabSelected === 2 ? <div className="bruh-selected">Emoji</div> : <div className="bruh-unselected" onClick={() => this.setState({tabSelected: 2})}>Emoji</div>;
-        let button4 = this.state.tabSelected === 3 ? <div className="bruh-selected">Custom Invite Link</div> : <div className="bruh-unselected" onClick={() => this.setState({tabSelected: 3})}>Custom Invite Link</div>;
+        let button4 = this.state.tabSelected === 3 ? <div className="bruh-selected">Custom Invite Link</div> : <div className="bruh-unselected" onClick={() => this.setState({tabSelected: 3, invite_mode: 0})}>Custom Invite Link</div>;
 
         let settingsContent;
 
@@ -147,6 +165,28 @@ class ServerSettings extends React.Component {
 
                         </div>
                     </div>
+                </div>
+                break;
+            case 2:
+                break;
+            case 3:
+                let extraText = "";
+                if(this.state.invite_mode === 1)
+                {
+                    extraText = <div id="nyo">Successfully changed Invite Link!</div>
+                }
+                else if(this.state.invite_mode === 2)
+                {
+                    extraText = <div id="nye">Invite Link is already taken</div>
+                }
+                settingsContent = <div id="right-side-settings">
+                    <h1 style={{marginTop: "32px"}}>Custom Invite Link</h1>
+                    <form onSubmit={this.handleSubmit2} id="addfriendform" style={{marginBottom: "0px"}}>
+                        <input type="text" id="addfriendinput" value={this.state.invitelink} onChange={this.update("invitelink")}></input>
+                        <button type="submit" id="emoney" className="submit1">Update Link</button>
+                    </form>
+                    {extraText}
+
                 </div>
                 break;
             default:
