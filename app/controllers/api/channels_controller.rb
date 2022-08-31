@@ -35,6 +35,14 @@ class Api::ChannelsController < ApplicationController
         end
     end
 
+    def destroy
+        @channel = Channel.find(params[:id])
+        @server = @channel.server
+        @channel.destroy
+        
+        render json: @server.channels[0]
+    end
+
     private
     def channel_params
         params.require(:channel).permit(:name, :server_id, :description)

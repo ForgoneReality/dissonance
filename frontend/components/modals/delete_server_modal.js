@@ -42,7 +42,6 @@ class DeleteServerModal extends React.Component {
         this.props.history.push("/conversations");
         console.log("!!");
     }
-
     else
     {
         this.setState({failed: true});

@@ -2,7 +2,7 @@ import React from 'react';
 // import {compose} from 'redux';
 import { connect } from 'react-redux';
 import { removeErrors } from '../../actions/errors_actions';
-import { hideModal, resetModal } from '../../actions/modal_actions';
+import { hideFullModal, hideModal, resetModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router-dom';
 import {removeChannel} from "../../actions/channels_actions"
 
@@ -12,6 +12,10 @@ class DeleteChannelModal extends React.Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this)
+
+    this.state = {
+      lastchannel: false
+    }
   }
 
 
@@ -23,15 +27,14 @@ class DeleteChannelModal extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // console.log(".")
-    // const history = useHistory();
-    // console.log("nah");
-
-        this.props.processForm(this.props.currentServer.id).then((res) => {
-            let new_channel_id = Object.values(this.props.channels)[0].id;
-            this.props.history.push(`/conversations/${new_channel_id}`);
-        })
-        this.props.hideModal();
+    this.props.processForm(this.props.currentChannel.id).then((res) => {
+      console.log("!#$!E:", res);
+      let new_channel_id = res.channel.id;
+      this.props.history.push(`/channels/${new_channel_id}`);
+      this.props.history.go();
+    })
+    this.props.hideModal();
+    this.props.hideFullModal();
   }
 
 
@@ -45,7 +48,7 @@ class DeleteChannelModal extends React.Component {
           
         <div className="edit-modal-bottom" id="bruh0499" style={{width:"calc(35vw - 16px)"}}>
             <button className="cancel1" onClick={() => this.props.hideModal()}>Cancel</button>
-            <button type="submit" className="delete-button" style={{margin: "0px"}} onClick={this.props.handleSubmit}>Delete Server</button>
+            <button type="submit" className="delete-button" style={{margin: "0px"}} onClick={this.handleSubmit}>Delete Channel</button>
         </div>
       </div>
     );
@@ -66,7 +69,8 @@ const mapDispatchToProps = dispatch => {
   return {
     removeErrors: () => dispatch(removeErrors()),
     hideModal: () => dispatch(hideModal()),
-    processForm: (id) => dispatch(removeServer(id))
+    hideFullModal: () => dispatch(hideFullModal()),
+    processForm: (id) => dispatch(removeChannel(id))
   };
 };
 
