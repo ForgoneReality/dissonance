@@ -78,7 +78,7 @@ class ServerSettings extends React.Component {
             </div>
         </div> : <div></div>
 
-        let pfp = this.state.photoFile ? <img src={this.props.currentServer.image_url} id="server_img_large"/> : <a className="server-link2"><div id="broi">{this.props.currentServer.name[0].toUpperCase()}</div></a>
+        let pfp = this.state.photoUrl ? <img src={this.state.photoUrl} id="server_img_large"/> : <a className="server-link2"><div id="broi">{this.props.currentServer.name[0].toUpperCase()}</div></a>
 
         let button1 = this.state.tabSelected === 0 ? <div className="bruh-selected">Overview</div> : <div className="bruh-unselected" onClick={() => this.setState({tabSelected: 0})}>Overview</div>;
         let button2 = this.state.tabSelected === 1 ? <div className="bruh-selected">Roles</div> : <div className="bruh-unselected" onClick={() => this.setState({tabSelected: 1})}>Roles</div>;
