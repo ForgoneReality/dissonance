@@ -261,10 +261,12 @@ class Channel extends React.Component {
         </div>
       </div>
 
-      // if(this.props.currentUser.id === this.props.currentServer.owner_id) //CHANGE TO ROLE PERMISSIONS WHEN I GET 
-      // {
-            //pin messages
-      // }
+      if(this.props.currentUser.id === this.props.currentServer.owner_id) //CHANGE TO ROLE PERMISSIONS WHEN I GET 
+      {
+        pinButton = <button id="pin-msg-button" onClick={() => this.props.pinMessage(msg.id)}>
+        <img src={window.pinicon}/>
+     </button>
+      }
 
       if(msg.author_id === this.props.currentUser.id)
       {
@@ -321,6 +323,7 @@ class Channel extends React.Component {
         {msgContent}
         {lastfiller}
         <div className="msgbuttons">
+          {pinButton}
           {editButton}
           {deleteButton}
         </div>
