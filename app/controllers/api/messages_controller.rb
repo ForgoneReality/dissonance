@@ -64,6 +64,17 @@ class Api::MessagesController < ApplicationController
       end
     end
 
+    def pin
+      @message = Message.find(params[:id])
+
+      @message.pinned = !@message.pinned
+      if @message.save
+        render "_helper", locals: { message: @message }
+      else
+        render json: @message.errors.full_messages, status: 422
+      end
+    end
+
   private
   def message_params
     params.require(:message).permit(:content, :author_id, :location_type, :location_id)

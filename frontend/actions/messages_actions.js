@@ -76,3 +76,7 @@ export const deleteMessage = (msg)=> d => (
 // APIUtil.deleteTodo(todo).then( (result) => d(removeMessage(result)), (err) => d(receiveErrors(err.responseJSON)))
 APIUtil.deleteMessage(msg).then( (result) => d(removeMessage(result.id)), (err) => d(receiveMessageErrors(err.responseJSON)))
 ) 
+
+export const pinMessage = (msgId) => d => {
+  APIUtil.pinMessage(msgId).then((res) => d(receiveMessage(res)))
+}

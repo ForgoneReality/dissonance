@@ -31,7 +31,9 @@ Rails.application.routes.draw do
     resources :channels, only: [:show, :index, :create, :update, :destroy] do
       get :display30, on: :member
     end
-    resources :messages, only: [:create, :update, :destroy]
+    resources :messages, only: [:create, :update, :destroy] do
+      patch :pin, on: :member
+    end
     resources :friendships, only: [:create, :destroy]
   end
 end

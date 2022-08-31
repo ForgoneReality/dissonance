@@ -23,3 +23,10 @@ export const updateMessage = (message) => (
         data: {message}
     })
 )
+
+export const pinMessage = (msgId) => (
+    $.ajax({
+        url:`/api/messages/${msgId}/pin`,
+        method: "patch"
+    })
+)
