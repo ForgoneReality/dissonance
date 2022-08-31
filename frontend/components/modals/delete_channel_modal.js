@@ -27,23 +27,31 @@ class DeleteChannelModal extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.processForm(this.props.currentChannel.id).then((res) => {
-      console.log("!#$!E:", res);
-      let new_channel_id = res.channel.id;
-      this.props.history.push(`/channels/${new_channel_id}`);
-      this.props.history.go();
-    })
-    this.props.hideModal();
-    this.props.hideFullModal();
+    if(Object.values(this.props.channels).length > 1)
+    {
+      this.props.processForm(this.props.currentChannel.id).then((res) => {
+        let new_channel_id = res.channel.id;
+        this.props.history.push(`/channels/${new_channel_id}`);
+        this.props.history.go();
+      })
+      this.props.hideModal();
+      this.props.hideFullModal();
+    }
+    else
+    {
+      this.setState({lastchannel: true})
+    }
   }
 
 
   render() {
+    let last_warning = this.state.lastchannel ? <div id="bruh245">You must have at least one channel in your server</div> : ""
     return (
-      <div id="delete-server-modal" style={{minHeight: "200px", width: "35vw"}}>
+      <div id="delete-server-modal" style={{minHeight: "240px", width: "35vw"}}>
           <div className="top1">
             <h1>Delete '{this.props.currentChannel.name}'</h1>
             <h3>Are you sure you want to delete this channel? This action cannot be undone.</h3>
+            {last_warning}
           </div>
           
         <div className="edit-modal-bottom" id="bruh0499" style={{width:"calc(35vw - 16px)"}}>
