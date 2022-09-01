@@ -104,7 +104,7 @@ class AppBasics extends React.Component {
             <Modal/>
             <DropdownModal/>
             {searchMaybe}
-        </main> 
+      </main> 
     )
   }
 }

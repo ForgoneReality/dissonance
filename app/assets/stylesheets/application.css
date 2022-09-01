@@ -215,6 +215,13 @@ main{
     z-index: 11;
   }
 
+  .modal-child-offset1 {
+    position: fixed;
+    top: 49.5px;
+    right: 296px;
+    z-index: 11;
+  }
+
 input:focus{
     outline: none;
 }

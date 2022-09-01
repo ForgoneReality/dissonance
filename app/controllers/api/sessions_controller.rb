@@ -7,7 +7,8 @@ class Api::SessionsController < ApplicationController
             login!(@user)
             @user.last_login = Time.current
             # redirect_to api_users_url(@user)
-            render json: @user, status: 200
+            render "_user", status: 200
+
         else #No status!!
             render json: ["Invalid username/password combination"], status: 401
 
@@ -31,7 +32,7 @@ class Api::SessionsController < ApplicationController
             @user.last_login = Time.current
             # redirect_to api_users_url(@user)
             @user.save
-            render json: @user, status: 200
+            render "_user", status: 200
         else #No status!!
             render json: ["Something went wrong..."], status: 401
             # render :new

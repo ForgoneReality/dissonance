@@ -25,6 +25,16 @@ class Api::ConversationsController < ApplicationController
         end
     end
 
+    def other #bad code incoming...
+        @conversation = Conversation.new(convo_params)
+    
+        if @conversation.save
+            render '_convolong', locals: {conversation: @conversation, userid: params[:userId]}
+        else
+            render json: @conversation.errors.full_messages, status: 422
+        end
+    end
+
     
     def search
         @conversation = Conversation.find_by({user1_id: params[:conversation][:user1_id], user2_id: params[:conversation][:user2_id]});

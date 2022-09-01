@@ -57,8 +57,10 @@ class ConversationList extends React.Component {
     if (this.props.convoList.length > 0)
     {
         let sortedList = this.props.convoList;
+        console.log("FOFOFO", sortedList);
         msgList = sortedList.map( (convo) => {
         let useronlinestatus = null;
+        console.log("BTOOO", convo.otherUser);
         if(convo.otherUser.status === "online")
         {
           useronlinestatus = <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="2.25" fill="#3ba55d" /> </svg> 

@@ -42,3 +42,11 @@ export const searchConversation = (user1_id, user2_id) => (
         data: {conversation:{user1_id: user1_id, user2_id: user2_id}}
     })
 )
+
+export const otherCreateConversation = (user1_id, user2_id) => (
+    $.ajax({
+        url: "/api/conversations/other",
+        method: "post",
+        data: {conversation:{user1_id: user1_id, user2_id: user2_id}, userId: user1_id}
+    })
+)

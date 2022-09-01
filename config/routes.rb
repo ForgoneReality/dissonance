@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
     resources :conversations, only: [:show, :create, :update] do
       get :search, on: :collection
+      post :other, on: :collection
     end
     resources :servers, only: [:show, :index, :create, :update, :destroy] do
       get :mainchannel, on: :member

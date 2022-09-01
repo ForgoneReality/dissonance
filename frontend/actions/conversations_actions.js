@@ -38,8 +38,9 @@ export const createConvo = (conversation) =>({
 export const createConversation = (user1_id, user2_id) => {
     return dispatch => {
         return APIUtil.createConversation(user1_id, user2_id)
-        .then(
-            res => dispatch(receiveConvo(res)) //,
+        .then(res => {
+            dispatch(receiveConvo(res))
+          } //,
             // err => dispatch(receiveErrors(err.responseJSON))
         )
     }
@@ -61,3 +62,14 @@ export const getConvoMessages = id => dispatch => (
 export const getConversationList = userId => dispatch => (
   APIUtil.getConversationList(userId).then( (res) => dispatch(receiveConvos(res)))
 )
+
+export const otherCreateConversation = (user1_id, user2_id) => {
+  return dispatch => {
+      return APIUtil.otherCreateConversation(user1_id, user2_id)
+      .then(res => {
+          return dispatch(receiveConvo(res))
+        } //,
+          // err => dispatch(receiveErrors(err.responseJSON))
+      )
+  }
+};

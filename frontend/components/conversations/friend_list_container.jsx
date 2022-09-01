@@ -6,6 +6,7 @@ import FriendList from "./friend_list.js"
 import { addUserError, findUser } from '../../actions/users_actions.js';
 import { receiveUser, createFriendship} from '../../actions/users_actions.js';
 import { withRouter } from 'react-router-dom'; 
+import { otherCreateConversation } from '../../actions/conversations_actions.js';
 
 const mapStateToProps = (state) => {
   return {
@@ -25,7 +26,8 @@ const mapDispatchToProps = dispatch => {
     {
       createFriendship(user_id, friend_id);
     },
-    receiveUser: (user) => dispatch(receiveUser(user))
+    receiveUser: (user) => dispatch(receiveUser(user)),
+    createConvo: (user1_id, user2_id) => dispatch(otherCreateConversation(user1_id, user2_id))
   };
 };
 

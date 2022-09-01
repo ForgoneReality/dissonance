@@ -17,6 +17,7 @@ import DeleteServerModal from "./modals/delete_server_modal"
 import LeaveServerModal from "./modals/leave_server_modal";
 import UserModal from "./modals/user_modal"
 import DeleteChannelModal from "./modals/delete_channel_modal";
+import PinsModal from "./modals/pins_modal";
 
 class Modal extends React.Component{
   constructor(props)
@@ -46,6 +47,7 @@ class Modal extends React.Component{
     }
     let component;
     let focused = true;
+    let offset = 0;
 
     switch (this.props.modals.name) {
       //this code could be refactored to be significantly more modular and DRY
@@ -89,21 +91,39 @@ class Modal extends React.Component{
       case 'deletechannel':
         component=<DeleteChannelModal/>
         break;
+      case 'pins':
+        offset = 1;
+        component=<PinsModal/>
+        break;
       default:
         return null;
     }
     
-
-    let ans = focused ? <div className="modal-background" onClick={this.props.hideModal}> 
-    <div className="modal-child" onClick={e => e.stopPropagation()}>
-      { component }
-    </div>
-  </div> : 
-  <div className="modal-background-transparent" onClick={this.props.hideModal}> 
-  <div className="modal-child" onClick={e => e.stopPropagation()}>
-    { component }
-  </div>
-</div>
+    let ans;
+    if(!focused)
+      { 
+        ans = <div className="modal-background-transparent" onClick={this.props.hideModal}> 
+        <div className="modal-child" onClick={e => e.stopPropagation()}>
+          { component }
+        </div>
+      </div>
+      }
+      else if(offset === 1)
+      {
+        ans = <div className="modal-background-transparent" onClick={this.props.hideModal}> 
+          <div className="modal-child-offset1" onClick={e => e.stopPropagation()}>
+            { component }
+          </div>
+        </div>
+      }
+      else
+      {
+        ans = <div className="modal-background" onClick={this.props.hideModal}> 
+        <div className="modal-child" onClick={e => e.stopPropagation()}>
+          { component }
+        </div>
+        </div> 
+      }
     return (ans);
   }
 }
