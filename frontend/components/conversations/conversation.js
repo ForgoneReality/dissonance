@@ -1,6 +1,7 @@
 import React from 'react';
 
 import consumer from '../../consumer';
+import notif from '../../../app/assets/sounds/notification.mp3'
 
 // Without context
 
@@ -27,6 +28,7 @@ class Conversation extends React.Component {
     }
     this.myRef = React.createRef()
     this.responseMessage = null;
+    this.audio = new Audio(notif);
   }
 
   submitOnEnter(event){
@@ -50,6 +52,10 @@ class Conversation extends React.Component {
         switch (type) {
           case 'RECEIVE_MESSAGE':
             this.props.receiveMessage(message);
+            if(this.props.currentUser.id !== message.author_id)
+            {
+              this.audio.play();  
+            }
             break;
           case 'DELETE_MESSAGE':
             this.props.removeMessage(id);
@@ -98,7 +104,7 @@ class Conversation extends React.Component {
         }
       }
       else{
-        this.props.sendMessage( {content: my_msg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id})
+        this.props.sendMessage( {content: my_msg, author_id: this.props.currentUser.id, location_type:"Conversation", location_id: this.props.convo.id, recipient_id: this.props.convo.otherUser.id})
       }
     }
     else
@@ -109,6 +115,7 @@ class Conversation extends React.Component {
       formData.append("message[location_type]", "Conversation");
       formData.append("message[location_id]", this.props.convo.id);
       formData.append("message[image])", this.state.photoFile);
+      formData.append("message[recipient_id]", this.props.convo.otherUser.id);
       $.ajax({
         url: "/api/messages",
         method: "POST",
@@ -179,7 +186,8 @@ class Conversation extends React.Component {
     document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
     // this.props.getConversationList(this.props.currentUser.id).then(() => this.enterRoom());
     this.props.getConversationList(this.props.currentUser.id);
-    this.props.getConvoMessages(this.props.id);
+    this.props.getConvoMessages(this.props.id);//can combine with below, but not JSON standard to add data to a GET request
+    this.props.readConversation(this.props.id, this.props.currentUser.id);
     
     this.enterRoom();
     this.props.removeErrors();

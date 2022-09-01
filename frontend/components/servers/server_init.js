@@ -30,7 +30,7 @@ class serverInit extends React.Component {
             )
         }
         else{
-            return(<div>Loading..</div>)
+            return(<div></div>)
         }
     }
 }

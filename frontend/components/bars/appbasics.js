@@ -30,6 +30,7 @@ class AppBasics extends React.Component {
   componentDidMount()
   {
     this.props.getServersList(this.props.currentUser.id);
+    this.props.getConversationList(this.props.currentUser.id); //POSSIBLY EXTRANEOUS!! might need to remove elsewhere because now it's at such a high level in appbasics
     this.props.getChannel
   }
 
@@ -40,15 +41,37 @@ class AppBasics extends React.Component {
 
   render()
   {
+    console.log(this.props.unreadConvos, "inksiee")
     let {username, status, fourdigit_id, pfp_url} = this.props.currentUser;
-    let serverList = this.props.serversList.map( (server) => {
+    let serverList = this.props.serversList.map( (server, index) => {
       if(!server.image_url)
-      
+      {
+        if(index === this.props.serversList.length - 1)
+        {
+          return <li><Link className="server-link-top" to={`/servers/${server.id}`}><div>{server.name[0].toUpperCase()}</div></Link></li>
+        }
         return <li><Link className="server-link" to={`/servers/${server.id}`}><div>{server.name[0].toUpperCase()}</div></Link></li>
+      }
       else
+      {
+        if(index === this.props.serverList.length - 1)
+        {
+          return <li><Link className="server-link-top" to={`/servers/${server.id}`}><img src={server.image_url}></img></Link></li>
+        }
         return <li><Link className="server-link" to={`/servers/${server.id}`}><img src={server.image_url}></img></Link></li>
+      }
 
     }).reverse()
+
+    let urmom = this.props.unreadConvos.map((convo) => {
+      return <li><Link to={`/conversations/${convo.id}`} style={{position: "absolute", textDecoration: "none"}}>
+      <img src={convo.otherUser.pfp_url}></img>
+        <aside>
+        <p>{Math.min(convo.unread, 99)}</p>
+        <svg id="bruh4444" height="27" width="27"><circle cx="13.5" cy="13.5" r="10" stroke="#202225" strokeWidth="3.5" fill="#D83C3E"></circle> </svg>
+        </aside>
+      </Link></li>
+    })
 
     let useronlinestatus = null;
     if(status === "online")
@@ -81,11 +104,12 @@ class AppBasics extends React.Component {
             <nav id="server-sidebar">
               <ul className="server-icons">
                 
-                <li>
+                <li style={{height: "44px", marginBottom: "12px"}}>
                   <Link to="/conversations">
                     <img id="" src={window.homeicon}/>
                   </Link>
                 </li>
+                {urmom}
                 {serverList /*below is temp*/ }
                 <li>
                   <button id="add-server-button" onClick={() => this.props.displayCreateServerModal()}>

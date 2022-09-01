@@ -25,6 +25,10 @@ module.exports = {
                     limit: 8192
                     }
                 }]
+            },
+            {
+                test: /\.mp3$/,
+                loader: 'file-loader'
             }
         ]
     },

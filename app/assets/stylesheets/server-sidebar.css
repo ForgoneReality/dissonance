@@ -54,3 +54,32 @@
     background-color: #36393f;
     margin-top: 4px;
 }
+
+.server-link-top{
+    color: #dcddde;
+    text-decoration: inherit;
+    font-size: 20px;
+    border-top: 1.5px #2F3136 solid;
+}
+
+#bruh4444{
+    position: absolute;
+}
+
+.server-icons aside{
+    position: absolute;
+    bottom: 2px;
+    right: -1.5px;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.server-icons p{
+    color: white;
+    z-index: 3;
+    font-size: 12px;
+    font-family: Whitney, "Helvetica Neue";
+}

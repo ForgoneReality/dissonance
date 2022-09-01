@@ -49,6 +49,8 @@ ActiveRecord::Schema.define(version: 2022_07_20_205749) do
   create_table "conversations", force: :cascade do |t|
     t.integer "user1_id", null: false
     t.integer "user2_id", null: false
+    t.integer "unread1", default: 0
+    t.integer "unread2", default: 0
     t.integer "last_updated", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

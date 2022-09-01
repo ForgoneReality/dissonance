@@ -4,7 +4,7 @@ class Api::MessagesController < ApplicationController
    
     def create
         @message = Message.new(message_params)
-        
+
         if @message.save
           if(params["message"]["image"])
             params["message"]["image"].permit!
@@ -15,6 +15,16 @@ class Api::MessagesController < ApplicationController
           end
 
           if(@message.location_type == "Conversation")
+            if(params["message"]["recipient_id"]) #recipient_id wasn't needed but w/e
+              convo = Conversation.find(params["message"]["location_id"])
+              if(convo.user1_id === params["message"]["recipient_id"])
+                convo.unread1 += 1
+              else
+                convo.unread2 += 1
+              end
+              convo.save!
+              # params["message"]["recipient_id"]
+            end
             ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: @message)
           elsif(@message.location_type == "Channel")
             ChannelsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: @message)
