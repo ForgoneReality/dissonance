@@ -46,7 +46,7 @@ export const createConversation = (user1_id, user2_id) => {
     }
 };
 
-export const getConvoMessages = id => dispatch => (
+export const getConvoMessages = (id, userid) => dispatch => {
   APIUtil.fetchConversation(id).then( (res) => {
     if(res.messages)
     {
@@ -57,7 +57,10 @@ export const getConvoMessages = id => dispatch => (
     }
     dispatch(receiveUsers(res.users));
   })
-)
+  APIUtil.readConversation(id, userid).then((res) => {
+    dispatch(receiveConvo(res))
+  })
+}
 
 export const getConversationList = userId => dispatch => (
   APIUtil.getConversationList(userId).then( (res) => dispatch(receiveConvos(res)))

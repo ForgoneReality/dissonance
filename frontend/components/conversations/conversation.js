@@ -184,11 +184,9 @@ class Conversation extends React.Component {
   {
     document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
     document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
-    // this.props.getConversationList(this.props.currentUser.id).then(() => this.enterRoom());
-    this.props.getConversationList(this.props.currentUser.id);
-    this.props.getConvoMessages(this.props.id);//can combine with below, but not JSON standard to add data to a GET request
-    this.props.readConversation(this.props.id, this.props.currentUser.id);
     
+    this.props.getConvoMessages(this.props.id, this.props.currentUser.id);//can combine with below, but not JSON standard to add data to a GET request
+
     this.enterRoom();
     this.props.removeErrors();
     this.props.removeModals();
@@ -205,7 +203,7 @@ class Conversation extends React.Component {
     
     const prevConvoId = prevProps.convo.id;
     if (prevConvoId !== this.props.convo.id) {
-      this.props.getConvoMessages(this.props.id);
+      this.props.getConvoMessages(this.props.id, this.props.currentUser.id);
       this.subscription?.unsubscribe();
       this.enterRoom();
       if(this.props.convo.otherUser.id === 6)

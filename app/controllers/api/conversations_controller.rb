@@ -58,6 +58,21 @@ class Api::ConversationsController < ApplicationController
         end
     end
 
+    def read
+        @conversation = Conversation.find(params[:id])
+        if(@conversation.user1_id === params[:userId])
+            @conversation.unread1 = 0
+        else
+            @conversation.unread2 = 0
+        end
+        if @conversation.save
+            render '_convolongflipped', locals: {conversation: @conversation, userid: params[:userId]}
+        else
+            render json: @convo.errors.full_messages, status: 422
+        end
+    end
+
+
     private
     def convo_params
         params.require(:conversation).permit(:user1_id, :user2_id)

@@ -26,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
         removeErrors: () => dispatch(removeErrors()),
         removeModals: () => dispatch(resetModal()),
         getConversationList: (userid) => dispatch(getConversationList(userid)),
-        getConvoMessages: (id) => dispatch(getConvoMessages(id)),
+        getConvoMessages: (id, userid) => dispatch(getConvoMessages(id, userid)),
         sendMessage: (message) => dispatch(createMessage(message)),
         deleteMessage: (msgId) => dispatch(deleteMessage(msgId)),
         editMessage: (msg) => dispatch(updateMessage(msg)),

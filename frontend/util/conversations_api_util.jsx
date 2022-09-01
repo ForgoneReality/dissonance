@@ -20,6 +20,14 @@ export const fetchConversation = (convoId) => (
     })
 )
 
+export const readConversation = (convoId, userId) => {
+    return $.ajax({
+        url: `/api/conversations/${convoId}/read`,
+        method: "patch",
+        data: {userId}
+    })
+}
+
 export const getConversationList = (userId) => (
     $.ajax({
         url: `/api/users/${userId}/conversations`,
