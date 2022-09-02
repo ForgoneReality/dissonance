@@ -6,6 +6,8 @@ class Api::SessionsController < ApplicationController
         if(@user && @user.id != 6)
             login!(@user)
             @user.last_login = Time.current
+            @user.status = "online"
+            @user.save
             # redirect_to api_users_url(@user)
             render "_user", status: 200
 
@@ -30,6 +32,7 @@ class Api::SessionsController < ApplicationController
         if(@user)
             login!(@user)
             @user.last_login = Time.current
+            @user.status = "online"
             # redirect_to api_users_url(@user)
             @user.save
             render "_user", status: 200

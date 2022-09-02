@@ -386,12 +386,15 @@ class Conversation extends React.Component {
     }
 
     let otheruserInfo = null;
-    if (this.props.convo)
+    let otherUsername = ""
+    if (this.props.convo && this.props.convo.otherUser)
     {
       otheruserInfo = <div id="otheruserinfo">
         <img src={window.aticon} alt="at-icon"></img>
         <p>{this.props.convo.otherUser.username}: {this.props.convo.otherUser.status}</p>
       </div>
+
+      otherUsername = this.props.convo.otherUser.username;
     }
     // const preview = this.state.photoUrl ? <img src={this.state.photoUrl} /> : null;
     return (
@@ -415,7 +418,7 @@ class Conversation extends React.Component {
                   <img src={window.upload} alt="upload-icon"/>
                 </label> 
                 <input type="file" id="img-uploader"  onChange={this.handleFile}></input>
-                <input type="text" id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")} placeholder={`Message @${this.props.convo.otherUser.username}`}></input>
+                <input type="text" id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")} placeholder={`Message @${otherUsername}`}></input>
                 <button className="invisible" type="Submit">Submit</button>
               </form>
             </div> 
