@@ -44,6 +44,8 @@ class Api::SessionsController < ApplicationController
 
     def destroy
         if(logged_in?)
+            current_user.status = "offline"
+            current_user.save
             logout!
             render json: {} #!!!!!!!!!!!!!!!!!!!!!!!!!!!
         else
