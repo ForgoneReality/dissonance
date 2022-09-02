@@ -192,20 +192,23 @@ class Channel extends React.Component {
     style, // Style object to be applied to row (to position it)
     parent
   }) {
-    let formatted_msg = <div></div>;
+    // let formatted_msg = <div></div>;
+
+    let msg;
+    let deleteButton = null;
+    let editButton = null;
+    let pinButton = null;
+    let datemsg = null;
+    // let myimg = null;
+    let mypfp = <div className="no-pfp-filler"> </div>;
+    let msgHeader = null;
+    let filler = null;
+    let lastfiller = null;
 
     if (this.props.messages.length > 0)
     {
-      let msg = this.props.messages[index]
-      let deleteButton = null;
-      let editButton = null;
-      let pinButton = null;
-      let datemsg = null;
-      let myimg = null;
-      let mypfp = <div className="no-pfp-filler"> </div>;
-      let msgHeader = null;
-      let filler = null;
-      let lastfiller = null;
+      msg = this.props.messages[index]
+  
     
       if(index === this.props.messages.length - 1)
       {
@@ -248,19 +251,19 @@ class Channel extends React.Component {
       }
 
       
-      if (msg.image_url)
-      {
-        myimg = <img className="msg-img" src={msg.image_url}></img>
-      }
+      // if (msg.image_url)
+      // {
+      //   myimg = <img onLoad={measure} className="msg-img" src={msg.image_url}></img>
+      // }
 
-      let msgContent = <div className="message">
-        {mypfp}
-        <div>
-          {msgHeader}
-          <p className="msg-content">{msg.content}</p>
-          {myimg}
-        </div>
-      </div>
+      // let msgContent = <div className="message">
+      //   {mypfp}
+      //   <div>
+      //     {msgHeader}
+      //     <p className="msg-content">{msg.content}</p>
+      //     {myimg}
+      //   </div>
+      // </div>
 
       if(this.props.currentUser.id === this.props.currentServer.owner_id) //CHANGE TO ROLE PERMISSIONS WHEN I GET 
       {
@@ -319,23 +322,39 @@ class Channel extends React.Component {
           
         }
       }
-      formatted_msg = (<div >
-        {filler}
-        {msgContent}
-        {lastfiller}
-        <div className="msgbuttons">
-          {pinButton}
-          {editButton}
-          {deleteButton}
-        </div>
-      </div>)
+      // formatted_msg = (<div >
+      //   {filler}
+      //   {msgContent}
+      //   {lastfiller}
+      //   <div className="msgbuttons">
+      //     {pinButton}
+      //     {editButton}
+      //     {deleteButton}
+      //   </div>
+      // </div>)
     }
 
     return (
       <CellMeasurer key={key} cache={this._cache} parent={parent} columnIndex={0} rowIndex={index}>
         {({measure, registerChild}) => 
         (<div style={style} ref={registerChild} id="single-message" >
-          {formatted_msg}
+          <div >
+          {filler}
+          <div className="message">
+            {mypfp}
+            <div>
+              {msgHeader}
+              <p className="msg-content">{msg.content}</p>
+              {msg.image_url ? <img onLoad={measure} className="msg-img" src={msg.image_url}></img> : ""}
+            </div>
+          </div>
+          {lastfiller}
+          <div className="msgbuttons">
+            {pinButton}
+            {editButton}
+            {deleteButton}
+          </div>
+        </div>
          
         </div>)
         }
