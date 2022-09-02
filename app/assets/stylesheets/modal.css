@@ -325,6 +325,16 @@
     z-index: 11;
 }
 
+#dropdown2{
+    position: absolute;
+    width: 240px;
+    bottom: 52px;
+    left: 72px;
+    background-color: #18191c;
+    border-radius: 5px;
+    z-index: 11;
+}
+
 .dropdown-list1
 {
     display: flex;
@@ -382,6 +392,14 @@
 #bruh3094{
     display: flex;
     justify-content: space-between;
+}
+
+#bruh3094 .setting-btn{
+    display: none;
+}
+
+#bruh3094:hover .setting-btn{
+    display: block;
 }
 
 #bruh3094:hover p{

@@ -23,7 +23,8 @@ const mapDispatchToProps = dispatch => {
     getServersList: (userId) => dispatch(getServersList(userId)),
     openSettings: () => dispatch(displayFullModal("settings")),
     displayCreateServerModal: () => dispatch(displayModal("createserver")),
-    getConversationList: (userId) => dispatch(getConversationList(userId))
+    getConversationList: (userId) => dispatch(getConversationList(userId)),
+    displayModal: (modal) => dispatch(displayModal(modal))
   };
 };
 

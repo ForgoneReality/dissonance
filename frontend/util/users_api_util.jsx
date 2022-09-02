@@ -53,3 +53,11 @@ export const updateBio = (id, bio) => {
         data: bio
     })
 }
+
+export const setStatus = (id, status) => (
+    $.ajax({
+        url: `/api/users/${id}/status`,
+        method: "patch",
+        data: {status: status}
+    })
+)

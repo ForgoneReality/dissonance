@@ -12,6 +12,7 @@ class Channel extends React.Component {
     this.renderErrors = this.renderErrors.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleEditSubmit = this.handleEditSubmit.bind(this)
+    this.handleFile = this.handleFile.bind(this)
     this.firstTime = -1;
     this.state = {
       usermsg: "",

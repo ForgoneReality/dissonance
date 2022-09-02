@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       patch :changePFP, on: :member
       patch :nickname, on: :member
       patch :updateBio, on: :member
+      patch :status, on: :member
     end
     resource :session, only: [:create, :destroy] do
       post :demo, on: :collection

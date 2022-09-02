@@ -103,8 +103,7 @@ class AppBasics extends React.Component {
             {/* <h1>Servers</h1> */}
             <nav id="server-sidebar">
               <ul className="server-icons">
-                
-                <li style={{height: "44px", marginBottom: "12px"}}>
+                <li style={{height: "44px"}}>
                   <Link to="/conversations">
                     <img id="" src={window.homeicon}/>
                   </Link>
@@ -119,7 +118,7 @@ class AppBasics extends React.Component {
               </ul>
             </nav>
             <div>
-            <Footerr username={username} fourdigit_id={fourdigit_id} openSettings={this.openSettings} useronlinestatus={useronlinestatus} pfp_url={pfp_url}/>
+            <Footerr username={username} fourdigit_id={fourdigit_id} openSettings={this.openSettings} useronlinestatus={useronlinestatus} pfp_url={pfp_url} displayModal={this.props.displayModal}/>
             </div>
             <Route path="/channels/:channelId" component={ServerContainer} /> 
             <Route path="/conversations" component={ConversationsListContainer} />

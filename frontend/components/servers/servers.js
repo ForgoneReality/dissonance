@@ -100,7 +100,7 @@ class Server extends React.Component {
   </button> : ""
 
   let channelsList = this.props.channelsList.map( (channel) => {
-      return channel.id === this.props.channelId ? <Link to={`/channels/${channel.id}`}><li id="bruh3095" key={channel.id}>
+      return +channel.id === +this.props.channelId ? <Link to={`/channels/${channel.id}`}><li id="bruh3095" key={channel.id}>
         <div style={{display: "flex", gap: "5px"}}>
           <img src={window.hashtag} alt="hashtag-icon"></img>
           <p>{channel.name}</p>
@@ -111,7 +111,7 @@ class Server extends React.Component {
           <img src={window.hashtag} alt="hashtag-icon"></img>
           <p>{channel.name}</p>
         </div>
-        {channelButton}
+        <span className="setting-btn">{channelButton}</span>
         </li>
       </Link>
     })
@@ -146,20 +146,20 @@ class Server extends React.Component {
         
         {channelContent}
         <div className = "UsersList">
-            <div id="channel-users-list-header">
-              <div id="search-bar">
-                <form id="bruh6662" onSubmit={() => this.props.displayModal("search-message", this.state.searchmsg)}>
-                  <input id="overhere1" type="text" placeholder="Search" onChange={this.update("searchmsg")} ></input>
-                </form>
-                {search_img}
-              </div>
+          <div id="channel-users-list-header">
+            <div id="search-bar">
+              <form id="bruh6662" onSubmit={() => this.props.displayModal("search-message", this.state.searchmsg)}>
+                <input id="overhere1" type="text" placeholder="Search" onChange={this.update("searchmsg")} ></input>
+              </form>
+              {search_img}
             </div>
-            <div>
-              {templabel}
-              <ul id="channel-users-list">
-                {usersList}
-              </ul>
-            </div>
+          </div>
+          <div>
+            {templabel}
+            <ul id="channel-users-list">
+              {usersList}
+            </ul>
+          </div>
         </div>
 
       </section>

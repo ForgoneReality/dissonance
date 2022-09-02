@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import { displayModal, hideModal, displayFullModal } from "../../actions/modal_actions";
+import {setStatus} from "../../actions/users_actions"
 
 class DropdownModal extends React.Component{
 constructor(props) {
@@ -114,6 +115,40 @@ constructor(props) {
         </div>
       </div>
     }
+    else if(this.props.modals.name === "user-status")
+    {
+      component = <div className="modal-background-transparent" onClick={this.props.hideModal}>
+        <div id="dropdown2" onClick={(e) => e.stopPropagation()}>
+        <ul className="dropdown-list1">
+          <li>
+            <button style={{color: "#B9BBBE", display: "flex", gap: "5px", width: "224px"}} onClick={() => {this.props.setStatus(this.props.currentUser.id, "online"); this.props.hideModal();}}>
+              <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="0.25" fill="#3ba55d" /> </svg> 
+              Online
+            </button>
+          </li>
+          <li>
+            <button style={{color: "#B9BBBE", display: "flex", gap: "5px", width: "224px"}} onClick={() => {this.props.setStatus(this.props.currentUser.id, "idle"); this.props.hideModal();}}>
+              <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="0.25" fill="#faa81b" /> </svg> 
+              Idle
+            </button>
+          </li>
+          <li>
+            <button style={{color: "#B9BBBE", display: "flex", gap: "5px", width: "224px"}} onClick={() => {this.props.setStatus(this.props.currentUser.id, "busy"); this.props.hideModal();}}>
+              <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="0.25" fill="#D83C3E" /> </svg> 
+              Do Not Disturb
+            </button>
+          </li>
+          <li>
+            <button style={{color: "#B9BBBE", display: "flex", gap: "5px", width: "224px"}} onClick={() => {this.props.setStatus(this.props.currentUser.id, "offline"); this.props.hideModal();}}>
+              <svg height="15" width="15"><circle cx="7.5" cy="7.5" r="3.75" stroke="#96989d" strokeWidth="2.25" fill="#2f3136" /> <circle cx="7.5" cy="7.5" r="6" stroke="#2f3136" strokeWidth="0.25" fill="none" /> </svg>
+              Invisible
+            </button>
+          </li>
+
+        </ul>
+        </div>
+      </div>
+    }
     else{
       component = <div></div>
     }
@@ -135,7 +170,8 @@ const mapStateToProps = (state) => {
   }
   return {
     modals: state.ui.modal,
-    isOwner: owner
+    isOwner: owner,
+    currentUser: state.session.currentUser
   };
 };
 
@@ -143,7 +179,8 @@ const mapDispatchToProps = dispatch => {
   return {
     hideModal: () => dispatch(hideModal()),
     displayModal: (modal) => dispatch(displayModal(modal)),
-    displayFullModal: (modal) => dispatch(displayFullModal(modal))
+    displayFullModal: (modal) => dispatch(displayFullModal(modal)),
+    setStatus: (user_id, status) => dispatch(setStatus(user_id, status))
   };
 };
 

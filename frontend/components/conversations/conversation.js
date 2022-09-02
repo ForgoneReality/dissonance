@@ -79,7 +79,7 @@ class Conversation extends React.Component {
     {
       if(this.state.bot)
       {
-        if(this.state.usermsg === "RESET" || this.state.usermsg ==="reset")
+        if(this.state.usermsg === "RESET" || this.state.usermsg ==="reset" || this.state.usermsg === "Reset")
         {
           let x = this.state.botFirstMsg;
 

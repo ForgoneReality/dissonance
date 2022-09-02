@@ -72,3 +72,9 @@ export const updateBio = (id, bio) => dispatch => {
     dispatch(receiveCurrentUser(res));
   }), (errs) => dispatch(receiveError(errs.responseJSON)))
 }
+export const setStatus = (user_id, status) => dispatch => {
+  return APIUtil.setStatus(user_id, status).then((res) => {
+    dispatch(receiveUser(res));
+    dispatch(receiveCurrentUser(res));
+  })
+}

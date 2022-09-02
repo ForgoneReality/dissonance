@@ -1,8 +1,9 @@
 import React from "react"
 
-const Footerr = ({useronlinestatus, username, fourdigit_id, openSettings, pfp_url}) => {
+const Footerr = (
+  {useronlinestatus, username, fourdigit_id, openSettings, pfp_url, displayModal}) => {
     return (<div className="userFooter">
-    <div className="bruh001">
+    <div className="bruh001" style={{cursor: "pointer"}} onClick={() => displayModal("user-status")}>
       <img id="footerpfp" className="sidepfp" src={pfp_url} alt="currentUserPFP"></img>
       <div className="useronlinestatusicon">
         {useronlinestatus}
