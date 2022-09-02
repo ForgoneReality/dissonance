@@ -89,6 +89,7 @@ export const leaveServer = (user_id, server_id) => dispatch => {
 
 export const searchServer = (server_id, query) => dispatch => {
   return APIUtil.searchServer(server_id, query).then((res) => {
+    console.log("RRR", res);
     dispatch(receiveCurrentSearch(res));
   })
 }

@@ -16,6 +16,7 @@ class Server extends React.Component {
       searchmsg: ""
     }
     this.renderErrors = this.renderErrors.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
     
   }
 
@@ -30,6 +31,63 @@ class Server extends React.Component {
     return e => this.setState({
       [field]: e.currentTarget.value
     });
+  }
+
+  handleSubmit()
+  {
+    let msg = this.state.searchmsg;
+    //below is inefficient code which I wouldn't have done on a coding challenge but suffices for the purpose of the project
+    const re1 = / ?from:.+#[0-9]{4} ?/g; //from: blah#1234
+    const re2 = / ?in:[A-Za-z0-9_-]+ ?/g;
+    const re3 = / ?has:[A-Za-z]+ ?/g;
+    const re4 = / ?pinned: ?/g;
+
+    let user = "";
+    let channel = "";
+    let has_image = false;
+    let has_link = false;
+    let pinned = false;
+
+    let ans = re1.exec(msg);
+    if(ans)
+    {
+      msg = msg.split(ans[0]).join("");
+      user = ans[0].trim().slice(5);
+    }
+
+    let ans2 = re2.exec(msg);
+    if(ans2)
+    {
+      msg = msg.split(ans2[0]).join("");
+      channel = ans2[0].trim().slice(3);
+
+    }
+    
+    let ans3 = re3.exec(msg);
+    if(ans3)
+    {
+      let a = ans3[0].trim().slice(4).toLowerCase();
+
+      if(a === "image")
+      {
+        msg = msg.split(ans3[0]).join("")
+        has_image = true;
+      }
+      else if (a === "link")
+      {
+        msg = msg.split(ans3[0]).join("")
+        has_link = true;
+      }
+    }
+
+    let ans4 = re4.exec(msg);
+    if(ans4)
+    {
+      msg = msg.split(ans4[0]).join("");
+      pinned = true;
+    }
+  this.props.displayModal("search-message", {msg: msg, channel: channel, has_image: has_image, has_link: has_link, pinned: pinned, user: user})
+    
   }
 
   renderErrors() {
@@ -148,7 +206,7 @@ class Server extends React.Component {
         <div className = "UsersList">
           <div id="channel-users-list-header">
             <div id="search-bar">
-              <form id="bruh6662" onSubmit={() => this.props.displayModal("search-message", this.state.searchmsg)}>
+              <form id="bruh6662" onSubmit={this.handleSubmit}>
                 <input id="overhere1" type="text" placeholder="Search" onChange={this.update("searchmsg")} ></input>
               </form>
               {search_img}

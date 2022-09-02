@@ -34,11 +34,12 @@ constructor(props) {
   render() {
     let count;
     let stuff = "";
+    // console.log("YYO", Object.values(this.props.search))
     if(Array.isArray(this.props.search) && this.props.search.length > 0)
     {
       stuff = this.props.search.map((msg) => {
         let datemsg;
-        let user = this.props.users.find((user) => user.id === msg.author_id);
+        // let user = this.props.users.find((user) => user.id === msg.author_id);
         let date = (Date.parse(msg.created_at));
         let dmy = new Date(date);
 
@@ -53,18 +54,20 @@ constructor(props) {
         }
         let ch = this.props.channels.find((channel) => channel.id === msg.location_id);
         let channelHeader = <div id="bruh4133">{`# ${ch.name}`}</div>
+        let maybeImage = msg.image_url ? <img src={msg.image_url} style={{maxWidth: "294px", height: "auto"}}></img> : ""
         return(
           <div>
             <div id="msgfiller"></div>
             {channelHeader}
             <div className="message2">
-              <img class="dm-pfp" src={user.pfp_url}/>
+              <img class="dm-pfp" src={msg.pfp_url}/>
               <div>
                 <h2>
-                  <span class="message-username">{user.username}</span>
+                  <span class="message-username">{msg.author_name}</span>
                   <span class="message-date">{datemsg}</span>
                 </h2>
                 <p class="msg-content"  style={{width: "294px"}}>{msg.content}</p>
+                {maybeImage}
               </div> 
             </div>
           </div>
@@ -91,9 +94,10 @@ constructor(props) {
 }
 
 const mapStateToProps = (state) => {
+  console.log("$$$", state.current.search)
   return {
     modal: state.ui.modal,
-    search: state.current.search, //bad code... non-inituitive state but search is currently occupied by something else and I'd rather not refactor atm
+    search: Object.values(state.current.search), //bad code... non-inituitive state but search is currently occupied by something else and I'd rather not refactor atm
     server_id: state.current.server.id,
     users: Object.values(state.entities.users),
     channels: Object.values(state.entities.channels)

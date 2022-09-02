@@ -90,9 +90,39 @@ class Api::ServersController < ApplicationController
     def search
         @server = Server.find(params[:id])
         #probably do filtering here
-        boi = params["content"]
-        @messages = @server.messages.where("lower(content) LIKE ?", "%#{boi}%").order("created_at DESC")
-        render json: @messages
+        boi = params["content"]["msg"]
+        @messages = @server.messages.where("lower(content) LIKE ?", "%#{boi}%")
+        # if(params["content"]["channel"] != "")
+        #     @messages = @messages.where(channel: params["content"]["channel"])
+        # end
+        if(params["content"]["pinned"] == "true")
+            @messages = @messages.where(pinned: true)
+        end
+
+        if(params["content"]["has_link"] == "true")
+            @messages = @messages.where("content ~ ?", '^.*[A-Za-z]\.[A-Za-z].*$')
+            # /.*[A-Za-z]\.[A-Za-z].*/.match?(params["cote"])
+        end        
+
+        if(params["content"]["channel"] != "")
+            # @messages = @messages.select { |msg| msg.location.name == params["content"]["channel"]}
+            @channel = params["content"]["channel"]
+        end
+
+        if(params["content"]["has_image"] == "true")
+            # @messages = @messages.select { |msg| msg.image.attached?}
+            @has_image = true
+        end
+
+        if(params["content"]["user"] != "")
+            mj = params["content"]["user"].split("#")
+            @username = mj[0]
+            @fourdigit_id = mj[1]
+            # @messages = @messages.select {|msg| msg.author.username == mj[0] && msg.author.fourdigit_id == mj[1]}
+        end
+
+        @messages = @messages.order("created_at DESC")
+        render "_search", status: 200
     end
 
   

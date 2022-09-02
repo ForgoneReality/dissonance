@@ -66,7 +66,7 @@ export const searchServer = (server_id, query) => {
         url: `api/servers/${server_id}/search`,
         method: "get",
         data: {
-            content: query["content"].toLowerCase()
+            content: query["content"]
         }
     })
 }

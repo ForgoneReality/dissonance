@@ -20,6 +20,7 @@ LATER:
 - Customizable Roles with different permission accesses and priveleges
 - Discover Servers Thing
 - Friend Requests
+- Emojis
 - Invite Users should show list of friends
 - Blocking/Kicking/Banning
 - Animations (CSS)

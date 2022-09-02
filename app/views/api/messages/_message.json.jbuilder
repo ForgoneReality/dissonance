@@ -2,8 +2,8 @@
     :id, 
     :author_id,
     :content, 
-    # :location_type, 
-    # :location_id, 
+    :location_type, 
+    :location_id, 
     :created_at,
     :pinned,
     :edited

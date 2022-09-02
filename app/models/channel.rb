@@ -1,6 +1,6 @@
 class Channel < ApplicationRecord
     validates :name, :server_id, presence: true
-    validates :name, :uniqueness => { :scope => :server_id}, length: {maximum: 32}
+    validates :name, :uniqueness => { :scope => :server_id}, length: {maximum: 32}, with: /^[A-Za-z0-9_-]+$/
     
 
     has_many :messages, 
