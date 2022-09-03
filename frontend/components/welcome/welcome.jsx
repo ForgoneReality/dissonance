@@ -49,15 +49,15 @@ class Welcome extends React.Component
                 </div>
                 <div className="center-nav">
                 
-                    <a href="https://github.com/ForgoneReality/dissonance">
+                    <a href="https://github.com/ForgoneReality/dissonance" target="_blank" rel="noopener noreferrer">
                         <img src={window.github} alt="github link"/>
                     </a>
                     
-                    <a href="https://shorturl.at/begV9">
+                    <a href="https://shorturl.at/begV9" target="_blank" rel="noopener noreferrer">
                         <img src={window.angelist} alt="github link"/>
                     </a>
 
-                    <a href="https://shorturl.at/cDJW5">
+                    <a href="https://shorturl.at/cDJW5" target="_blank" rel="noopener noreferrer">
                         <img src={window.linkedin} alt="github link"/>
                     </a>
                 </div>
