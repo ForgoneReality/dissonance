@@ -7,12 +7,18 @@
     <%= action_cable_meta_tag %>
     <%# <link rel="shortcut icon" type="image/x-icon" href="../../assets/images/favicon.ico"/> %>
 
+    <meta property="og:title" content="Dissonance" />
+    <meta property='og:image' content="<%= image_url('screenshot1.png') %>"/>
+    <meta property="og:description"
+      content="A Discord clone that includes full-scale CRUD implementations of users, conversations, servers, channels, and roles. Includes AI chat bots, real-time instant messaging, and scalable virtual scrolling among other features"
+    />
+    <meta property="og:url"
+      content="http://dissonance.herokuapp.com/#/"
+    />
     <%= favicon_link_tag asset_path('favicon.ico') %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     
-    
-
   </head>
 
   <body>
@@ -42,7 +48,6 @@
       window.linkedin = "<%=image_url("linkedin.svg") %>";
       window.angelist = "<%=image_url("angellist.svg") %>";
       window.pinicon = "<%=image_url('pinicon.svg') %>";
-      
     </script>
 
     <% if logged_in? %>

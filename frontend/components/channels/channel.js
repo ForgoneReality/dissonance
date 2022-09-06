@@ -82,8 +82,11 @@ class Channel extends React.Component {
     if(!this.state.photoFile)
     {
         this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Channel", location_id: ch.id}).then((res) => {
+          if(this.props.messages.length > 1)
+          {
+            this._cache.clear(this.props.messages.length - 2);
+          }
           this._cache.clear(this.props.messages.length - 1);
-
         })
     }
     else
@@ -100,7 +103,15 @@ class Channel extends React.Component {
         data: formData,
         contentType: false,
         processData: false
-      }).then( (response) => this.props.sendMessage(response)) //something may be slightly off with this... see if sending an image always creates an error
+      }).then( (response) => this.props.sendMessage(response).then(()=> {
+        if(this.props.messages.length > 1)
+        {
+          this._cache.clear(this.props.messages.length - 2);
+        }
+        this._cache.clear(this.props.messages.length - 1);
+
+
+      })) //something may be slightly off with this... see if sending an image always creates an error
       //first guess is that it's double-sending.
       //I wanna say to use only an action, no util instead of sendMessage
     }
@@ -348,12 +359,12 @@ class Channel extends React.Component {
               {msg.image_url ? <img onLoad={measure} className="msg-img" src={msg.image_url}></img> : ""}
             </div>
           </div>
-          {lastfiller}
           <div className="msgbuttons">
             {pinButton}
             {editButton}
             {deleteButton}
           </div>
+          {lastfiller}
         </div>
          
         </div>)

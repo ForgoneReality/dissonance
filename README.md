@@ -16,6 +16,7 @@ SOON:
 - Aria Bot Notification Glow-up, Implement either Bot or Main Server to help introduce new users 
 - Better Seeding
 - BETTER READMES (both projects)
+- MAKE SURE TO ADD LIVE LINKS TO THE README
 
 LATER:
 - Customizable Roles with different permission accesses and priveleges
@@ -30,12 +31,10 @@ LATER:
 ## Known Bugs 
 
 - FIX CONVERSATION SWAPPING OTHERUSER 
-- Last message doesn't have buttons for pins, edit, 
-- Pin message icon missing
+- Editing messgaes might not be live (Action Cable)
 - EDIT CHANNEL MESSAGES NO WORK
 - Invite Link not working as intended if not logged in
 - Dropdown short and dropdown long not reliably accurate (sometimes need refresh) 
-- Action cable not working for channels -> Editing, Deleting [Synergy with React-Virtualized]
 - PERFORMANCE OPTIMIZAITON (is it a nicknames backend problem? It is really slow to load the 300 page) -> LOADING THING PROBABLY MAKES IT OK
 - USERS OPTIMIZATION DOESNT WORK IF THEY LEAVE THE SERVER FOR SEARCH MODAL AND USER MODAL
 
