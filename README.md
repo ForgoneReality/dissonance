@@ -31,12 +31,13 @@ LATER:
 ## Known Bugs 
 
 - FIX CONVERSATION SWAPPING OTHERUSER 
-- Editing messgaes might not be live (Action Cable)
 - EDIT CHANNEL MESSAGES NO WORK
+- Editing messgaes might not be live (Action Cable)
 - Invite Link not working as intended if not logged in
 - Dropdown short and dropdown long not reliably accurate (sometimes need refresh) 
 - PERFORMANCE OPTIMIZAITON (is it a nicknames backend problem? It is really slow to load the 300 page) -> LOADING THING PROBABLY MAKES IT OK
 - USERS OPTIMIZATION DOESNT WORK IF THEY LEAVE THE SERVER FOR SEARCH MODAL AND USER MODAL
+- Minor: Massive space under images?
 
 - Refreshing on conversations still nonfunctional
 - Transfer everything necessary between channels and conversations
