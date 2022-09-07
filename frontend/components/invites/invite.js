@@ -104,7 +104,7 @@ class Invite extends React.Component {
     {
       window.redirect = location.href;
       return(
-        <Redirect to="login"/>
+        <Redirect to="/login"/>
       )
     }
   }
