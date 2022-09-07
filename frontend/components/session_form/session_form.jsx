@@ -93,7 +93,8 @@ class SessionForm extends React.Component {
       <div className="login-form-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
           <h1>{TitleMessage}</h1>
-          {optionalSubtitle}
+          {/* {optionalSubtitle} */}
+          {!window.redirect?optionalSubtitle:<h3>Please login before accepting the server invite link!</h3>}
           {/* Please {this.props.formType} or {this.props.navLink} */}
           {this.renderErrors()}
           <div className="login-form">
@@ -111,8 +112,8 @@ class SessionForm extends React.Component {
                 className="login-input" id="password-login-input"
               />
               {AdditionalSignupInfo}
-              <p id="bruh9203" onClick={() => this.props.signinDemo()}>Don't want to register? Try the demo!</p>
-
+              {/* <p id="bruh9203" onClick={() => this.props.signinDemo()}>Don't want to register? Try the demo!</p> */}
+              {!window.redirect && <p id="bruh9203" onClick={() => this.props.signinDemo()}>Don't want to register? Try the demo!</p>}
               <br/>
             </div>
             <input className="session-submit" type="submit" value={this.props.formType} />

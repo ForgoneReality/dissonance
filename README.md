@@ -11,6 +11,7 @@ The core of the website is built using Javascript, ReactJS, HTML, CSS, and Ruby 
 ## To-Do
 
 SOON:
+- Test all functionalities on Heroku even if it works on Live
 - Notifications and Pinging with Action Cable
 - Finish Search 
 - Aria Bot Notification Glow-up, Implement either Bot or Main Server to help introduce new users 
@@ -32,8 +33,10 @@ LATER:
 
 - FIX CONVERSATION SWAPPING OTHERUSER 
 - EDIT CHANNEL MESSAGES NO WORK
+- Action Cable not working Heroku
 - Editing messgaes might not be live (Action Cable)
 - Invite Link not working as intended if not logged in
+- Copy Link not working on Heroku
 - Dropdown short and dropdown long not reliably accurate (sometimes need refresh) 
 - PERFORMANCE OPTIMIZAITON (is it a nicknames backend problem? It is really slow to load the 300 page) -> LOADING THING PROBABLY MAKES IT OK
 - USERS OPTIMIZATION DOESNT WORK IF THEY LEAVE THE SERVER FOR SEARCH MODAL AND USER MODAL

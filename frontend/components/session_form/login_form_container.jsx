@@ -10,8 +10,8 @@ const mapStateToProps = ({ errors }) => {
     errors: errors.session,
     formType: 'Login',
     navLink: 
-      <p> <span id="bruh9201">Don't have an account?</span> <span><Link id="auth-links" to="/signup">Sign up instead</Link></span> </p>
-
+      // <p> <span id="bruh9201">Don't have an account?</span> <span><Link id="auth-links" to="/signup">Sign up instead</Link></span> </p>
+      <p> {!window.redirect && <span><span id="bruh9201">Don't have an account?</span> <span><Link id="auth-links" to="/signup">Sign up instead</Link></span></span>} </p>
   };
 };
 

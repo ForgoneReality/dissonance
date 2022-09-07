@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { joinServer } from '../../util/servers_api_util';
+import { Redirect } from "react-router-dom"
 
 class Invite extends React.Component {
   constructor(props) {
@@ -69,33 +70,43 @@ class Invite extends React.Component {
   }
 
   render() {
-    let server_img = this.props.server.image_url ? <img id="server-pic2" src={this.props.server.image_url}/> : <div></div>
-    let mems = this.props.server.num_members > 1 ? "Members" : "Member";
-    let num_members = this.props.server.online_members > 0 ?  <div id="num-members">
-    <svg height="12" width="12"><circle cx="6" cy="6" r="5" stroke="#B9BBBE" strokeWidth="2.25" fill="#B9BBBE" /> </svg> 
-    <h2>{this.props.server.num_members} {mems}</h2>
-    <svg id="bruh3904" height="12" width="12"><circle cx="6" cy="6" r="5" stroke="#3ba55d" strokeWidth="2.25" fill="#3ba55d" /> </svg> 
-    <h2 style={{color: "#3ba55d"}}>{this.props.server.online_members} Online</h2>
-   </div> :
-     <div id="num-members">
+    if(this.props.server.name)
+    {
+      let server_img = this.props.server.image_url ? <img id="server-pic2" src={this.props.server.image_url}/> : <div></div>
+      let mems = this.props.server.num_members > 1 ? "Members" : "Member";
+      let num_members = this.props.server.online_members > 0 ?  <div id="num-members">
       <svg height="12" width="12"><circle cx="6" cy="6" r="5" stroke="#B9BBBE" strokeWidth="2.25" fill="#B9BBBE" /> </svg> 
       <h2>{this.props.server.num_members} {mems}</h2>
-     </div>
-    return(
-        <div className="login-form-container">
-         {/* <form onSubmit={this.handleSubmit} className="login-form-box"> */}
-         <form className="login-form-box">
-          {server_img}
-          <h2>You've been invited to join</h2>
-          <h1>{this.props.server.name}</h1>
-          {/* Please {this.props.formType} or {this.props.navLink} */}
-          {this.renderErrors()}
-          {num_members}
-          <button id="bruh0030" onClick={this.handleSubmit}>Accept Invite</button>
-        </form>
-        <img className="login-form-container-img" src={window.loginimg}/>
-        </div>
-    );
+      <svg id="bruh3904" height="12" width="12"><circle cx="6" cy="6" r="5" stroke="#3ba55d" strokeWidth="2.25" fill="#3ba55d" /> </svg> 
+      <h2 style={{color: "#3ba55d"}}>{this.props.server.online_members} Online</h2>
+    </div> :
+      <div id="num-members">
+        <svg height="12" width="12"><circle cx="6" cy="6" r="5" stroke="#B9BBBE" strokeWidth="2.25" fill="#B9BBBE" /> </svg> 
+        <h2>{this.props.server.num_members} {mems}</h2>
+      </div>
+      return(
+          <div className="login-form-container">
+          {/* <form onSubmit={this.handleSubmit} className="login-form-box"> */}
+          <form className="login-form-box">
+            {server_img}
+            <h2>You've been invited to join</h2>
+            <h1>{this.props.server.name}</h1>
+            {/* Please {this.props.formType} or {this.props.navLink} */}
+            {this.renderErrors()}
+            {num_members}
+            <button id="bruh0030" onClick={this.handleSubmit}>Accept Invite</button>
+          </form>
+          <img className="login-form-container-img" src={window.loginimg}/>
+          </div>
+      );
+    }
+    else
+    {
+      window.redirect = location.href;
+      return(
+        <Redirect to="login"/>
+      )
+    }
   }
 }
 

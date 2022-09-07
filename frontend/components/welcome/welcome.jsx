@@ -10,6 +10,11 @@ class Welcome extends React.Component
   constructor(props)
   {
     super(props)
+    if(window.redirect)
+    {
+        window.open(window.redirect, '_self')
+        delete window.redirect
+    }
   }
 
   componentDidMount()
