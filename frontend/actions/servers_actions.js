@@ -25,9 +25,9 @@ export const receiveServer = (server) =>({
   }  
 );
 
-export const deleteServer = (server) =>({
+export const deleteServer = (id) =>({
   type:DELETE_SERVER,
-  server
+  id
 }  
 );
 
