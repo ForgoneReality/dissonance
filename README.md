@@ -1,6 +1,8 @@
 # Dissonance
 _A Discord replication site built using Javascript, ReactJS, Ruby on Rails, HTML, and CSS_
 
+** This Project Is Under Active Construction!!! Features may be bugged or unimplemented, and are constantly being broken and repaired everyday **
+
 ## Features
 
 _To be implemented..._
@@ -15,6 +17,7 @@ SOON:
 - Notifications and Pinging with Action Cable
 - Finish Search 
 - Aria Bot Notification Glow-up, Implement either Bot or Main Server to help introduce new users 
+- Image preview
 - Better Seeding
 - BETTER READMES (both projects)
 - MAKE SURE TO ADD LIVE LINKS TO THE README
@@ -42,6 +45,7 @@ LATER:
 - PERFORMANCE OPTIMIZAITON (is it a nicknames backend problem? It is really slow to load the 300 page) -> LOADING THING PROBABLY MAKES IT OK
 - USERS OPTIMIZATION DOESNT WORK IF THEY LEAVE THE SERVER FOR SEARCH MODAL AND USER MODAL
 - Minor: Massive space under images?
+- Minor?: Notifications sometimes doubles or fails to show up
 
 - Refreshing on conversations still nonfunctional
 - Transfer everything necessary between channels and conversations

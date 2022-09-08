@@ -5,10 +5,13 @@ import ChannelContainer from "../channels/channel_container.jsx";
 import ServerContainer from "../servers/servers_container.jsx"
 import { Link } from 'react-router-dom';
 import {ProtectedRoute} from "../../util/route_util"
+import consumer from '../../consumer';
 
 import SettingsContainer from "../settings/settings_container.js"
 import Modal from "../modal.jsx"
 import FullModal from "../fullmodal.jsx"
+import notif from '../../../app/assets/sounds/notification.mp3'
+import { readConversation } from '../../util/conversations_api_util';
 
 // import TempServerContainer from "../servers/temp_server_container.jsx"
 
@@ -25,13 +28,41 @@ class AppBasics extends React.Component {
     
     this.openSettings = this.openSettings.bind(this);
     this.response = null;
+    this.audio = new Audio(notif);
   }
 
   componentDidMount()
   {
     this.props.getServersList(this.props.currentUser.id);
     this.props.getConversationList(this.props.currentUser.id); //POSSIBLY EXTRANEOUS!! might need to remove elsewhere because now it's at such a high level in appbasics
-    this.props.getChannel
+    this.enterRoom();
+  }
+
+  enterRoom() {
+    // ...
+    this.subscription = consumer.subscriptions.create(
+      { channel: 'ConversationsNotifChannel'},
+      {received: ({type, conversation}) => {
+        switch (type) {
+          case 'RECEIVE_CONVERSATION_NOTIF':
+            if(`#/conversations/${conversation.id}` !== window.location.hash)
+            {
+              this.props.newUnreadMessage(conversation);
+              this.audio.play();
+            }
+            else
+            {
+              readConversation(conversation.id, this.props.currentUser.id);
+            }
+            break;
+          default:
+            console.log('Unhandled broadcast: ', type);
+            break;
+        }
+      }
+    }
+    
+    );
   }
 
   openSettings()

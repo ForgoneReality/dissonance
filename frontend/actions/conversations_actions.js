@@ -8,6 +8,7 @@ import { receiveUsers } from "./users_actions.js";
 export const RECEIVE_CONVERSATIONS = "RECEIVE_CONVERSATIONS";
 export const RECEIVE_CONVERSATION = "RECEIVE_CONVERSATION";
 export const CREATE_CONVERSATION = "CREATE_CONVERSATION";
+export const NEW_UNREAD_CONVERSATION_MESSAGE = "NEW_UNREAD_CONVERSATION_MESSAGE";
 // export const UPDATE_CONVERSATION = "UPDATE_CONVERSATION";
 
 
@@ -29,6 +30,13 @@ export const createConvo = (conversation) =>({
   type:CREATE_CONVERSATION,
   conversation
 });
+
+
+//INCOMING BAD CODE
+export const newUnreadMessage = (convoId) =>({
+  type: NEW_UNREAD_CONVERSATION_MESSAGE,
+  convoId
+})
 
 // export const updateConversation = (convo) => ({
 //   type: UPDATE_CONVERSATION,

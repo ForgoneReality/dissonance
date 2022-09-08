@@ -60,13 +60,14 @@ class Api::ConversationsController < ApplicationController
 
     def read
         @conversation = Conversation.find(params[:id])
-        if(@conversation.user1_id === params[:userId])
+        user_id = params[:userId].to_i
+        if(@conversation.user1_id == user_id)
             @conversation.unread1 = 0
         else
             @conversation.unread2 = 0
         end
         if @conversation.save
-            render '_convolongflipped', locals: {conversation: @conversation, userid: params[:userId]}
+            render '_convolong', locals: {conversation: @conversation, userid: user_id}
         else
             render json: @convo.errors.full_messages, status: 422
         end

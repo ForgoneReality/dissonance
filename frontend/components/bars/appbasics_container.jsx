@@ -3,7 +3,7 @@ import React from 'react';
 import AppBasics from './appbasics.js';
 import { getServersList } from '../../actions/servers_actions.js';
 import { displayFullModal, displayModal } from '../../actions/modal_actions.js';
-import { getConversationList } from '../../actions/conversations_actions.js';
+import { getConversationList, newUnreadMessage } from '../../actions/conversations_actions.js';
 
 //at the moment it's just the userbar at the bottom... need servers list later soon
 const mapStateToProps = (state) => {
@@ -24,7 +24,8 @@ const mapDispatchToProps = dispatch => {
     openSettings: () => dispatch(displayFullModal("settings")),
     displayCreateServerModal: () => dispatch(displayModal("createserver")),
     getConversationList: (userId) => dispatch(getConversationList(userId)),
-    displayModal: (modal) => dispatch(displayModal(modal))
+    displayModal: (modal) => dispatch(displayModal(modal)),
+    newUnreadMessage: (convo) => dispatch(newUnreadMessage(convo.id))
   };
 };
 

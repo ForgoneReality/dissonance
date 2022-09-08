@@ -17,12 +17,21 @@ class Api::MessagesController < ApplicationController
           if(@message.location_type == "Conversation")
             if(params["message"]["recipient_id"]) #recipient_id wasn't needed but w/e
               convo = Conversation.find(params["message"]["location_id"])
-              if(convo.user1_id === params["message"]["recipient_id"])
+
+              if(convo.user1_id == params["message"]["recipient_id"].to_i)
                 convo.unread1 += 1
+                cfirst = true;
               else
                 convo.unread2 += 1
+                cfirst = false;
               end
               convo.save!
+              if(cfirst)
+                ConversationsNotifChannel.broadcast_to convo.user1, type: "RECEIVE_CONVERSATION_NOTIF", conversation: convo
+              else  
+                ConversationsNotifChannel.broadcast_to convo.user2, type: "RECEIVE_CONVERSATION_NOTIF", conversation: convo
+              end
+
               # params["message"]["recipient_id"]
             end
             ConversationsChannel.broadcast_to @message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: @message)
