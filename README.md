@@ -46,6 +46,7 @@ LATER:
 - USERS OPTIMIZATION DOESNT WORK IF THEY LEAVE THE SERVER FOR SEARCH MODAL AND USER MODAL
 - Minor: Massive space under images?
 - Minor?: Notifications sometimes doubles or fails to show up
+- When coming from a convo, channel messages might have weird spacing messed up from react-virtuzliaed. try either clear caching everything on load, or force refresh
 
 - Refreshing on conversations still nonfunctional
 - Transfer everything necessary between channels and conversations
