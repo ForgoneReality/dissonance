@@ -21,11 +21,14 @@ class Channel extends React.Component {
       photoFile: null,
       photoUrl: null
     }
+    this.updating = -1;
 
     this._cache = new CellMeasurerCache({
       fixedWidth: true,
       defaultHeight: 71
     })
+    window.cc = this._cache;
+    
 
     this.rowRenderer = this.rowRenderer.bind(this);
     this.showUsersTemp = this.showUsersTemp.bind(this);
@@ -35,6 +38,7 @@ class Channel extends React.Component {
 
   bindListRef = ref => {
     this.list = ref;
+    window.listt = this.list;
   };
 
   submitOnEnter(event){
@@ -47,6 +51,10 @@ class Channel extends React.Component {
   }
 
   update(property) {
+    if(property === "editmsg")
+    {
+      this.updating = 1; 
+    }
     return e => this.setState({ [property]: e.currentTarget.value });
   }
 
@@ -130,6 +138,7 @@ class Channel extends React.Component {
   handleEditSubmit(e)
   {
     e.preventDefault();
+    this.updating = 4;
     this.props.editMessage( {id: this.state.editing, content: this.state.editmsg});
     // this.props.editMessage(this.state.editmsg, this.state.editing);
     this.setState({editmsg: "", editing: -1});
@@ -168,8 +177,10 @@ class Channel extends React.Component {
       this.subscription?.unsubscribe();
       this.enterRoom();
     }
-    if (this.list) {
+    if (this.list && this.updating > 0) {
       this.list.forceUpdateGrid();
+      // this._cache.clear(4);
+      this.updating -= 1;
     }
   }
 
@@ -300,18 +311,20 @@ class Channel extends React.Component {
         {
           if(this.firstTime === 2)
           {
+            this.updating = 1;
             this.setState({editmsg: msg.content}); //needless
             this.firstTime = 1;
           }
           msgContent = (
             <form id="edit-msg-form">
-              <textarea id="edit-msg-textform" value={this.state.editmsg} onChange={this.update("editmsg")}></textarea>
+              <textarea style={{width: "calc(100vw - 666px)"}} id="edit-msg-textform" value={this.state.editmsg} onChange={this.update("editmsg")}></textarea>
               <button className="invisible" type="Submit">Edit</button>
             </form>)
 
        
           if(this.firstTime === 1)
           {
+            this.updating = 1;
             let edittxt = document.getElementById("edit-msg-textform");
             if(edittxt)
             {
@@ -335,6 +348,7 @@ class Channel extends React.Component {
           </button>)
 
           editButton = <button id="edit-msg-button" onClick={() => {
+            this.updating = 1;
             this.firstTime = 2;
             this.setState({editing: msg.id});
           }
@@ -388,10 +402,6 @@ class Channel extends React.Component {
 
   render() {
     console.log("render");
-    if(this.state.editing > 0)
-    {
-      this._cache.clear(2);
-    }
 
     let currChannelName = "";
     let currChannelDescription = "";
