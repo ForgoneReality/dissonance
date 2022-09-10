@@ -29,7 +29,13 @@ class Channel extends React.Component {
 
     this.rowRenderer = this.rowRenderer.bind(this);
     this.showUsersTemp = this.showUsersTemp.bind(this);
+    this.bindListRef = this.bindListRef.bind(this);
   }
+
+
+  bindListRef = ref => {
+    this.list = ref;
+  };
 
   submitOnEnter(event){
     if(event.which === 13){
@@ -162,6 +168,9 @@ class Channel extends React.Component {
       this.subscription?.unsubscribe();
       this.enterRoom();
     }
+    if (this.list) {
+      this.list.forceUpdateGrid();
+    }
   }
 
   componentWillUnmount()
@@ -204,7 +213,7 @@ class Channel extends React.Component {
     parent
   }) {
     // let formatted_msg = <div></div>;
-
+    console.log("trin")
     let msg;
     let deleteButton = null;
     let editButton = null;
@@ -215,6 +224,8 @@ class Channel extends React.Component {
     let msgHeader = null;
     let filler = null;
     let lastfiller = null;
+    let msgContent = null;
+
 
     if (this.props.messages.length > 0)
     {
@@ -285,10 +296,8 @@ class Channel extends React.Component {
 
       if(msg.author_id === this.props.currentUser.id)
       {
-        
         if(this.state.editing === msg.id)
         {
-
           if(this.firstTime === 2)
           {
             this.setState({editmsg: msg.content}); //needless
@@ -319,6 +328,8 @@ class Channel extends React.Component {
         }
         else
         {
+          console.log("first", msg.id);
+          console.log(this.state.editing);
           deleteButton = (<button id="delete-msg-button" onClick={() => {if(!this.state.bot){this.props.deleteMessage(msg.id)}}}>
              <img src={window.deleteicon}/>
           </button>)
@@ -351,14 +362,15 @@ class Channel extends React.Component {
         (<div style={style} ref={registerChild} id="single-message" >
           <div >
           {filler}
-          <div className="message">
+          { msgContent === null ? <div className="message">
             {mypfp}
             <div>
               {msgHeader}
               <p className="msg-content">{msg.content}</p>
               {msg.image_url ? <img onLoad={measure} className="msg-img" src={msg.image_url}></img> : ""}
             </div>
-          </div>
+          </div> : msgContent
+          }
           <div className="msgbuttons">
             {pinButton}
             {editButton}
@@ -375,6 +387,12 @@ class Channel extends React.Component {
   }
 
   render() {
+    console.log("render");
+    if(this.state.editing > 0)
+    {
+      this._cache.clear(2);
+    }
+
     let currChannelName = "";
     let currChannelDescription = "";
     if(this.props.channelId)
@@ -408,6 +426,7 @@ class Channel extends React.Component {
             <AutoSizer>
             {({height, width}) => (
               <List
+                ref={this.bindListRef}
                 id="server-msg-list"
                 width={width}
                 height={height}

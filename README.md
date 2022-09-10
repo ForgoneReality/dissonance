@@ -47,8 +47,6 @@ LATER:
 - Minor: Massive space under images?
 - Minor?: Notifications sometimes doubles or fails to show up
 - When coming from a convo, channel messages might have weird spacing messed up from react-virtuzliaed. try either clear caching everything on load, or force refresh
-
-- Refreshing on conversations still nonfunctional
 - Transfer everything necessary between channels and conversations
 - Changing nickname refresh... refactor: put nickname in the state. inside the new reducer, have a hash for user_id with nickname/username depending on whether nickname exists
 - Refactor: DELETE USER. Should change users into deleted users, should not just wipe the user from memory but make it non-loggable, etc.
