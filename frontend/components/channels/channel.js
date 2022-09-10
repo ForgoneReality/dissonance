@@ -19,7 +19,8 @@ class Channel extends React.Component {
       editmsg: "",
       editing: -1,
       photoFile: null,
-      photoUrl: null
+      photoUrl: null,
+      lastedited: -1
     }
     this.updating = -1;
 
@@ -179,7 +180,8 @@ class Channel extends React.Component {
     }
     if (this.list && this.updating > 0) {
       this.list.forceUpdateGrid();
-      // this._cache.clear(4);
+      this._cache.clear(this.state.lastedited);
+      this.list.recomputeRowHeights(this.state.lastedited);
       this.updating -= 1;
     }
   }
@@ -317,7 +319,7 @@ class Channel extends React.Component {
           }
           msgContent = (
             <form id="edit-msg-form">
-              <textarea style={{width: "calc(100vw - 666px)"}} id="edit-msg-textform" value={this.state.editmsg} onChange={this.update("editmsg")}></textarea>
+              <textarea style={{width: "calc(100vw - 690px)"}} id="edit-msg-textform" value={this.state.editmsg} onChange={this.update("editmsg")}></textarea>
               <button className="invisible" type="Submit">Edit</button>
             </form>)
 
@@ -350,7 +352,7 @@ class Channel extends React.Component {
           editButton = <button id="edit-msg-button" onClick={() => {
             this.updating = 1;
             this.firstTime = 2;
-            this.setState({editing: msg.id});
+            this.setState({editing: msg.id, lastedited: index});
           }
           }>
             <img src={window.editmessage}/>
