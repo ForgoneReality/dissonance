@@ -20,7 +20,6 @@ SOON:
 - Image preview
 - Better Seeding
 - BETTER READMES (both projects)
-- MAKE SURE TO ADD LIVE LINKS TO THE README
 
 LATER:
 - Customizable Roles with different permission accesses and priveleges
@@ -35,9 +34,7 @@ LATER:
 ## Known Bugs 
 
 - FIX CONVERSATION SWAPPING OTHERUSER 
-- EDIT CHANNEL MESSAGES NO WORK
 - Leaving server doesn't remove from server list
-- Action Cable not working Heroku
 - Editing messgaes might not be live (Action Cable)
 - Invite Link not working as intended if not logged in
 - Copy Link not working on Heroku
