@@ -38,6 +38,11 @@ class AppBasics extends React.Component {
     this.enterRoom();
   }
 
+  componentWillUnmount() {
+    //removeEventListeners? s
+    this.subscription?.unsubscribe();
+  }
+
   enterRoom() {
     // ...
     this.subscription = consumer.subscriptions.create(
