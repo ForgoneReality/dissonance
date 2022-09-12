@@ -79,6 +79,9 @@ class AppBasics extends React.Component {
   {
     console.log(this.props.unreadConvos, "inksiee")
     let {username, status, fourdigit_id, pfp_url} = this.props.currentUser;
+    console.log("AFLDSF", this.props.serversList);
+    console.log(this.props.serversList.length);
+
     let serverList = this.props.serversList.map( (server, index) => {
       if(!server.image_url)
       {
@@ -90,7 +93,7 @@ class AppBasics extends React.Component {
       }
       else
       {
-        if(index === this.props.serverList.length - 1)
+        if(index === this.props.serversList.length - 1)
         {
           return <li><Link className="server-link-top" to={`/servers/${server.id}`}><img src={server.image_url}></img></Link></li>
         }

@@ -75,6 +75,8 @@ class Channel extends React.Component {
         switch (type) {
           case 'RECEIVE_MESSAGE':
             this.props.receiveMessage(message);
+            this._cache.clear(this.props.messages.length - 2);
+            this._cache.clear(this.props.messages.length - 1);
             break;
           case 'DELETE_MESSAGE':
             this.props.removeMessage(id);
