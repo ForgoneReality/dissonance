@@ -132,7 +132,7 @@ class AppBasics extends React.Component {
     }
 
     let searchMaybe = "";
-    if(this.props.modal && this.props.modal.name === "search-message")
+    if(this.props.modal && this.props.modal.namee === "search-message")
     {
       searchMaybe = <SearchModal></SearchModal>
     }
