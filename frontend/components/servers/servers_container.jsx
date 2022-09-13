@@ -6,11 +6,8 @@ import { fetchServer} from "../../actions/servers_actions"
 import Server from "./servers"
 
 const mapStateToProps = (state, ownProps) => {
-  let x = false;
-  if(state.current.server && (state.session.id === state.current.server.owner_id))
-  {
-    x = true;
-  }
+
+  
   return {
     // errors: state.errors.channels,
     channelId: ownProps.match.params.channelId,
@@ -18,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
     channels: state.entities.channels,
     servers: state.entities.servers,
     usersList: Object.values(state.entities.users),
-    isOwner: x
+    isOwner: state.session.id === state.current.server.owner_id
     // getServerID: (channelId) => findServerID(channelId)
   };
 };
