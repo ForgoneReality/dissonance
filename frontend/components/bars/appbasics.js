@@ -10,7 +10,7 @@ import consumer from '../../consumer';
 import SettingsContainer from "../settings/settings_container.js"
 import Modal from "../modal.jsx"
 import FullModal from "../fullmodal.jsx"
-import notif from '../../../app/assets/sounds/notification.mp3'
+import notif from '../../../app/assets/sounds/  '
 import { readConversation } from '../../util/conversations_api_util';
 
 // import TempServerContainer from "../servers/temp_server_container.jsx"
