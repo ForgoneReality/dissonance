@@ -5,22 +5,20 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
-  let persistor;
   if (window.currentUser) {
     const preloadedState = {
-      session: { id: window.currentUser.id, currentUser: window.currentUser },
+      session: { id: window.currentUser.id, currentUser: window.currentUser }
     };
-    store = configureStore(1, preloadedState);
-    persistor = configureStore(2, preloadedState);
+    store = configureStore(preloadedState);
     delete window.currentUser;
   } else {
-    store = configureStore(1);
-    persistor = configureStore(2);
+    store = configureStore();
   }
 
   window.store = store;
   const root = document.getElementById('root');
-  ReactDOM.render(<Root store={store} persistor={persistor} />, root);
+  ReactDOM.render(<Root store={store} />, root);
 });
