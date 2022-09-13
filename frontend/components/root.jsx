@@ -1,17 +1,22 @@
-import App from './App';
-import React from 'react';
+import App from "./App";
+import React from "react"
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
 
-import { Route, Redirect, Switch, Link, HashRouter } from 'react-router-dom';
+import {
+  Route,
+  Redirect,
+  Switch,
+  Link,
+  HashRouter
+} from 'react-router-dom';
 
-const Root = ({ store, persistor }) => (
+
+
+const Root = ({ store }) => (
   <Provider store={store}>
     <HashRouter>
-      <PersistGate persistor={persistor}>
-        <App></App>
-      </PersistGate>
+      <App></App>
     </HashRouter>
   </Provider>
 );
-export default Root;
+export default Root
