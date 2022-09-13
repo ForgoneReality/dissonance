@@ -163,7 +163,8 @@ constructor(props) {
 
 const mapStateToProps = (state) => {
   let owner = false;
-  if(Object.keys(state.entities.channels).length > 0)
+  console.log("?");
+  if(state.ui.modal && Object.keys(state.entities.channels).length > 0)
   {
     const server_id = state.current.server.id
     owner = (state.session.id === state.entities.servers[server_id].owner_id);
