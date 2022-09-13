@@ -9,15 +9,20 @@ import ConversationsContainer from "./conversation_container"
 class ConversationList extends React.Component {
   constructor(props) {
     super(props);
-   
-    this.renderErrors = this.renderErrors.bind(this)
+    this.trythis(); 
     
+    this.renderErrors = this.renderErrors.bind(this)
   }
 
-  async componentDidMount()
+  componentDidMount()
   {
     this.props.removeErrors();
-    await this.props.getConversationList(this.props.currentUser.id);//MIGHT BE IN CONSTRUCTOR OR OTHER PLACE LIKE MOUNTED
+  }
+
+  trythis()
+  {
+    this.props.getConversationList(this.props.currentUser.id);//MIGHT BE IN CONSTRUCTOR OR OTHER PLACE LIKE MOUNTED
+    console.log("!");
   }
 
   componentDidUpdate(prevProps)

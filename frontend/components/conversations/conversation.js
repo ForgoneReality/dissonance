@@ -46,6 +46,7 @@ class Conversation extends React.Component {
 
   enterRoom() {
     // ...
+    console.log("!!?@");
     this.subscription = consumer.subscriptions.create(
       { channel: 'ConversationsChannel', id: this.props.convo.id},
       {received: ({type, message, id}) => {
@@ -184,39 +185,40 @@ class Conversation extends React.Component {
   {
     document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
     document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
-    
-    this.props.getConvoMessages(this.props.id, this.props.currentUser.id);//can combine with below, but not JSON standard to add data to a GET request
-
-    this.enterRoom();
-    this.props.removeErrors();
-    this.props.removeModals();
-    if(this.props.convo.otherUser.id === 6)
-    {
-      this.setState({bot: true});
-    }
-    // alert(this.myRef);
-    // this.scrolled = false;
-    this.scrollToBottom();
-  }
-
-  componentDidUpdate(prevProps) {
-    
-    const prevConvoId = prevProps.convo.id;
-    if (prevConvoId !== this.props.convo.id) {
-      this.props.getConvoMessages(this.props.id, this.props.currentUser.id);
-      this.subscription?.unsubscribe();
+    this.props.getConversationList(this.props.currentUser.id).then(() => {
       this.enterRoom();
       if(this.props.convo.otherUser.id === 6)
       {
         this.setState({bot: true});
-
       }
-      else
+      this.props.removeErrors();
+      this.props.removeModals();
+      this.props.getConvoMessages(this.props.id, this.props.currentUser.id).then(() => {
+        this.scrollToBottom();
+      })
+    })
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.convo)
       {
-        this.setState({bot: false});
+      const prevConvoId = prevProps.convo.id;
+      if (prevConvoId !== this.props.convo.id) {
+        this.props.getConvoMessages(this.props.id, this.props.currentUser.id);
+        this.subscription?.unsubscribe();
+        this.enterRoom();
+        if(this.props.convo.otherUser.id === 6)
+        {
+          this.setState({bot: true});
 
+        }
+        else
+        {
+          this.setState({bot: false});
+
+        }
+        this.scrollToBottom();
       }
-      this.scrollToBottom();
     }
   }
 
