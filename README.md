@@ -37,7 +37,6 @@ LATER:
 - Leaving server doesn't remove from server list
 - Editing messgaes might not be live (Action Cable)
 - Invite Link not working as intended if not logged in
-- Copy Link not working on Heroku
 - Dropdown short and dropdown long not reliably accurate (sometimes need refresh) 
 - PERFORMANCE OPTIMIZAITON (is it a nicknames backend problem? It is really slow to load the 300 page) -> LOADING THING PROBABLY MAKES IT OK
 - USERS OPTIMIZATION DOESNT WORK IF THEY LEAVE THE SERVER FOR SEARCH MODAL AND USER MODAL

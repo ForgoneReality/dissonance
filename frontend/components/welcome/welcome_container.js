@@ -8,7 +8,7 @@ import { demo } from '../../actions/session_actions';
 import Welcome from './welcome';
 
 const mapStateToProps = ({ session, entities: { users } }) => {
-  let signupp = session.id ? <button id="welcome-signup" type="button">
+  let signupp = session.id ? <button id="welcome-signup" type="button" onClick={() => {window.open('https://github.com/ForgoneReality/dissonance','_blank', 'noopener,noreferrer')}}>
       Download
     </button> : <Link to="/signup"> 
       <button id="welcome-signup" type="button">
