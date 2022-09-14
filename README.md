@@ -14,9 +14,9 @@ The core of the website is built using Javascript, ReactJS, HTML, CSS, and Ruby 
 
 SOON:
 - Test all functionalities on Heroku even if it works on Live
-- Notifications and Pinging with Action Cable
+- Pinging with Action Cable
 - Finish Search 
-- Aria Bot Notification Glow-up, Implement either Bot or Main Server to help introduce new users 
+- Aria Bot Notification Glow-up, Implement either Bot or Main Server to help introduce new users -> Also stop the hardcoded id = 6 thing (heroku)
 - Image preview
 - Better Seeding
 - BETTER READMES (both projects)
