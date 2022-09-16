@@ -15,7 +15,8 @@ const mapStateToProps = (state, ownProps) => {
     channels: state.entities.channels,
     servers: state.entities.servers,
     usersList: Object.values(state.entities.users),
-    isOwner: state.session.id === state.current.server.owner_id
+    isOwner: state.session.id === state.current.server.owner_id,
+    modals: state.ui.modal
     // getServerID: (channelId) => findServerID(channelId)
   };
 };

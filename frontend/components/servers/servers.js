@@ -7,13 +7,15 @@ import Channel from "../channels/channel.js"
 import ChannelContainer from '../channels/channel_container.jsx';
 
 import { fetchChannel } from '../../util/channels_api_util.jsx';
+import $ from 'jquery';
 
 class Server extends React.Component {
   constructor(props) {
     super(props);
    
     this.state ={
-      searchmsg: ""
+      searchmsg: "",
+      searchlisting: 0
     }
     this.renderErrors = this.renderErrors.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -22,9 +24,20 @@ class Server extends React.Component {
 
   componentDidMount()
   { 
+    // document.getElementById("overhere1").addEventListener('click', () => {
+    //   if(this.state.searchlisting === 0)
+    //   {
+    //     this.setState({searchlisting: 1});
+    //   }
+    //   else if(this.state.searchlisting === 1)
+    //   {
+    //     //do nothing  
+    //   }
+    // })
     fetchChannel(this.props.channelId).then( (res) => {
       this.props.fetchServer(res.channel.server_id);
     });
+    
     this.props.removeErrors();
   }
   update(field) {
@@ -87,7 +100,7 @@ class Server extends React.Component {
       pinned = true;
     }
   this.props.displayModal("search-message", {msg: msg, channel: channel, has_image: has_image, has_link: has_link, pinned: pinned, user: user})
-    
+  this.setState({searchlisting: 0});
   }
 
   renderErrors() {
@@ -187,6 +200,21 @@ class Server extends React.Component {
     <svg onClick={() => {this.setState({usermsg: ""}); this.props.hideModal(); document.getElementById("overhere1").value = "";}} aria-hidden="true" role="img" width="16" height="16" viewBox="0 0 24 24"><path fill="#A3A6AA" d="M18.4 4L12 10.4L5.6 4L4 5.6L10.4 12L4 18.4L5.6 20L12 13.6L18.4 20L20 18.4L13.6 12L20 5.6L18.4 4Z"></path></svg>
 
 
+    let channelListUh2 = this.state.searchlisting === 3 ? <div id ="butut">
+    <p>IN CHANNEL</p>
+    <ul>
+    {this.props.channelsList.map((ch) => <li onClick={() => {
+      let yourboy = document.getElementById("overhere1");
+      yourboy.value += ` in:${ch.name}`;
+      this.setState({searchlisting: 0, searchmsg: `${this.state.searchmsg} in:${ch.name}`});
+      $("#overhere1").trigger("focus");
+    }}># {ch.name}</li>)}
+    </ul>
+    </div> : null
+
+    let extendedUserList = this.props.usersList.map((user) => [user.username + "#" + user.fourdigit_id, user.pfp_url]);
+    const re5 = /from:[a-zA-Z0-9#]*$/;
+
     return (
        <section className="server">
           <div id="serverlisty">
@@ -206,11 +234,79 @@ class Server extends React.Component {
         <div className = "UsersList">
           <div id="channel-users-list-header">
             <div id="search-bar">
-              <form id="bruh6662" onSubmit={this.handleSubmit}>
+              <form id="bruh6662" autocomplete="off" onSubmit={this.handleSubmit} onClick={() => this.setState({searchlisting: 1})}>
                 <input id="overhere1" type="text" placeholder="Search" onChange={this.update("searchmsg")} ></input>
               </form>
               {search_img}
             </div>
+            {this.state.searchlisting === 0 && re5.exec(this.state.searchmsg) ? 
+              <div id ="butut">
+              <p>FROM USER</p>
+              <ul>
+              {
+                extendedUserList.filter((user) => user[0].includes(re5.exec(this.state.searchmsg)[0].slice(5))).map((usr) => <li style={{gap: "8px"}} onClick={() => {
+                    let yourboy = document.getElementById("overhere1");
+                    yourboy.value += usr[0] + " ";
+                    this.setState({searchmsg: this.state.searchmsg + usr[0] + " "});
+                    $("#overhere1").trigger("focus");
+                }}>
+                <img src={usr[1]} style={{width: "24px", height: "24px", borderRadius: "50%"}}></img>
+                {usr[0]}
+                </li>)
+              }
+              </ul>
+              </div> : null
+            }
+            {this.state.searchlisting === 1 ? <div id="butut">
+              <p>SEARCH OPTIONS</p>
+              <ul>
+                <li onClick={() => {
+                  let yourboy = document.getElementById("overhere1");
+                  yourboy.value += " from:";
+                  this.setState({searchlisting: 0, searchmsg: this.state.searchmsg + " from:"});
+                  $("#overhere1").trigger("focus");
+                }}><span style={{fontWeight: "bold"}}>from:</span>&nbsp;&nbsp;&nbsp;user</li>
+                <li onClick={
+                  () =>{
+                  this.setState({searchlisting: 2});
+                  }
+                }><span style={{fontWeight: "bold"}}>has:</span>&nbsp;&nbsp;&nbsp;link or file</li>
+                <li onClick={() => this.setState({searchlisting: 3})}><span style={{fontWeight: "bold"}}>in:</span>&nbsp;&nbsp;&nbsp;channel</li>
+                <li onClick={() => {
+                  let yourboy = document.getElementById("overhere1");
+                  yourboy.value += " pinned:";
+                  this.setState({searchlisting: 0, searchmsg: this.state.searchmsg + " pinned:"});
+                  $("#overhere1").trigger("focus");
+                }}><span style={{fontWeight: "bold"}}>pinned:</span>&nbsp;&nbsp;&nbsp;</li>
+              </ul>
+
+            </div> 
+            : null}
+            {this.state.searchlisting === 2 ? <div id="butut">
+            <p>SEARCH OPTIONS</p>
+              <ul>
+                <li onClick={() => {
+                  let yourboy = document.getElementById("overhere1");
+                  yourboy.value += " has:image";
+                  this.setState({searchlisting: 0, searchmsg: this.state.searchmsg + " has:image"});
+                  $("#overhere1").trigger("focus");
+                }
+                }>image</li>
+                <li onClick={() => {
+                  let yourboy = document.getElementById("overhere1");
+                  yourboy.value += " has:link";
+                  this.setState({searchlisting: 0, searchmsg: this.state.searchmsg + " has:link"});
+                  $("#overhere1").trigger("focus");
+                }
+                }>link</li>
+              </ul>
+              
+            </div> : null}
+            {channelListUh2}
+            {this.state.searchlisting !== 0 ? <div id="butut-background" onClick={() => {this.setState({searchlisting: 0});
+              }}> 
+            </div> 
+            : null}
           </div>
           <div>
             {templabel}
