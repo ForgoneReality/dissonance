@@ -168,6 +168,7 @@
     padding-left: 16px;
     border-radius: 5px;
     margin-left: 16px;
+    position: relative;
 }
 
 #msg-form{
@@ -183,6 +184,42 @@
     height: 22px;
 }
 
+
+.display-image-wrapper-parent {
+    position: absolute;
+    bottom: 45px;
+    width: 100%;
+    background-color: #40444b;
+    padding: 20px;
+    border-radius: 5px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom: 1px solid #ffffff1f;
+    margin-left: -16px;
+    box-sizing: border-box;
+  }
+  .display-image-wrapper {
+    width: 250px;
+    overflow: hidden;
+    border: 5px solid #2f3136;
+    border-radius: 10px;
+    padding: 20px 5px 3px 5px;
+    background: #2f3136;
+  }
+  .display-image {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    padding-bottom: 10px;
+  }
+  .display-image-url {
+    font-size: 12px;
+    color: #B9BBBE;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: Wh;
+  }
+
 #img-uploader{
     display: none;
 }
@@ -196,6 +233,7 @@
 
 .msg-img{
     max-height: 500px;
+    max-width: 900px;
     height: 75%;
     width: auto;
 }

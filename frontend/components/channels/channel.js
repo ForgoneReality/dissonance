@@ -19,7 +19,7 @@ class Channel extends React.Component {
       editmsg: "",
       editing: -1,
       photoFile: null,
-      photoUrl: null,
+      photoUrl: '',
       lastedited: -1
     }
     this.updating = -1;
@@ -135,7 +135,7 @@ class Channel extends React.Component {
     this.setState({usermsg: "", editmsg: "",
     editing: -1, 
     photoFile: null,
-    photoUrl: null});
+    photoUrl: ''});
   }
 
   handleEditSubmit(e)
@@ -457,6 +457,18 @@ class Channel extends React.Component {
         <div id="msg-form-wrapper" style={{width: "calc(100vw - 562px)"}}>
             <img src={window.uploadimg}></img>
             <div id="msg-form-bubble">
+              {this.state.photoUrl.length > 0 && (
+                <div className='display-image-wrapper-parent'>
+                  <div className='display-image-wrapper'>
+                    <img
+                      class='display-image'
+                      src={this.state.photoUrl}
+                      alt='upload-icon'
+                    ></img>
+                    <p className='display-image-url'>{this.state.photoUrl}</p>
+                  </div>
+                </div>
+              )}
               <form id="msg-form">
                 <label htmlFor="img-uploader">
                   <img src={window.upload} alt="upload-icon"/>

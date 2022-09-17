@@ -22,7 +22,7 @@ class Conversation extends React.Component {
       editmsg: "",
       editing: -1, 
       photoFile: null,
-      photoUrl: null,
+      photoUrl: '',
       bot: false,
       botFirstMsg: 0
     }
@@ -130,7 +130,7 @@ class Conversation extends React.Component {
     this.setState({usermsg: "", editmsg: "",
     editing: -1, 
     photoFile: null,
-    photoUrl: null});
+    photoUrl: ''});
     
   }
 
@@ -415,6 +415,18 @@ class Conversation extends React.Component {
           <div id="msg-form-wrapper">
             <img src={window.uploadimg}></img>
             <div id="msg-form-bubble">
+              {this.state.photoUrl.length > 0 && (
+                <div className='display-image-wrapper-parent'>
+                  <div className='display-image-wrapper'>
+                    <img
+                      class='display-image'
+                      src={this.state.photoUrl}
+                      alt='upload-icon'
+                    ></img>
+                    <p className='display-image-url'>{this.state.photoUrl}</p>
+                  </div>
+                </div>
+              )}
               <form id="msg-form">
                 <label htmlFor="img-uploader">
                   <img src={window.upload} alt="upload-icon"/>
