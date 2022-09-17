@@ -23,7 +23,7 @@ json.messages do
 end
 
 json.channel do
-  json.extract! @channel, :id, :name, :description, :server_id
+  json.extract! @channel, :id, :name, :description, :server_id, :temp 
 end
 
 #roles/users stuff here

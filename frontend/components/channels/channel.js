@@ -51,6 +51,20 @@ class Channel extends React.Component {
         
   }
 
+  bold(text){
+    const bold = /\*\*(.*?)\*\*/gm;
+    const italics = /\*(.*?)\*/gm;
+    const underline = /\_\_(.*?)\_\_/gm;
+
+    let html = text.replace(bold, '<strong>$1</strong>');   
+    html = html.replace(italics, '<i>$1</i>');  
+    html = html.replace(underline, '<u>$1</u>');  
+
+    
+    return {__html: html};
+}
+
+
   update(property) {
     if(property === "editmsg")
     {
@@ -64,6 +78,41 @@ class Channel extends React.Component {
     if(this.props.modal && this.props.modal.name === "search-message")
     {
       this.props.hideModal();
+    }
+  }
+
+  handleBotMessage(usermsg)
+  {
+    if(!this.dinobot)
+      this.dinobot = this.props.usersList.find((user) => user.username === "Dino" && user.fourdigit_id === "1337")
+      
+    switch(usermsg)
+    {
+      case "!commands":
+        this.props.sendMessage( {content: "**List of All Commands:**", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+          this.props.sendMessage( {content: "*!commands:* Lists out all available commands", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+          this.props.sendMessage( {content: "*!walkthrough:* Walks through the basic core CRUD functionality of Dissonance of servers, users, and DMs", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+          this.props.sendMessage( {content: "*!features:* Displays the features of Dissonance that make it unique from other Discord clones", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+          this.props.sendMessage( {content: "*!serverlist:* Lists invite links for all existing servers in the database", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+          this.props.sendMessage( {content: "*!socials:* Links the socials of the author!", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+            this._cache.clear(this.props.messages.length - 7);
+            this._cache.clear(this.props.messages.length - 6);
+            this._cache.clear(this.props.messages.length - 5);
+            this._cache.clear(this.props.messages.length - 4);
+            this._cache.clear(this.props.messages.length - 3);
+            this._cache.clear(this.props.messages.length - 2);
+            this._cache.clear(this.props.messages.length - 1);
+          });
+          });
+          });
+          });
+          });
+        });
+        break;
+      // case "walkthrough":
+      //   this.props.
+      default:
+        break;
     }
   }
 
@@ -98,16 +147,23 @@ class Channel extends React.Component {
 
     if(!this.state.photoFile)
     {
+        const orimsg = this.state.usermsg;
         this.props.sendMessage( {content: this.state.usermsg, author_id: this.props.currentUser.id, location_type:"Channel", location_id: ch.id}).then((res) => {
           if(this.props.messages.length > 1)
           {
             this._cache.clear(this.props.messages.length - 2);
           }
           this._cache.clear(this.props.messages.length - 1);
+          if(this.props.channels[this.props.channelId].temp === 2)
+          {
+            this.handleBotMessage(orimsg);
+          }
         })
     }
     else
     {
+      const orimsg = this.state.usermsg;
+
       const formData = new FormData();
       formData.append("message[content]", this.state.usermsg);
       formData.append("message[author_id]", this.props.currentUser.id);
@@ -126,7 +182,10 @@ class Channel extends React.Component {
           this._cache.clear(this.props.messages.length - 2);
         }
         this._cache.clear(this.props.messages.length - 1);
-
+        if(this.props.channels[this.props.channelId].temp === 2)
+          {
+            this.handleBotMessage(orimsg);
+          }
 
       })) //something may be slightly off with this... see if sending an image always creates an error
       //first guess is that it's double-sending.
@@ -384,7 +443,7 @@ class Channel extends React.Component {
             {mypfp}
             <div>
               {msgHeader}
-              <p className="msg-content">{msg.content}</p>
+              <p className="msg-content" dangerouslySetInnerHTML={this.bold(msg.content)}></p>
               {msg.image_url ? <img onLoad={measure} className="msg-img" src={msg.image_url}></img> : ""}
             </div>
           </div> : msgContent
@@ -402,7 +461,10 @@ class Channel extends React.Component {
       </CellMeasurer>
 
     );
+
   }
+
+  
 
   render() {
     console.log("render");
@@ -421,7 +483,7 @@ class Channel extends React.Component {
     let divider = this.props.channels[this.props.channelId].description ? <div className="divider-q3P9HC"></div> : ""
   
     let pinnie = this.props.modal && this.props.modal.name === "pins" ? <svg onClick={() => this.props.displayModal("pins")} x="0" y="0" class="icon-2xnN2Y" aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="#FFFFFF" d="M22 12L12.101 2.10101L10.686 3.51401L12.101 4.92901L7.15096 9.87801V9.88001L5.73596 8.46501L4.32196 9.88001L8.56496 14.122L2.90796 19.778L4.32196 21.192L9.97896 15.536L14.222 19.778L15.636 18.364L14.222 16.95L19.171 12H19.172L20.586 13.414L22 12Z"></path></svg> : <svg onClick={() => this.props.displayModal("pins")} x="0" y="0" class="icon-2xnN2Y" aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="#B9BBBE" d="M22 12L12.101 2.10101L10.686 3.51401L12.101 4.92901L7.15096 9.87801V9.88001L5.73596 8.46501L4.32196 9.88001L8.56496 14.122L2.90796 19.778L4.32196 21.192L9.97896 15.536L14.222 19.778L15.636 18.364L14.222 16.95L19.171 12H19.172L20.586 13.414L22 12Z"></path></svg>
-
+    console.log("Heybuddy", this.props.channels[this.props.channelId].temp)
     return (
       <div className="channel">
         <div id="channel-header">
@@ -454,7 +516,14 @@ class Channel extends React.Component {
               />)}
             </AutoSizer>
           </div>
-        <div id="msg-form-wrapper" style={{width: "calc(100vw - 562px)"}}>
+          {this.props.channels[this.props.channelId].temp === 1 ? (<div id="msg-form-wrapper" style={{width: "calc(100vw - 562px)"}}>
+            <div id="msg-form-bubble">
+              <form id="msg-form">
+                <input type="text" readonly disabled id="usermsg" value={this.state.usermsg} onChange={this.update("usermsg")} placeholder={`You cannot send messages in @${currChannelName}`}></input>
+              </form>
+            </div>
+          </div>)
+            : (<div id="msg-form-wrapper" style={{width: "calc(100vw - 562px)"}}>
             <img src={window.uploadimg}></img>
             <div id="msg-form-bubble">
               {this.state.photoUrl.length > 0 && (
@@ -478,7 +547,8 @@ class Channel extends React.Component {
                 <button className="invisible" type="Submit">Submit</button>
               </form>
             </div> 
-          </div>
+          </div>)
+          }
           
         {this.renderErrors()}
       </div>

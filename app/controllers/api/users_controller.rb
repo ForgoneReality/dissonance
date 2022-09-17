@@ -7,10 +7,12 @@ class Api::UsersController < ApplicationController
         # while(user_params[:fourdigit_id])
             
         # end
-
         @user = User.new(user_params)
 
         if(@user.save)
+            byebug
+            server = Server.find_by({server_link: "dissonance"})
+            ServerJoin.create!({user_id: @user.id, server_id: server.id})
             login!(@user)
             # redirect_to api_users_url(@user)
             render json: @user

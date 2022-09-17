@@ -24,7 +24,7 @@ end
 json.channels do
     @server.channels.each do |channel|
         json.set! channel.id do
-            json.extract! channel, :id, :name, :description, :server_id #trash code to repeat server_id over and over
+            json.extract! channel, :id, :name, :description, :server_id, :temp #trash code to repeat server_id over and over
         end
     end
 end

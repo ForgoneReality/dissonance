@@ -14,6 +14,7 @@
     ServerJoin.destroy_all
     Message.destroy_all
     User.destroy_all
+    ServerRoleJoin.destroy_all
 
 
 
@@ -27,12 +28,12 @@
 
     demo_users = [u1, u2, u3, u4, u5]
     #BOTS
-    u6 = User.create!({email: "cleverbot@gmail.com", password: "botbot", username: "Aria Bot", fourdigit_id: "0000", status: "online"})
+    u6 = User.create!({email: "cleverbot@gmail.com", password: "botbot", username: "Aria Bot", fourdigit_id: "0000", status: "online", special_id: 1})
 
     u7 = User.create!({email: "anthonie@gmail.com", password: "111111", username: "ant", fourdigit_id: "0313", bio:"nah bro"})
     u8 = User.create!({email: "lucy@gmail.com", password: "lucy12", username: "lucy", fourdigit_id: "4059", status: "online", bio:"You should see this!"})
     u9 = User.create!({email: "bro@gmail.com", password: "111111", username: "bro", fourdigit_id: "4023", status: "idle"})
-    u10 = User.create!({email: "cxcharlie@gmail.com", password: "123456", username: "helios", fourdigit_id: "1234", status: "idle"})
+    u10 = User.create!({email: "cxcharlie@gmail.com", password: "123456", username: "Dissonance", fourdigit_id: "0000", status: "idle"})
 
     u11 = User.create!({email: "filler@gmail.com", password: "111111", username: "Alec", fourdigit_id: "1390", status: "busy"})
     u12 = User.create!({email: "filler1@gmail.com", password: "111111", username: "Alex", fourdigit_id: "4022", status: "online"})
@@ -52,6 +53,7 @@
     u26 = User.create!({email: "filler16@gmail.com", password: "111111", username: "Paulo", fourdigit_id: "4498"})
     u27 = User.create!({email: "filler23@gmail.com", password: "111111", username: "Chris", fourdigit_id: "8888"})
     u28 = User.create!({email: "filler84@gmail.com", password: "111111", username: "Mike", fourdigit_id: "8843"})
+    u29 = User.create!({email: "dinobot@dino.com", password: "dinodino2", username: "Dino Bot", fourdigit_id: "1337"})
 
 
     Friendship.create!({user_id: u1.id, friend_id: u3.id})
@@ -90,8 +92,6 @@
         Friendship.create!({user_id: demo.id, friend_id: u28.id})
     end
 
-
-
     c1 = Conversation.create!({user1_id: u1.id, user2_id: u3.id})
     c2 = Conversation.create!({user1_id: u1.id, user2_id: u4.id})
     c3 = Conversation.create!({user1_id: u1.id, user2_id: u5.id})
@@ -119,12 +119,25 @@
     s1 = Server.create!({server_link: "appacademy", owner_id: u1.id, name: "App Academy"})
     s2 = Server.create!({server_link: "leagueoflegends", owner_id: u4.id, name: "League of Legends"})
     s3 = Server.create!({server_link: "bob", owner_id: u4.id, name: "Bob and Friends"})
+    s4 = Server.create!({server_link: "dissonance", owner_id: u10.id, name: "Dissonance Official Server"})
+    s4.icon.attach(io: File.open("app/assets/images/1.png"), filename: '1.png')
+
+    erob = Server.find(s4.id)
+    erobb = Channel.find(erob.channels.first.id)
+    erobb.name = "Welcome"
+    erobb.temp = 1
+    erobb.save!
+
+    # byebug
+    # s4.channels.first.name = "Welcome"
 
     ch1 = Channel.create!({server_id: s1.id, name:"help", description:"Ask for help here!"})
     ch2 = Channel.create!({server_id: s1.id, name:"memes"})
     ch3 = Channel.create!({server_id: s2.id, name:"league", description:"Talk about LoL or other Riot games"})
     ch4 = Channel.create!({server_id: s2.id, name:"find-players", description:"Find other players!"})
     ch5 = Channel.create!({server_id: s1.id, name:"count-to-1000", description: "Main purpose is to test the functionality of infinite scroller"})
+    ch6 = Channel.create!({server_id: s4.id, name:"Announcements", description: "Announcements of new and upcoming features of Dissonance!", temp: 1})
+    ch7 = Channel.create!({server_id: s4.id, name: "General", description: "Type !commands to use the Dino bot!", temp: 2})
 
     r1 = Role.create!({name: "Challenger", color: "#E74C3C", server_id: 2})
     r2 = Role.create!({name: "Coach", color: "#AD1457", server_id: 2})
@@ -154,6 +167,11 @@
     sj19 = ServerJoin.create!({user_id: u5.id, server_id: s2.id})
     sj20 = ServerJoin.create!({user_id: u5.id, server_id: s3.id})
 
+    demo_users.each do |usr|
+        ServerJoin.create!({user_id: usr.id, server_id: s4.id})
+    end
+
+    sj21 = ServerJoin.create!({user_id: u29.id, server_id: s4.id})
 
     z1 = ServerRoleJoin.create!({server_join_id: sj1.id, role_id: r1.id})
     z2 = ServerRoleJoin.create!({server_join_id: sj1.id, role_id: r2.id})
@@ -172,8 +190,6 @@
     Message.create!({content: "I hate this game?", author_id:u2.id, location_id: ch4.id, location_type: "Channel"})
     Message.create!({content: "Me too", author_id:u4.id, location_id: ch4.id, location_type: "Channel"})
 
-
-
     Message.create!({content: "Sup it's bob.", author_id:u4.id, location_id: c2.id, location_type: "Conversation"})
     Message.create!({content: "Hey bob! How you doing mate", author_id:u1.id, location_id: c2.id, location_type: "Conversation"})
     Message.create!({content: "Not your business", author_id:u4.id, location_id: c2.id, location_type: "Conversation"})
@@ -185,7 +201,6 @@
     m2.image.attach(io: File.open("app/assets/images/cat.jpeg"), filename: 'cat.jpeg')
     Message.create!({content: "Please work lol", author_id:u5.id, location_id: c3.id, location_type: "Conversation"})
 
-
     for i in 0...300
         if(i.even?)
             Message.create!({content: i, author_id: u2.id, location_id: ch5.id, location_type: "Channel"})
@@ -193,3 +208,14 @@
             Message.create!({content: i, author_id: u3.id, location_id: ch5.id, location_type: "Channel"})
         end
     end
+
+    Message.create!({content: "__Welcome to Dissonance!__", author_id: u10.id, location_id: erobb.id, location_type: "Channel"})
+    Message.create!({content: "Please visit #General and type **!commands** to use Dino Bot, our local guide who helps people around the app.", author_id: u10.id, location_id: erobb.id, location_type: "Channel"})
+    Message.create!({content: "For new and upcoming features, visit #Announcements to find out more.", author_id: u10.id, location_id: erobb.id, location_type: "Channel"})
+    m3 = Message.create!({content: "Enjoy your stay!", author_id: u10.id, location_id: erobb.id, location_type: "Channel"})
+    m3.image.attach(io: File.open("app/assets/images/wumpus.webp"), filename: 'wumpus.webp')
+
+    Message.create!({content: "**Dissonance v 0.81 Released**", author_id: u10.id, location_id: ch6.id, location_type: "Channel"})
+    Message.create!({content: "New features include: Customized search with Regex\nImage Upload preview bubbles", author_id: u10.id, location_id: ch6.id, location_type: "Channel"})
+    Message.create!({content: "Upcoming features include: Finish two major AI bots (Aria and Dino), better seeding, and message options most notably bold, italics, and linking channels", author_id: u10.id, location_id: ch6.id, location_type: "Channel"})
+    

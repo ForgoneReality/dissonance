@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2022_07_20_205749) do
     t.string "name", null: false
     t.string "description"
     t.integer "server_id", null: false
+    t.integer "temp", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name", "server_id"], name: "index_channels_on_name_and_server_id", unique: true
@@ -128,6 +129,7 @@ ActiveRecord::Schema.define(version: 2022_07_20_205749) do
     t.string "bio", default: ""
     t.integer "last_login"
     t.string "session_token", null: false
+    t.integer "special_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

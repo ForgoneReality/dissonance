@@ -20,6 +20,7 @@ SOON:
 - Image preview
 - Better Seeding
 - BETTER READMES (both projects)
+- Pinging and Channel Linking
 
 LATER:
 - Customizable Roles with different permission accesses and priveleges
@@ -46,3 +47,4 @@ LATER:
 - Transfer everything necessary between channels and conversations
 - Changing nickname refresh... refactor: put nickname in the state. inside the new reducer, have a hash for user_id with nickname/username depending on whether nickname exists
 - Refactor: DELETE USER. Should change users into deleted users, should not just wipe the user from memory but make it non-loggable, etc.
+- Remove the dangerouslySetInnerHTML code. Refactor into somehow not using it (100% doable)

@@ -249,3 +249,11 @@ input:focus{
     height: 50px;
     border-radius: 50%;
 }
+
+i{
+    font-style: italic;
+}
+
+u{
+    text-decoration: underline;
+}

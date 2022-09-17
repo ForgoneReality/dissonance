@@ -9,6 +9,8 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :bio, default: ""
       t.integer :last_login
       t.string :session_token, null: false
+      t.integer :special_id, defualt: 0 #1: Aria Bot, #2 demo? might not need demo, #3 etc
+      # t.integer :
 
       t.timestamps
     end
