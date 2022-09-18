@@ -12,6 +12,14 @@ app.use(express.urlencoded());
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    next();
+});
+
 app.get('/', cors(), (req, res) => {
    
     if(req.query.messageList && req.query.messageList.length > 0)
@@ -24,8 +32,6 @@ app.get('/', cors(), (req, res) => {
         res.send(response);
     }), (err) => console.log("ERROR:", err));
     }
-
-
 })
 
 app.listen(port, () => {
