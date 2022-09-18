@@ -116,7 +116,7 @@ class Channel extends React.Component {
           for(i = 0; i<count - 1; i++)
           {
             this.props.sendMessage( {content: `${res[i][0]}: ${window.location.origin + "/#/invite/" + res[i][1]}`, author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId})
-            this.props.sendMessage( {content: `${res[i][0]}: ${window.location.origin + "/#/invite/" + res[i][1]}`, author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId})
+            // this.props.sendMessage( {content: `${res[i][0]}: ${window.location.origin + "/#/invite/" + res[i][1]}`, author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId})
           }
           this.props.sendMessage( {content: `${res[i][0]}: ${window.location.origin + "/#/invite/" + res[i][1]}`, author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
             for(let j = res.length - 1; res > 0; res--)
