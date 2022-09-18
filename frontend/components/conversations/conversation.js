@@ -187,7 +187,7 @@ class Conversation extends React.Component {
     document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
     this.props.getConversationList(this.props.currentUser.id).then(() => {
       this.enterRoom();
-      if(this.props.convo.otherUser.id === 6)
+      if(this.props.convo.otherUser.special_id === 1)
       {
         this.setState({bot: true});
       }
@@ -207,7 +207,7 @@ class Conversation extends React.Component {
         this.props.getConvoMessages(this.props.id, this.props.currentUser.id);
         this.subscription?.unsubscribe();
         this.enterRoom();
-        if(this.props.convo.otherUser.id === 6)
+        if(this.props.convo.otherUser.special_id === 1)
         {
           this.setState({bot: true});
 

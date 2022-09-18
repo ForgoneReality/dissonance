@@ -83,6 +83,13 @@ export const updateServerLink = (server_id, invite_link) => {
     })
 }
 
+export const fetchAllInviteLinks = () => {
+    return $.ajax({
+        url: `api/servers/invitelinks`,
+        method: "get"
+    })
+}
+
 // export const createServer = (server) => (
 //     $.ajax({
 //         url: `api/servers`,

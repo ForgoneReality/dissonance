@@ -1,1 +1,1 @@
-json.extract! user, :id, :username, :fourdigit_id
+json.extract! user, :id, :username, :fourdigit_id, :special_id

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       patch :leave, on: :member #not good code... in wrong place
       patch :join, on: :member
       get :search, on: :member
+      get :invitelinks, on: :collection
     end
     resources :joined_servers, only: [:create, :destroy] #should be refactored to be used
     resources :channels, only: [:show, :index, :create, :update, :destroy] do

@@ -125,6 +125,10 @@ class Api::ServersController < ApplicationController
         render "_search", status: 200
     end
 
+    def invitelinks
+        render json: Server.pluck(:name, :server_link), status: 200
+    end
+
   
     # def update
     # end

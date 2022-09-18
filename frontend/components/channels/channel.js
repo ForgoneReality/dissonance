@@ -4,6 +4,7 @@ import React from 'react';
 import consumer from '../../consumer';
 import {CellMeasurer, CellMeasurerCache, List} from 'react-virtualized';
 import { AutoSizer } from 'react-virtualized';
+import { fetchAllInviteLinks } from '../../util/servers_api_util';
 
 class Channel extends React.Component {
   constructor(props) {
@@ -48,7 +49,6 @@ class Channel extends React.Component {
         event.preventDefault(); // Prevents the addition of a new line in the text field (not needed in a lot of cases)
         event.target.value = "";
     }
-        
   }
 
   bold(text){
@@ -109,8 +109,39 @@ class Channel extends React.Component {
           });
         });
         break;
-      // case "walkthrough":
-      //   this.props.
+      case "!serverlist":
+        fetchAllInviteLinks().then((res) => {
+          let count = res.length;
+          let i;
+          for(i = 0; i<count - 1; i++)
+          {
+            this.props.sendMessage( {content: `${res[i][0]}: ${window.location.origin + "/#/invite/" + res[i][1]}`, author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId})
+            this.props.sendMessage( {content: `${res[i][0]}: ${window.location.origin + "/#/invite/" + res[i][1]}`, author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId})
+          }
+          this.props.sendMessage( {content: `${res[i][0]}: ${window.location.origin + "/#/invite/" + res[i][1]}`, author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+            for(let j = res.length - 1; res > 0; res--)
+            {
+              this._cache.clear(j);
+            }
+          })
+          
+        })
+        break;
+      case "!socials":
+        this.props.sendMessage( {content: "**Meet the Author**", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+          this.props.sendMessage( {content: "*Github:* https://github.com/forgonereality", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+          this.props.sendMessage( {content: "*Linkedin:* https://shorturl.at/cDJW5", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+          this.props.sendMessage( {content: "*Angelist:* https://shorturl.at/begV9", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+            this._cache.clear(this.props.messages.length - 5);
+            this._cache.clear(this.props.messages.length - 4);
+            this._cache.clear(this.props.messages.length - 3);
+            this._cache.clear(this.props.messages.length - 2);
+            this._cache.clear(this.props.messages.length - 1);
+          });
+          });
+          });
+          });
+        break;  
       default:
         break;
     }

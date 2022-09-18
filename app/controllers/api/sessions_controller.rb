@@ -3,7 +3,7 @@ class Api::SessionsController < ApplicationController
     def create
         @user = User.find_by_credentials(params[:user][:email], params[:user][:password])
         
-        if(@user && @user.id != 6)
+        if(@user && @user.special_id == 0)
             login!(@user)
             @user.last_login = Time.current
             @user.status = "online"
