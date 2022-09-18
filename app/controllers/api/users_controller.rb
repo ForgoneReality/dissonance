@@ -10,7 +10,6 @@ class Api::UsersController < ApplicationController
         @user = User.new(user_params)
 
         if(@user.save)
-            byebug
             server = Server.find_by({server_link: "dissonance"})
             ServerJoin.create!({user_id: @user.id, server_id: server.id})
             login!(@user)
@@ -133,7 +132,7 @@ class Api::UsersController < ApplicationController
 
     private
     def user_params
-        params.require(:user).permit(:email, :username, :fourdigit_id, :bio) #maybe not pass
+        params.require(:user).permit(:email, :username, :fourdigit_id, :bio, :password) #maybe not pass <- SECURITY ISSUE - SHOULD REFECATOR TO AS-NEEDED BASIS
     end
 
     # def generate_fourdigit
