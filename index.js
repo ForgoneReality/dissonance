@@ -5,7 +5,7 @@ const cleverbot = require("cleverbot-free");
 const app = express()
 
 const port = process.env.PORT || 3001
-
+app.use(cors())
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded());
 

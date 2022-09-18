@@ -53,8 +53,7 @@
     u26 = User.create!({email: "filler16@gmail.com", password: "111111", username: "Paulo", fourdigit_id: "4498"})
     u27 = User.create!({email: "filler23@gmail.com", password: "111111", username: "Chris", fourdigit_id: "8888"})
     u28 = User.create!({email: "filler84@gmail.com", password: "111111", username: "Mike", fourdigit_id: "8843"})
-    u29 = User.create!({email: "dinobot@dino.com", password: "dinodino2", username: "Dino Bot", fourdigit_id: "1337"})
-
+    u29 = User.create!({email: "dinobot@dino.com", password: "dinodino2", username: "Dino Bot", fourdigit_id: "1337", bio: "Rawr!"})
 
     Friendship.create!({user_id: u1.id, friend_id: u3.id})
     Friendship.create!({user_id: u1.id, friend_id: u5.id})
