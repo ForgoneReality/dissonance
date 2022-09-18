@@ -84,7 +84,7 @@ class Channel extends React.Component {
   handleBotMessage(usermsg)
   {
     if(!this.dinobot)
-      this.dinobot = this.props.usersList.find((user) => user.username === "Dino" && user.fourdigit_id === "1337")
+      this.dinobot = this.props.usersList.find((user) => user.username === "Dino Bot" && user.fourdigit_id === "1337")
       
     switch(usermsg)
     {
