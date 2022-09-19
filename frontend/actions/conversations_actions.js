@@ -47,7 +47,7 @@ export const createConversation = (user1_id, user2_id) => {
     return dispatch => {
         return APIUtil.createConversation(user1_id, user2_id)
         .then(res => {
-            dispatch(receiveConvo(res))
+            return dispatch(receiveConvo(res))
           } //,
             // err => dispatch(receiveErrors(err.responseJSON))
         )

@@ -31,7 +31,7 @@ class Api::UsersController < ApplicationController
                 @user.password = params["user"]["newpassword"]
                 @user.save! #dont work Pain
             end
-            if @user.update(user_params)
+            if @user.update(user_params2)
                 render "_user", locals: { user: @user }
             else
                 render json: @user.errors.full_messages, status: 422
@@ -133,6 +133,10 @@ class Api::UsersController < ApplicationController
     private
     def user_params
         params.require(:user).permit(:email, :username, :fourdigit_id, :bio, :password) #maybe not pass <- SECURITY ISSUE - SHOULD REFECATOR TO AS-NEEDED BASIS
+    end
+
+    def user_params2
+        params.require(:user).permit(:email, :username, :fourdigit_id, :bio) #maybe not pass <- SECURITY ISSUE - SHOULD REFECATOR TO AS-NEEDED BASIS
     end
 
     # def generate_fourdigit

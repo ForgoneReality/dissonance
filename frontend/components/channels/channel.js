@@ -174,6 +174,7 @@ class Channel extends React.Component {
   handleSubmit(e)
   {
     e.preventDefault();
+    alert("!!!");
     let ch = this.props.channels[this.props.channelId];
 
     if(!this.state.photoFile)
@@ -263,8 +264,14 @@ class Channel extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log("WW", prevProps);
     const prevConvoId = prevProps.channelId;
     if (prevConvoId !== this.props.channelId) {
+      // if(this.props.channels[prevConvoId] === 1 && this.props.channels[this.props.channelId] !== 1)
+      // {
+      //   document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
+      //   document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
+      // }
       this._cache.clearAll();
       this.props.getChannelMessages(this.props.channelId);
       this.subscription?.unsubscribe();
@@ -498,7 +505,7 @@ class Channel extends React.Component {
   
 
   render() {
-    console.log("render");
+    console.log("render", this.props.channelId);
 
     let currChannelName = "";
     let currChannelDescription = "";

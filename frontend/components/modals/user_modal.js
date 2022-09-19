@@ -37,6 +37,7 @@ class UserModal extends React.Component {
       if(Array.isArray(res))
       {
         this.props.postForm(author_id, recipient_id).then((res2) => {
+          console.log("??!", res2);
           this.props.sendMessage( {content: message, author_id: author_id, location_type:"Conversation", location_id: res2.conversation.id}).then((res3) => {
             this.props.history.push(`/conversations/${res2.conversation.id}`);  
           })
