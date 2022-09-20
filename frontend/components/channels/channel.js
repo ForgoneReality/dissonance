@@ -30,7 +30,7 @@ class Channel extends React.Component {
       defaultHeight: 71
     })
     window.cc = this._cache;
-    
+    this.specialTemp = "";
 
     this.rowRenderer = this.rowRenderer.bind(this);
     this.showUsersTemp = this.showUsersTemp.bind(this);
@@ -88,11 +88,82 @@ class Channel extends React.Component {
       
     switch(usermsg)
     {
+      case "!walkthrough":
+        this.props.sendMessage( {content: "**Type !select followed by a number to choose which dissonance core feature you wish to learn about**", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+          this.props.sendMessage( {content: "*!select 1:* Users", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+          this.props.sendMessage( {content: "*!select 2:* Conversations", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+          this.props.sendMessage( {content: "*!select 3:* Servers and Channels", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+            this._cache.clear(this.props.messages.length - 5);
+            this._cache.clear(this.props.messages.length - 4);
+            this._cache.clear(this.props.messages.length - 3);
+            this._cache.clear(this.props.messages.length - 2);
+            this._cache.clear(this.props.messages.length - 1);
+            this.specialTemp = "walkthrough";
+          });
+        });
+        });
+        });
+      break;
+      case "!select 1":
+        if(this.specialTemp === "walkthrough")
+        {
+          
+          this.props.sendMessage( {content: "Users are identified uniquely by a combination of their username and four digit ID. They can additionally have a different nickname in every server they're in", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+            this.props.sendMessage( {content: "New users can either create their own account via email, or use one of the demos. The demos use an LRU cache to cycle through the five main demo users", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res2) => {
+              this.props.sendMessage( {content: "Each user has a username, password, and bio they can customize. They may also set a status. Users are automatically online when they login", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res3) => {
+                this.props.sendMessage( {content: "Video Demonstration: https://imgur.com/a/ZRpPL9I", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res4) => {
+              this._cache.clear(this.props.messages.length - 5);   
+              this._cache.clear(this.props.messages.length - 4);
+              this._cache.clear(this.props.messages.length - 3);
+              this._cache.clear(this.props.messages.length - 2);
+              this._cache.clear(this.props.messages.length - 1);
+              this.specialTemp = "";
+          });
+          });
+        });
+      });
+        }
+      break;
+      case "!select 2":
+        if(this.specialTemp === "walkthrough")
+        {
+          this.props.sendMessage( {content: "Conversations can be initiated with friends, and with strangers. Users can send messages and images privately in these DMs", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+            this.props.sendMessage( {content: "Users can either initiate conversations from their DM list, or from the user modal in any server" , author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res2) => {
+              this.props.sendMessage( {content: "Note that messaging a user sends their conversation to the top of the list", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res3) => {
+                this.props.sendMessage( {content: "Video Demonstration: https://i.imgur.com/XTdGaZw.mp4", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res4) => {
+              this._cache.clear(this.props.messages.length - 4);
+              this._cache.clear(this.props.messages.length - 3);
+              this._cache.clear(this.props.messages.length - 2);
+              this._cache.clear(this.props.messages.length - 1);
+              this.specialTemp = "";
+          });
+          });
+        });
+        });
+        }
+      break;
+      case "!select 3":
+        if(this.specialTemp === "walkthrough")
+        {
+          this.props.sendMessage( {content: "In Dissonance as in Discord, there are servers, each with multiple channels. Each server is for a different topic, i.e. a Python server", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+            this.props.sendMessage( {content: "Both servers and channels have full-scale CRUD implementations. Users can also set their nickname in the server" , author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res2) => {
+              this.props.sendMessage( {content: "The below video navigates through servers and channels for new users", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res3) => {
+                this.props.sendMessage( {content: "Video Demonstration: https://imgur.com/TAmh4US", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res4) => {
+              this._cache.clear(this.props.messages.length - 4);
+              this._cache.clear(this.props.messages.length - 3);
+              this._cache.clear(this.props.messages.length - 2);
+              this._cache.clear(this.props.messages.length - 1);
+              this.specialTemp = "";
+          });
+          });
+        });
+        });
+        }
       case "!commands":
         this.props.sendMessage( {content: "**List of All Commands:**", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
           this.props.sendMessage( {content: "*!commands:* Lists out all available commands", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
           this.props.sendMessage( {content: "*!walkthrough:* Walks through the basic core CRUD functionality of Dissonance of servers, users, and DMs", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
-          this.props.sendMessage( {content: "*!features:* Displays the features of Dissonance that make it unique from other Discord clones", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+          this.props.sendMessage( {content: "*!features:* IMPORTANT: Displays the features of Dissonance that make it unique from other Discord clones", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
           this.props.sendMessage( {content: "*!serverlist:* Lists invite links for all existing servers in the database", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
           this.props.sendMessage( {content: "*!socials:* Links the socials of the author!", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
             this._cache.clear(this.props.messages.length - 7);
@@ -143,6 +214,14 @@ class Channel extends React.Component {
           });
         break;  
       default:
+        if(usermsg && usermsg[0] === "!")
+        {
+          this.props.sendMessage( {content: "**Invalid command!**", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+            this._cache.clear(this.props.messages.length - 1);
+            this.specialTemp = "";
+          });
+          
+        }
         break;
     }
   }
@@ -242,6 +321,8 @@ class Channel extends React.Component {
 
   handleFile(e)
   {
+    console.log("FFFF", e.currentTarget.files[0]);
+    console.log(window.loginimg);
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
