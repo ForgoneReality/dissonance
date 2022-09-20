@@ -110,16 +110,26 @@ class Channel extends React.Component {
           
           this.props.sendMessage( {content: "Users are identified uniquely by a combination of their username and four digit ID. They can additionally have a different nickname in every server they're in", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
             this.props.sendMessage( {content: "New users can either create their own account via email, or use one of the demos. The demos use an LRU cache to cycle through the five main demo users", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res2) => {
-              this.props.sendMessage( {content: "Each user has a username, password, and bio they can customize. They may also set a status. Users are automatically online when they login", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res3) => {
-                this.props.sendMessage( {content: "Video Demonstration: https://imgur.com/a/ZRpPL9I", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res4) => {
-              this._cache.clear(this.props.messages.length - 5);   
+            
+                const formData = new FormData();
+                formData.append("message[content]", "Each user has a username, password, and bio they can customize. They may also set a status. Users are automatically online when they login");
+                formData.append("message[author_id]", this.dinobot.id);
+                formData.append("message[location_type]", "Channel");
+                formData.append("message[location_id]", this.props.channelId);
+                formData.append("message[image]", "https://i.imgur.com/olhGNqR.gif");
+                $.ajax({
+                  url: "/api/messages/createother",
+                  method: "POST",
+                  data: formData,
+                  contentType: false,
+                  processData: false
+                }).then( (response) => this.props.sendMessage(response).then(()=> {
               this._cache.clear(this.props.messages.length - 4);
               this._cache.clear(this.props.messages.length - 3);
               this._cache.clear(this.props.messages.length - 2);
               this._cache.clear(this.props.messages.length - 1);
               this.specialTemp = "";
-          });
-          });
+          }))
         });
       });
         }
@@ -129,17 +139,32 @@ class Channel extends React.Component {
         {
           this.props.sendMessage( {content: "Conversations can be initiated with friends, and with strangers. Users can send messages and images privately in these DMs", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
             this.props.sendMessage( {content: "Users can either initiate conversations from their DM list, or from the user modal in any server" , author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res2) => {
-              this.props.sendMessage( {content: "Note that messaging a user sends their conversation to the top of the list", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res3) => {
-                this.props.sendMessage( {content: "Video Demonstration: https://i.imgur.com/XTdGaZw.mp4", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res4) => {
+              // this.props.sendMessage( {content: "Note that messaging a user sends their conversation to the top of the list", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res3) => {
+                // this.props.sendMessage( {content: "Video Demonstration: https://i.imgur.com/XTdGaZw.mp4", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res4) => {
+                   const formData = new FormData();
+                  formData.append("message[content]", "Note that messaging a user sends their conversation to the top of the list");
+                  formData.append("message[author_id]", this.dinobot.id);
+                  formData.append("message[location_type]", "Channel");
+                  formData.append("message[location_id]", this.props.channelId);
+                  formData.append("message[image]", "https://i.imgur.com/uHRU1N6.gif");
+                  $.ajax({
+                    url: "/api/messages/createother",
+                    method: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false
+                  }).then( (response) => this.props.sendMessage(response).then(()=> {
+                // this._cache.clear(this.props.messages.length - 5);
               this._cache.clear(this.props.messages.length - 4);
               this._cache.clear(this.props.messages.length - 3);
               this._cache.clear(this.props.messages.length - 2);
               this._cache.clear(this.props.messages.length - 1);
               this.specialTemp = "";
-          });
+          // });
+                  }))
           });
         });
-        });
+        // });
         }
       break;
       case "!select 3":
@@ -147,18 +172,29 @@ class Channel extends React.Component {
         {
           this.props.sendMessage( {content: "In Dissonance as in Discord, there are servers, each with multiple channels. Each server is for a different topic, i.e. a Python server", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
             this.props.sendMessage( {content: "Both servers and channels have full-scale CRUD implementations. Users can also set their nickname in the server" , author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res2) => {
-              this.props.sendMessage( {content: "The below video navigates through servers and channels for new users", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res3) => {
-                this.props.sendMessage( {content: "Video Demonstration: https://imgur.com/TAmh4US", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res4) => {
+              const formData = new FormData();
+              formData.append("message[content]", "The below video demonstrates this for both server and channels ");
+              formData.append("message[author_id]", this.dinobot.id);
+              formData.append("message[location_type]", "Channel");
+              formData.append("message[location_id]", this.props.channelId);
+              formData.append("message[image]", "https://i.imgur.com/TAmh4US.gif");
+              $.ajax({
+                url: "/api/messages/createother",
+                method: "POST",
+                data: formData,
+                contentType: false,
+                processData: false
+              }).then( (response) => this.props.sendMessage(response).then(()=> {
               this._cache.clear(this.props.messages.length - 4);
               this._cache.clear(this.props.messages.length - 3);
               this._cache.clear(this.props.messages.length - 2);
               this._cache.clear(this.props.messages.length - 1);
               this.specialTemp = "";
-          });
-          });
+          }))
         });
         });
         }
+      break;
       case "!commands":
         this.props.sendMessage( {content: "**List of All Commands:**", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
           this.props.sendMessage( {content: "*!commands:* Lists out all available commands", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
@@ -280,7 +316,7 @@ class Channel extends React.Component {
       formData.append("message[author_id]", this.props.currentUser.id);
       formData.append("message[location_type]", "Channel");
       formData.append("message[location_id]", ch.id);
-      formData.append("message[image])", this.state.photoFile);
+      formData.append("message[image])", this.state.photoFile); //bro there's a random paranthesis right there <-
       $.ajax({
         url: "/api/messages",
         method: "POST",

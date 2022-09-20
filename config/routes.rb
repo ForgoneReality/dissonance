@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     end
     resources :messages, only: [:create, :update, :destroy] do
       patch :pin, on: :member
+      post :createother, on: :collection
     end
     resources :friendships, only: [:create, :destroy]
   end

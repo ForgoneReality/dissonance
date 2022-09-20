@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Message < ApplicationRecord
     validates :content, :author_id, presence: true
     validates :pinned, inclusion: { in: [ true, false ] }
