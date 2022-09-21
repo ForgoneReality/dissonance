@@ -117,6 +117,7 @@ rowRenderer({
 - Real-time messaging and notifications via ActionCable
 - Sending, editing, and deleting messages will be seen by all users simultaneously
 - Does not create redundant notifications if the user happens to have the conversation already open
+
 ![](https://github.com/ForgoneReality/gif_dump/blob/master/Dissonance%20-%2020%20September%202022.gif)
 
 ### Chat Bots
@@ -124,6 +125,7 @@ rowRenderer({
 - Aria Bot which simulates a real-person and engages in converations with users
 - Dino Bot which helps new users navigate themselves through the app
 - Created a Node.js proxy server to bypass CORS-related restrictions for a particular bot API
+
 ![](https://github.com/ForgoneReality/gif_dump/blob/master/Dissonance%20-%2020%20September%202022%20(3).gif)
 
 
