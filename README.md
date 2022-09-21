@@ -5,7 +5,17 @@ _A Discord replication site built using Javascript, ReactJS, Ruby on Rails, HTML
 
 ## Features
 
-_To be implemented..._
+### Scalable Virtual Scrolling
+- Features virtual scrolling, which unpollutes the DOM by rendering and unrendering messages on an as-needed basis
+- Preloads 2 messages to simulate smooth, natural scrolling, and makes backend calls to fetch more messages in large, rare intervals instead of receiving all of them at once
+- Improved scalability by reducing initial load times of large channels by over 98% according to Chrome profiler
+
+### 
+
+
+### Complete Discord Functionality 
+- CRUD Implementations of Users, Servers, Channels, and Conversations
+- Soon to implement customized roles with selectable colors and permissions 
 
 ## Technologies, Libraries, and APIs
 The core of the website is built using Javascript, ReactJS, HTML, CSS, and Ruby on Rails. NodeJS proxy server was used to implement Aria Bot using Cleverbot API to avoid CORS-related errors that occurred otherwise. React-Virtualized was used to implement virtual scrolling with dynamic cell heights by leveraging CellMeasurer and Autosizer. BCrypt was used for safe encryption, and the program is compiled together via Webpack.
