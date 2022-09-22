@@ -98,7 +98,7 @@ Live: https://dissonance.herokuapp.com/
 - Soon to implement customized roles with selectable colors and permissions 
 
 ## Technologies, Libraries, and APIs
-The core of the website is built using Javascript, ReactJS, HTML, CSS, and Ruby on Rails. NodeJS proxy server was used to implement Aria Bot using Cleverbot API to avoid CORS-related errors that occurred otherwise. React-Virtualized was used to implement virtual scrolling with dynamic cell heights by leveraging CellMeasurer and Autosizer. BCrypt was used for safe encryption, and the program is compiled together via Webpack.
+The core of the website is built using **Javascript, ReactJS, HTML, CSS, and Ruby on Rails. NodeJS** proxy server was used to implement Aria Bot using Cleverbot API to avoid CORS-related errors that occurred otherwise. **React-Virtualized** was used to implement virtual scrolling with dynamic cell heights by leveraging CellMeasurer and Autosizer. **BCrypt** was used for safe encryption, and the program is compiled together via **Webpack.** ActiveRecord and ActiveStorage was used in conjunction with Ruby on Rails for the backend.
 
 ## To-Do
 
