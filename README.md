@@ -20,7 +20,7 @@ Live: https://dissonance.herokuapp.com/
 ![](https://github.com/ForgoneReality/gif_dump/blob/master/Dissonance%20-%2020%20September%202022.gif)
 
 ### Chat Bots
-- Multiple chat bots implemented to increase user retention in the empty 
+- Multiple chat bots implemented to increase user retention in the otherwise quiescent community 
 - Aria Bot which simulates a real-person and engages in converations with users
 - Dino Bot which helps new users navigate themselves through the app
 - Created a Node.js proxy server to bypass CORS-related restrictions for a particular bot API
