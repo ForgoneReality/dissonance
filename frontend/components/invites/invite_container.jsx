@@ -7,7 +7,6 @@ import { removeErrors } from '../../actions/errors_actions';
 import { getServerFromLink } from '../../actions/servers_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    console.log("OWNPROPS", ownProps)
   return {
     invite_link: ownProps.match.params.invite_link,
     errors: state.errors.session,

@@ -7,8 +7,6 @@ class InviteUsersModal extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log("AYOOO", this.props.server)
-    ;
     this.full_link =  window.location.origin + "/#/invite/" + this.props.server.server_link;
 
     this.handleSubmit = this.handleSubmit.bind(this)

@@ -50,7 +50,6 @@ class EditBioModal extends React.Component {
 
     const user = Object.assign({}, this.state);
 
-    console.log("fol", this.props.currentUser.id, user)
     this.props.processForm(this.props.currentUser.id, user).then((res) => this.props.hideModal());
   }
 

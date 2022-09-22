@@ -46,7 +46,6 @@ class Conversation extends React.Component {
 
   enterRoom() {
     // ...
-    console.log("!!?@");
     this.subscription = consumer.subscriptions.create(
       { channel: 'ConversationsChannel', id: this.props.convo.id},
       {received: ({type, message, id}) => {
@@ -62,7 +61,6 @@ class Conversation extends React.Component {
             this.props.removeMessage(id);
             break;
           default:
-            console.log('Unhandled broadcast: ', type);
             break;
         }
       }
@@ -73,7 +71,6 @@ class Conversation extends React.Component {
   handleSubmit(e)
   {
     e.preventDefault();
-    console.log("CURRENT STATE:", this.state);
     let my_msg = `${this.state.usermsg}`;
 
     if(!this.state.photoFile)

@@ -146,7 +146,6 @@ class FriendList extends React.Component {
 
         break;
       case 1:
-        console.log("???!", sortedList);
         fList = sortedList.map( (fren) => {
           let useronlinestatus = null;
           if(fren.status === "online")

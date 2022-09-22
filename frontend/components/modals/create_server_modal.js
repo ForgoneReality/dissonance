@@ -39,16 +39,13 @@ class CreateServerModal extends React.Component {
     switch(this.props.modal_type)
     {
       case "createserver": 
-        console.log("hello?", this.state)
         const server = Object.assign({}, this.state);
         // this.props.generateServer(server).then((res) => this.props.hideModal(), (errs) => console.log("Failure"));
         let icon = this.state.icon ? this.state.icon : "";
-        console.log("icon", icon);
         const formData = new FormData();
         formData.append("server[name]", this.state.name);
         formData.append("server[owner_id]", this.props.currentUser.id);
         formData.append("server[icon]", icon);
-        console.log("OVER HERE", this.state.icon);
         $.ajax({
           url: "/api/servers",
           method: "POST",

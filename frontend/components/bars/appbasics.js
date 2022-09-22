@@ -77,10 +77,8 @@ class AppBasics extends React.Component {
 
   render()
   {
-    console.log(this.props.unreadConvos, "inksiee")
     let {username, status, fourdigit_id, pfp_url} = this.props.currentUser;
-    console.log("AFLDSF", this.props.serversList);
-    console.log(this.props.serversList.length);
+    
 
     let serverList = this.props.serversList.map( (server, index) => {
       if(!server.image_url)

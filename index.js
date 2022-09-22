@@ -23,7 +23,6 @@ app.get('/', cors(), (req, res) => {
    
     if(req.query.messageList && req.query.messageList.length > 0)
     {
-        console.log("OHHH?", req.query.MessageList, req.query.newMessage);
         cleverbot(req.query.newMessage, req.query.messageList).then(response => res.send(response));
     }
     else{

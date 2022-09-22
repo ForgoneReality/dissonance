@@ -94,7 +94,6 @@ constructor(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log("$$$", state.current.search)
   return {
     modal: state.ui.modal,
     search: Object.values(state.current.search), //bad code... non-inituitive state but search is currently occupied by something else and I'd rather not refactor atm

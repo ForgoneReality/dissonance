@@ -8,8 +8,6 @@ import { createMessage, deleteMessage, updateMessage, otherReceiveMessage, remov
 import { resetModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    console.log(state);
-    console.log("OWNPROPS: ", ownProps)
     return {
       id: parseInt(ownProps.match.params.convoId),
       errors: state.errors.session,

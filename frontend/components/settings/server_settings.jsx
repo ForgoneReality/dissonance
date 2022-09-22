@@ -60,7 +60,6 @@ class ServerSettings extends React.Component {
             this.original = this.state;
             this.original.changed = false;
             this.setState({changed: false});
-            console.log("CHANGED: ", this.state);
             this.props.updateServer(res);
         });
     }

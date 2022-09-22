@@ -89,7 +89,7 @@ class Channel extends React.Component {
     switch(usermsg)
     {
       case "!walkthrough":
-        this.props.sendMessage( {content: "**Type !select followed by a number to choose which dissonance core feature you wish to learn about**", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+        this.props.sendMessage( {content: "**Type !select followed by a number to choose which dissonance core feature you wish to learn about. Please note that the video may take a while to load**", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
           this.props.sendMessage( {content: "*!select 1:* Users", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
           this.props.sendMessage( {content: "*!select 2:* Conversations", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
           this.props.sendMessage( {content: "*!select 3:* Servers and Channels", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
@@ -104,6 +104,25 @@ class Channel extends React.Component {
         });
         });
       break;
+      case "!features":
+        this.props.sendMessage( {content: "**Type !select followed by a number to choose which unique feature you wish to learn about. Please note that the video may take a while to load**", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+          this.props.sendMessage( {content: "*!select 1:* Virtual Scrolling", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+          this.props.sendMessage( {content: "*!select 2:* Live Messaging and Notifications", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+          this.props.sendMessage( {content: "*!select 3:* AI Chat Bots", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+            this.props.sendMessage( {content: "*!select 4:* Complex Server Search", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
+            this._cache.clear(this.props.messages.length - 6);
+            this._cache.clear(this.props.messages.length - 5);
+            this._cache.clear(this.props.messages.length - 4);
+            this._cache.clear(this.props.messages.length - 3);
+            this._cache.clear(this.props.messages.length - 2);
+            this._cache.clear(this.props.messages.length - 1);
+            this.specialTemp = "features";
+          });
+        });
+        });
+        });
+        });
+        break;
       case "!select 1":
         if(this.specialTemp === "walkthrough")
         {
@@ -117,6 +136,33 @@ class Channel extends React.Component {
                 formData.append("message[location_type]", "Channel");
                 formData.append("message[location_id]", this.props.channelId);
                 formData.append("message[image]", "https://i.imgur.com/olhGNqR.gif");
+                $.ajax({
+                  url: "/api/messages/createother",
+                  method: "POST",
+                  data: formData,
+                  contentType: false,
+                  processData: false
+                }).then( (response) => this.props.sendMessage(response).then(()=> {
+              this._cache.clear(this.props.messages.length - 4);
+              this._cache.clear(this.props.messages.length - 3);
+              this._cache.clear(this.props.messages.length - 2);
+              this._cache.clear(this.props.messages.length - 1);
+              this.specialTemp = "";
+          }))
+        });
+      });
+        }
+        else if(this.specialTemp === "features")
+        {
+
+          this.props.sendMessage( {content: "Features virtual scrolling, which unpollutes the DOM by rendering and unrendering messages on an as-needed basis", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+            this.props.sendMessage( {content: "Improved scalability by reducing initial load times of large channels by over 98% according to Chrome profiler", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res2) => {
+                const formData = new FormData();
+                formData.append("message[content]", "Each user has a username, password, and bio they can customize. They may also set a status. Users are automatically online when they login");
+                formData.append("message[author_id]", this.dinobot.id);
+                formData.append("message[location_type]", "Channel");
+                formData.append("message[location_id]", this.props.channelId);
+                formData.append("message[image]", "https://github.com/ForgoneReality/gif_dump/raw/master/Dissonance%20-%2020%20September%202022%20(2).gif");
                 $.ajax({
                   url: "/api/messages/createother",
                   method: "POST",
@@ -166,6 +212,38 @@ class Channel extends React.Component {
         });
         // });
         }
+        else if(this.specialTemp === "features")
+        {
+          this.props.sendMessage( {content: "Real-time messaging and notifications via ActionCable in which sending, editing, and deleting messages will be seen by all users simultaneously", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+            this.props.sendMessage( {content: "Automatically notifies users when they get messaged in real-time" , author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res2) => {
+              // this.props.sendMessage( {content: "Note that messaging a user sends their conversation to the top of the list", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res3) => {
+                // this.props.sendMessage( {content: "Video Demonstration: https://i.imgur.com/XTdGaZw.mp4", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res4) => {
+                   const formData = new FormData();
+                  formData.append("message[content]", "Note that messaging a user sends their conversation to the top of the list");
+                  formData.append("message[author_id]", this.dinobot.id);
+                  formData.append("message[location_type]", "Channel");
+                  formData.append("message[location_id]", this.props.channelId);
+                  formData.append("message[image]", "https://github.com/ForgoneReality/gif_dump/raw/master/Dissonance%20-%2020%20September%202022.gif");
+                  $.ajax({
+                    url: "/api/messages/createother",
+                    method: "POST",
+                    data: formData,
+                    contentType: false,
+                    processData: false
+                  }).then( (response) => this.props.sendMessage(response).then(()=> {
+                // this._cache.clear(this.props.messages.length - 5);
+              this._cache.clear(this.props.messages.length - 4);
+              this._cache.clear(this.props.messages.length - 3);
+              this._cache.clear(this.props.messages.length - 2);
+              this._cache.clear(this.props.messages.length - 1);
+              this.specialTemp = "";
+          // });
+                  }))
+          });
+        });
+        // });
+        }
+
       break;
       case "!select 3":
         if(this.specialTemp === "walkthrough")
@@ -194,7 +272,61 @@ class Channel extends React.Component {
         });
         });
         }
+       else if(this.specialTemp === "features")
+        {
+          this.props.sendMessage( {content: "Multiple chat bots with various functionality implemented to increase user retention in the empty. One of them is me, Dino Bot! Rawr", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+            this.props.sendMessage( {content: "The other is the conversational Aria Bot, which uses a Node.js proxy server to bypass CORS-related restrictions" , author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res2) => {
+              const formData = new FormData();
+              formData.append("message[content]", "The below video demonstrates this for both server and channels ");
+              formData.append("message[author_id]", this.dinobot.id);
+              formData.append("message[location_type]", "Channel");
+              formData.append("message[location_id]", this.props.channelId);
+              formData.append("message[image]", "https://github.com/ForgoneReality/gif_dump/raw/master/Dissonance%20-%2020%20September%202022%20(3).gif");
+              $.ajax({
+                url: "/api/messages/createother",
+                method: "POST",
+                data: formData,
+                contentType: false,
+                processData: false
+              }).then( (response) => this.props.sendMessage(response).then(()=> {
+              this._cache.clear(this.props.messages.length - 4);
+              this._cache.clear(this.props.messages.length - 3);
+              this._cache.clear(this.props.messages.length - 2);
+              this._cache.clear(this.props.messages.length - 1);
+              this.specialTemp = "";
+          }))
+        });
+        });
+        }
       break;
+      case "!select 4":
+        if(this.specialTemp === "features")
+        {
+          this.props.sendMessage( {content: "Search engine that supports multiple tags such as channel location, author, and message contents", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
+            this.props.sendMessage( {content: "Allows  combining multiple tags in any order through regular expression manipulation" , author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res2) => {
+              const formData = new FormData();
+              formData.append("message[content]", "The below video demonstrates this for both server and channels ");
+              formData.append("message[author_id]", this.dinobot.id);
+              formData.append("message[location_type]", "Channel");
+              formData.append("message[location_id]", this.props.channelId);
+              formData.append("message[image]", "https://github.com/ForgoneReality/gif_dump/raw/master/video-convert-1663735240395%20(1)%20(1).gif");
+              $.ajax({
+                url: "/api/messages/createother",
+                method: "POST",
+                data: formData,
+                contentType: false,
+                processData: false
+              }).then( (response) => this.props.sendMessage(response).then(()=> {
+              this._cache.clear(this.props.messages.length - 4);
+              this._cache.clear(this.props.messages.length - 3);
+              this._cache.clear(this.props.messages.length - 2);
+              this._cache.clear(this.props.messages.length - 1);
+              this.specialTemp = "";
+          }))
+        });
+        });
+        }
+      break
       case "!commands":
         this.props.sendMessage( {content: "**List of All Commands:**", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then((res) => {
           this.props.sendMessage( {content: "*!commands:* Lists out all available commands", author_id: this.dinobot.id, location_type:"Channel", location_id: this.props.channelId}).then(() => {
@@ -357,8 +489,7 @@ class Channel extends React.Component {
 
   handleFile(e)
   {
-    console.log("FFFF", e.currentTarget.files[0]);
-    console.log(window.loginimg);
+    
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
@@ -381,7 +512,8 @@ class Channel extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log("WW", prevProps);
+    document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
+    document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
     const prevConvoId = prevProps.channelId;
     if (prevConvoId !== this.props.channelId) {
       // if(this.props.channels[prevConvoId] === 1 && this.props.channels[this.props.channelId] !== 1)
@@ -442,7 +574,6 @@ class Channel extends React.Component {
     parent
   }) {
     // let formatted_msg = <div></div>;
-    console.log("trin")
     let msg;
     let deleteButton = null;
     let editButton = null;
@@ -559,8 +690,6 @@ class Channel extends React.Component {
         }
         else
         {
-          console.log("first", msg.id);
-          console.log(this.state.editing);
           deleteButton = (<button id="delete-msg-button" onClick={() => {if(!this.state.bot){this.props.deleteMessage(msg.id)}}}>
              <img src={window.deleteicon}/>
           </button>)
@@ -622,8 +751,6 @@ class Channel extends React.Component {
   
 
   render() {
-    console.log("render", this.props.channelId);
-
     let currChannelName = "";
     let currChannelDescription = "";
     if(this.props.channelId)
@@ -638,7 +765,6 @@ class Channel extends React.Component {
     let divider = this.props.channels[this.props.channelId].description ? <div className="divider-q3P9HC"></div> : ""
   
     let pinnie = this.props.modal && this.props.modal.name === "pins" ? <svg onClick={() => this.props.displayModal("pins")} x="0" y="0" class="icon-2xnN2Y" aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="#FFFFFF" d="M22 12L12.101 2.10101L10.686 3.51401L12.101 4.92901L7.15096 9.87801V9.88001L5.73596 8.46501L4.32196 9.88001L8.56496 14.122L2.90796 19.778L4.32196 21.192L9.97896 15.536L14.222 19.778L15.636 18.364L14.222 16.95L19.171 12H19.172L20.586 13.414L22 12Z"></path></svg> : <svg onClick={() => this.props.displayModal("pins")} x="0" y="0" class="icon-2xnN2Y" aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"><path fill="#B9BBBE" d="M22 12L12.101 2.10101L10.686 3.51401L12.101 4.92901L7.15096 9.87801V9.88001L5.73596 8.46501L4.32196 9.88001L8.56496 14.122L2.90796 19.778L4.32196 21.192L9.97896 15.536L14.222 19.778L15.636 18.364L14.222 16.95L19.171 12H19.172L20.586 13.414L22 12Z"></path></svg>
-    console.log("Heybuddy", this.props.channels[this.props.channelId].temp)
     return (
       <div className="channel">
         <div id="channel-header">

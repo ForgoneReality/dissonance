@@ -1,6 +1,5 @@
 
 export const createMessage = (message) => {
-    console.log("MESSAGE!!", message);
     return $.ajax({
         url: "/api/messages",
         method: "post",

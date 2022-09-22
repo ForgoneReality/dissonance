@@ -61,7 +61,6 @@ class EditPasswordModal extends React.Component {
           if(err) //?
           {
               this.props.sendError("Invalid old password");
-              console.log("Errors", err);
           }
           else if (result)
           {

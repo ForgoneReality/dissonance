@@ -38,9 +38,7 @@ class DeleteServerModal extends React.Component {
     {
         this.props.processForm(this.props.currentServer.id);
         this.props.hideModal();
-        console.log("!")
         this.props.history.push("/conversations");
-        console.log("!!");
     }
     else
     {

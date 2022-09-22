@@ -6,8 +6,7 @@ import ChannelSettings from './channel_settings.jsx';
 
 const mapStateToProps = (state) => {
    let channel_num = Number(/[^/]*$/.exec(window.location.hash)[0]);
-    console.log(channel_num, "cn")
-    console.log(state.entities.channels[channel_num], "yo")
+    
   return {
     currentChannel: state.entities.channels[channel_num]
   };
