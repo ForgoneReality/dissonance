@@ -5,6 +5,11 @@ const cleverbot = require("cleverbot-free");
 const app = express()
 
 const port = process.env.PORT || 3001
+
+// app.set('port', (port));
+// var server = http.createServer(app).listen(port, function() {
+//   console.log('Server listening on port ' + port);
+// });
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded());
 
@@ -30,8 +35,4 @@ app.get('/', cors(), (req, res) => {
         res.send(response);
     }), (err) => console.log("ERROR:", err));
     }
-})
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
 })

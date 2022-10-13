@@ -421,7 +421,6 @@ class Channel extends React.Component {
   handleSubmit(e)
   {
     e.preventDefault();
-    alert("!!!");
     let ch = this.props.channels[this.props.channelId];
 
     if(!this.state.photoFile)

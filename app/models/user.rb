@@ -13,7 +13,7 @@ class User < ApplicationRecord
     before_save :has_profile_picture
     validates :bio, length: {maximum: 64}
 
-    validates :status, presence: true, inclusion: { in: %w(online idle busy offline)}
+validates :status, presence: true, inclusion: { in: %w(online idle busy offline)}
     validates :fourdigit_id, presence: true, format: { with: /\A[+-]?\d+\z/}, length: {is: 4}
 
     def init_last_login

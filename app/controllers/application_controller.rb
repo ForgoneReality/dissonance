@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
     def from_template(template, locals = {})
         JSON.parse(self.class.render(:json, template: template, locals: locals))
-      end
+     end
 
 
 end
