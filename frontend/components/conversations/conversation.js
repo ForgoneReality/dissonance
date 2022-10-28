@@ -90,7 +90,8 @@ class Conversation extends React.Component {
           let currentConvoList = this.props.messages.slice(this.state.botFirstMsg).map(ele => ele.content);
           currentConvoList.shift();
           $.ajax({
-            url: 'https://dissonance-proxy.herokuapp.com/',
+            // url: 'https://dissonance-proxy.herokuapp.com/', //for production
+            url: 'http://localhost:3001/', //for local
             type: 'get',
             data: {messageList: currentConvoList,
               newMessage: my_msg
@@ -184,14 +185,20 @@ class Conversation extends React.Component {
     document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
     this.props.getConversationList(this.props.currentUser.id).then(() => {
       this.enterRoom();
-      if(this.props.convo.otherUser.special_id === 1)
-      {
-        this.setState({bot: true});
-      }
+      
       this.props.removeErrors();
       this.props.removeModals();
       this.props.getConvoMessages(this.props.id, this.props.currentUser.id).then(() => {
+        if(this.props.convo.otherUser.special_id === 1)
+        {
+          const indexx = this.props.messages.map(ele => {ele.content}).lastIndexOf('CONVERSATION HAS BEEN RESET! Type anything to start a new conversation with me!');
+          if(indexx === -1)
+            this.setState({bot: true, botFirstMsg: 0});
+          else
+            this.setState({bot: true, botFirstMsg: indexx + 1});
+        }
         this.scrollToBottom();
+        
       })
     })
   }
@@ -206,7 +213,11 @@ class Conversation extends React.Component {
         this.enterRoom();
         if(this.props.convo.otherUser.special_id === 1)
         {
-          this.setState({bot: true});
+          const indexx = this.props.messages.map(ele => {ele.content}).lastIndexOf('CONVERSATION HAS BEEN RESET! Type anything to start a new conversation with me!');
+          if(indexx === -1)
+            this.setState({bot: true, botFirstMsg: 0});
+          else
+            this.setState({bot: true, botFirstMsg: indexx + 1});
 
         }
         else
