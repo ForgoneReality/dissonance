@@ -8,6 +8,19 @@ class Api::SessionsController < ApplicationController
             @user.last_login = Time.current
             @user.status = "online"
             @user.save
+
+            Thread.new do
+                sleep 10
+                aria = User.find_by({email: "cleverbot@gmail.com"})
+                convo = Conversation.find_by({user1_id: @user.id, user2_id: aria.id})
+                message = Message.new({content: "Hi! Welcome to Dissonance!", author_id: aria.id, location_type: "Conversation", location_id: convo.id})
+                if message.save
+                    convo.unread1 += 1
+                    convo.save!
+                end
+                ConversationsNotifChannel.broadcast_to convo.user1, type: "RECEIVE_CONVERSATION_NOTIF", conversation: convo
+                ConversationsChannel.broadcast_to message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: message)
+            end
             # redirect_to api_users_url(@user)
             render "_user", status: 200
 
@@ -35,6 +48,21 @@ class Api::SessionsController < ApplicationController
             @user.status = "online"
             # redirect_to api_users_url(@user)
             @user.save
+
+            Thread.new do
+                sleep 10
+                aria = User.find_by({email: "cleverbot@gmail.com"})
+                convo = Conversation.find_by({user1_id: @user.id, user2_id: aria.id})
+                message = Message.new({content: "Hi! Welcome to Dissonance!", author_id: aria.id, location_type: "Conversation", location_id: convo.id})
+                if message.save
+                    convo.unread1 += 1
+                    convo.save!
+                end
+                ConversationsNotifChannel.broadcast_to convo.user1, type: "RECEIVE_CONVERSATION_NOTIF", conversation: convo
+                ConversationsChannel.broadcast_to message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: message)
+            end
+              
+
             render "_user", status: 200
         else #No status!!
             render json: ["Something went wrong..."], status: 401
