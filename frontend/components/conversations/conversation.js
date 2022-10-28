@@ -90,7 +90,7 @@ class Conversation extends React.Component {
           let currentConvoList = this.props.messages.slice(this.state.botFirstMsg).map(ele => ele.content);
           currentConvoList.shift();
           $.ajax({
-            url: 'http://localhost:3001/',
+            url: 'https://dissonance-proxy.herokuapp.com/',
             type: 'get',
             data: {messageList: currentConvoList,
               newMessage: my_msg
