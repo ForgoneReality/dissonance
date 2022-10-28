@@ -54,6 +54,7 @@
     u27 = User.create!({email: "filler23@gmail.com", password: "111111", username: "Chris", fourdigit_id: "8888"})
     u28 = User.create!({email: "filler84@gmail.com", password: "111111", username: "Mike", fourdigit_id: "8843"})
     u29 = User.create!({email: "dinobot@dino.com", password: "dinodino2", username: "Dino Bot", fourdigit_id: "1337", bio: "Rawr!"})
+    u30 = User.create!({email: "welcomebot@gmail.com", password: "tut123", username: "Welcome Bot", fourdigit_id: "0000", bio: "Just a super simple bot that introduces new users"})
 
     Friendship.create!({user_id: u1.id, friend_id: u3.id})
     Friendship.create!({user_id: u1.id, friend_id: u5.id})
@@ -106,6 +107,8 @@
         c10 =Conversation.create!({user1_id: demo.id, user2_id: u12.id})
         c11 = Conversation.create!({user1_id: demo.id, user2_id: u13.id})
         c12 = Conversation.create!({user1_id: demo.id, user2_id: u14.id})
+        c13 = Conversation.create!({user1_id: demo.id, user2_id: u30.id})
+
     end
     # c13 = Conversation.create!({user1_id: u1.id, user2_id: u15.id})
     # c14 = Conversation.create!({user1_id: u1.id, user2_id: u16.id})

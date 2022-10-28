@@ -11,9 +11,10 @@ class Api::SessionsController < ApplicationController
 
             Thread.new do
                 sleep 10
-                aria = User.find_by({email: "cleverbot@gmail.com"})
-                convo = Conversation.find_by({user1_id: @user.id, user2_id: aria.id})
-                message = Message.new({content: "Hi! Welcome to Dissonance!", author_id: aria.id, location_type: "Conversation", location_id: convo.id})
+                welcome = User.find_by({email: "welcomebot@gmail.com"})
+                convo = Conversation.find_by({user1_id: @user.id, user2_id: welcome.id})
+                message = Message.new({content: "Hi! Welcome to Dissonance! To get started, visit the #general and in the official main server, and type !commands. If you're not already in the server, the link is https://dissonance.herokuapp.com//#/invite/dissonance", author_id: welcome.id, location_type: "Conversation", location_id: convo.id})
+                
                 if message.save
                     convo.unread1 += 1
                     convo.save!
@@ -51,9 +52,9 @@ class Api::SessionsController < ApplicationController
 
             Thread.new do
                 sleep 10
-                aria = User.find_by({email: "cleverbot@gmail.com"})
-                convo = Conversation.find_by({user1_id: @user.id, user2_id: aria.id})
-                message = Message.new({content: "Hi! Welcome to Dissonance!", author_id: aria.id, location_type: "Conversation", location_id: convo.id})
+                welcome = User.find_by({email: "welcomebot@gmail.com"})
+                convo = Conversation.find_by({user1_id: @user.id, user2_id: welcome.id})
+                message = Message.new({content: "Hi! Welcome to Dissonance! To get started, visit the #general and in the official main server, and type !commands. If you're not already in the server, the link is https://dissonance.herokuapp.com//#/invite/dissonance", author_id: welcome.id, location_type: "Conversation", location_id: convo.id})
                 if message.save
                     convo.unread1 += 1
                     convo.save!
