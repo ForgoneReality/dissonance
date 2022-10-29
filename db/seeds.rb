@@ -108,7 +108,6 @@
         c11 = Conversation.create!({user1_id: demo.id, user2_id: u13.id})
         c12 = Conversation.create!({user1_id: demo.id, user2_id: u14.id})
         c13 = Conversation.create!({user1_id: demo.id, user2_id: u30.id})
-
     end
     # c13 = Conversation.create!({user1_id: u1.id, user2_id: u15.id})
     # c14 = Conversation.create!({user1_id: u1.id, user2_id: u16.id})

@@ -504,7 +504,9 @@ class Channel extends React.Component {
   {
     document.getElementById("usermsg").addEventListener("keypress", this.submitOnEnter);
     document.getElementById("msg-form").addEventListener("submit", this.handleSubmit);
-    this.props.getChannelMessages(this.props.channelId);
+    this.props.getChannelMessages(this.props.channelId).then((res) => {
+      this._cache.clearAll();
+    })
     this.enterRoom();
     this.props.removeErrors();
     this.props.removeModals();
