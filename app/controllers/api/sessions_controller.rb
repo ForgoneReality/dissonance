@@ -13,15 +13,24 @@ class Api::SessionsController < ApplicationController
                 sleep 10
                 welcome = User.find_by({email: "welcomebot@gmail.com"})
                 convo = Conversation.find_by({user1_id: @user.id, user2_id: welcome.id})
-                message = Message.new({content: "Hi! Welcome to Dissonance! To get started, visit the #general and in the official main server, and type !commands. If you're not already in the server, the link is https://dissonance.herokuapp.com//#/invite/dissonance", author_id: welcome.id, location_type: "Conversation", location_id: convo.id})
+                message = Message.new({content: "Hi! Welcome to Dissonance! To get started, visit the #general in the official main server,", author_id: welcome.id, location_type: "Conversation", location_id: convo.id})
                 
                 if message.save
                     convo.unread1 += 1
                     convo.save!
+                    ConversationsNotifChannel.broadcast_to convo.user1, type: "RECEIVE_CONVERSATION_NOTIF", conversation: convo
+                    ConversationsChannel.broadcast_to message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: message)
+                    message2 = Message.new({content: "and type !commands. If you're not in the server, the link is https://dissonance.herokuapp.com/#/invite/dissonance", author_id: welcome.id, location_type: "Conversation", location_id: convo.id})
+                    
+                    if message2.save
+                        convo.unread1 += 1
+                        convo.save!
+                        ConversationsNotifChannel.broadcast_to convo.user1, type: "RECEIVE_CONVERSATION_NOTIF", conversation: convo
+                        ConversationsChannel.broadcast_to message2.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: message)
+                    end
                 end
-                ConversationsNotifChannel.broadcast_to convo.user1, type: "RECEIVE_CONVERSATION_NOTIF", conversation: convo
-                ConversationsChannel.broadcast_to message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: message)
             end
+
             # redirect_to api_users_url(@user)
             render "_user", status: 200
 
@@ -54,13 +63,23 @@ class Api::SessionsController < ApplicationController
                 sleep 10
                 welcome = User.find_by({email: "welcomebot@gmail.com"})
                 convo = Conversation.find_by({user1_id: @user.id, user2_id: welcome.id})
-                message = Message.new({content: "Hi! Welcome to Dissonance! To get started, visit the #general and in the official main server, and type !commands. If you're not already in the server, the link is https://dissonance.herokuapp.com//#/invite/dissonance", author_id: welcome.id, location_type: "Conversation", location_id: convo.id})
+                message = Message.new({content: "Hi! Welcome to Dissonance! To get started, visit the #general and in the official main server,", author_id: welcome.id, location_type: "Conversation", location_id: convo.id})
+                
                 if message.save
                     convo.unread1 += 1
                     convo.save!
+                    ConversationsNotifChannel.broadcast_to convo.user1, type: "RECEIVE_CONVERSATION_NOTIF", conversation: convo
+                    ConversationsChannel.broadcast_to message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: message)
+                    message2 = Message.new({content: "and type !commands. If you're not in the server, the link is https://dissonance.herokuapp.com/#/invite/dissonance", author_id: welcome.id, location_type: "Conversation", location_id: convo.id})
+                    
+                    if message2.save
+                        convo.unread1 += 1
+                        convo.save!
+                        ConversationsNotifChannel.broadcast_to convo.user1, type: "RECEIVE_CONVERSATION_NOTIF", conversation: convo
+                        ConversationsChannel.broadcast_to message2.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: message)
+                    end
                 end
-                ConversationsNotifChannel.broadcast_to convo.user1, type: "RECEIVE_CONVERSATION_NOTIF", conversation: convo
-                ConversationsChannel.broadcast_to message.location, type:"RECEIVE_MESSAGE", **from_template('api/messages/_helper', message: message)
+                
             end
               
 
